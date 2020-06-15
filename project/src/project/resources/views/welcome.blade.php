@@ -81,7 +81,9 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    <div id='app'>
+                        <example-component></example-component>
+                    </div>
                 </div>
 
                 <div class="links">
@@ -96,5 +98,6 @@
                 </div>
             </div>
         </div>
+        <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>
