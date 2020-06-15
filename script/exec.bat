@@ -1,1 +1,1 @@
-docker exec -it travle-diary-api-server-project /bin/bash
+docker exec -it travle-diary-view-server-project /bin/bash

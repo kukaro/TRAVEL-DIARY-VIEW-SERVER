@@ -7,6 +7,7 @@ services:
     command: /root/script/init.sh
     volumes:
       - ./src/:/var/www/html
+      - ./test/:/root/test
     ports:
       - '20022:22'
       - '20080:80'
