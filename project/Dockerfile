@@ -44,6 +44,7 @@ RUN apt-get -y install zip
 RUN apt-get -y install php-curl
 RUN apt-get -y install tree
 RUN apt-get update && apt-get -y install net-tools
+RUN apt-get -y install iputils-ping
 
 #install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/ 
