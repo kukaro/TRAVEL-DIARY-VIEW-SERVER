@@ -1,5 +1,7 @@
 <template>
-    <div class="user-info-section" :style="style"></div>
+    <div class="user-info-section" :style="style">
+        {{data}}
+    </div>
 </template>
 
 <script>

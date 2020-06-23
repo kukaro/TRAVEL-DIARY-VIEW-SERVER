@@ -54,7 +54,9 @@ const data = {
         global_list: [
             new GlobalHeaderDto('/user', 'user', '사용자 정보'),
             new GlobalHeaderDto('/test', 'test', '테스트'),
+            new GlobalHeaderDto('/gallery', 'gallery', '갤러리'),
             new GlobalHeaderDto('/document', 'document', '문서'),
+            new GlobalHeaderDto('/setting', 'setting', '설정'),
         ],
     },
     getters: {

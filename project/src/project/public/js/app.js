@@ -2199,6 +2199,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -38884,7 +38886,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "user-info-section", style: _vm.style })
+  return _c("div", { staticClass: "user-info-section", style: _vm.style }, [
+    _vm._v("\n    " + _vm._s(_vm.data) + "\n")
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -53015,7 +53019,7 @@ var data = {
         value: 'rgb(173, 204, 202)'
       }
     },
-    global_list: [new _dto_GlobalHeaderDto__WEBPACK_IMPORTED_MODULE_2__["default"]('/user', 'user', '사용자 정보'), new _dto_GlobalHeaderDto__WEBPACK_IMPORTED_MODULE_2__["default"]('/test', 'test', '테스트'), new _dto_GlobalHeaderDto__WEBPACK_IMPORTED_MODULE_2__["default"]('/document', 'document', '문서')]
+    global_list: [new _dto_GlobalHeaderDto__WEBPACK_IMPORTED_MODULE_2__["default"]('/user', 'user', '사용자 정보'), new _dto_GlobalHeaderDto__WEBPACK_IMPORTED_MODULE_2__["default"]('/test', 'test', '테스트'), new _dto_GlobalHeaderDto__WEBPACK_IMPORTED_MODULE_2__["default"]('/gallery', 'gallery', '갤러리'), new _dto_GlobalHeaderDto__WEBPACK_IMPORTED_MODULE_2__["default"]('/document', 'document', '문서'), new _dto_GlobalHeaderDto__WEBPACK_IMPORTED_MODULE_2__["default"]('/setting', 'setting', '설정')]
   },
   getters: {},
   mutations: {
