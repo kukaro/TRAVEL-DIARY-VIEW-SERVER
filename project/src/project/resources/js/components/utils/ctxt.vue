@@ -15,6 +15,9 @@ export default {
         },
         size: {
             default: 14
+        },
+        is_bold: {
+            default: false
         }
     },
     name: "ctxt",
@@ -23,7 +26,8 @@ export default {
         style() {
             return {
                 color: this.color,
-                fontSize: mU(this.size)
+                fontSize: mU(this.size),
+                fontWeight: this.is_bold ? "bold" : "normal"
             };
         }
     },

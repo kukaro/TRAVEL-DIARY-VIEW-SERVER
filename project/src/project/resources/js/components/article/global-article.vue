@@ -1,6 +1,8 @@
 <template>
     <article class="global-article" :style="style">
-        <ctxt :value="user_name"></ctxt>
+        <div class="inner" :style="inner_style">
+            <ctxt :value="user_name"></ctxt>
+        </div>
     </article>
 </template>
 
@@ -16,17 +18,33 @@ export default {
     },
     computed: {
         ...mapState({
-            global_header: "global_header",
+            global_article: "global_article",
             global_setting: "global_setting"
         }),
         style() {
             return {
-                width: "100%",
-                height: calcAOB(
-                    "100%",
-                    "-",
-                    mU(this.global_header.height.value)
+                width: mU(
+                    this.global_article.width.value,
+                    this.global_article.width.unit
+                ),
+                height: mU(
+                    this.global_article.height.value,
+                    this.global_article.height.unit
                 )
+            };
+        },
+        inner_style() {
+            return {
+                backgroundColor: this.global_article.bgc.value,
+                borderRadius: mU(
+                    this.global_setting.border_radius.value,
+                    this.global_setting.border_radius.unit
+                ),
+                width: mU(
+                    this.global_article.width.value,
+                    this.global_article.width.unit
+                ),
+                margin: mU(this.global_setting.margin.value)
             };
         }
     },

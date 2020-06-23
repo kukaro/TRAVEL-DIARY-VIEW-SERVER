@@ -1,15 +1,21 @@
 <template>
-    <div class="global-header" :style="style">
-        <ul :style="ul_style"></ul>
-    </div>
+    <header class="global-header" :style="style">
+        <global-list />
+    </header>
 </template>
 
 <script>
+import ctxt from "../utils/ctxt";
+import globalList from "../list/global-list";
 import { mU } from "../../utils/unit";
 import { mapState } from "vuex";
 
 export default {
     name: "global-header",
+    components: {
+        ctxt,
+        globalList
+    },
     computed: {
         ...mapState({
             global_header: "global_header",
@@ -21,26 +27,10 @@ export default {
                     this.global_header.width.value,
                     this.global_header.width.unit
                 ),
-                height: mU(
+                minHeight: mU(
                     this.global_header.height.value,
                     this.global_header.height.unit
                 )
-
-                // padding: mU(this.global_setting.padding.value)
-            };
-        },
-        ul_style() {
-            return {
-                width: mU(
-                    this.global_header.width.value,
-                    this.global_header.width.unit
-                ),
-                backgroundColor: this.global_header.bgc.value,
-                borderRadius: mU(
-                    this.global_setting.border_radius.value,
-                    this.global_setting.border_radius.unit
-                ),
-                margin: mU(this.global_setting.margin.value)
             };
         }
     },
@@ -49,9 +39,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-ul {
-    list-style: none;
-}
 .global-header {
     display: flex;
 }
