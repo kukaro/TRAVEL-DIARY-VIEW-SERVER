@@ -29,7 +29,7 @@ const data = {
             bgc: {
                 value: 'rgb(230, 221, 228)'
             },
-            list_distance: 20
+            list_distance: 25
         },
         global_article: {
             width: {
