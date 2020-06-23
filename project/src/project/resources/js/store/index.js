@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import GlobalHeaderDto from '../dto/GlobalHeaderDto'
+import { call } from "../utils/request"
+import userStore from './user'
+import { sBind } from '../utils/helper'
+import UserDto from '../dto/UserDto'
 
 Vue.use(Vuex)
 
@@ -15,7 +19,10 @@ const data = {
             },
             default_color: 'rgb(0, 0, 0)',
             link_color: 'rgb(86, 156, 214)',
-            default_list_font_size: 20
+            default_list_font_size: 20,
+            padding: {
+                value: 10
+            }
         },
         global_header: {
             width: {
@@ -49,16 +56,31 @@ const data = {
             new GlobalHeaderDto('/test', 'test', '테스트'),
             new GlobalHeaderDto('/document', 'document', '문서'),
         ],
-        count: 0
+    },
+    getters: {
+
     },
     mutations: {
-        increment(state) {
-            state.count++
+        successGetGlobalList(state, res) {
+            //TODO: 의존된 코드
+            state.user_data = new UserDto(res.data);
         },
-        decrement(state) {
-            state.count--
+        failGetGlobalList(state, res) {
+            console.log(res);
+        }
+    },
+    actions: {
+        getGlobalList({ commit,/*state*/ }) {
+            call(commit,
+                'get',
+                '/user/eve@eve.eve',
+                'successGetGlobalList',
+                'failGetGlobalList'
+            );
         }
     }
 }
+
+sBind('user', userStore, data);
 
 export default new Vuex.Store(data);

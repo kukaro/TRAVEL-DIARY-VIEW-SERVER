@@ -1,25 +1,28 @@
 <template>
     <article class="global-article" :style="style">
         <div class="inner" :style="inner_style">
-            <ctxt :value="user_name"></ctxt>
+            <user-info-section v-if="user_data" :data="user_data" />
         </div>
     </article>
 </template>
 
 <script>
-import ctxt from "../utils/ctxt";
 import { mU, calcAOB } from "../../utils/unit";
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
+import ctxt from "../utils/ctxt";
+import userInfoSection from "../section/user-info-section";
 
 export default {
     name: "global-article",
     components: {
-        ctxt
+        ctxt,
+        userInfoSection
     },
     computed: {
         ...mapState({
             global_article: "global_article",
-            global_setting: "global_setting"
+            global_setting: "global_setting",
+            user_data: "user_data"
         }),
         style() {
             return {
@@ -44,14 +47,21 @@ export default {
                     this.global_article.width.value,
                     this.global_article.width.unit
                 ),
-                margin: mU(this.global_setting.margin.value)
+                margin: mU(this.global_setting.margin.value),
+                padding: mU(this.global_setting.padding.value)
             };
         }
     },
+    methods: {
+        ...mapActions({
+            getGlobalList: "getGlobalList"
+        })
+    },
+    created() {
+        this.getGlobalList();
+    },
     data() {
-        return {
-            user_name: "go to user name"
-        };
+        return {};
     }
 };
 </script>
