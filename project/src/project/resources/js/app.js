@@ -1,4 +1,5 @@
 import store from './store'
+import router from './router'
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -30,6 +31,7 @@ Vue.component('root', require('./components/Root.vue').default);
  */
 
 const app = new Vue({
-    el: '#app',
+    router,
     store,
-});
+    render: h => h(App)
+}).$mount('#app');
