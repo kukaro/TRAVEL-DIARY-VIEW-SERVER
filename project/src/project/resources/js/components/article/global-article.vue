@@ -1,7 +1,7 @@
 <template>
     <article class="global-article" :style="style">
         <div class="inner" :style="inner_style">
-            <user-info-section v-if="user_data" :data="user_data" />
+            <router-view></router-view>
         </div>
     </article>
 </template>

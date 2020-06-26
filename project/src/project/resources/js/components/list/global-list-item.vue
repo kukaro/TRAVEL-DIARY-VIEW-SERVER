@@ -1,13 +1,20 @@
 <template>
     <li :style="style">
-        <a :href="data.path" class="center" @mouseover="hover = true" @mouseleave="hover = false">
-            <ctxt
-                :value="data.view_name"
-                :is_bold="true"
-                :color="color"
-                :size="global_setting.default_list_font_size"
-            />
-        </a>
+        <router-link :to="link_name">
+            <a
+                :href="data.path"
+                class="center"
+                @mouseover="hover = true"
+                @mouseleave="hover = false"
+            >
+                <ctxt
+                    :value="data.view_name"
+                    :is_bold="true"
+                    :color="color"
+                    :size="global_setting.default_list_font_size"
+                />
+            </a>
+        </router-link>
     </li>
 </template>
 
@@ -42,6 +49,9 @@ export default {
             return this.hover
                 ? this.global_setting.link_color
                 : this.global_setting.default_color;
+        },
+        link_name(){
+            return `${this.data.path}`;
         }
     },
     data() {

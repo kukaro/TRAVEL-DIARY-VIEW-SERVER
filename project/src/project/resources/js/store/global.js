@@ -48,6 +48,7 @@ const data = {
             },
         },
         list: [
+            new GlobalHeaderDto('/', 'home', '홈'),
             new GlobalHeaderDto('/user', 'user', '사용자 정보'),
             new GlobalHeaderDto('/test', 'test', '테스트'),
             new GlobalHeaderDto('/gallery', 'gallery', '갤러리'),
