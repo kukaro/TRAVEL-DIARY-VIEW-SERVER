@@ -1,21 +1,34 @@
 <template>
     <div id="root">
-        <global-header></global-header>
-        <global-article></global-article>
+        <login-page v-if="!is_login && !owner"/>
+        <global-header v-if="is_login && owner"></global-header>
+        <global-article v-if="is_login && owner"></global-article>
     </div>
 </template>
 
 <script>
 import globalHeader from "./header/global-header";
 import globalArticle from "./article/global-article";
+import { mapState, mapActions } from "vuex";
+import loginPage from "./page/login-page";
 
 export default {
     name: "root",
     components: {
         globalHeader,
-        globalArticle
+        globalArticle,
+        loginPage
     },
-    created() {},
+    computed:{
+        ...mapState({
+            owner: 'sess_owner',
+            is_login: 'sess_is_login'
+        }),
+    },
+    methods: {
+    },
+    created() {
+    },
     data() {
         return {};
     }

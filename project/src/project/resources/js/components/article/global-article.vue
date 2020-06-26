@@ -57,9 +57,7 @@ export default {
             getGlobalList: "getGlobalList"
         })
     },
-    created() {
-        this.getGlobalList();
-    },
+    created() {},
     data() {
         return {};
     }
