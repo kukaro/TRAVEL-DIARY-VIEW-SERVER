@@ -55561,6 +55561,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./router */ "./resources/js/router/index.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _components_Root_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Root.vue */ "./resources/js/components/Root.vue");
+
 
 
 
@@ -55583,7 +55585,6 @@ window.Vue = vue__WEBPACK_IMPORTED_MODULE_2___default.a;
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('root', __webpack_require__(/*! ./components/Root.vue */ "./resources/js/components/Root.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -55592,7 +55593,10 @@ vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('root', __webpack_require__
 
 var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
   router: _router__WEBPACK_IMPORTED_MODULE_1__["default"],
-  store: _store__WEBPACK_IMPORTED_MODULE_0__["default"]
+  store: _store__WEBPACK_IMPORTED_MODULE_0__["default"],
+  render: function render(h) {
+    return h(_components_Root_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
+  }
 }).$mount('#app');
 
 /***/ }),

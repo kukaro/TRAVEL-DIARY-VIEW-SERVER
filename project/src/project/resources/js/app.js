@@ -1,6 +1,7 @@
 import store from './store'
 import router from './router'
 import Vue from 'vue'
+import Root from './components/Root.vue'
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -23,8 +24,6 @@ window.Vue = Vue;
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('root', require('./components/Root.vue').default);
-
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -34,4 +33,5 @@ Vue.component('root', require('./components/Root.vue').default);
 const app = new Vue({
     router,
     store,
+    render: h => h(Root)
 }).$mount('#app');
