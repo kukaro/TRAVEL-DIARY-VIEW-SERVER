@@ -2008,12 +2008,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       };
     }
   }),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])({
-    getGlobalList: "getGlobalList"
-  })),
-  created: function created() {
-    this.getGlobalList();
-  },
+  methods: {},
+  created: function created() {},
   data: function data() {
     return {};
   }
@@ -53544,21 +53540,8 @@ var data = {
     list: [new _dto_GlobalHeaderDto__WEBPACK_IMPORTED_MODULE_0__["default"]('/user', 'user', '사용자 정보'), new _dto_GlobalHeaderDto__WEBPACK_IMPORTED_MODULE_0__["default"]('/test', 'test', '테스트'), new _dto_GlobalHeaderDto__WEBPACK_IMPORTED_MODULE_0__["default"]('/gallery', 'gallery', '갤러리'), new _dto_GlobalHeaderDto__WEBPACK_IMPORTED_MODULE_0__["default"]('/document', 'document', '문서'), new _dto_GlobalHeaderDto__WEBPACK_IMPORTED_MODULE_0__["default"]('/setting', 'setting', '설정')]
   },
   getters: {},
-  mutations: {
-    successGetGlobalList: function successGetGlobalList(state, res) {
-      //TODO: 의존된 코드
-      state.user_data = new _dto_UserDto__WEBPACK_IMPORTED_MODULE_1__["default"](res.data);
-    },
-    failGetGlobalList: function failGetGlobalList(state, res) {
-      console.log(res);
-    }
-  },
-  actions: {
-    getGlobalList: function getGlobalList(_ref) {
-      var commit = _ref.commit;
-      call(commit, 'get', '/user/eve@eve.eve', 'successGetGlobalList', 'failGetGlobalList');
-    }
-  }
+  mutations: {},
+  actions: {}
 };
 /* harmony default export */ __webpack_exports__["default"] = (data);
 

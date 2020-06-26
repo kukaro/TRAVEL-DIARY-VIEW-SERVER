@@ -55,25 +55,14 @@ const data = {
             new GlobalHeaderDto('/setting', 'setting', '설정'),
         ],
     },
-    getters: {},
+    getters: {
+        
+    },
     mutations: {
-        successGetGlobalList(state, res) {
-            //TODO: 의존된 코드
-            state.user_data = new UserDto(res.data);
-        },
-        failGetGlobalList(state, res) {
-            console.log(res);
-        }
+
     },
     actions: {
-        getGlobalList({ commit,/*state*/ }) {
-            call(commit,
-                'get',
-                '/user/eve@eve.eve',
-                'successGetGlobalList',
-                'failGetGlobalList'
-            );
-        }
+
     }
 }
 

@@ -52,11 +52,7 @@ export default {
             };
         }
     },
-    methods: {
-        ...mapActions({
-            getGlobalList: "getGlobalList"
-        })
-    },
+    methods: {},
     created() {},
     data() {
         return {};
