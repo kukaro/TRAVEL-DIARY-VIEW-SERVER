@@ -4,7 +4,7 @@ services:
   travle-diary-view-server-project:
     image: travle-diary-view-server-project
     container_name: travle-diary-view-server-project
-    command: /root/script/init.sh
+    command: /usr/sbin/apache2ctl -D FOREGROUND
     volumes:
       - ./src/:/var/www/html
       - ./test/:/root/test
