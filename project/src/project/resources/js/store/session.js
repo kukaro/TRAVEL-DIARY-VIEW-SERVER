@@ -17,16 +17,30 @@ const data = {
         },
         failSetOwner(state, res) {
             console.log(res);
-        }
+        },
+        successSetLogin(state, res) {
+            console.log(res);
+        },
+        failSetLogin(state, res) {
+            console.log(res);
+        },
     },
     actions: {
         setOwner({ commit }, payload) {
             call(commit,
                 'get',
-                `${payload}`,
+                `/api${payload}`,
                 `${prefix}_successSetOwner`,
                 `${prefix}_failSetOwner`
             );
+        },
+        setLogin({commit},payload){
+            call(commit,
+                payload.method,
+                `${payload.path}`,
+                `${prefix}_successSetLogin`,
+                `${prefix}_failSetLogin`,
+                payload.value)
         }
     }
 }

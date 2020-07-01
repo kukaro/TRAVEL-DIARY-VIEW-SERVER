@@ -14,7 +14,7 @@ export function call(commit, method, path, success_mutation_name, fail_mutation_
     if (valid) {
         axios.request({
             method: method,
-            url: `http://${config.api_server_host}/api${path}`,
+            url: `http://${config.api_server_host}${path}`,
             data
         }).then((res) => {
             commit(success_mutation_name, res.data);
