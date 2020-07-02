@@ -1,26 +1,32 @@
 <template>
-  <input type="button" value="로그인" @click="setLogin({method:'post', path:'/login', value})" />
+    <input type="button" value="로그인" @click="setLogin(value)"/>
 </template>
 
 <script>
-import { mapActions } from "vuex";
-export default {
-  name: "login-btn",
-  props: {
-    value: {
-      email: "",
-      password: ""
-    }
-  },
-  watch: {},
-  created() {},
-  methods: {
-    ...mapActions({
-      setOwner: "sess_setOwner",
-      setLogin: "sess_setLogin"
-    })
-  }
-};
+    import {call} from "../../../utils/request";
+    import {mapActions} from "vuex";
+    import axios from "axios";
+    import config from "../../../config";
+
+    export default {
+        name: "login-btn",
+        props: {
+            value: {
+                email: "",
+                password: ""
+            }
+        },
+        watch: {},
+        created() {
+
+        },
+        methods: {
+            ...mapActions({
+                setOwner: "sess_setOwner",
+                setLogin: "sess_setLogin"
+            })
+        }
+    };
 </script>
 
 <style lang="scss" scoped>

@@ -1,4 +1,4 @@
-import { call } from "../utils/request"
+import {call, loginCall} from "../utils/request"
 import UserDto from '../dto/UserDto'
 
 const prefix = 'sess';
@@ -19,14 +19,14 @@ const data = {
             console.log(res);
         },
         successSetLogin(state, res) {
-            console.log(res);
+            this.dispatch(`${prefix}_setOwner`, `/user/${res.email}`);
         },
         failSetLogin(state, res) {
             console.log(res);
         },
     },
     actions: {
-        setOwner({ commit }, payload) {
+        setOwner({commit}, payload) {
             call(commit,
                 'get',
                 `/api${payload}`,
@@ -34,36 +34,13 @@ const data = {
                 `${prefix}_failSetOwner`
             );
         },
-        setLogin({commit},payload){
-            call(commit,
-                payload.method,
-                `${payload.path}`,
+        setLogin({commit}, payload) {
+            loginCall(commit,
+                payload,
                 `${prefix}_successSetLogin`,
-                `${prefix}_failSetLogin`,
-                payload.value)
+                `${prefix}_failSetLogin`)
         }
     }
 }
 
 export default data;
-/*
-mutations: {
-        successGetGlobalList(state, res) {
-            //TODO: 의존된 코드
-            state.user_data = new UserDto(res.data);
-        },
-        failGetGlobalList(state, res) {
-            console.log(res);
-        }
-    },
-    actions: {
-        getGlobalList({ commit }) {
-            call(commit,
-                'get',
-                '/user/eve@eve.eve',
-                'successGetGlobalList',
-                'failGetGlobalList'
-            );
-        }
-    }
-*/

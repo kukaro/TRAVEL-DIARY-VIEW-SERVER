@@ -2115,8 +2115,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   watch: {},
+  created: function created() {
+    console.log('dada');
+    this.setOwner('/user/dada@dada.da');
+  },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])({
-    setOwner: "sess_setOwner"
+    setOwner: "sess_setOwner",
+    setLogin: "sess_setLogin"
   }))
 });
 
@@ -39080,7 +39085,11 @@ var render = function() {
     attrs: { type: "button", value: "로그인" },
     on: {
       click: function($event) {
-        return _vm.setOwner("/user/" + _vm.value.email)
+        return _vm.setLogin({
+          method: "post",
+          path: "/login",
+          value: _vm.value
+        })
       }
     }
   })
@@ -56873,12 +56882,22 @@ var data = {
     },
     failSetOwner: function failSetOwner(state, res) {
       console.log(res);
+    },
+    successSetLogin: function successSetLogin(state, res) {
+      console.log(res);
+    },
+    failSetLogin: function failSetLogin(state, res) {
+      console.log(res);
     }
   },
   actions: {
     setOwner: function setOwner(_ref, payload) {
       var commit = _ref.commit;
-      Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["call"])(commit, 'get', "".concat(payload), "".concat(prefix, "_successSetOwner"), "".concat(prefix, "_failSetOwner"));
+      Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["call"])(commit, 'get', "/api".concat(payload), "".concat(prefix, "_successSetOwner"), "".concat(prefix, "_failSetOwner"));
+    },
+    setLogin: function setLogin(_ref2, payload) {
+      var commit = _ref2.commit;
+      Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["call"])(commit, payload.method, "".concat(payload.path), "".concat(prefix, "_successSetLogin"), "".concat(prefix, "_failSetLogin"), payload.value);
     }
   }
 };
@@ -56996,7 +57015,7 @@ function call(commit, method, path, success_mutation_name, fail_mutation_name) {
   if (valid) {
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.request({
       method: method,
-      url: "http://".concat(_config__WEBPACK_IMPORTED_MODULE_1__["default"].api_server_host, "/api").concat(path),
+      url: "http://".concat(_config__WEBPACK_IMPORTED_MODULE_1__["default"].api_server_host).concat(path),
       data: data
     }).then(function (res) {
       commit(success_mutation_name, res.data);
