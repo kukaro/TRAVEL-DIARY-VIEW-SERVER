@@ -2,12 +2,13 @@ import {call, loginCall} from "../utils/request"
 import UserDto from '../dto/UserDto'
 
 const prefix = 'sess';
+const debug = false;
 
 const data = {
     prefix,
     state: {
-        owner: null,
-        is_login: false
+        owner: debug ? new UserDto({}):null,
+        is_login: debug ? true : false,
     },
     getters: {},
     mutations: {
@@ -16,7 +17,6 @@ const data = {
             state[`${prefix}_is_login`] = true;
         },
         failSetOwner(state, res) {
-            console.log('fail');
             state[`${prefix}_owner`] = null;
             state[`${prefix}_is_login`] = false;
         },

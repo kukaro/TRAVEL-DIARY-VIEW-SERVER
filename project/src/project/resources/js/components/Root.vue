@@ -1,7 +1,8 @@
 <template>
-    <div id="root">
+    <div id="root" :style="style">
         <login-page v-if="!is_login && !owner"/>
-        <global-header v-if="is_login && owner"></global-header>
+<!--        <global-header v-if="is_login && owner"></global-header>-->
+        <global-nav v-if="is_login && owner"></global-nav>
         <global-article v-if="is_login && owner"></global-article>
     </div>
 </template>
@@ -11,10 +12,12 @@ import globalHeader from "./header/global-header";
 import globalArticle from "./article/global-article";
 import { mapState, mapActions } from "vuex";
 import loginPage from "./page/login-page";
+import GlobalNav from "./nav/global-nav";
 
 export default {
     name: "root",
     components: {
+        GlobalNav,
         globalHeader,
         globalArticle,
         loginPage
@@ -22,8 +25,14 @@ export default {
     computed:{
         ...mapState({
             owner: 'sess_owner',
-            is_login: 'sess_is_login'
+            is_login: 'sess_is_login',
+            setting: 'global_setting',
         }),
+        style(){
+            return{
+                backgroundColor: this.setting.bgc,
+            }
+        }
     },
     methods: {
     },
@@ -50,6 +59,5 @@ body,
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column;
 }
 </style>

@@ -18,7 +18,10 @@ export default {
         },
         is_bold: {
             default: false
-        }
+        },
+        font : {
+            default: 'Georgia'
+        },
     },
     name: "ctxt",
     watch: {},
@@ -27,7 +30,8 @@ export default {
             return {
                 color: this.color,
                 fontSize: mU(this.size),
-                fontWeight: this.is_bold ? "bold" : "normal"
+                fontWeight: this.is_bold ? "bold" : "normal",
+                fontFamily: this.font
             };
         }
     },

@@ -33,7 +33,7 @@ export default {
                 height: mU(
                     this.global_article.height.value,
                     this.global_article.height.unit
-                )
+                ),
             };
         },
         inner_style() {
