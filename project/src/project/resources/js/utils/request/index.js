@@ -13,7 +13,7 @@ export function loginCall(commit, data, success_mutation_name, fail_mutation_nam
             'Content-Type': 'application/x-www-form-urlencoded'
         }
     }).then((res) => {
-        commit(success_mutation_name, data);
+        commit(success_mutation_name, {res, data});
     }).catch((res) => {
         commit(fail_mutation_name, res)
     })

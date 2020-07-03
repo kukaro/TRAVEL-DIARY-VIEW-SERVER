@@ -16,12 +16,15 @@ const data = {
             state[`${prefix}_is_login`] = true;
         },
         failSetOwner(state, res) {
-            console.log(res);
+            console.log('fail');
+            state[`${prefix}_owner`] = null;
+            state[`${prefix}_is_login`] = false;
         },
         successSetLogin(state, res) {
-            this.dispatch(`${prefix}_setOwner`, `/user/${res.email}`);
+            this.dispatch(`${prefix}_setOwner`, `/user/${res.data.email}`);
         },
         failSetLogin(state, res) {
+            console.log('fail');
             console.log(res);
         },
     },
