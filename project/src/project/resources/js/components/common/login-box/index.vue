@@ -31,10 +31,9 @@ export default {
         style() {
             return {
                 width: mU(this.box.width),
-                height: mU(this.box.height),
+                height: mU(100,'%'),
                 backgroundColor: this.box.bgc,
-                margin: "auto",
-                borderRadius: mU(this.setting.border_radius.value)
+                marginLeft: 'auto',
             };
         }
     },
@@ -50,4 +49,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    .login-box{
+        z-index: 1;
+    }
 </style>

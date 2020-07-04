@@ -33,10 +33,6 @@
                         this.nav.width.value,
                         this.nav.width.unit
                     ),
-                    height: mU(
-                        this.nav.height.value,
-                        this.nav.height.unit
-                    ),
                     backgroundColor: this.nav.bgc.value
                 };
             }

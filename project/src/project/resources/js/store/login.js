@@ -6,7 +6,6 @@ const data = {
         bgc: 'rgb(200, 200, 200)',
         box: {
             width: 500,
-            height: 600,
             bgc: 'white'
         },
         title:{
