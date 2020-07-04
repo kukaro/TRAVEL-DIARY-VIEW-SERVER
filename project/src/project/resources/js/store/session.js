@@ -1,5 +1,6 @@
 import {call, loginCall} from "../utils/request"
 import UserDto from '../dto/UserDto'
+import SessionStorage from "../storage";
 
 const prefix = 'sess';
 const debug = false;
@@ -7,7 +8,12 @@ const debug = false;
 const data = {
     prefix,
     state: {
-        owner: debug ? new UserDto({}):null,
+        jwt: {
+            access_token: null,
+            expires_in: null,
+            token_type: null
+        },
+        owner: debug ? new UserDto({}) : null,
         is_login: debug ? true : false,
     },
     getters: {},
@@ -17,11 +23,18 @@ const data = {
             state[`${prefix}_is_login`] = true;
         },
         failSetOwner(state, res) {
+            console.log(res);
             state[`${prefix}_owner`] = null;
             state[`${prefix}_is_login`] = false;
         },
         successSetLogin(state, res) {
-            this.dispatch(`${prefix}_setOwner`, `/user/${res.data.email}`);
+            Object.keys(this.state[`${prefix}_jwt`]).map((value, /*key*/) => {
+                this.state[`${prefix}_jwt`][value] = res.res.data[value];
+            });
+            SessionStorage.set('jwt', JSON.stringify(this.state[`${prefix}_jwt`]));
+            this.dispatch(`${prefix}_setOwner`, {
+                path: `/user/${res.data.email}`
+            });
         },
         failSetLogin(state, res) {
             console.log('fail');
@@ -29,21 +42,24 @@ const data = {
         },
     },
     actions: {
-        setOwner({commit}, payload) {
+        setOwner({commit}, {path = '/', data = {}, headers = {}}) {
             call(commit,
                 'get',
-                `/api${payload}`,
+                `/api${path}`,
                 `${prefix}_successSetOwner`,
-                `${prefix}_failSetOwner`
+                `${prefix}_failSetOwner`,
+                data,
+                headers
             );
         },
         setLogin({commit}, payload) {
             loginCall(commit,
                 payload,
                 `${prefix}_successSetLogin`,
-                `${prefix}_failSetLogin`)
-        }
+                `${prefix}_failSetLogin`
+            )
+        },
     }
-}
+};
 
 export default data;

@@ -7,7 +7,7 @@ const valid_method = ['get', 'post', 'put', 'patch', 'delete'];
 export function loginCall(commit, data, success_mutation_name, fail_mutation_name) {
     axios.request({
         method: 'post',
-        url: `http://${config.api_server_host}/login`,
+        url: `http://${config.api_server_host}/api/login`,
         data: `email=${data.email}&password=${data.password}`,
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -19,23 +19,26 @@ export function loginCall(commit, data, success_mutation_name, fail_mutation_nam
     })
 }
 
-export function call(commit, method, path, success_mutation_name, fail_mutation_name, data = {}) {
+export function call(commit,
+                     method,
+                     path,
+                     success_mutation_name,
+                     fail_mutation_name,
+                     data = {},
+                     headers={}) {
     method = method.toLowerCase();
     const valid = valid_method.some((value, key) => {
         if (value === method) {
             return true;
         }
         return false;
-    })
+    });
     if (valid) {
         axios.request({
             method: method,
             url: `http://${config.api_server_host}${path}`,
             data,
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-
+            headers
         }).then((res) => {
             commit(success_mutation_name, res.data);
         }).catch((res) => {

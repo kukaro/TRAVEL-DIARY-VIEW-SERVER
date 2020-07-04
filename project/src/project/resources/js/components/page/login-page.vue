@@ -26,7 +26,7 @@ export default {
                 display: "flex"
             };
         }
-    }
+    },
 };
 </script>
 
