@@ -6,24 +6,25 @@
 
 <script>
     import {mU, calcAOB} from '../../utils/unit'
+
     export default {
         name: "separator",
-        props:{
-            color:{
+        props: {
+            color: {
                 default: 'black'
             },
-            height:{
+            height: {
                 default: 1
             },
-            margin:{
+            margin: {
                 default: 10
             }
         },
-        computed:{
-            style(){
+        computed: {
+            style() {
                 return {
                     backgroundColor: this.color,
-                    width: calcAOB('100%','-',this.margin*2),
+                    width: calcAOB('100%', '-', this.margin * 2),
                     height: mU(this.height),
                     marginLeft: mU(this.margin),
                     marginRight: mU(this.margin),

@@ -24,6 +24,12 @@ class SessionStorage {
         }
     }
 
+    static remove(key){
+        if (SessionStorage.validKey(key)) {
+            delete ss[key];
+        }
+    }
+
     static getJwt() {
         if (SessionStorage.get('jwt')) {
             return JSON.parse(SessionStorage.get('jwt'));

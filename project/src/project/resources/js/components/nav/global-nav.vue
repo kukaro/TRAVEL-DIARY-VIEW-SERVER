@@ -3,6 +3,8 @@
         <global-nav-logo-slot></global-nav-logo-slot>
         <separator :color="global_setting.bgc"></separator>
         <global-nav-list-slot></global-nav-list-slot>
+        <separator :color="global_setting.bgc"></separator>
+        <global-nav-personal-list-slot></global-nav-personal-list-slot>
     </nav>
 </template>
 
@@ -13,10 +15,12 @@
     import GlobalNavLogoSlot from "./global-nav-logo-slot";
     import Separator from "../common/separator";
     import GlobalNavListSlot from "./global-nav-list-slot";
+    import GlobalNavPersonalListSlot from "./global-nav-personal-list-slot";
 
     export default {
         name: "global-nav",
         components: {
+            GlobalNavPersonalListSlot,
             GlobalNavListSlot,
             Separator,
             GlobalNavLogoSlot,

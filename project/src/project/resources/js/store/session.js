@@ -18,14 +18,17 @@ const data = {
     },
     getters: {},
     mutations: {
+        removeOwner(state) {
+            state[`${prefix}_owner`] = null;
+            state[`${prefix}_is_login`] = false;
+        },
         successSetOwner(state, res) {
             state[`${prefix}_owner`] = new UserDto(res.data);
             state[`${prefix}_is_login`] = true;
         },
         failSetOwner(state, res) {
             console.log(res);
-            state[`${prefix}_owner`] = null;
-            state[`${prefix}_is_login`] = false;
+            this.commit(`${prefix}_removeOwner`);
         },
         successSetLogin(state, res) {
             Object.keys(this.state[`${prefix}_jwt`]).map((value, /*key*/) => {
@@ -40,6 +43,11 @@ const data = {
             console.log('fail');
             console.log(res);
         },
+        logout(state, /*res*/) {
+            SessionStorage.remove('jwt');
+            this.commit(`${prefix}_removeOwner`);
+        },
+
     },
     actions: {
         setOwner({commit}, {path = '/', data = {}, headers = {}}) {

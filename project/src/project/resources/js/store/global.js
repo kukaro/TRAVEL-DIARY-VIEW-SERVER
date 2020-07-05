@@ -1,5 +1,6 @@
-import GlobalHeaderDto from '../dto/GlobalHeaderDto'
-import UserDto from '../dto/UserDto'
+import GlobalHeaderDto from '../dto/GlobalHeaderDto';
+import UserDto from '../dto/UserDto';
+import SessionStorage from "../storage";
 
 const prefix = 'global';
 
@@ -23,7 +24,7 @@ const data = {
             padding: {
                 value: 10
             },
-            bgc: 'rgb(242, 242, 242)',
+            bgc: 'rgb(230, 230, 230)',
             bgc_opacity: 0.1
         },
         header: {
@@ -80,6 +81,9 @@ const data = {
             new GlobalHeaderDto('/gallery', 'gallery', '갤러리'),
             new GlobalHeaderDto('/document', 'document', '문서'),
             new GlobalHeaderDto('/setting', 'setting', '설정'),
+        ],
+        personal_list: [
+            new GlobalHeaderDto('/logout', 'logout', '로그아웃', 'sess_logout'),
         ],
     },
     getters: {},

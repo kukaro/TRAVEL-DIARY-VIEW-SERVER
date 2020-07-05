@@ -2002,8 +2002,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 
 
@@ -7556,7 +7554,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.ctxt[data-v-0a966654] {\n}\r\n", ""]);
+exports.push([module.i, "\n.ctxt[data-v-0a966654] {\n}\n", ""]);
 
 // exports
 
@@ -39697,14 +39695,12 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("article", { staticClass: "global-article", style: _vm.style }, [
-    _c(
-      "div",
-      { staticClass: "inner", style: _vm.inner_style },
-      [_c("router-view")],
-      1
-    )
-  ])
+  return _c(
+    "article",
+    { staticClass: "global-article", style: _vm.style },
+    [_c("router-view")],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -1,8 +1,6 @@
 <template>
     <article class="global-article" :style="style">
-        <div class="inner" :style="inner_style">
-            <router-view></router-view>
-        </div>
+        <router-view></router-view>
     </article>
 </template>
 

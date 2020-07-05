@@ -1,26 +1,26 @@
 <template>
-    <ul name="global-nav-list" :style="ul_style">
-        <global-nav-list-item v-for="(value, key) in list" :data="value" :key="key"/>
+    <ul name="global-nav-personal-list" :style="ul_style">
+        <global-nav-personal-list-item v-for="(value, key) in list" :data="value" :key="key"/>
     </ul>
 </template>
 
 <script>
     import ctxt from "../utils/ctxt";
-    import globalNavListItem from "../list/global-nav-list-item";
+    import globalNavPersonalListItem from "../list/global-nav-personal-list-item";
     import {mU} from "../../utils/unit";
     import {mapState} from "vuex";
 
     export default {
-        name: "global-nav-list",
+        name: "global-nav-personal-list",
         components: {
             ctxt,
-            globalNavListItem
+            globalNavPersonalListItem
         },
         computed: {
             ...mapState({
                 global_header: "global_header",
                 global_setting: "global_setting",
-                list: "global_list"
+                list: "global_personal_list"
             }),
             ul_style() {
                 return {
