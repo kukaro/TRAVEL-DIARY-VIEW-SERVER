@@ -11,6 +11,11 @@ const data = {
             value: 'Travel Diary',
             size: 25
         },
+        quote: {
+            value1: '"여행을 기록하고',
+            value2: '남들과 공유하세요"',
+            size: 16,
+        },
         setting: {
             border_radius: {
                 value: 10

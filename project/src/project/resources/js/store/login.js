@@ -5,24 +5,29 @@ const data = {
     state: {
         bgc: 'rgb(200, 200, 200)',
         box: {
-            width: 500,
+            width: 600,
             bgc: 'white'
         },
-        title:{
+        title: {
             value: '로그인',
             size: 20
         },
-        footer:{
+        footer: {
             margin_top: 30,
             size: 40
         },
-        form_user:{
+        form_user: {
             email: "",
             password: "",
         }
     },
     getters: {},
-    mutations: {},
+    mutations: {
+        removeFormUser(state, res) {
+            this.state[`${prefix}_form_user`]['email'] = '';
+            this.state[`${prefix}_form_user`]['password'] = '';
+        }
+    },
     actions: {}
 }
 

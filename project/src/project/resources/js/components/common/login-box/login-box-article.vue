@@ -1,10 +1,8 @@
 <template>
     <div class="login-box-article">
         <form>
-            <form-input v-model="user.email"/>
-            <br/>
-            <form-input v-model="user.password" :type="'password'" :enter_cb="onEnter"/>
-            <br/>
+            <form-input v-model="user.email" class="margin-bottom"/>
+            <form-input v-model="user.password" :type="'password'" :enter_cb="onEnter" class="margin-bottom"/>
             <login-btn v-model="user"/>
         </form>
     </div>
@@ -14,12 +12,12 @@
 
     import LoginBtn from "./login-btn";
     import FormInput from "../../input/form-input";
-    import {mapActions, mapState} from "vuex";
+    import {mapActions, mapMutations, mapState} from "vuex";
 
     export default {
         name: "login-box-article",
         components: {FormInput, LoginBtn},
-        computed:{
+        computed: {
             ...mapState({
                 user: 'login_form_user',
             }),
@@ -27,9 +25,9 @@
         methods: {
             ...mapActions({
                 setOwner: "sess_setOwner",
-                setLogin: "sess_setLogin"
+                setLogin: "sess_setLogin",
             }),
-            onEnter(){
+            onEnter() {
                 this.setLogin(this.user);
             }
         }
@@ -47,5 +45,9 @@
         margin-left: 30px;
         margin-right: 30px;
         flex-direction: column;
+    }
+
+    .margin-bottom {
+        margin-bottom: 20px !important;
     }
 </style>

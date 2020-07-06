@@ -61,8 +61,10 @@ const data = {
             );
         },
         setLogin({commit}, payload) {
+            const pay = JSON.parse(JSON.stringify(payload));
+            this.commit(`login_removeFormUser`);
             loginCall(commit,
-                payload,
+                pay,
                 `${prefix}_successSetLogin`,
                 `${prefix}_failSetLogin`
             )
