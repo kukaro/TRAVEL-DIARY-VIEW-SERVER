@@ -11,6 +11,14 @@ const data = {
         title:{
             value: '로그인',
             size: 20
+        },
+        footer:{
+            margin_top: 30,
+            size: 40
+        },
+        form_user:{
+            email: "",
+            password: "",
         }
     },
     getters: {},

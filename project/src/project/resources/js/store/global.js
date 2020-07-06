@@ -85,6 +85,11 @@ const data = {
         personal_list: [
             new GlobalHeaderDto('/logout', 'logout', '로그아웃', 'sess_logout'),
         ],
+        input: {
+            height: 40,
+            border_color: 'rgb(150, 150, 150)',
+            font_size: 15
+        }
     },
     getters: {},
     mutations: {},

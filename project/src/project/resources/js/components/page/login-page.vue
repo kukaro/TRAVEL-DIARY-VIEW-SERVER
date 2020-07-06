@@ -1,8 +1,8 @@
 <template>
     <div class="login-page" :style="style">
-        <video preload="auto" autoplay="true" muted loop width="100" height="100">
-            <source src="../../../assets/video/login-bgc.mp4">
-        </video>
+<!--        <video preload="auto" autoplay="true" muted loop width="100" height="100">-->
+<!--            <source src="../../../assets/video/login-bgc.mp4">-->
+<!--        </video>-->
         <div class="test">
             여행을 기록하고 남들과 공유하세요.
         </div>

@@ -1,26 +1,24 @@
 <template>
     <div class="login-box" :style="style">
-        <ctxt :value="title.value" :size="title.size" />
-        <br />
-        <input type="text" v-model="user.email" />
-        <br />
-        <input type="text" v-model="user.password" />
-        <br />
-        <login-btn v-model="user" />
+        <login-box-header/>
+        <login-box-article/>
+        <login-box-footer/>
     </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
 import { mU } from "../../../../js/utils/unit";
-import ctxt from "../../utils/ctxt";
-import loginBtn from "../login-box/login-btn";
+import LoginBoxHeader from "./login-box-header";
+import LoginBoxFooter from "./login-box-footer";
+import LoginBoxArticle from "./login-box-article";
 
 export default {
     name: "login-box",
     components: {
-        ctxt,
-        loginBtn
+        LoginBoxArticle,
+        LoginBoxFooter,
+        LoginBoxHeader,
     },
     computed: {
         ...mapState({
@@ -36,20 +34,14 @@ export default {
                 marginLeft: 'auto',
             };
         }
-    },
-    data() {
-        return {
-            user: {
-                email: "",
-                password: ""
-            }
-        };
     }
 };
 </script>
 
 <style lang="scss" scoped>
     .login-box{
+        display: flex;
+        flex-direction: column;
         z-index: 1;
     }
 </style>
