@@ -1,4 +1,4 @@
-export function sBind(prefix, target_datas, dest_datas) {  
+export function sBind(prefix, target_datas, dest_datas) {
     Object.keys(target_datas.state).forEach(key => {
         const value = target_datas.state[key];
         dest_datas.state[`${prefix}_${key}`] = value;
@@ -15,4 +15,8 @@ export function sBind(prefix, target_datas, dest_datas) {
         const value = target_datas.getters[key];
         dest_datas.getters[`${prefix}_${key}`] = value;
     });
+}
+
+export function randomColor() {
+    return `rgb(${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)})`
 }

@@ -27,7 +27,7 @@ const data = {
             link_color: 'rgb(86, 156, 214)',
             default_list_font_size: 20,
             padding: {
-                value: 10
+                value: 20
             },
             bgc: 'rgb(230, 230, 230)',
             bgc_opacity: 0.1

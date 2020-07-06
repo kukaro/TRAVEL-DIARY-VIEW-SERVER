@@ -1,6 +1,8 @@
 <template>
     <section class="user-info-section" :style="style">
-        {{owner}}
+        <title-slot/>
+        <data-slot/>
+<!--        {{owner}}-->
     </section>
 </template>
 
@@ -8,9 +10,12 @@
 import { mU } from "../../../utils/unit";
 import { mapState, mapActions } from "vuex";
 import UserDto from "../../../dto/UserDto";
+import TitleSlot from "./title-slot";
+import DataSlot from "./data-slot";
 
 export default {
     name: "user-info-section",
+    components: {DataSlot, TitleSlot},
     computed: {
         ...mapState({
             global_article: "global_article",
@@ -20,10 +25,6 @@ export default {
         }),
         style() {
             return {
-                width: mU(this.section.width),
-                height: mU(this.section.height),
-                backgroundColor: this.section.color,
-                borderRadius: mU(this.global_setting.border_radius.value)
             };
         }
     }
@@ -31,4 +32,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    section{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+    }
 </style>

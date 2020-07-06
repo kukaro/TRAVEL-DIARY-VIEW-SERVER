@@ -34,21 +34,6 @@ export default {
                 ),
             };
         },
-        inner_style() {
-            return {
-                backgroundColor: this.global_article.bgc.value,
-                borderRadius: mU(
-                    this.global_setting.border_radius.value,
-                    this.global_setting.border_radius.unit
-                ),
-                width: mU(
-                    this.global_article.width.value,
-                    this.global_article.width.unit
-                ),
-                margin: mU(this.global_setting.margin.value),
-                padding: mU(this.global_setting.padding.value)
-            };
-        }
     },
     methods: {},
     created() {},

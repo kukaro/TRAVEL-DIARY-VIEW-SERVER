@@ -1,3 +1,16 @@
 {
-    "user_information": "유저 정보"
+    "global": {
+        "no_picture": "사진 없음"
+    },
+    "user": {
+        "title": "사용자 정보",
+        "size": 25,
+        "email": "email",
+        "name": "이름",
+        "age": "나이",
+        "birth_date": "생일",
+        "password": "패스워드",
+        "created_date": "최초 생성 일자",
+        "updated_date": "최종 수정 일자"
+    }
 }
