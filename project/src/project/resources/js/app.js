@@ -2,6 +2,7 @@ import store from './store'
 import router from './router'
 import Vue from 'vue'
 import Root from './components/Root.vue'
+import i18n from "./src/i18n";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -33,5 +34,6 @@ window.Vue = Vue;
 const app = new Vue({
     router,
     store,
+    i18n,
     render: h => h(Root)
 }).$mount('#app');

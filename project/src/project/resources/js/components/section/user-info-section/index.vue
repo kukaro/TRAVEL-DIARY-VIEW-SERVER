@@ -5,9 +5,9 @@
 </template>
 
 <script>
-import { mU } from "../../utils/unit";
+import { mU } from "../../../utils/unit";
 import { mapState, mapActions } from "vuex";
-import UserDto from "../../dto/UserDto";
+import UserDto from "../../../dto/UserDto";
 
 export default {
     name: "user-info-section",

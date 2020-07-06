@@ -42,6 +42,7 @@
             })
         },
         created() {
+            console.log(this.$t('message'));
             if (SessionStorage.get('jwt')) {
                 const jwt = SessionStorage.getJwt();
                 this.setOwner({

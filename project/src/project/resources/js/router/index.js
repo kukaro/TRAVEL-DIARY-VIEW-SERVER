@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 // import Home from '../views/Home.vue'
-import UserInfoSection from '../components/section/user-info-section'
+import UserInfoSection from '../components/section/user-info-section/index'
 import HomeSection from '../components/section/home-section'
 
 Vue.use(VueRouter)

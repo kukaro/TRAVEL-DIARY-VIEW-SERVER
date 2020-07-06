@@ -8,7 +8,7 @@
 import { mU, calcAOB } from "../../utils/unit";
 import { mapState, mapActions } from "vuex";
 import ctxt from "../utils/ctxt";
-import userInfoSection from "../section/user-info-section";
+import userInfoSection from "../section/user-info-section/index";
 
 export default {
     name: "global-article",
