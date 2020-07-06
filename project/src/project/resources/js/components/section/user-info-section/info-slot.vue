@@ -1,6 +1,6 @@
 <template>
     <div class="info-slot" :style="style">
-        <RecordSlot v-for="(value, key) in list" :value="value"/>
+        <RecordSlot v-for="(value, key) in list" :key="key" :value="value"/>
         <info-slot-footer/>
     </div>
 </template>

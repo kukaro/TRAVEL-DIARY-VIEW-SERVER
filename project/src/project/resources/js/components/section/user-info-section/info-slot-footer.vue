@@ -5,6 +5,11 @@
 <script>
     export default {
         name: "info-slot-footer",
+        props:{
+            value:{
+
+            }
+        },
         computed:{
             style(){
                 return {

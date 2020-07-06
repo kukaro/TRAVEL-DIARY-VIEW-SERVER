@@ -1,6 +1,6 @@
 <template>
     <div class="record-slot" :style="style">
-        <record-slot-item v-for="(v,k) in value" :value="v"/>
+        <record-slot-item v-for="(v, k) in value" :key="k" :value="v"/>
     </div>
 </template>
 

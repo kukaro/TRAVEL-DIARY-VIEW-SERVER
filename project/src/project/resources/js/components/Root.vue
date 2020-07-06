@@ -60,6 +60,7 @@
 </script>
 
 <style lang="scss">
+    @import "../../sass/default.css";
     html,
     body,
     #app {

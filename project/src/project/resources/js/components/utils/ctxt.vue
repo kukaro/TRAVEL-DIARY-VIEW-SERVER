@@ -20,7 +20,7 @@ export default {
             default: false
         },
         font : {
-            default: 'Georgia'
+            default: 'Noto'
         },
     },
     name: "ctxt",
