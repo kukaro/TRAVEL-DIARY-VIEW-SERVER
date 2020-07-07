@@ -1,10 +1,13 @@
 {
     "global": {
-        "no_picture": "사진 없음"
+        "no_picture": "사진 없음",
+        "year": "년",
+        "month": "월",
+        "day": "일",
+        "week": "요일"
     },
     "user": {
         "title": "사용자 정보",
-        "size": 25,
         "email": "email",
         "name": "이름",
         "age": "나이",
@@ -12,5 +15,8 @@
         "password": "패스워드",
         "created_date": "최초 생성 일자",
         "updated_date": "최종 수정 일자"
+    },
+    "diary": {
+        "title": "다이어리"
     }
 }

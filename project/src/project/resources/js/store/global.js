@@ -87,6 +87,7 @@ const data = {
             new GlobalHeaderDto('/document', 'document', '문서'),
             new GlobalHeaderDto('/setting', 'setting', '설정'),
         ],
+        list_chosen_idx: -1,
         personal_list: [
             new GlobalHeaderDto('/logout', 'logout', '로그아웃', 'sess_logout'),
         ],
@@ -97,7 +98,11 @@ const data = {
         }
     },
     getters: {},
-    mutations: {},
+    mutations: {
+        setListChosenIdx(state, payload){
+            this.state[`${prefix}_list_chosen_idx`] = payload;
+        }
+    },
     actions: {}
 }
 

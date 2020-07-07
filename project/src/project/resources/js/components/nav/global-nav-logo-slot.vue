@@ -6,7 +6,7 @@
 </template>
 
 <script>
-    import {mapState} from "vuex";
+    import {mapMutations, mapState} from "vuex";
     import {mU} from "../../utils/unit";
     import Ctxt from "../utils/ctxt";
 
@@ -19,7 +19,7 @@
                 title_color: 'color_prime',
                 title: 'global_title',
                 nav: "global_nav",
-                global_setting: "global_setting"
+                global_setting: "global_setting",
             }),
             style() {
                 return {
@@ -36,9 +36,14 @@
                 }
             }
         },
-        methods:{
-            onClick(){
-                this.$router.push('/').catch(()=>{});
+        methods: {
+            ...mapMutations({
+                setListChosenIdx: `global_setListChosenIdx`,
+            }),
+            onClick() {
+                this.setListChosenIdx(-1);
+                this.$router.push('/').catch(() => {
+                });
             }
         }
     }

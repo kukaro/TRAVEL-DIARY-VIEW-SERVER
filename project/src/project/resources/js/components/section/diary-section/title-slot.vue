@@ -1,8 +1,7 @@
-<script src="../../../store/global.js"></script>
 <template>
     <div class="title-slot" :style="style">
         <div class="inner" :style="inner_style">
-            <ctxt :value="$t('user.title')" :is_bold="true" :style="text_style" :size="25"/>
+            <ctxt :value="$t('diary.title')" :is_bold="true" :style="text_style" :size="25"/>
         </div>
     </div>
 </template>

@@ -1,6 +1,7 @@
 import {call, loginCall} from "../utils/request"
 import UserDto from '../dto/UserDto'
 import SessionStorage from "../storage";
+import vm from '../app'
 
 const prefix = 'sess';
 const debug = false;
@@ -43,11 +44,18 @@ const data = {
             console.log('fail');
             console.log(res);
         },
+        /**
+         * 중요한건 이거 동작하고 각종 state데이터중에 개인적인거 다 삭제해야함
+         * @param state
+         */
         logout(state, /*res*/) {
             SessionStorage.remove('jwt');
             this.commit(`${prefix}_removeOwner`);
+            this.commit(`global_setListChosenIdx`, -1);
+            this.commit(`diary_cleanAllData`);
+            vm.$router.push('/').catch(() => {
+            });
         },
-
     },
     actions: {
         setOwner({commit}, {path = '/', data = {}, headers = {}}) {

@@ -1,6 +1,6 @@
 <template>
     <ul name="global-nav-list" :style="ul_style">
-        <global-nav-list-item v-for="(value, key) in list" :data="value" :key="key"/>
+        <global-nav-list-item v-for="(value, key) in list" :idx="key" :data="value" :key="key"/>
     </ul>
 </template>
 

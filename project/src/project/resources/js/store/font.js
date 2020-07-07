@@ -4,7 +4,7 @@ const data = {
     prefix,
     state: {
         english: 'monospace',
-        korean: 'Georgia',
+        korean: 'Noto',
         logo: 'fantasy'
     },
     getters: {},

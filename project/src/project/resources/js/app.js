@@ -37,3 +37,5 @@ const app = new Vue({
     i18n,
     render: h => h(Root)
 }).$mount('#app');
+
+export default app;

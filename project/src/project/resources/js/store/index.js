@@ -7,6 +7,7 @@ import loginStore from './login'
 import globalStore from './global'
 import colorStore from './color'
 import fontStore from './font'
+import diaryStore from './diary'
 
 Vue.use(Vuex)
 
@@ -31,5 +32,6 @@ sBind(loginStore.prefix, loginStore, data);
 sBind(globalStore.prefix, globalStore, data);
 sBind(colorStore.prefix, colorStore, data);
 sBind(fontStore.prefix, fontStore, data);
+sBind(diaryStore.prefix, diaryStore, data);
 
 export default new Vuex.Store(data);

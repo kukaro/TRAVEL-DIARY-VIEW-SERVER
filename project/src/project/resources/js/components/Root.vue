@@ -21,7 +21,7 @@
             GlobalNav,
             globalHeader,
             globalArticle,
-            loginPage
+            loginPage,
         },
         computed: {
             ...mapState({

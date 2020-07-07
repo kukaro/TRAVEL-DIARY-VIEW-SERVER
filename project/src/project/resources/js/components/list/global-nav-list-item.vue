@@ -22,7 +22,7 @@
 <script>
     import ctxt from "../utils/ctxt";
     import {mU} from "../../utils/unit";
-    import {mapState} from "vuex";
+    import {mapMutations, mapState} from "vuex";
     import GlobalHeaderDto from "../../dto/GlobalHeaderDto";
 
     export default {
@@ -30,7 +30,11 @@
         props: {
             data: {
                 type: [GlobalHeaderDto],
-                required: true
+                required: true,
+            },
+            idx: {
+                type: [Number],
+                required: true,
             }
         },
         components: {
@@ -43,17 +47,18 @@
                 prime: 'color_prime',
                 a_font: 'font_korean',
                 global_header: "global_header",
-                global_setting: "global_setting"
+                global_setting: "global_setting",
+                list_chosen_idx: 'global_list_chosen_idx',
             }),
             style() {
                 return {
-                    backgroundColor: this.hover ? this.prime : 'inherit',
+                    backgroundColor: ((this.list_chosen_idx === this.idx) || this.hover) ? this.prime : 'inherit',
                     borderRadius: mU(this.global_setting.border_radius.value),
-                    boxShadow: this.hover ? `5px 5px ${this.grey}` : 'none'
+                    boxShadow: ((this.list_chosen_idx === this.idx) || this.hover) ? `5px 5px ${this.grey}` : 'none'
                 };
             },
             color() {
-                return this.hover
+                return ((this.list_chosen_idx === this.idx) || this.hover)
                     ? this.white
                     : this.global_setting.default_color;
             },
@@ -68,10 +73,17 @@
             }
         },
         methods: {
+            ...mapMutations({
+                setListChosenIdx: `global_setListChosenIdx`,
+            }),
             onClick() {
+                this.setListChosenIdx(this.idx);
                 this.$router.push(this.link_name).catch(() => {
                 });
             }
+        },
+        created() {
+
         },
         data() {
             return {

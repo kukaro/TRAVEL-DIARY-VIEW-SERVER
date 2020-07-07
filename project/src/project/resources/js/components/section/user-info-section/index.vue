@@ -2,7 +2,6 @@
     <section class="user-info-section" :style="style">
         <title-slot/>
         <data-slot/>
-<!--        {{owner}}-->
     </section>
 </template>
 
