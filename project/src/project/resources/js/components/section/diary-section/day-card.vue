@@ -110,7 +110,7 @@
         /*width: 100%;*/
         height: 100%;
         cursor: pointer;
-        transition: background-color 0.5s;
+        transition: background-color 0.2s;
     }
 
     .up {
