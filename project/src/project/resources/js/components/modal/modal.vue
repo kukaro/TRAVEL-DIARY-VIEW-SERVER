@@ -1,14 +1,18 @@
 <template>
     <div class="modal" :style="style" @click="closeModal">
-
+        <modal-diary-edit/>
     </div>
 </template>
 
 <script>
     import {mapMutations, mapState} from "vuex";
+    import ModalDiaryEdit from './diaray-edit'
 
     export default {
         name: "modal",
+        components:{
+            ModalDiaryEdit
+        },
         computed: {
             ...mapState({
                 is_modal: 'modal_is_modal',
@@ -17,8 +21,8 @@
             style() {
                 return {
                     display: this.is_modal ? 'flex' : 'none',
-                    backgroundColor: 'grey',
-                    opacity: this.opacity,
+                    //TODO : 여기 수정해야함
+                    background: `rgba(0, 0, 0, ${this.opacity})`,
                 }
             }
         },
@@ -32,6 +36,7 @@
 
 <style scoped>
     .modal {
+        display: flex;
         position: absolute;
         width: 100%;
         height: 100%;

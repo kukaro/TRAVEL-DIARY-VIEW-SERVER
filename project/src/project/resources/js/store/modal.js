@@ -4,7 +4,14 @@ const data = {
     prefix,
     state: {
         is_modal: false,
-        opacity: 0.7,
+        opacity: 0.5,
+        /**
+         * 그냥 비율로 할지 생각해봐야할듯
+         */
+        diary:{
+            width: 600,
+            height: 800,
+        }
     },
     getters: {},
     mutations: {
