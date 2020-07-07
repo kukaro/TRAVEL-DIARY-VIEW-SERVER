@@ -1,5 +1,6 @@
 <template>
     <div id="root" :style="style">
+        <modal/>
         <login-page v-if="!is_login && !owner"/>
         <!--        <global-header v-if="is_login && owner"></global-header>-->
         <global-nav v-if="is_login && owner"></global-nav>
@@ -14,10 +15,12 @@
     import loginPage from "./page/login-page";
     import GlobalNav from "./nav/global-nav";
     import SessionStorage from "../storage";
+    import Modal from "./modal/modal";
 
     export default {
         name: "root",
         components: {
+            Modal,
             GlobalNav,
             globalHeader,
             globalArticle,

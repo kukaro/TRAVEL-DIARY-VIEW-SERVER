@@ -1,5 +1,9 @@
 <template>
-    <div class="day-card" :style="style" @mouseover="hover = true" @mouseleave="hover = false">
+    <div class="day-card"
+         :style="style"
+         @mouseover="hover = true"
+         @mouseleave="hover = false"
+         @click="onClick">
         <div class="up" :style="up_style">
             <ctxt :value="data.title" :style="center" :color="title_color" :size="day_card.title_size"/>
             <mini-card :value="`${$t('diary.id')} : ${data.id}`" :style="center" :color="green"/>
@@ -17,7 +21,7 @@
 
 <script>
     import {randomColor} from "../../../utils/helper";
-    import {mapState} from "vuex";
+    import {mapMutations, mapState} from "vuex";
     import {mU} from "../../../utils/unit";
     import Ctxt from "../../utils/ctxt";
     import MiniCard from "./mini-card";
@@ -90,9 +94,17 @@
             title_color() {
                 return this.hover ? 'white' : 'black';
             },
-            content_color(){
+            content_color() {
                 return this.hover ? this.grey220 : this.grey150;
             },
+        },
+        methods: {
+            ...mapMutations({
+                openModal: 'modal_openModal',
+            }),
+            onClick(){
+                this.openModal();
+            }
         },
         data() {
             return {
