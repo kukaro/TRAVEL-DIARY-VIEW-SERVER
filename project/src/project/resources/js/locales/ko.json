@@ -4,7 +4,9 @@
         "year": "년",
         "month": "월",
         "day": "일",
-        "week": "요일"
+        "week": "요일",
+        "created_date": "최초 생성 일자",
+        "updated_date": "최종 수정 일자"
     },
     "user": {
         "title": "사용자 정보",
@@ -17,6 +19,7 @@
         "updated_date": "최종 수정 일자"
     },
     "diary": {
-        "title": "다이어리"
+        "title": "다이어리",
+        "id": "ID"
     }
 }

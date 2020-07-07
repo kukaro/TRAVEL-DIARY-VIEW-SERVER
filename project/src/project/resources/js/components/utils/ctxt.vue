@@ -31,7 +31,7 @@ export default {
                 color: this.color,
                 fontSize: mU(this.size),
                 fontWeight: this.is_bold ? "bold" : "normal",
-                fontFamily: this.font
+                fontFamily: this.font,
             };
         }
     },

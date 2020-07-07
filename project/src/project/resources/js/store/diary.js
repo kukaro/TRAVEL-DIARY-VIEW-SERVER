@@ -24,8 +24,10 @@ const data = {
             title_size: 15
         },
         day_card: {
-            height: 70,
+            height: 90,
             border_radius: 25,
+            title_size: 20,
+            content_max_length: 30,
         },
         refined_data: {}
     },
@@ -59,7 +61,7 @@ const data = {
         cleanAllData(state){
             this.state[`${prefix}_data`] = null;
             this.state[`${prefix}_refined_data`] = {};
-        }
+        },
     },
     actions: {
         setDiaryDataByOwner({commit}, {path = '/', data = {}, headers = {}}) {

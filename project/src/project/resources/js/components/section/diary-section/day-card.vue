@@ -1,9 +1,15 @@
 <template>
-    <div class="day-card" :style="style">
+    <div class="day-card" :style="style" @mouseover="hover = true" @mouseleave="hover = false">
         <div class="up" :style="up_style">
-            <ctxt :value="data.title" :style="center"/>
+            <ctxt :value="data.title" :style="center" :color="title_color" :size="day_card.title_size"/>
+            <mini-card :value="`${$t('diary.id')} : ${data.id}`" :style="center" :color="green"/>
+            <mini-card :value="`${$t('global.created_date')} : ${data.created_date}`" :style="center" :color="green"/>
+            <mini-card :value="`${$t('global.updated_date')} : ${data.updated_date}`" :style="center" :color="green"/>
         </div>
         <div class="down" :style="down_style">
+            <ctxt :value="content" :style="center" :color="content_color"/>
+        </div>
+        <div class="padding-div" :style="padding_div_style">
 
         </div>
     </div>
@@ -14,15 +20,17 @@
     import {mapState} from "vuex";
     import {mU} from "../../../utils/unit";
     import Ctxt from "../../utils/ctxt";
+    import MiniCard from "./mini-card";
 
     export default {
         name: "day-card",
-        components: {Ctxt},
+        components: {MiniCard, Ctxt},
         props: {
             data: {}
         },
         computed: {
             ...mapState({
+                green: 'color_green',
                 setting: 'global_setting',
                 owner: "sess_owner",
                 global_setting: 'global_setting',
@@ -37,29 +45,54 @@
                 return {
                     borderRadius: mU(this.day_card.border_radius),
                     margin: mU(this.global_setting.margin.value),
-                    backgroundColor: this.grey220,
+                    backgroundColor: this.hover ? this.prime : `white`,
                     border: `1px solid ${this.grey150}`,
                     minHeight: mU(this.day_card.height),
+                    boxShadow: this.hover ? `5px 5px ${this.grey150}` : 'none',
                 }
             },
-            up_style(){
+            up_style() {
                 return {
                     borderTopLeftRadius: mU(this.day_card.border_radius),
                     borderTopRightRadius: mU(this.day_card.border_radius),
+                    minHeight: mU(this.day_card.height / 2),
                 }
             },
-            down_style(){
+            down_style() {
                 return {
                     borderBottomLeftRadius: mU(this.day_card.border_radius),
                     borderBottomRightRadius: mU(this.day_card.border_radius),
+                    minHeight: mU(this.day_card.height / 8 * 3),
+
                 }
             },
-            center(){
+            padding_div_style() {
+                return {
+                    // backgroundColor: 'red',
+                    minHeight: mU(this.day_card.height / 8),
+                }
+            },
+            center() {
                 return {
                     marginTop: 'auto',
                     marginBottom: 'auto',
                 }
-            }
+            },
+            content() {
+                if (!this.data) {
+                    return '';
+                } else if (this.data.contents.length <= 30) {
+                    return this.data.contents;
+                } else {
+                    return this.data.contents.slice(0, 31) + '...';
+                }
+            },
+            title_color() {
+                return this.hover ? 'white' : 'black';
+            },
+            content_color(){
+                return this.hover ? this.grey220 : this.grey150;
+            },
         },
         data() {
             return {
@@ -71,23 +104,23 @@
 
 <style scoped>
     .day-card {
-        padding-left: 15px;
+        padding-left: 20px;
         display: flex;
         flex-direction: column;
         /*width: 100%;*/
         height: 100%;
         cursor: pointer;
+        transition: background-color 0.5s;
     }
 
     .up {
         display: flex;
         width: 100%;
-        flex: 1;
     }
 
     .down {
         display: flex;
         width: 100%;
-        flex: 1;
+        padding-left: 10px;
     }
 </style>
