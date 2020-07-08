@@ -99,8 +99,15 @@ const data = {
     },
     getters: {},
     mutations: {
-        setListChosenIdx(state, payload){
+        setListChosenIdx(state, payload) {
             this.state[`${prefix}_list_chosen_idx`] = payload;
+        },
+        setGlobalEvent(state, payload) {
+            document.onkeyup = (e) => {
+                if(e.code==='Escape'){
+                    this.commit(`modal_closeModal`);
+                }
+            };
         }
     },
     actions: {}

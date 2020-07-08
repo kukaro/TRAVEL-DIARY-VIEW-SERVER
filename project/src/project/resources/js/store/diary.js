@@ -33,6 +33,15 @@ const data = {
     },
     getters: {},
     mutations: {
+        successUpdateDiaryDataByPostId(state, res) {
+            // console.log('successUpdateDiaryDataByPostId');
+            this.dispatch(`${prefix}_setDiaryDataByOwner`,{owner_email:this.state[`sess_owner`].email})
+            this.commit(`modal_closeModal`);
+        },
+        failUpdateDiaryDataByPostId(state, res) {
+            console.log('failUpdateDiaryDataByPostId');
+            console.log(res);
+        },
         successSetDiaryDataByOwner(state, res) {
             this.state[`${prefix}_data`] = res.data.map((value, key) => new PostDto(value));
             this.state[`${prefix}_data`] = this.state[`${prefix}_data`].sort(function (a, b) {
@@ -58,26 +67,56 @@ const data = {
             });
             this.state[`${prefix}_refined_data`] = Object.assign({}, this.state[`${prefix}_refined_data`]);
         },
-        cleanAllData(state){
+        cleanAllData(state) {
             this.state[`${prefix}_data`] = null;
             this.state[`${prefix}_refined_data`] = {};
         },
     },
     actions: {
-        setDiaryDataByOwner({commit}, {path = '/', data = {}, headers = {}}) {
+        setDiaryDataByOwner({commit}, {owner_email = null, data = {}, headers = {}}) {
             const jwt = SessionStorage.getJwt();
             headers = {
                 Authorization: `${jwt.token_type} ${jwt.access_token}`,
                 ...headers
             };
-            call(commit,
-                'get',
-                `/api${path}`,
-                `${prefix}_successSetDiaryDataByOwner`,
-                `${prefix}_failSetDiaryDataByOwner`,
-                data,
-                headers
-            );
+            if(owner_email){
+                call(commit,
+                    'get',
+                    `/api/post/user/${owner_email}`,
+                    `${prefix}_successSetDiaryDataByOwner`,
+                    `${prefix}_failSetDiaryDataByOwner`,
+                    data,
+                    headers
+                );
+            }
+        },
+        /**
+         * 변경 한후 list를 초기화해주는 이벤트를 동작시킨다.
+         * @param commit
+         * @param postId
+         * @param data
+         * @param headers
+         */
+        updateDiaryDataByPostId({commit}, {postId = null, data = {}, headers = {}}) {
+            const jwt = SessionStorage.getJwt();
+            headers = {
+                Authorization: `${jwt.token_type} ${jwt.access_token}`,
+                ...headers
+            };
+            if (postId) {
+                /**
+                 * updated_date를 빼야 현재시간으로 변경된다.
+                 */
+                delete data['updated_date'];
+                call(commit,
+                    'patch',
+                    `/api/post/${postId}`,
+                    `${prefix}_successUpdateDiaryDataByPostId`,
+                    `${prefix}_failUpdateDiaryDataByPostId`,
+                    data,
+                    headers
+                );
+            }
         }
     }
 }

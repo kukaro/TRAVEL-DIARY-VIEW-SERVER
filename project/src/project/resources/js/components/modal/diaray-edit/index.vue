@@ -3,7 +3,7 @@
         <diary-edit-header v-if="diary.data" :data="diary.data"/>
         <editable-title v-if="diary.data" :value="diary.data"/>
         <editable-contents v-if="diary.data" :data="diary.data"/>
-        <diary-edit-footer/>
+        <diary-edit-footer :data="diary.data"/>
     </div>
 </template>
 

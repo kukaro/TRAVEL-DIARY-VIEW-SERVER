@@ -1,3 +1,4 @@
+<script src="../store/modal.js"></script>
 <template>
     <div id="root" :style="style">
         <modal/>
@@ -11,7 +12,7 @@
 <script>
     import globalHeader from "./header/global-header";
     import globalArticle from "./article/global-article";
-    import {mapState, mapActions} from "vuex";
+    import {mapState, mapActions, mapMutations} from "vuex";
     import loginPage from "./page/login-page";
     import GlobalNav from "./nav/global-nav";
     import SessionStorage from "../storage";
@@ -42,9 +43,13 @@
             ...mapActions({
                 setLogin: 'sess_setLogin',
                 setOwner: 'sess_setOwner',
-            })
+            }),
+            ...mapMutations({
+                setGlobalEvent: 'global_setGlobalEvent',
+            }),
         },
         created() {
+            this.setGlobalEvent();
             if (SessionStorage.get('jwt')) {
                 const jwt = SessionStorage.getJwt();
                 this.setOwner({

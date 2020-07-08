@@ -1,6 +1,10 @@
 <template>
-    <div ref="contents" class="editable-contents" contenteditable="true" @blur="onBlur" :style="style">
-        {{data ? data.contents : ''}}
+    <div ref="contents"
+         class="editable-contents"
+         contenteditable="true"
+         @blur="onBlur"
+         :style="style"
+         v-html="data ? data.contents : ''">
     </div>
 </template>
 
@@ -13,11 +17,11 @@
         props: {
             data: {}
         },
-        computed:{
+        computed: {
             ...mapState({
                 diary: `modal_diary`
             }),
-            style(){
+            style() {
                 return {
                     padding: mU(this.diary.padding / 2),
                     // border: `1px solid red`

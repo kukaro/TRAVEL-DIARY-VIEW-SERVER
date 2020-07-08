@@ -24,7 +24,7 @@
             }),
         },
         created() {
-            this.setDiaryDataByOwner({path: `/post/user/${this.owner.email}`});
+            this.setDiaryDataByOwner({owner_email: this.owner.email});
         }
     }
 </script>

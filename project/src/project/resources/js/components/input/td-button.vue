@@ -39,6 +39,11 @@
             },
             click_event:{
                 default: null,
+            },
+            click_event_param:{
+                default(){
+                    return [];
+                }
             }
         },
         computed: {
@@ -67,7 +72,7 @@
         methods: {
             onClick(){
                 if(this.click_event){
-                    this.click_event();
+                    this.click_event(...this.click_event_param);
                 }
             },
         },

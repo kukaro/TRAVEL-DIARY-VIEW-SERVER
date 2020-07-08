@@ -6,7 +6,9 @@
                 :color="success"
                 :hover_color="chosen_success"
                 :font_color="`white`"
-                :box_shadow="`0 1px 20px 1px ${success}`"/>
+                :box_shadow="`0 1px 20px 1px ${success}`"
+                :click_event="this.updateDiaryDataByPostId"
+                :click_event_param="this.data ? [{postId : this.data.id, data: this.data}] : []"/>
             <td-button
                 :value="$t('global.cancel')"
                 :color="pink"
@@ -22,7 +24,7 @@
 <script>
     import Ctxt from "../../utils/ctxt";
     import MiniCard from '../../section/diary-section/mini-card'
-    import {mapMutations, mapState} from "vuex";
+    import {mapActions, mapMutations, mapState} from "vuex";
     import {mU} from "../../../utils/unit";
     import TdButton from "../../input/td-button";
 
@@ -54,9 +56,9 @@
                     height: mU(100),
                 }
             },
-            last_button_style(){
+            last_button_style() {
                 return {
-                    marginLeft :mU(10),
+                    marginLeft: mU(10),
                 }
             }
         },
@@ -65,7 +67,10 @@
         methods: {
             ...mapMutations({
                 updateData: `modal_updateData`,
-                closeModal: `modal_closeModal`
+                closeModal: `modal_closeModal`,
+            }),
+            ...mapActions({
+                updateDiaryDataByPostId: `diary_updateDiaryDataByPostId`,
             }),
         }
     }
