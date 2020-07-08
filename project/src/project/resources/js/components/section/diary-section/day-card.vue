@@ -25,6 +25,7 @@
     import {mU} from "../../../utils/unit";
     import Ctxt from "../../utils/ctxt";
     import MiniCard from "./mini-card";
+    import {mode} from "../../../store/modal";
 
     export default {
         name: "day-card",
@@ -101,9 +102,12 @@
         methods: {
             ...mapMutations({
                 openModal: 'modal_openModal',
+                setDiaryData: 'modal_setDiaryData',
+
             }),
             onClick(){
-                this.openModal();
+                this.setDiaryData(this.data);
+                this.openModal(mode.diary);
             }
         },
         data() {

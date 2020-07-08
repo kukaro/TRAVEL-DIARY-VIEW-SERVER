@@ -1,5 +1,5 @@
 <template>
-    <div class="modal" :style="style" @click="closeModal">
+    <div class="modal" :style="style" @click.self="closeModal">
         <modal-diary-edit/>
     </div>
 </template>

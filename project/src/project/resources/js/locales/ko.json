@@ -6,7 +6,10 @@
         "day": "일",
         "week": "요일",
         "created_date": "최초 생성 일자",
-        "updated_date": "최종 수정 일자"
+        "updated_date": "최종 수정 일자",
+        "create": "생성",
+        "update": "수정",
+        "cancel": "취소"
     },
     "user": {
         "title": "사용자 정보",

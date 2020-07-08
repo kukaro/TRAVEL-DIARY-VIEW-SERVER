@@ -36,7 +36,7 @@ const data = {
         successSetDiaryDataByOwner(state, res) {
             this.state[`${prefix}_data`] = res.data.map((value, key) => new PostDto(value));
             this.state[`${prefix}_data`] = this.state[`${prefix}_data`].sort(function (a, b) {
-                return b.updated_date.localeCompare(a.updated_date);
+                return b.created_date.localeCompare(a.created_date);
             });
             this.commit(`${prefix}_refineDiaryData`);
         },
@@ -46,8 +46,8 @@ const data = {
         refineDiaryData(state, res) {
             this.state[`${prefix}_refined_data`] = {};
             this.state[`${prefix}_data`].map((value, key) => {
-                const year = this.state[`${prefix}_data`][key].updated_date.slice(0, 4);
-                const month = this.state[`${prefix}_data`][key].updated_date.slice(5, 7);
+                const year = this.state[`${prefix}_data`][key].created_date.slice(0, 4);
+                const month = this.state[`${prefix}_data`][key].created_date.slice(5, 7);
                 if (!(year in this.state[`${prefix}_refined_data`])) {
                     this.state[`${prefix}_refined_data`][year] = {};
                 }
