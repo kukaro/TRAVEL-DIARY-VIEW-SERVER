@@ -6,9 +6,19 @@
          @click="onClick">
         <div class="up" :style="up_style">
             <ctxt :value="data.title" :style="center" :color="title_color" :size="day_card.title_size"/>
-            <mini-card :value="`${$t('diary.id')} : ${data.id}`" :style="center" :color="green"/>
-            <mini-card :value="`${$t('global.created_date')} : ${data.created_date}`" :style="center" :color="green"/>
-            <mini-card :value="`${$t('global.updated_date')} : ${data.updated_date}`" :style="center" :color="green"/>
+            <mini-card
+                :value="`${$t('diary.id')} : ${data.id}`"
+                :style="center"
+                :font_color="this.hover ? prime : `white`"
+                :color="this.hover ? grey220 : prime"/>
+            <mini-card
+                :value="`${$t('global.created_date')} : ${data.created_date}`"
+                :font_color="this.hover ? prime : `white`"
+                :style="center" :color="this.hover ? grey220 : prime"/>
+            <mini-card
+                :value="`${$t('global.updated_date')} : ${data.updated_date}`"
+                :font_color="this.hover ? prime : `white`"
+                :style="center" :color="this.hover ? grey220 : prime"/>
         </div>
         <div class="down" :style="down_style">
             <ctxt :value="content" :style="center" :color="content_color"/>
@@ -20,7 +30,6 @@
 </template>
 
 <script>
-    import {randomColor} from "../../../utils/helper";
     import {mapMutations, mapState} from "vuex";
     import {mU} from "../../../utils/unit";
     import Ctxt from "../../utils/ctxt";

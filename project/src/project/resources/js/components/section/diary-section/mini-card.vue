@@ -1,6 +1,6 @@
 <template>
     <div class="mini-card" :style="style">
-        <ctxt :value="value" :color="white"/>
+        <ctxt :value="value" :color="font_color"/>
     </div>
 </template>
 
@@ -16,7 +16,10 @@
             value: {},
             color: {
                 default: 'grey',
-            }
+            },
+            font_color:{
+                default: 'white',
+            },
         },
         computed: {
             ...mapState({
