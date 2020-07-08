@@ -1,4 +1,4 @@
-# TRAVLE-DIARY-VIEW-SERVER
+# TRAVEL-DIARY-VIEW-SERVER
 VIEW서버
 
 composer install은 따로 해야합니다.
