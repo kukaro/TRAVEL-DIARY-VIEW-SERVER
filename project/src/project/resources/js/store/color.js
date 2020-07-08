@@ -9,6 +9,7 @@ const data = {
         black: 'black',
         grey: 'grey',
         white: 'white',
+        chosen_prime: 'rgb(155,145, 255)',
         prime: 'rgb(115, 103, 240)',
         chosen_success: 'rgb( 20, 150, 80)',
         success: 'rgb(40, 199, 111)',

@@ -1,3 +1,4 @@
+<script src="../../../store/color.js"></script>
 <template>
     <div class="diary-edit-footer" :style="style">
         <div class="inner">
