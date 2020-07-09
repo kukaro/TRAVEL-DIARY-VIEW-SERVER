@@ -3246,6 +3246,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -3554,17 +3555,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/modal.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modal/modal.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-create/index.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modal/diary-create/index.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _diaray_edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./diaray-edit */ "./resources/js/components/modal/diaray-edit/index.vue");
+/* harmony import */ var _utils_unit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../utils/unit */ "./resources/js/utils/unit.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -3580,13 +3581,64 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: "diary-create",
+  components: {},
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
+    diary: 'modal_diary'
+  })), {}, {
+    style: function style() {
+      return {
+        width: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mU"])(this.diary.width),
+        height: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mU"])(this.diary.height),
+        padding: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mU"])(this.diary.padding)
+      };
+    }
+  }),
+  created: function created() {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/modal.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modal/modal.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _diaray_edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./diaray-edit */ "./resources/js/components/modal/diaray-edit/index.vue");
+/* harmony import */ var _diary_create__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./diary-create */ "./resources/js/components/modal/diary-create/index.vue");
+/* harmony import */ var _store_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../store/modal */ "./resources/js/store/modal.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
   name: "modal",
   components: {
-    ModalDiaryEdit: _diaray_edit__WEBPACK_IMPORTED_MODULE_1__["default"]
+    ModalDiaryEdit: _diaray_edit__WEBPACK_IMPORTED_MODULE_1__["default"],
+    ModalDiaryCreate: _diary_create__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
     is_modal: 'modal_is_modal',
-    opacity: 'modal_opacity'
+    opacity: 'modal_opacity',
+    modal_mode: 'modal_mode'
   })), {}, {
     style: function style() {
       return {
@@ -3594,6 +3646,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         //TODO : 여기 수정해야함
         background: "rgba(0, 0, 0, ".concat(this.opacity, ")")
       };
+    },
+    mode: function mode() {
+      return _store_modal__WEBPACK_IMPORTED_MODULE_3__["mode"];
     }
   }),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])({
@@ -3916,12 +3971,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _utils_helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../utils/helper */ "./resources/js/utils/helper.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _utils_unit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../utils/unit */ "./resources/js/utils/unit.js");
-/* harmony import */ var _utils_ctxt__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/ctxt */ "./resources/js/components/utils/ctxt.vue");
-/* harmony import */ var _mini_card__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./mini-card */ "./resources/js/components/section/diary-section/mini-card.vue");
-/* harmony import */ var _store_modal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../store/modal */ "./resources/js/store/modal.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _utils_unit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../utils/unit */ "./resources/js/utils/unit.js");
+/* harmony import */ var _utils_ctxt__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/ctxt */ "./resources/js/components/utils/ctxt.vue");
+/* harmony import */ var _mini_card__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./mini-card */ "./resources/js/components/section/diary-section/mini-card.vue");
+/* harmony import */ var _store_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../store/modal */ "./resources/js/store/modal.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -3949,7 +4003,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3958,13 +4021,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "day-card",
   components: {
-    MiniCard: _mini_card__WEBPACK_IMPORTED_MODULE_4__["default"],
-    Ctxt: _utils_ctxt__WEBPACK_IMPORTED_MODULE_3__["default"]
+    MiniCard: _mini_card__WEBPACK_IMPORTED_MODULE_3__["default"],
+    Ctxt: _utils_ctxt__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   props: {
     data: {}
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
     green: 'color_green',
     setting: 'global_setting',
     owner: "sess_owner",
@@ -3978,32 +4041,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   })), {}, {
     style: function style() {
       return {
-        borderRadius: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(this.day_card.border_radius),
-        margin: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(this.global_setting.margin.value),
+        borderRadius: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(this.day_card.border_radius),
+        margin: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(this.global_setting.margin.value),
         backgroundColor: this.hover ? this.prime : "white",
         border: "1px solid ".concat(this.grey150),
-        minHeight: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(this.day_card.height),
+        minHeight: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(this.day_card.height),
         boxShadow: this.hover ? "5px 5px ".concat(this.grey150) : 'none'
       };
     },
     up_style: function up_style() {
       return {
-        borderTopLeftRadius: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(this.day_card.border_radius),
-        borderTopRightRadius: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(this.day_card.border_radius),
-        minHeight: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(this.day_card.height / 2)
+        borderTopLeftRadius: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(this.day_card.border_radius),
+        borderTopRightRadius: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(this.day_card.border_radius),
+        minHeight: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(this.day_card.height / 2)
       };
     },
     down_style: function down_style() {
       return {
-        borderBottomLeftRadius: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(this.day_card.border_radius),
-        borderBottomRightRadius: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(this.day_card.border_radius),
-        minHeight: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(this.day_card.height / 8 * 3)
+        borderBottomLeftRadius: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(this.day_card.border_radius),
+        borderBottomRightRadius: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(this.day_card.border_radius),
+        minHeight: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(this.day_card.height / 8 * 3)
       };
     },
     padding_div_style: function padding_div_style() {
       return {
         // backgroundColor: 'red',
-        minHeight: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(this.day_card.height / 8)
+        minHeight: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(this.day_card.height / 8)
       };
     },
     center: function center() {
@@ -4028,13 +4091,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.hover ? this.grey220 : this.grey150;
     }
   }),
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])({
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])({
     openModal: 'modal_openModal',
     setDiaryData: 'modal_setDiaryData'
   })), {}, {
     onClick: function onClick() {
       this.setDiaryData(this.data);
-      this.openModal(_store_modal__WEBPACK_IMPORTED_MODULE_5__["mode"].diary);
+      this.openModal(_store_modal__WEBPACK_IMPORTED_MODULE_4__["mode"].diary);
     }
   }),
   data: function data() {
@@ -4131,6 +4194,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     value: {},
     color: {
       "default": 'grey'
+    },
+    font_color: {
+      "default": 'white'
     }
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])({
@@ -4224,6 +4290,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_ctxt__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utils/ctxt */ "./resources/js/components/utils/ctxt.vue");
 /* harmony import */ var _utils_unit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../utils/unit */ "./resources/js/utils/unit.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _input_td_button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../input/td-button */ "./resources/js/components/input/td-button.vue");
+/* harmony import */ var _store_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../store/modal */ "./resources/js/store/modal.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -4238,16 +4306,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "title-slot",
   components: {
+    TdButton: _input_td_button__WEBPACK_IMPORTED_MODULE_3__["default"],
     Ctxt: _utils_ctxt__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {},
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])({
+    chosen_prime: 'color_chosen_prime',
+    prime: 'color_prime',
     title: 'user_title',
     white: 'color_white'
   })), {}, {
@@ -4267,6 +4349,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         marginBottom: 'auto',
         marginLeft: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(15)
       };
+    },
+    btn_style: function btn_style() {
+      return {
+        marginLeft: 'auto'
+      };
+    }
+  }),
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapMutations"])({
+    openModal: 'modal_openModal',
+    setDiaryData: 'modal_setDiaryData'
+  })), {}, {
+    onClick: function onClick() {
+      this.openModal(_store_modal__WEBPACK_IMPORTED_MODULE_4__["mode"].diary_create);
     }
   })
 });
@@ -9768,6 +9863,25 @@ exports.push([module.i, "\n.diary-edit[data-v-4bb6ad2f] {\n    display: flex;\n 
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-create/index.vue?vue&type=style&index=0&id=20bc7c36&scoped=true&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modal/diary-create/index.vue?vue&type=style&index=0&id=20bc7c36&scoped=true&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.diary-create[data-v-20bc7c36] {\n    display: flex;\n    flex-direction: column;\n    margin: auto;\n    background-color: white;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/modal.vue?vue&type=style&index=0&id=cf2dab60&scoped=true&lang=css&":
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modal/modal.vue?vue&type=style&index=0&id=cf2dab60&scoped=true&lang=css& ***!
@@ -9951,7 +10065,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.title-slot[data-v-89856088] {\n    display: flex;\n    width: 100%;\n}\n.inner[data-v-89856088]{\n    display: flex;\n    width: 100%;\n}\n", ""]);
+exports.push([module.i, "\n.title-slot[data-v-89856088] {\n    display: flex;\n    width: 100%;\n}\n.inner[data-v-89856088] {\n    display: flex;\n    width: 100%;\n}\n", ""]);
 
 // exports
 
@@ -42016,6 +42130,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-create/index.vue?vue&type=style&index=0&id=20bc7c36&scoped=true&lang=css&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modal/diary-create/index.vue?vue&type=style&index=0&id=20bc7c36&scoped=true&lang=css& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=style&index=0&id=20bc7c36&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-create/index.vue?vue&type=style&index=0&id=20bc7c36&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/modal.vue?vue&type=style&index=0&id=cf2dab60&scoped=true&lang=css&":
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modal/modal.vue?vue&type=style&index=0&id=cf2dab60&scoped=true&lang=css& ***!
@@ -46303,6 +46447,30 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-create/index.vue?vue&type=template&id=20bc7c36&scoped=true&":
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modal/diary-create/index.vue?vue&type=template&id=20bc7c36&scoped=true& ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "diary-create", style: _vm.style })
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/modal.vue?vue&type=template&id=cf2dab60&scoped=true&":
 /*!**************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modal/modal.vue?vue&type=template&id=cf2dab60&scoped=true& ***!
@@ -46332,7 +46500,13 @@ var render = function() {
         }
       }
     },
-    [_c("modal-diary-edit")],
+    [
+      _vm.modal_mode === _vm.mode.diary ? _c("modal-diary-edit") : _vm._e(),
+      _vm._v(" "),
+      _vm.modal_mode === _vm.mode.diary_create
+        ? _c("modal-diary-create")
+        : _vm._e()
+    ],
     1
   )
 }
@@ -46623,7 +46797,8 @@ var render = function() {
             style: _vm.center,
             attrs: {
               value: _vm.$t("diary.id") + " : " + _vm.data.id,
-              color: _vm.green
+              font_color: this.hover ? _vm.prime : "white",
+              color: this.hover ? _vm.grey220 : _vm.prime
             }
           }),
           _vm._v(" "),
@@ -46632,7 +46807,8 @@ var render = function() {
             attrs: {
               value:
                 _vm.$t("global.created_date") + " : " + _vm.data.created_date,
-              color: _vm.green
+              font_color: this.hover ? _vm.prime : "white",
+              color: this.hover ? _vm.grey220 : _vm.prime
             }
           }),
           _vm._v(" "),
@@ -46641,7 +46817,8 @@ var render = function() {
             attrs: {
               value:
                 _vm.$t("global.updated_date") + " : " + _vm.data.updated_date,
-              color: _vm.green
+              font_color: this.hover ? _vm.prime : "white",
+              color: this.hover ? _vm.grey220 : _vm.prime
             }
           })
         ],
@@ -46718,7 +46895,7 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "mini-card", style: _vm.style },
-    [_c("ctxt", { attrs: { value: _vm.value, color: _vm.white } })],
+    [_c("ctxt", { attrs: { value: _vm.value, color: _vm.font_color } })],
     1
   )
 }
@@ -46790,6 +46967,18 @@ var render = function() {
         _c("ctxt", {
           style: _vm.text_style,
           attrs: { value: _vm.$t("diary.title"), is_bold: true, size: 25 }
+        }),
+        _vm._v(" "),
+        _c("td-button", {
+          style: _vm.btn_style,
+          attrs: {
+            value: "+ " + _vm.$t("diary.write"),
+            hover_color: _vm.chosen_prime,
+            color: _vm.prime,
+            box_shadow: "0 1px 10px 1px " + _vm.prime,
+            font_color: _vm.white,
+            click_event: _vm.onClick
+          }
         })
       ],
       1
@@ -65675,6 +65864,93 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/modal/diary-create/index.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/modal/diary-create/index.vue ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index_vue_vue_type_template_id_20bc7c36_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.vue?vue&type=template&id=20bc7c36&scoped=true& */ "./resources/js/components/modal/diary-create/index.vue?vue&type=template&id=20bc7c36&scoped=true&");
+/* harmony import */ var _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.vue?vue&type=script&lang=js& */ "./resources/js/components/modal/diary-create/index.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _index_vue_vue_type_style_index_0_id_20bc7c36_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index.vue?vue&type=style&index=0&id=20bc7c36&scoped=true&lang=css& */ "./resources/js/components/modal/diary-create/index.vue?vue&type=style&index=0&id=20bc7c36&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _index_vue_vue_type_template_id_20bc7c36_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _index_vue_vue_type_template_id_20bc7c36_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "20bc7c36",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/modal/diary-create/index.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/modal/diary-create/index.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/modal/diary-create/index.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-create/index.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/modal/diary-create/index.vue?vue&type=style&index=0&id=20bc7c36&scoped=true&lang=css&":
+/*!***********************************************************************************************************************!*\
+  !*** ./resources/js/components/modal/diary-create/index.vue?vue&type=style&index=0&id=20bc7c36&scoped=true&lang=css& ***!
+  \***********************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_style_index_0_id_20bc7c36_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader!../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=style&index=0&id=20bc7c36&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-create/index.vue?vue&type=style&index=0&id=20bc7c36&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_style_index_0_id_20bc7c36_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_style_index_0_id_20bc7c36_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_style_index_0_id_20bc7c36_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_style_index_0_id_20bc7c36_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_style_index_0_id_20bc7c36_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/modal/diary-create/index.vue?vue&type=template&id=20bc7c36&scoped=true&":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/js/components/modal/diary-create/index.vue?vue&type=template&id=20bc7c36&scoped=true& ***!
+  \*********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_20bc7c36_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=template&id=20bc7c36&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-create/index.vue?vue&type=template&id=20bc7c36&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_20bc7c36_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_20bc7c36_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/modal/modal.vue":
 /*!*************************************************!*\
   !*** ./resources/js/components/modal/modal.vue ***!
@@ -67824,7 +68100,7 @@ module.exports = JSON.parse("{\"message\":\"hello i18n !!\",\"dashboard\":\"Dash
 /*! exports provided: global, user, diary, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"global\":{\"no_picture\":\"사진 없음\",\"year\":\"년\",\"month\":\"월\",\"day\":\"일\",\"week\":\"요일\",\"created_date\":\"최초 생성 일자\",\"updated_date\":\"최종 수정 일자\",\"create\":\"생성\",\"update\":\"수정\",\"cancel\":\"취소\"},\"user\":{\"title\":\"사용자 정보\",\"email\":\"email\",\"name\":\"이름\",\"age\":\"나이\",\"birth_date\":\"생일\",\"password\":\"패스워드\",\"created_date\":\"최초 생성 일자\",\"updated_date\":\"최종 수정 일자\"},\"diary\":{\"title\":\"다이어리\",\"id\":\"ID\"}}");
+module.exports = JSON.parse("{\"global\":{\"no_picture\":\"사진 없음\",\"year\":\"년\",\"month\":\"월\",\"day\":\"일\",\"week\":\"요일\",\"created_date\":\"최초 생성 일자\",\"updated_date\":\"최종 수정 일자\",\"create\":\"생성\",\"update\":\"수정\",\"cancel\":\"취소\"},\"user\":{\"title\":\"사용자 정보\",\"email\":\"email\",\"name\":\"이름\",\"age\":\"나이\",\"birth_date\":\"생일\",\"password\":\"패스워드\",\"created_date\":\"최초 생성 일자\",\"updated_date\":\"최종 수정 일자\"},\"diary\":{\"title\":\"다이어리\",\"id\":\"ID\",\"write\":\"다이어리 쓰기\"}}");
 
 /***/ }),
 
@@ -67872,7 +68148,7 @@ var routes = [{
   component: _components_section_diary_section__WEBPACK_IMPORTED_MODULE_4__["default"]
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes: routes
 });
@@ -68015,6 +68291,7 @@ var data = {
     black: 'black',
     grey: 'grey',
     white: 'white',
+    chosen_prime: 'rgb(155,145, 255)',
     prime: 'rgb(115, 103, 240)',
     chosen_success: 'rgb( 20, 150, 80)',
     success: 'rgb(40, 199, 111)',
@@ -68438,7 +68715,8 @@ __webpack_require__.r(__webpack_exports__);
 var prefix = 'modal';
 var mode = {
   "default": 'default',
-  diary: 'diary'
+  diary: 'diary',
+  diary_create: 'diary_create'
 };
 var data = {
   prefix: prefix,

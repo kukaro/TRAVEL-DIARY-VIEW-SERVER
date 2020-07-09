@@ -2,12 +2,15 @@
     <div class="title-slot" :style="style">
         <div class="inner" :style="inner_style">
             <ctxt :value="$t('diary.title')" :is_bold="true" :style="text_style" :size="25"/>
-            <td-button :value="`+ ${$t('diary.write')}`"
-                       :style="btn_style"
-                       :hover_color="chosen_prime"
-                       :color="prime"
-                       :box_shadow="`0 1px 10px 1px ${prime}`"
-                       :font_color="white"/>
+            <td-button
+                :value="`+ ${$t('diary.write')}`"
+                :style="btn_style"
+                :hover_color="chosen_prime"
+                :color="prime"
+                :box_shadow="`0 1px 10px 1px ${prime}`"
+                :font_color="white"
+                :click_event="onClick"
+            />
         </div>
     </div>
 </template>
@@ -15,8 +18,9 @@
 <script>
     import Ctxt from "../../utils/ctxt";
     import {mU, calcAOB} from "../../../utils/unit";
-    import {mapState} from "vuex";
+    import {mapMutations, mapState} from "vuex";
     import TdButton from "../../input/td-button";
+    import {mode} from "../../../store/modal";
 
     export default {
         name: "title-slot",
@@ -34,7 +38,7 @@
                     minHeight: mU(this.title.height),
                 }
             },
-            inner_style(){
+            inner_style() {
                 return {
                     margin: mU(this.title.margin),
                 }
@@ -46,12 +50,21 @@
                     marginLeft: mU(15)
                 }
             },
-            btn_style(){
+            btn_style() {
                 return {
                     marginLeft: 'auto'
                 }
             }
-        }
+        },
+        methods:{
+            ...mapMutations({
+                openModal: 'modal_openModal',
+                setDiaryData: 'modal_setDiaryData',
+            }),
+            onClick(){
+                this.openModal(mode.diary_create);
+            },
+        },
     }
 </script>
 
@@ -60,7 +73,8 @@
         display: flex;
         width: 100%;
     }
-    .inner{
+
+    .inner {
         display: flex;
         width: 100%;
     }

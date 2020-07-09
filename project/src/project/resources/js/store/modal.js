@@ -1,6 +1,10 @@
 const prefix = 'modal';
 
-export const mode = {default: 'default', diary: 'diary'};
+export const mode = {
+    default: 'default',
+    diary: 'diary',
+    diary_create: 'diary_create'
+};
 
 const data = {
     prefix,

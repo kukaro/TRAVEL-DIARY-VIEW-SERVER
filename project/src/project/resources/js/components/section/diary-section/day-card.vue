@@ -112,7 +112,6 @@
             ...mapMutations({
                 openModal: 'modal_openModal',
                 setDiaryData: 'modal_setDiaryData',
-
             }),
             onClick(){
                 this.setDiaryData(this.data);
