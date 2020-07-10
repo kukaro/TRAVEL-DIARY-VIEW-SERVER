@@ -1,5 +1,5 @@
 import {call} from "../utils/request";
-import SessionStorage from "../storage";
+import SessionStorage from "../storage/sessionstorage";
 import PostDto from "../dto/PostDto";
 
 const prefix = 'diary';
