@@ -82,7 +82,7 @@ const data = {
             if(owner_email){
                 call(commit,
                     'get',
-                    `/api/post/user/${owner_email}`,
+                    `/post/user/${owner_email}`,
                     `${prefix}_successSetDiaryDataByOwner`,
                     `${prefix}_failSetDiaryDataByOwner`,
                     data,
@@ -110,7 +110,7 @@ const data = {
                 delete data['updated_date'];
                 call(commit,
                     'patch',
-                    `/api/post/${postId}`,
+                    `/post/${postId}`,
                     `${prefix}_successUpdateDiaryDataByPostId`,
                     `${prefix}_failUpdateDiaryDataByPostId`,
                     data,
