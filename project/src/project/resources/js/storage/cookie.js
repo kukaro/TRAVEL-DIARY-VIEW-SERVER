@@ -1,8 +1,6 @@
 const list = ['Authorization'];
 
 class Cookie {
-    static list = [];
-
     static validKey(name) {
         return list.some((value,/*key*/) => {
             if (value === name) {
