@@ -2,7 +2,6 @@ import {call, loginCall} from "../utils/request"
 import UserDto from '../dto/UserDto'
 import SessionStorage from "../storage/sessionstorage";
 import vm from '../app'
-import Cookie from "../storage/cookie";
 
 const prefix = 'sess';
 const debug = false;
@@ -37,7 +36,6 @@ const data = {
                 this.state[`${prefix}_jwt`][value] = res.res.data[value];
             });
             SessionStorage.set('jwt', JSON.stringify(this.state[`${prefix}_jwt`]));
-            Cookie.set('Authorization',`${this.state[`${prefix}_jwt`].token_type} ${this.state[`${prefix}_jwt`].access_token}`);
             this.dispatch(`${prefix}_setOwner`, {
                 path: `/user/${res.data.email}`
             });

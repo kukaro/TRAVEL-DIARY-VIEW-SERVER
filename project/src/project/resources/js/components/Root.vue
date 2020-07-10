@@ -60,10 +60,6 @@
                         Authorization: `${jwt.token_type} ${jwt.access_token}`
                     }
                 });
-            }else if(Cookie.get('Authorization')){
-                this.setOwner({
-                    path: '/user',
-                });
             }
         },
         data() {
