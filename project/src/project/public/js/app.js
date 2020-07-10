@@ -68423,7 +68423,7 @@ var data = {
       }, headers);
 
       if (owner_email) {
-        Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["call"])(commit, 'get', "/api/post/user/".concat(owner_email), "".concat(prefix, "_successSetDiaryDataByOwner"), "".concat(prefix, "_failSetDiaryDataByOwner"), data, headers);
+        Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["call"])(commit, 'get', "/post/user/".concat(owner_email), "".concat(prefix, "_successSetDiaryDataByOwner"), "".concat(prefix, "_failSetDiaryDataByOwner"), data, headers);
       }
     },
 
@@ -68452,7 +68452,7 @@ var data = {
          * updated_date를 빼야 현재시간으로 변경된다.
          */
         delete data['updated_date'];
-        Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["call"])(commit, 'patch', "/api/post/".concat(postId), "".concat(prefix, "_successUpdateDiaryDataByPostId"), "".concat(prefix, "_failUpdateDiaryDataByPostId"), data, headers);
+        Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["call"])(commit, 'patch', "/post/".concat(postId), "".concat(prefix, "_successUpdateDiaryDataByPostId"), "".concat(prefix, "_failUpdateDiaryDataByPostId"), data, headers);
       }
     }
   }
