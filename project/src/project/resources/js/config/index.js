@@ -1,3 +1,3 @@
 export default {
-    api_server_host: 'localhost:10080'
+    api_server_host: '/api'
 }

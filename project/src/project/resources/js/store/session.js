@@ -61,7 +61,7 @@ const data = {
         setOwner({commit}, {path = '/', data = {}, headers = {}}) {
             call(commit,
                 'get',
-                `/api${path}`,
+                `${path}`,
                 `${prefix}_successSetOwner`,
                 `${prefix}_failSetOwner`,
                 data,
