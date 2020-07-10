@@ -1,6 +1,6 @@
 import GlobalHeaderDto from '../dto/GlobalHeaderDto';
 import UserDto from '../dto/UserDto';
-import SessionStorage from "../storage";
+import SessionStorage from "../storage/sessionstorage";
 
 const prefix = 'global';
 

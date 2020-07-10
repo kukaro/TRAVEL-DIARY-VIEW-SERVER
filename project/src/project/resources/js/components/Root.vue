@@ -15,8 +15,9 @@
     import {mapState, mapActions, mapMutations} from "vuex";
     import loginPage from "./page/login-page";
     import GlobalNav from "./nav/global-nav";
-    import SessionStorage from "../storage";
+    import SessionStorage from "../storage/sessionstorage";
     import Modal from "./modal/modal";
+    import Cookie from "../storage/cookie";
 
     export default {
         name: "root",
@@ -58,6 +59,10 @@
                     headers: {
                         Authorization: `${jwt.token_type} ${jwt.access_token}`
                     }
+                });
+            }else if(Cookie.get('Authorization')){
+                this.setOwner({
+                    path: '/user',
                 });
             }
         },
