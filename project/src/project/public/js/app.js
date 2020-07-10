@@ -67944,7 +67944,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  api_server_host: 'localhost:10080'
+  api_server_host: '/api'
 });
 
 /***/ }),
@@ -68864,7 +68864,7 @@ var data = {
           data = _ref2$data === void 0 ? {} : _ref2$data,
           _ref2$headers = _ref2.headers,
           headers = _ref2$headers === void 0 ? {} : _ref2$headers;
-      Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["call"])(commit, 'get', "/api".concat(path), "".concat(prefix, "_successSetOwner"), "".concat(prefix, "_failSetOwner"), data, headers);
+      Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["call"])(commit, 'get', "".concat(path), "".concat(prefix, "_successSetOwner"), "".concat(prefix, "_failSetOwner"), data, headers);
     },
     setLogin: function setLogin(_ref3, payload) {
       var commit = _ref3.commit;
@@ -68970,7 +68970,7 @@ var valid_method = ['get', 'post', 'put', 'patch', 'delete']; //TODO : 이부분
 function loginCall(commit, data, success_mutation_name, fail_mutation_name) {
   axios__WEBPACK_IMPORTED_MODULE_0___default.a.request({
     method: 'post',
-    url: "http://".concat(_config__WEBPACK_IMPORTED_MODULE_1__["default"].api_server_host, "/api/login"),
+    url: "".concat(_config__WEBPACK_IMPORTED_MODULE_1__["default"].api_server_host, "/login"),
     data: "email=".concat(data.email, "&password=").concat(data.password),
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -68999,7 +68999,7 @@ function call(commit, method, path, success_mutation_name, fail_mutation_name) {
   if (valid) {
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.request({
       method: method,
-      url: "http://".concat(_config__WEBPACK_IMPORTED_MODULE_1__["default"].api_server_host).concat(path),
+      url: "".concat(_config__WEBPACK_IMPORTED_MODULE_1__["default"].api_server_host).concat(path),
       data: data,
       headers: headers
     }).then(function (res) {
@@ -69056,8 +69056,8 @@ var mU = makeUnit;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/html/project/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /var/www/html/project/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
