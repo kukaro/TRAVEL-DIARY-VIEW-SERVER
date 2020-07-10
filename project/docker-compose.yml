@@ -1,9 +1,9 @@
 version: '3.3'
 
 services:
-  travle-diary-view-server-project:
-    image: travle-diary-view-server-project
-    container_name: travle-diary-view-server-project
+  travel-diary-view-server-project:
+    image: travel-diary-view-server-project
+    container_name: travel-diary-view-server-project
     command: /usr/sbin/apache2ctl -D FOREGROUND
     volumes:
       - ./src/:/var/www/html
