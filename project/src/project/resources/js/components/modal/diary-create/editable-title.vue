@@ -1,5 +1,5 @@
 <template>
-    <div class="editable-header">
+    <div class="editable-title">
         <div class="title"
              ref="title"
              contenteditable="true"
@@ -10,12 +10,12 @@
         <div class="inner">
             <td-button
                 :style="center"
-                :value="$t('global.update')"
+                :value="$t('global.create')"
                 :color="success"
                 :hover_color="chosen_success"
                 :font_color="`white`"
                 :box_shadow="`0 1px 20px 1px ${success}`"
-                :click_event="updateDiaryDataByPostId"
+                :click_event="createDiaryData"
                 :click_event_param="value ? [{postId : value.id, data: value}] : []"/>
             <td-button
                 :value="$t('global.cancel')"
@@ -36,7 +36,7 @@
     import TdButton from "../../input/td-button";
 
     export default {
-        name: "editable-header",
+        name: "editable-title",
         components: {TdButton, Ctxt},
         props: {
             value: {}
@@ -73,7 +73,7 @@
                 closeModal: `modal_closeModal`,
             }),
             ...mapActions({
-                updateDiaryDataByPostId: `diary_updateDiaryDataByPostId`,
+                createDiaryData: `diary_createDiaryData`,
             }),
             onBlur($e) {
                 this.updateData({key: 'title', value: this.$refs['title'].innerText});
@@ -83,7 +83,7 @@
 </script>
 
 <style scoped>
-    .editable-header {
+    .editable-title {
         margin-top: 10px;
         display: flex;
     }

@@ -33,9 +33,17 @@ const data = {
     },
     getters: {},
     mutations: {
+        successCreateDiaryData(state,res){
+            console.log('success');
+            this.dispatch(`${prefix}_setDiaryDataByOwner`, {owner_email: this.state[`sess_owner`].email})
+            this.commit(`modal_closeModal`);
+        },
+        failCreateDiaryData(state,res){
+            console.log('failCreateDiaryData');
+        },
         successUpdateDiaryDataByPostId(state, res) {
             // console.log('successUpdateDiaryDataByPostId');
-            this.dispatch(`${prefix}_setDiaryDataByOwner`,{owner_email:this.state[`sess_owner`].email})
+            this.dispatch(`${prefix}_setDiaryDataByOwner`, {owner_email: this.state[`sess_owner`].email})
             this.commit(`modal_closeModal`);
         },
         failUpdateDiaryDataByPostId(state, res) {
@@ -79,7 +87,7 @@ const data = {
                 Authorization: `${jwt.token_type} ${jwt.access_token}`,
                 ...headers
             };
-            if(owner_email){
+            if (owner_email) {
                 call(commit,
                     'get',
                     `/post/user/${owner_email}`,
@@ -117,6 +125,21 @@ const data = {
                     headers
                 );
             }
+        },
+        createDiaryData({commit}, {data = {}, headers = {}}) {
+            const jwt = SessionStorage.getJwt();
+            headers = {
+                Authorization: `${jwt.token_type} ${jwt.access_token}`,
+                ...headers
+            };
+            call(commit,
+                'post',
+                `/post`,
+                `${prefix}_successCreateDiaryData`,
+                `${prefix}_failCreateDiaryData`,
+                data,
+                headers
+            );
         }
     }
 }

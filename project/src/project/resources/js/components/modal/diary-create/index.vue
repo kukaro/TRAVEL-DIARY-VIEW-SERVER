@@ -1,18 +1,20 @@
 <template>
     <div class="diary-create" :style="style">
         <diary-create-header/>
+        <editable-title/>
     </div>
 </template>
 
 <script>
     import {mU} from "../../../utils/unit";
-    import {mapState} from "vuex";
+    import {mapState, mapMutations} from "vuex";
     import DiaryCreateHeader from "./diary-create-header";
+    import EditableTitle from "./editable-title";
 
 
     export default {
         name: "diary-create",
-        components: {DiaryCreateHeader},
+        components: {EditableTitle, DiaryCreateHeader},
         computed: {
             ...mapState({
                 diary: 'modal_diary',
@@ -24,6 +26,12 @@
                     padding: mU(this.diary.padding),
                 }
             }
+        },
+        methods:{
+            ...mapMutations({
+                createData: `modal_createData`,
+                closeModal: `modal_closeModal`,
+            }),
         },
         created() {
         }
