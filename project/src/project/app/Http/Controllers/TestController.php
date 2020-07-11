@@ -13,7 +13,6 @@ class TestController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
     }
 
     /**
@@ -23,6 +22,6 @@ class TestController extends Controller
      */
     public function index()
     {
-        return response()->json(['MSG' => 'OK'], 200, JSON_UNESCAPED_UNICODE);
+        return response()->json(['MSG' => 'OK'], 200, [], JSON_UNESCAPED_UNICODE);
     }
 }
