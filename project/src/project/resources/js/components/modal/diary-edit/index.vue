@@ -1,18 +1,23 @@
 <template>
-    <div class="diary-create" :style="style">
-        <diary-create-header/>
+    <div class="diary-edit" :style="style">
+        <diary-edit-header v-if="diary.data" :data="diary.data"/>
+        <editable-title v-if="diary.data" :value="diary.data"/>
+        <editable-contents v-if="diary.data" :data="diary.data"/>
+        <diary-edit-footer :data="diary.data"/>
     </div>
 </template>
 
 <script>
     import {mU} from "../../../utils/unit";
     import {mapState} from "vuex";
-    import DiaryCreateHeader from "./diary-create-header";
-
+    import EditableTitle from "./editable-title";
+    import DiaryEditHeader from "./diary-edit-header";
+    import DiaryEditFooter from "./diary-edit-footer";
+    import EditableContents from "./editable-contents";
 
     export default {
-        name: "diary-create",
-        components: {DiaryCreateHeader},
+        name: "diary-edit",
+        components: {EditableContents, DiaryEditFooter, DiaryEditHeader, EditableTitle},
         computed: {
             ...mapState({
                 diary: 'modal_diary',
@@ -31,7 +36,7 @@
 </script>
 
 <style scoped>
-    .diary-create {
+    .diary-edit {
         display: flex;
         flex-direction: column;
         margin: auto;

@@ -1,13 +1,13 @@
 <template>
     <div class="modal" :style="style" @click.self="closeModal">
-        <modal-diary-edit v-if="modal_mode === mode.diary"/>
-        <modal-diary-create v-if="modal_mode === mode.diary_create"/>
+        <modal-diary-edit v-if="is_modal && modal_mode === mode.diary"/>
+        <modal-diary-create v-if="is_modal && modal_mode === mode.diary_create"/>
     </div>
 </template>
 
 <script>
     import {mapMutations, mapState} from "vuex";
-    import ModalDiaryEdit from './diaray-edit';
+    import ModalDiaryEdit from './diary-edit';
     import ModalDiaryCreate from './diary-create';
     import {mode} from "../../store/modal";
 

@@ -5,6 +5,7 @@
         "month": "월",
         "day": "일",
         "week": "요일",
+        "current_date": "현재 시간",
         "created_date": "최초 생성 일자",
         "updated_date": "최종 수정 일자",
         "create": "생성",
