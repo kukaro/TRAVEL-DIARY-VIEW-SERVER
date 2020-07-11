@@ -1,3 +1,5 @@
+import PostDto from "../dto/PostDto";
+
 const prefix = 'modal';
 
 export const mode = {
@@ -46,6 +48,12 @@ const data = {
         setDiaryData(state, payload) {
             this.state[`${prefix}_diary`].data = JSON.parse(JSON.stringify(payload));
             this.state[`${prefix}_diary`].origin_data = payload;
+        },
+        initDiaryData(state, payload){
+            this.state[`${prefix}_diary`].data = new PostDto({});
+            delete this.state[`${prefix}_diary`].data.id;
+            delete this.state[`${prefix}_diary`].data.created_date;
+            delete this.state[`${prefix}_diary`].data.updated_date;
         },
         updateData(state, {key = null, value = null}) {
             if (key in this.state[`${prefix}_diary`].data) {

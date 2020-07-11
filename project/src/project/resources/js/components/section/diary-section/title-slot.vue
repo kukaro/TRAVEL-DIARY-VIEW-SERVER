@@ -60,8 +60,10 @@
             ...mapMutations({
                 openModal: 'modal_openModal',
                 setDiaryData: 'modal_setDiaryData',
+                initDiaryData: 'modal_initDiaryData',
             }),
             onClick(){
+                this.initDiaryData();
                 this.openModal(mode.diary_create);
             },
         },
