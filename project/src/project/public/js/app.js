@@ -1916,7 +1916,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../storage/sessionstorage */ "./resources/js/storage/sessionstorage.js");
 /* harmony import */ var _modal_modal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modal/modal */ "./resources/js/components/modal/modal.vue");
 /* harmony import */ var _storage_cookie__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../storage/cookie */ "./resources/js/storage/cookie.js");
-/* harmony import */ var _storage_cookie__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_storage_cookie__WEBPACK_IMPORTED_MODULE_7__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -1979,10 +1978,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         headers: {
           Authorization: "".concat(jwt.token_type, " ").concat(jwt.access_token)
         }
-      });
-    } else if (_storage_cookie__WEBPACK_IMPORTED_MODULE_7___default.a.get('Authorization')) {
-      this.setOwner({
-        path: '/user'
       });
     }
   },
@@ -68208,10 +68203,83 @@ function loadLocaleMessages() {
 /*!****************************************!*\
   !*** ./resources/js/storage/cookie.js ***!
   \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/resources/js/storage/cookie.js: Support for the experimental syntax 'classProperties' isn't currently enabled (4:17):\n\n\u001b[0m \u001b[90m 2 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 3 | \u001b[39m\u001b[36mclass\u001b[39m \u001b[33mCookie\u001b[39m {\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 4 | \u001b[39m    static list \u001b[33m=\u001b[39m []\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m   | \u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 5 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 6 | \u001b[39m    static validKey(name) {\u001b[0m\n\u001b[0m \u001b[90m 7 | \u001b[39m        \u001b[36mreturn\u001b[39m list\u001b[33m.\u001b[39msome((value\u001b[33m,\u001b[39m\u001b[90m/*key*/\u001b[39m) \u001b[33m=>\u001b[39m {\u001b[0m\n\nAdd @babel/plugin-proposal-class-properties (https://git.io/vb4SL) to the 'plugins' section of your Babel config to enable transformation.\nIf you want to leave it as-is, add @babel/plugin-syntax-class-properties (https://git.io/vb4yQ) to the 'plugins' section to enable parsing.\n    at Parser._raise (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/@babel/parser/lib/index.js:746:17)\n    at Parser.raiseWithData (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/@babel/parser/lib/index.js:739:17)\n    at Parser.expectPlugin (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/@babel/parser/lib/index.js:8812:18)\n    at Parser.parseClassProperty (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/@babel/parser/lib/index.js:12185:12)\n    at Parser.pushClassProperty (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/@babel/parser/lib/index.js:12145:30)\n    at Parser.parseClassMemberWithIsStatic (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/@babel/parser/lib/index.js:12078:14)\n    at Parser.parseClassMember (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/@babel/parser/lib/index.js:12015:10)\n    at withTopicForbiddingContext (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/@babel/parser/lib/index.js:11960:14)\n    at Parser.withTopicForbiddingContext (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/@babel/parser/lib/index.js:11031:14)\n    at Parser.parseClassBody (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/@babel/parser/lib/index.js:11937:10)\n    at Parser.parseClass (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/@babel/parser/lib/index.js:11911:22)\n    at Parser.parseStatementContent (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/@babel/parser/lib/index.js:11198:21)\n    at Parser.parseStatement (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/@babel/parser/lib/index.js:11156:17)\n    at Parser.parseBlockOrModuleBlockBody (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/@babel/parser/lib/index.js:11731:25)\n    at Parser.parseBlockBody (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/@babel/parser/lib/index.js:11717:10)\n    at Parser.parseTopLevel (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/@babel/parser/lib/index.js:11087:10)\n    at Parser.parse (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/@babel/parser/lib/index.js:12768:10)\n    at parse (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/@babel/parser/lib/index.js:12821:38)\n    at parser (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/@babel/core/lib/parser/index.js:54:34)\n    at parser.next (<anonymous>)\n    at normalizeFile (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/@babel/core/lib/transformation/normalize-file.js:93:38)\n    at normalizeFile.next (<anonymous>)\n    at run (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/@babel/core/lib/transformation/index.js:31:50)\n    at run.next (<anonymous>)\n    at Function.transform (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/@babel/core/lib/transform.js:27:41)\n    at transform.next (<anonymous>)\n    at step (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/gensync/index.js:254:32)\n    at gen.next (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/gensync/index.js:266:13)\n    at async.call.value (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/gensync/index.js:216:11)\n    at errback.call (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/gensync/index.js:184:28)\n    at runGenerator.errback (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/@babel/core/lib/gensync-utils/async.js:72:7)\n    at val (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/gensync/index.js:108:33)\n    at step (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/gensync/index.js:280:14)\n    at gen.next (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/gensync/index.js:266:13)\n    at async.call.value (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/gensync/index.js:216:11)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var list = ['Authorization'];
+
+var Cookie = /*#__PURE__*/function () {
+  function Cookie() {
+    _classCallCheck(this, Cookie);
+  }
+
+  _createClass(Cookie, null, [{
+    key: "validKey",
+    value: function validKey(name) {
+      return list.some(function (value)
+      /*key*/
+      {
+        if (value === name) {
+          return true;
+        }
+      });
+    }
+  }, {
+    key: "set",
+    value: function set(key, value) {
+      if (Cookie.validKey(key)) {
+        document.cookie = "".concat(key, "=").concat(value);
+      }
+    }
+  }, {
+    key: "get",
+    value: function get(key) {
+      if (Cookie.validKey(key)) {
+        var _list = document.cookie.split(';');
+
+        var obj = {};
+
+        _list.forEach(function (value, key) {
+          key = value.split('=')[0];
+          value = value.split('=')[1];
+          return obj[key] = value;
+        });
+
+        return obj[key];
+      } else {
+        return undefined;
+      }
+    }
+  }, {
+    key: "remove",
+    value: function remove(key) {
+      if (Cookie.validKey(key)) {
+        document.cookie = "".concat(key, "=").concat(value, ";Expires=").concat(new Date().toUTCString());
+      }
+    }
+  }, {
+    key: "getJwt",
+    value: function getJwt() {
+      if (Cookie.get('jwt')) {
+        return JSON.parse(Cookie.get('jwt'));
+      } else {
+        return undefined;
+      }
+    }
+  }]);
+
+  return Cookie;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (Cookie);
 
 /***/ }),
 
@@ -68810,9 +68878,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dto_UserDto__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../dto/UserDto */ "./resources/js/dto/UserDto.js");
 /* harmony import */ var _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../storage/sessionstorage */ "./resources/js/storage/sessionstorage.js");
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../app */ "./resources/js/app.js");
-/* harmony import */ var _storage_cookie__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../storage/cookie */ "./resources/js/storage/cookie.js");
-/* harmony import */ var _storage_cookie__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_storage_cookie__WEBPACK_IMPORTED_MODULE_4__);
-
 
 
 
@@ -68853,7 +68918,6 @@ var data = {
         _this.state["".concat(prefix, "_jwt")][value] = res.res.data[value];
       });
       _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_2__["default"].set('jwt', JSON.stringify(this.state["".concat(prefix, "_jwt")]));
-      _storage_cookie__WEBPACK_IMPORTED_MODULE_4___default.a.set('Authorization', "".concat(this.state["".concat(prefix, "_jwt")].token_type, " ").concat(this.state["".concat(prefix, "_jwt")].access_token));
       this.dispatch("".concat(prefix, "_setOwner"), {
         path: "/user/".concat(res.data.email)
       });
