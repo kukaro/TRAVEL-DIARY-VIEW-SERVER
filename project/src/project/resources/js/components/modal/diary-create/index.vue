@@ -2,6 +2,7 @@
     <div class="diary-create" :style="style">
         <diary-create-header/>
         <editable-title/>
+        <editable-contents/>
     </div>
 </template>
 
@@ -10,11 +11,12 @@
     import {mapState, mapMutations} from "vuex";
     import DiaryCreateHeader from "./diary-create-header";
     import EditableTitle from "./editable-title";
+    import EditableContents from "./editable-contents";
 
 
     export default {
         name: "diary-create",
-        components: {EditableTitle, DiaryCreateHeader},
+        components: {EditableContents, EditableTitle, DiaryCreateHeader},
         computed: {
             ...mapState({
                 diary: 'modal_diary',
