@@ -49,8 +49,10 @@ const data = {
             this.state[`${prefix}_diary`].data = JSON.parse(JSON.stringify(payload));
             this.state[`${prefix}_diary`].origin_data = payload;
         },
-        initDiaryData(state, payload){
-            this.state[`${prefix}_diary`].data = new PostDto({});
+        initDiaryData(state, payload) {
+            this.state[`${prefix}_diary`].data = new PostDto({
+                owner_email: this.state[`sess_owner`].email
+            });
             delete this.state[`${prefix}_diary`].data.id;
             delete this.state[`${prefix}_diary`].data.created_date;
             delete this.state[`${prefix}_diary`].data.updated_date;

@@ -109,7 +109,7 @@ const data = {
             const jwt = SessionStorage.getJwt();
             headers = {
                 Authorization: `${jwt.token_type} ${jwt.access_token}`,
-                ...headers
+                ...headers,
             };
             if (postId) {
                 /**
@@ -122,7 +122,7 @@ const data = {
                     `${prefix}_successUpdateDiaryDataByPostId`,
                     `${prefix}_failUpdateDiaryDataByPostId`,
                     data,
-                    headers
+                    headers,
                 );
             }
         },
@@ -130,7 +130,7 @@ const data = {
             const jwt = SessionStorage.getJwt();
             headers = {
                 Authorization: `${jwt.token_type} ${jwt.access_token}`,
-                ...headers
+                ...headers,
             };
             call(commit,
                 'post',
@@ -138,7 +138,7 @@ const data = {
                 `${prefix}_successCreateDiaryData`,
                 `${prefix}_failCreateDiaryData`,
                 data,
-                headers
+                headers,
             );
         }
     }

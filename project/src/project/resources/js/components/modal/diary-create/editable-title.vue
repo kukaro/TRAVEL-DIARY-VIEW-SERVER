@@ -5,7 +5,7 @@
              contenteditable="true"
              @blur="onBlur"
              :style="style">
-            {{value ? value.title : ''}}
+            {{diary.data ? diary.data.title : ''}}
         </div>
         <div class="inner">
             <td-button
@@ -16,7 +16,7 @@
                 :font_color="`white`"
                 :box_shadow="`0 1px 20px 1px ${success}`"
                 :click_event="createDiaryData"
-                :click_event_param="value ? [{postId : value.id, data: value}] : []"/>
+                :click_event_param="diary.data ? [{data: diary.data}] : []"/>
             <td-button
                 :value="$t('global.cancel')"
                 :color="pink"
@@ -38,9 +38,6 @@
     export default {
         name: "editable-title",
         components: {TdButton, Ctxt},
-        props: {
-            value: {}
-        },
         computed: {
             ...mapState({
                 hotred: 'color_hotred',
