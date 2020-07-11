@@ -2,22 +2,22 @@
 <template>
     <div class="diary-edit-footer" :style="style">
         <div class="inner">
-            <td-button
-                :value="$t('global.update')"
-                :color="success"
-                :hover_color="chosen_success"
-                :font_color="`white`"
-                :box_shadow="`0 1px 20px 1px ${success}`"
-                :click_event="this.updateDiaryDataByPostId"
-                :click_event_param="this.data ? [{postId : this.data.id, data: this.data}] : []"/>
-            <td-button
-                :value="$t('global.cancel')"
-                :color="pink"
-                :hover_color="hotred"
-                :font_color="`white`"
-                :box_shadow="`0 1px 20px 1px ${pink}`"
-                :style="last_button_style"
-                :click_event="this.closeModal"/>
+<!--            <td-button-->
+<!--                :value="$t('global.update')"-->
+<!--                :color="success"-->
+<!--                :hover_color="chosen_success"-->
+<!--                :font_color="`white`"-->
+<!--                :box_shadow="`0 1px 20px 1px ${success}`"-->
+<!--                :click_event="this.updateDiaryDataByPostId"-->
+<!--                :click_event_param="this.data ? [{postId : this.data.id, data: this.data}] : []"/>-->
+<!--            <td-button-->
+<!--                :value="$t('global.cancel')"-->
+<!--                :color="pink"-->
+<!--                :hover_color="hotred"-->
+<!--                :font_color="`white`"-->
+<!--                :box_shadow="`0 1px 20px 1px ${pink}`"-->
+<!--                :style="last_button_style"-->
+<!--                :click_event="this.closeModal"/>-->
         </div>
     </div>
 </template>

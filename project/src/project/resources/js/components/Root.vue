@@ -1,4 +1,3 @@
-<script src="../store/modal.js"></script>
 <template>
     <div id="root" :style="style">
         <modal/>

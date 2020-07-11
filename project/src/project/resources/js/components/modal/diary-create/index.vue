@@ -1,17 +1,18 @@
 <template>
     <div class="diary-create" :style="style">
-
+        <diary-create-header/>
     </div>
 </template>
 
 <script>
     import {mU} from "../../../utils/unit";
     import {mapState} from "vuex";
+    import DiaryCreateHeader from "./diary-create-header";
 
 
     export default {
         name: "diary-create",
-        components: {},
+        components: {DiaryCreateHeader},
         computed: {
             ...mapState({
                 diary: 'modal_diary',
