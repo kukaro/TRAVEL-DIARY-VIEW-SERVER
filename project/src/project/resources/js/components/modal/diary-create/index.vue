@@ -2,6 +2,7 @@
     <div class="diary-create" :style="style">
         <diary-create-header/>
         <editable-title/>
+        <editable-toolbox/>
         <editable-contents/>
     </div>
 </template>
@@ -12,11 +13,12 @@
     import DiaryCreateHeader from "./diary-create-header";
     import EditableTitle from "./editable-title";
     import EditableContents from "./editable-contents";
+    import EditableToolbox from "../editable-toolbox";
 
 
     export default {
         name: "diary-create",
-        components: {EditableContents, EditableTitle, DiaryCreateHeader},
+        components: {EditableToolbox, EditableContents, EditableTitle, DiaryCreateHeader},
         computed: {
             ...mapState({
                 diary: 'modal_diary',
