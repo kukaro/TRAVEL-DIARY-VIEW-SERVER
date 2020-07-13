@@ -48,13 +48,15 @@
                 pink: 'color_pink',
                 success: 'color_success',
                 chosen_success: 'color_chosen_success',
-                diary: `modal_diary`
+                diary: `modal_diary`,
+                editable: `diary_editable`,
             }),
             style() {
                 return {
                     fontSize: mU(this.diary.editable.title.font_size),
                     fontFamily: this.diary.editable.title.font_family,
                     paddingLeft: mU(10),
+                    height: mU(this.editable.title.height),
                 }
             },
             last_button_style() {

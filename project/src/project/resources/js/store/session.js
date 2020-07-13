@@ -1,4 +1,4 @@
-import {call, loginCall} from "../utils/request"
+import {call, loginCall, signupCall} from "../utils/request"
 import UserDto from '../dto/UserDto'
 import SessionStorage from "../storage/sessionstorage";
 import vm from '../app'
@@ -44,6 +44,15 @@ const data = {
             console.log('fail');
             console.log(res);
         },
+        successSetSignup(state, res) {
+            console.log(res);
+            console.log('successSetSignup');
+            console.log(res);
+        },
+        failSetSignup(state, res) {
+            console.log('failSetSignup');
+            console.log(res);
+        },
         /**
          * 중요한건 이거 동작하고 각종 state데이터중에 개인적인거 다 삭제해야함
          * @param state
@@ -80,10 +89,10 @@ const data = {
         setSignup({commit}, payload) {
             const pay = JSON.parse(JSON.stringify(payload));
             this.commit(`login_removeFormUser`);
-            loginCall(commit,
+            signupCall(commit,
                 pay,
-                `${prefix}_successSetLogin`,
-                `${prefix}_failSetLogin`
+                `${prefix}_successSetSignup`,
+                `${prefix}_failSetSignup`
             )
         },
     }

@@ -18,7 +18,7 @@
                 title_color: 'color_prime',
                 title: 'global_title',
                 nav: "global_nav",
-                global_setting: "global_setting"
+                global_setting: "global_setting",
             }),
             title_style() {
                 return {
