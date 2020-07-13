@@ -77,6 +77,15 @@ const data = {
                 `${prefix}_failSetLogin`
             )
         },
+        setSignup({commit}, payload) {
+            const pay = JSON.parse(JSON.stringify(payload));
+            this.commit(`login_removeFormUser`);
+            loginCall(commit,
+                pay,
+                `${prefix}_successSetLogin`,
+                `${prefix}_failSetLogin`
+            )
+        },
     }
 };
 

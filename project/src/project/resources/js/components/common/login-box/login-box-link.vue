@@ -3,7 +3,7 @@
        @click="onClick"
        @mouseover="hover = true"
        @mouseleave="hover = false">
-        <Ctxt :value="value.name" :font="font_korean" :is_bold="true" :color="color"/>
+        <Ctxt :value="name" :font="font_korean" :is_bold="true" :color="color"/>
     </a>
 </template>
 
@@ -28,13 +28,25 @@
             },
         },
         props:{
-            value:{
+            name:{
 
-            }
+            },
+            click_event:{
+                default(){
+                    return ()=>{
+                        console.log("default");
+                    }
+                }
+            },
+            click_event_param:{
+                default(){
+                    return []
+                }
+            },
         },
         methods:{
             onClick(){
-                this.$router.push(this.value.path).catch(()=>{});
+                this.click_event(...this.click_event_param);
             },
 
         },

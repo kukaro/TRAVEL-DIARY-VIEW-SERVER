@@ -1,14 +1,14 @@
 <template>
-    <div class="login-box-footer" :style="style">
+    <div class="signup-box-footer" :style="style">
         <div class="first-slot" :style="first_link_style">
             <login-box-link
                 :name="$t('global.password_reset')"/>
         </div>
         <div class="second-slot" :style="second_link_style">
             <login-box-link
-                :name="$t('global.signup')"
+                :name="$t('global.login')"
                 :click_event="setLoginType"
-                :click_event_param="[types.signup]"/>
+                :click_event_param="[types.login]"/>
         </div>
     </div>
 </template>
@@ -16,11 +16,11 @@
 <script>
     import {mapMutations, mapState} from "vuex";
     import {mU} from "../../../utils/unit";
-    import LoginBoxLink from "./login-box-link";
+    import LoginBoxLink from "../login-box/login-box-link";
     import {types} from '../../../store/login';
 
     export default {
-        name: "login-box-footer",
+        name: "signup-box-footer",
         components: {LoginBoxLink},
         computed: {
             ...mapState({
@@ -61,7 +61,7 @@
 </script>
 
 <style scoped>
-    .login-box-footer {
+    .signup-box-footer {
         display: flex;
         margin-bottom: auto;
     }

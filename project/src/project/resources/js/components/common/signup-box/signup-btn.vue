@@ -1,5 +1,5 @@
 <template>
-    <input class="login-btn" type="button" :value="$t('global.login')" @click="setLogin(value)" :style="style"/>
+    <input class="signup-btn" type="button" :value="$t('global.signup')" @click="setLogin(value)" :style="style"/>
 </template>
 
 <script>
@@ -10,7 +10,7 @@
     import {mU} from "../../../utils/unit";
 
     export default {
-        name: "login-btn",
+        name: "signup-btn",
         props: {
             value: {
                 email: "",
@@ -50,7 +50,7 @@
 </script>
 
 <style lang="scss" scoped>
-    .login-btn{
+    .signup-btn{
         cursor: pointer;
     }
 </style>
