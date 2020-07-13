@@ -56,7 +56,7 @@
         display: block; /* For Firefox */
     }
 
-    .data-slot::-webkit-scrollbar {
+    .editable-contents::-webkit-scrollbar {
         display: none; /* Chrome, Safari, Opera*/
     }
 </style>
