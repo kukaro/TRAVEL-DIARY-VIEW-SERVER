@@ -2641,6 +2641,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -2829,7 +2830,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   props: {
     value: {
       email: "",
-      password: ""
+      name: "",
+      password: "",
+      password_confirmation: ""
     }
   },
   watch: {},
@@ -2854,7 +2857,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }),
   created: function created() {},
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])({
-    setLogin: "sess_setLogin"
+    setSignup: "sess_setSignup"
   }))
 });
 
@@ -3751,13 +3754,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     pink: 'color_pink',
     success: 'color_success',
     chosen_success: 'color_chosen_success',
-    diary: "modal_diary"
+    diary: "modal_diary",
+    editable: "diary_editable"
   })), {}, {
     style: function style() {
       return {
         fontSize: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(this.diary.editable.title.font_size),
         fontFamily: this.diary.editable.title.font_family,
-        paddingLeft: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(10)
+        paddingLeft: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(10),
+        height: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(this.editable.title.height)
       };
     },
     last_button_style: function last_button_style() {
@@ -4156,13 +4161,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     pink: 'color_pink',
     success: 'color_success',
     chosen_success: 'color_chosen_success',
-    diary: "modal_diary"
+    diary: "modal_diary",
+    editable: "diary_editable"
   })), {}, {
     style: function style() {
       return {
         fontSize: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(this.diary.editable.title.font_size),
         fontFamily: this.diary.editable.title.font_family,
-        paddingLeft: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(10)
+        paddingLeft: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(10),
+        height: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(this.editable.title.height)
       };
     },
     last_button_style: function last_button_style() {
@@ -47389,6 +47396,18 @@ var render = function() {
         _vm._v(" "),
         _c("form-input", {
           staticClass: "margin-bottom",
+          attrs: { placeholder: _vm.$t("user.name") },
+          model: {
+            value: _vm.user.name,
+            callback: function($$v) {
+              _vm.$set(_vm.user, "name", $$v)
+            },
+            expression: "user.name"
+          }
+        }),
+        _vm._v(" "),
+        _c("form-input", {
+          staticClass: "margin-bottom",
           attrs: {
             type: "password",
             enter_cb: _vm.onEnter,
@@ -47408,14 +47427,14 @@ var render = function() {
           attrs: {
             type: "password",
             enter_cb: _vm.onEnter,
-            placeholder: _vm.$t("user.password_verify")
+            placeholder: _vm.$t("user.password_confirmation")
           },
           model: {
-            value: _vm.user.password_verify,
+            value: _vm.user.password_confirmation,
             callback: function($$v) {
-              _vm.$set(_vm.user, "password_verify", $$v)
+              _vm.$set(_vm.user, "password_confirmation", $$v)
             },
-            expression: "user.password_verify"
+            expression: "user.password_confirmation"
           }
         }),
         _vm._v(" "),
@@ -47558,7 +47577,7 @@ var render = function() {
     attrs: { type: "button", value: _vm.$t("global.signup") },
     on: {
       click: function($event) {
-        return _vm.setLogin(_vm.value)
+        return _vm.setSignup(_vm.value)
       }
     }
   })
@@ -71111,7 +71130,7 @@ module.exports = JSON.parse("{\"message\":\"hello i18n !!\",\"dashboard\":\"Dash
 /*! exports provided: global, user, diary, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"global\":{\"no_picture\":\"사진 없음\",\"year\":\"년\",\"month\":\"월\",\"day\":\"일\",\"week\":\"요일\",\"current_date\":\"현재 시간\",\"created_date\":\"최초 생성 일자\",\"updated_date\":\"최종 수정 일자\",\"create\":\"생성\",\"update\":\"수정\",\"cancel\":\"취소\",\"placeholder\":{\"default\":\"입력하세요.\",\"title\":\"제목을 입력하세요\",\"content\":\"내용을 입력하세요\"},\"signup\":\"회원가입\",\"password_reset\":\"비밀번호 찾기\",\"login\":\"로그인\",\"password\":\"비밀번호\",\"password_verify\":\"비밀번호 확인\"},\"user\":{\"title\":\"사용자 정보\",\"email\":\"email\",\"name\":\"이름\",\"age\":\"나이\",\"birth_date\":\"생일\",\"password\":\"비밀번호\",\"password_verify\":\"비밀번호 확인\",\"created_date\":\"최초 생성 일자\",\"updated_date\":\"최종 수정 일자\"},\"diary\":{\"title\":\"다이어리\",\"id\":\"ID\",\"write\":\"다이어리 쓰기\"}}");
+module.exports = JSON.parse("{\"global\":{\"no_picture\":\"사진 없음\",\"year\":\"년\",\"month\":\"월\",\"day\":\"일\",\"week\":\"요일\",\"current_date\":\"현재 시간\",\"created_date\":\"최초 생성 일자\",\"updated_date\":\"최종 수정 일자\",\"create\":\"생성\",\"update\":\"수정\",\"cancel\":\"취소\",\"placeholder\":{\"default\":\"입력하세요.\",\"title\":\"제목을 입력하세요\",\"content\":\"내용을 입력하세요\"},\"signup\":\"회원가입\",\"password_reset\":\"비밀번호 찾기\",\"login\":\"로그인\",\"password\":\"비밀번호\",\"password_confirmation\":\"비밀번호 확인\"},\"user\":{\"title\":\"사용자 정보\",\"email\":\"email\",\"name\":\"이름\",\"age\":\"나이\",\"birth_date\":\"생일\",\"password\":\"비밀번호\",\"password_confirmation\":\"비밀번호 확인\",\"created_date\":\"최초 생성 일자\",\"updated_date\":\"최종 수정 일자\"},\"diary\":{\"title\":\"다이어리\",\"id\":\"ID\",\"write\":\"다이어리 쓰기\"}}");
 
 /***/ }),
 
@@ -71443,7 +71462,12 @@ var data = {
       title_size: 20,
       content_max_length: 30
     },
-    refined_data: {}
+    refined_data: {},
+    editable: {
+      title: {
+        height: 45
+      }
+    }
   },
   getters: {},
   mutations: {
@@ -71844,16 +71868,18 @@ var data = {
     },
     form_user: {
       email: "",
+      name: "",
       password: "",
-      password_verify: ""
+      password_confirmation: ""
     }
   },
   getters: {},
   mutations: {
     removeFormUser: function removeFormUser(state, res) {
       this.state["".concat(prefix, "_form_user")]['email'] = '';
+      this.state["".concat(prefix, "_form_user")]['name'] = '';
       this.state["".concat(prefix, "_form_user")]['password'] = '';
-      this.state["".concat(prefix, "_form_user")]['password_verify'] = '';
+      this.state["".concat(prefix, "_form_user")]['password_confirmation'] = '';
     },
     setLoginType: function setLoginType(state, payload) {
       this.commit("".concat(prefix, "_removeFormUser"));
@@ -72018,6 +72044,15 @@ var data = {
       console.log('fail');
       console.log(res);
     },
+    successSetSignup: function successSetSignup(state, res) {
+      console.log(res);
+      console.log('successSetSignup');
+      console.log(res);
+    },
+    failSetSignup: function failSetSignup(state, res) {
+      console.log('failSetSignup');
+      console.log(res);
+    },
 
     /**
      * 중요한건 이거 동작하고 각종 state데이터중에 개인적인거 다 삭제해야함
@@ -72054,7 +72089,7 @@ var data = {
       var commit = _ref4.commit;
       var pay = JSON.parse(JSON.stringify(payload));
       this.commit("login_removeFormUser");
-      Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["loginCall"])(commit, pay, "".concat(prefix, "_successSetLogin"), "".concat(prefix, "_failSetLogin"));
+      Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["signupCall"])(commit, pay, "".concat(prefix, "_successSetSignup"), "".concat(prefix, "_failSetSignup"));
     }
   }
 };
@@ -72137,11 +72172,12 @@ function randomColor() {
 /*!*********************************************!*\
   !*** ./resources/js/utils/request/index.js ***!
   \*********************************************/
-/*! exports provided: loginCall, call */
+/*! exports provided: signupCall, loginCall, call */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signupCall", function() { return signupCall; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginCall", function() { return loginCall; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "call", function() { return call; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -72149,7 +72185,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../config */ "./resources/js/config/index.js");
 
 
-var valid_method = ['get', 'post', 'put', 'patch', 'delete']; //TODO : 이부분 나중에 로그인 로직 정립되면 반드시 바뀌어야 함
+var valid_method = ['get', 'post', 'put', 'patch', 'delete'];
+function signupCall(commit, data, success_mutation_name, fail_mutation_name) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default.a.request({
+    method: 'post',
+    url: "".concat(_config__WEBPACK_IMPORTED_MODULE_1__["default"].api_server_host, "/signup"),
+    data: "email=".concat(data.email, "&name=").concat(data.name, "&password=").concat(data.password, "&password_confirmation=").concat(data.password_confirmation),
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }).then(function (res) {
+    commit(success_mutation_name, {
+      res: res,
+      data: data
+    });
+  })["catch"](function (res) {
+    commit(fail_mutation_name, res);
+  });
+} //TODO : 이부분 나중에 로그인 로직 정립되면 반드시 바뀌어야 함
 
 function loginCall(commit, data, success_mutation_name, fail_mutation_name) {
   axios__WEBPACK_IMPORTED_MODULE_0___default.a.request({
