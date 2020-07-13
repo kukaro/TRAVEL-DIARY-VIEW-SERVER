@@ -42,10 +42,18 @@
         margin-top: 10px;
         /*background-color: red;*/
         flex: 1;
+        white-space: nowrap;
+        overflow: scroll;
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
     }
 
     [contenteditable=true]:empty:before {
         content: attr(placeholder);
         display: block; /* For Firefox */
+    }
+
+    .data-slot::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera*/
     }
 </style>
