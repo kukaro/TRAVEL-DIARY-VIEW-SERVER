@@ -70287,21 +70287,17 @@ var data = {
   state: {},
   getters: {},
   mutations: {
+    //TODO : 이미지 파일 서버에 저장해야함
     addImageToText: function addImageToText(state) {
       var _this = this;
 
       var f = this.state["diary_files"][this.state["diary_files"].length - 1];
-      console.log(f);
       var fr = new FileReader();
 
       fr.onload = function (e) {
         var img_html = "<img src=\"".concat(e.target.result, "\" />");
-        console.log(_this.state["modal_diary"].data);
         _this.state["modal_diary"].data.contents += img_html;
-        console.log(_this.state["modal_diary"].data.contents);
       };
-
-      console.log(fr.readAsDataURL(f));
     }
   },
   actions: {}
