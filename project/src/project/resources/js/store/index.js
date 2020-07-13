@@ -9,6 +9,7 @@ import colorStore from './color'
 import fontStore from './font'
 import diaryStore from './diary'
 import modalStore from './modal'
+import fileStore from './file'
 
 Vue.use(Vuex)
 
@@ -27,5 +28,6 @@ sBind(colorStore.prefix, colorStore, data);
 sBind(fontStore.prefix, fontStore, data);
 sBind(diaryStore.prefix, diaryStore, data);
 sBind(modalStore.prefix, modalStore, data);
+sBind(fileStore.prefix, fileStore, data);
 
 export default new Vuex.Store(data);

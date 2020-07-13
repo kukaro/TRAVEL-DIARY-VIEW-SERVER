@@ -39,6 +39,9 @@ const data = {
                 case mode.diary:
                     this.state[`${prefix}_diary`].data = JSON.parse(JSON.stringify(this.state[`${prefix}_diary`].origin_data));
                     break;
+                case mode.diary_create:
+                    this.commit(`diary_cleanFileData`);
+                    break;
             }
         },
         openModal(state, payload = mode.default) {

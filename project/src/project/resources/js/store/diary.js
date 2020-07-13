@@ -8,6 +8,7 @@ const data = {
     prefix,
     state: {
         data: null,
+        files: [],
         section: {
             width: 300,
             height: 300,
@@ -79,6 +80,9 @@ const data = {
             this.state[`${prefix}_data`] = null;
             this.state[`${prefix}_refined_data`] = {};
         },
+        cleanFileData(state){
+            this.state[`${prefix}_files`] = [];
+        }
     },
     actions: {
         setDiaryDataByOwner({commit}, {owner_email = null, data = {}, headers = {}}) {

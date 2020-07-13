@@ -4035,6 +4035,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -4063,7 +4065,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
     grey220: 'color_grey220',
     grey200: 'color_grey200',
-    grey150: 'color_grey150'
+    grey150: 'color_grey150',
+    files: 'diary_files'
   })), {}, {
     bgc: function bgc() {
       return this.bgc_color || 'black';
@@ -4085,7 +4088,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         margin: 'auto'
       };
     }
-  })
+  }),
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])({
+    addImageToText: "file_addImageToText"
+  })), {}, {
+    onClick: function onClick() {
+      this.$refs['file'].click();
+    },
+    onFileChange: function onFileChange($e) {
+      this.files.push(this.$refs['file'].files[0]);
+      this.addImageToText();
+    }
+  }),
+  data: function data() {
+    return {};
+  }
 });
 
 /***/ }),
@@ -10515,7 +10532,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.edit-btn-image[data-v-13682622] {\n    cursor: pointer;\n    transition: background-color 0.3s;\n}\n", ""]);
+exports.push([module.i, "\n.edit-btn-image[data-v-13682622] {\n    cursor: pointer;\n    transition: background-color 0.3s;\n    position: relative;\n}\ninput[data-v-13682622] {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    border: 0;\n    padding: 0;\n    display: none;\n}\n", ""]);
 
 // exports
 
@@ -47544,10 +47561,18 @@ var render = function() {
         },
         mouseleave: function($event) {
           _vm.hover = false
-        }
+        },
+        click: _vm.onClick
       }
     },
     [
+      _c("input", {
+        ref: "file",
+        staticClass: "edit-btn-input",
+        attrs: { type: "file", multiple: "" },
+        on: { change: _vm.onFileChange }
+      }),
+      _vm._v(" "),
       _c("img", {
         style: _vm.img_style,
         attrs: { src: __webpack_require__(/*! ../../../../assets/img/image_btn_white.png */ "./resources/assets/img/image_btn_white.png") }
@@ -69674,9 +69699,9 @@ var PostDto = function PostDto(_ref) {
       id = _ref$id === void 0 ? null : _ref$id,
       owner_email = _ref.owner_email,
       _ref$title = _ref.title,
-      title = _ref$title === void 0 ? null : _ref$title,
+      title = _ref$title === void 0 ? '' : _ref$title,
       _ref$contents = _ref.contents,
-      contents = _ref$contents === void 0 ? null : _ref$contents,
+      contents = _ref$contents === void 0 ? '' : _ref$contents,
       _ref$parents_post_id = _ref.parents_post_id,
       parents_post_id = _ref$parents_post_id === void 0 ? null : _ref$parents_post_id,
       created_date = _ref.created_date,
@@ -70094,6 +70119,7 @@ var data = {
   prefix: prefix,
   state: {
     data: null,
+    files: [],
     section: {
       width: 300,
       height: 300,
@@ -70176,6 +70202,9 @@ var data = {
     cleanAllData: function cleanAllData(state) {
       this.state["".concat(prefix, "_data")] = null;
       this.state["".concat(prefix, "_refined_data")] = {};
+    },
+    cleanFileData: function cleanFileData(state) {
+      this.state["".concat(prefix, "_files")] = [];
     }
   },
   actions: {
@@ -70238,6 +70267,44 @@ var data = {
       Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["call"])(commit, 'post', "/post", "".concat(prefix, "_successCreateDiaryData"), "".concat(prefix, "_failCreateDiaryData"), data, headers);
     }
   }
+};
+/* harmony default export */ __webpack_exports__["default"] = (data);
+
+/***/ }),
+
+/***/ "./resources/js/store/file.js":
+/*!************************************!*\
+  !*** ./resources/js/store/file.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var prefix = 'file';
+var data = {
+  prefix: prefix,
+  state: {},
+  getters: {},
+  mutations: {
+    addImageToText: function addImageToText(state) {
+      var _this = this;
+
+      var f = this.state["diary_files"][this.state["diary_files"].length - 1];
+      console.log(f);
+      var fr = new FileReader();
+
+      fr.onload = function (e) {
+        var img_html = "<img src=\"".concat(e.target.result, "\" />");
+        console.log(_this.state["modal_diary"].data);
+        _this.state["modal_diary"].data.contents += img_html;
+        console.log(_this.state["modal_diary"].data.contents);
+      };
+
+      console.log(fr.readAsDataURL(f));
+    }
+  },
+  actions: {}
 };
 /* harmony default export */ __webpack_exports__["default"] = (data);
 
@@ -70410,6 +70477,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _font__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./font */ "./resources/js/store/font.js");
 /* harmony import */ var _diary__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./diary */ "./resources/js/store/diary.js");
 /* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modal */ "./resources/js/store/modal.js");
+/* harmony import */ var _file__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./file */ "./resources/js/store/file.js");
+
 
 
 
@@ -70436,6 +70505,7 @@ Object(_utils_helper__WEBPACK_IMPORTED_MODULE_2__["sBind"])(_color__WEBPACK_IMPO
 Object(_utils_helper__WEBPACK_IMPORTED_MODULE_2__["sBind"])(_font__WEBPACK_IMPORTED_MODULE_8__["default"].prefix, _font__WEBPACK_IMPORTED_MODULE_8__["default"], data);
 Object(_utils_helper__WEBPACK_IMPORTED_MODULE_2__["sBind"])(_diary__WEBPACK_IMPORTED_MODULE_9__["default"].prefix, _diary__WEBPACK_IMPORTED_MODULE_9__["default"], data);
 Object(_utils_helper__WEBPACK_IMPORTED_MODULE_2__["sBind"])(_modal__WEBPACK_IMPORTED_MODULE_10__["default"].prefix, _modal__WEBPACK_IMPORTED_MODULE_10__["default"], data);
+Object(_utils_helper__WEBPACK_IMPORTED_MODULE_2__["sBind"])(_file__WEBPACK_IMPORTED_MODULE_11__["default"].prefix, _file__WEBPACK_IMPORTED_MODULE_11__["default"], data);
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store(data));
 
 /***/ }),
@@ -70534,6 +70604,10 @@ var data = {
       switch (this.state["".concat(prefix, "_mode")]) {
         case mode.diary:
           this.state["".concat(prefix, "_diary")].data = JSON.parse(JSON.stringify(this.state["".concat(prefix, "_diary")].origin_data));
+          break;
+
+        case mode.diary_create:
+          this.commit("diary_cleanFileData");
           break;
       }
     },
