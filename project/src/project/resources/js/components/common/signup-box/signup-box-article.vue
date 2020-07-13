@@ -1,22 +1,23 @@
 <template>
-    <div class="login-box-article">
+    <div class="signup-box-article">
         <form>
             <form-input v-model="user.email" class="margin-bottom" :placeholder="$t('user.email')"/>
             <form-input v-model="user.password" :type="'password'" :enter_cb="onEnter" class="margin-bottom" :placeholder="$t('user.password')"/>
-            <login-btn v-model="user"/>
+            <form-input v-model="user.password_verify" :type="'password'" :enter_cb="onEnter" class="margin-bottom" :placeholder="$t('user.password_verify')"/>
+            <signup-btn v-model="user"/>
         </form>
     </div>
 </template>
 
 <script>
 
-    import LoginBtn from "./login-btn";
+    import SignupBtn from "./signup-btn";
     import FormInput from "../../input/form-input";
     import {mapActions, mapMutations, mapState} from "vuex";
 
     export default {
-        name: "login-box-article",
-        components: {FormInput, LoginBtn},
+        name: "signup-box-article",
+        components: {FormInput, SignupBtn},
         computed: {
             ...mapState({
                 user: 'login_form_user',
@@ -25,17 +26,17 @@
         methods: {
             ...mapActions({
                 setOwner: "sess_setOwner",
-                setLogin: "sess_setLogin",
+                setSignup: "sess_setSignup",
             }),
             onEnter() {
-                this.setLogin(this.user);
+                this.setSignup(this.user);
             }
         }
     }
 </script>
 
 <style scoped>
-    .login-box-article {
+    .signup-box-article {
         display: flex;
     }
 

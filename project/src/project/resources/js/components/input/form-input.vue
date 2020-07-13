@@ -3,6 +3,7 @@
            :value="value"
            @input="onChange"
            @keyup.enter="enter_cb"
+           :placeholder="placeholder"
            :style="style">
 </template>
 
@@ -19,6 +20,9 @@
             },
             enter_cb:{
                 default: null
+            },
+            placeholder:{
+                default: ''
             }
         },
         computed: {

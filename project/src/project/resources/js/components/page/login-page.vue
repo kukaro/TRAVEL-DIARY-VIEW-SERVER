@@ -4,25 +4,30 @@
             <source src="../../../assets/video/login-bgc.mp4">
         </video>
         <quote/>
-        <login-box/>
+        <login-box v-if="types.login === type"/>
+        <signup-box v-if="types.signup === type"/>
     </div>
 </template>
 
 <script>
     import {mapState, mapActions} from "vuex";
     import loginBox from "../common/login-box";
-    import {mU} from "../../../js/utils/unit";
+    import {mU} from "../../utils/unit";
     import Quote from "../common/quote";
+    import SignupBox from "../common/signup-box/index";
+    import {types} from '../../store/login';
 
     export default {
         name: "login-page",
         components: {
+            SignupBox,
             Quote,
             loginBox
         },
         computed: {
             ...mapState({
-                bgc: "login_bgc"
+                bgc: "login_bgc",
+                type: 'login_type',
             }),
             style() {
                 return {
@@ -33,6 +38,11 @@
                 };
             }
         },
+        data(){
+            return {
+                types
+            }
+        }
     };
 </script>
 
