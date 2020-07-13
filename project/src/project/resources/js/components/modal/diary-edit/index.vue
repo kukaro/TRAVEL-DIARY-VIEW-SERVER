@@ -2,6 +2,7 @@
     <div class="diary-edit" :style="style">
         <diary-edit-header v-if="diary.data" :data="diary.data"/>
         <editable-title v-if="diary.data" :data="diary.data"/>
+        <editable-toolbox/>
         <editable-contents v-if="diary.data" :data="diary.data"/>
         <diary-edit-footer :data="diary.data"/>
     </div>
@@ -14,10 +15,17 @@
     import DiaryEditHeader from "./diary-edit-header";
     import DiaryEditFooter from "./diary-edit-footer";
     import EditableContents from "./editable-contents";
+    import EditableToolbox from "../editable-toolbox";
 
     export default {
         name: "diary-edit",
-        components: {EditableContents, DiaryEditFooter, DiaryEditHeader, EditableTitle},
+        components: {
+            EditableToolbox,
+            EditableContents,
+            DiaryEditFooter,
+            DiaryEditHeader,
+            EditableTitle
+        },
         computed: {
             ...mapState({
                 diary: 'modal_diary',

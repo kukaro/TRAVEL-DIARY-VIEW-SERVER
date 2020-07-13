@@ -3873,6 +3873,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _diary_edit_header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./diary-edit-header */ "./resources/js/components/modal/diary-edit/diary-edit-header.vue");
 /* harmony import */ var _diary_edit_footer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./diary-edit-footer */ "./resources/js/components/modal/diary-edit/diary-edit-footer.vue");
 /* harmony import */ var _editable_contents__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editable-contents */ "./resources/js/components/modal/diary-edit/editable-contents.vue");
+/* harmony import */ var _editable_toolbox__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../editable-toolbox */ "./resources/js/components/modal/editable-toolbox/index.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -3888,6 +3889,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+
 
 
 
@@ -3897,6 +3900,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "diary-edit",
   components: {
+    EditableToolbox: _editable_toolbox__WEBPACK_IMPORTED_MODULE_6__["default"],
     EditableContents: _editable_contents__WEBPACK_IMPORTED_MODULE_5__["default"],
     DiaryEditFooter: _diary_edit_footer__WEBPACK_IMPORTED_MODULE_4__["default"],
     DiaryEditHeader: _diary_edit_header__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -47474,6 +47478,8 @@ var render = function() {
         ? _c("editable-title", { attrs: { data: _vm.diary.data } })
         : _vm._e(),
       _vm._v(" "),
+      _c("editable-toolbox"),
+      _vm._v(" "),
       _vm.diary.data
         ? _c("editable-contents", { attrs: { data: _vm.diary.data } })
         : _vm._e(),
@@ -70287,7 +70293,7 @@ var data = {
   state: {},
   getters: {},
   mutations: {
-    //TODO : 이미지 파일 서버에 저장해야함
+    //TODO: 파일 서버에 저장해야함
     addImageToText: function addImageToText(state) {
       var _this = this;
 
@@ -70298,6 +70304,8 @@ var data = {
         var img_html = "<img src=\"".concat(e.target.result, "\" />");
         _this.state["modal_diary"].data.contents += img_html;
       };
+
+      fr.readAsDataURL(f);
     }
   },
   actions: {}
