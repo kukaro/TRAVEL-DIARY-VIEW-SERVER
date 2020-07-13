@@ -7,8 +7,6 @@ const data = {
     mutations: {
         //TODO : 이미지 파일 서버에 저장해야함
         addImageToText(state) {
-            const f = this.state[`diary_files`][this.state[`diary_files`].length - 1];
-            console.log(f);
             const fr = new FileReader();
             fr.onload = (e) => {
                 const img_html = `<img src="${e.target.result}" />`;
