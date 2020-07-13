@@ -10808,7 +10808,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.editable-contents[data-v-20f69d72] {\n    margin-top: 10px;\n    /*background-color: red;*/\n    flex: 1;\n}\n[contenteditable=true][data-v-20f69d72]:empty:before {\n    content: attr(placeholder);\n    display: block; /* For Firefox */\n}\n", ""]);
+exports.push([module.i, "\n.editable-contents[data-v-20f69d72] {\n    margin-top: 10px;\n    /*background-color: red;*/\n    flex: 1;\n    white-space: nowrap;\n    overflow: scroll;\n    -ms-overflow-style: none; /* IE and Edge */\n    scrollbar-width: none; /* Firefox */\n}\n[contenteditable=true][data-v-20f69d72]:empty:before {\n    content: attr(placeholder);\n    display: block; /* For Firefox */\n}\n.editable-contents[data-v-20f69d72]::-webkit-scrollbar {\n    display: none; /* Chrome, Safari, Opera*/\n}\n", ""]);
 
 // exports
 
@@ -10903,7 +10903,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.editable-contents[data-v-78b688d6] {\n    margin-top: 10px;\n    /*background-color: red;*/\n    flex: 1;\n}\n[contenteditable=true][data-v-78b688d6]:empty:before {\n    content: attr(placeholder);\n    display: block; /* For Firefox */\n}\n", ""]);
+exports.push([module.i, "\n.editable-contents[data-v-78b688d6] {\n    margin-top: 10px;\n    white-space: nowrap;\n    overflow: scroll;\n    /*background-color: red;*/\n    flex: 1;\n    -ms-overflow-style: none; /* IE and Edge */\n    scrollbar-width: none; /* Firefox */\n}\n[contenteditable=true][data-v-78b688d6]:empty:before {\n    content: attr(placeholder);\n    display: block; /* For Firefox */\n}\n.editable-contents[data-v-78b688d6]::-webkit-scrollbar {\n    display: none; /* Chrome, Safari, Opera*/\n}\n", ""]);
 
 // exports
 
