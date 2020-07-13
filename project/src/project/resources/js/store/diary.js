@@ -30,7 +30,12 @@ const data = {
             title_size: 20,
             content_max_length: 30,
         },
-        refined_data: {}
+        refined_data: {},
+        editable:{
+            title:{
+                height: 45
+            }
+        },
     },
     getters: {},
     mutations: {

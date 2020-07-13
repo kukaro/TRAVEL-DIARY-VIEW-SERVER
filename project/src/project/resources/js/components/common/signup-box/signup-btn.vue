@@ -1,5 +1,5 @@
 <template>
-    <input class="signup-btn" type="button" :value="$t('global.signup')" @click="setLogin(value)" :style="style"/>
+    <input class="signup-btn" type="button" :value="$t('global.signup')" @click="setSignup(value)" :style="style"/>
 </template>
 
 <script>
@@ -14,7 +14,9 @@
         props: {
             value: {
                 email: "",
-                password: ""
+                name: "",
+                password: "",
+                password_confirmation: "",
             }
         },
         watch: {},
@@ -43,7 +45,7 @@
         },
         methods: {
             ...mapActions({
-                setLogin: "sess_setLogin",
+                setSignup: "sess_setSignup",
             })
         }
     };

@@ -2,8 +2,9 @@
     <div class="signup-box-article">
         <form>
             <form-input v-model="user.email" class="margin-bottom" :placeholder="$t('user.email')"/>
+            <form-input v-model="user.name" class="margin-bottom" :placeholder="$t('user.name')"/>
             <form-input v-model="user.password" :type="'password'" :enter_cb="onEnter" class="margin-bottom" :placeholder="$t('user.password')"/>
-            <form-input v-model="user.password_verify" :type="'password'" :enter_cb="onEnter" class="margin-bottom" :placeholder="$t('user.password_verify')"/>
+            <form-input v-model="user.password_confirmation" :type="'password'" :enter_cb="onEnter" class="margin-bottom" :placeholder="$t('user.password_confirmation')"/>
             <signup-btn v-model="user"/>
         </form>
     </div>

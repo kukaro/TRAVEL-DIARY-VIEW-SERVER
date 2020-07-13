@@ -20,7 +20,7 @@
         "password_reset": "비밀번호 찾기",
         "login": "로그인",
         "password": "비밀번호",
-        "password_verify": "비밀번호 확인"
+        "password_confirmation": "비밀번호 확인"
     },
     "user": {
         "title": "사용자 정보",
@@ -29,7 +29,7 @@
         "age": "나이",
         "birth_date": "생일",
         "password": "비밀번호",
-        "password_verify": "비밀번호 확인",
+        "password_confirmation": "비밀번호 확인",
         "created_date": "최초 생성 일자",
         "updated_date": "최종 수정 일자"
     },
