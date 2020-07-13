@@ -4,8 +4,9 @@
              ref="title"
              contenteditable="true"
              @blur="onBlur"
-             :style="style">
-            {{value ? value.title : ''}}
+             :placeholder="$t('global.placeholder.title')"
+             :style="style"
+             v-text="data.title">
         </div>
         <div class="inner">
             <td-button
@@ -16,7 +17,7 @@
                 :font_color="`white`"
                 :box_shadow="`0 1px 20px 1px ${success}`"
                 :click_event="updateDiaryDataByPostId"
-                :click_event_param="value ? [{postId : value.id, data: value}] : []"/>
+                :click_event_param="data ? [{postId : data.id, data}] : []"/>
             <td-button
                 :value="$t('global.cancel')"
                 :color="pink"
@@ -39,7 +40,7 @@
         name: "editable-header",
         components: {TdButton, Ctxt},
         props: {
-            value: {}
+            data: {}
         },
         computed: {
             ...mapState({
@@ -53,6 +54,7 @@
                 return {
                     fontSize: mU(this.diary.editable.title.font_size),
                     fontFamily: this.diary.editable.title.font_family,
+                    paddingLeft: mU(10),
                 }
             },
             last_button_style() {
@@ -60,8 +62,8 @@
                     marginLeft: mU(10),
                 }
             },
-            center(){
-                return{
+            center() {
+                return {
                     marginTop: 'auto',
                     marginBottom: 'auto',
                 }
@@ -91,10 +93,16 @@
     .inner {
         margin-left: auto;
     }
-    .title{
+
+    .title {
         margin-right: 10px;
         flex: 1;
         overflow: hidden;
         white-space: nowrap;
+    }
+
+    [contenteditable=true]:empty:before {
+        content: attr(placeholder);
+        display: block; /* For Firefox */
     }
 </style>

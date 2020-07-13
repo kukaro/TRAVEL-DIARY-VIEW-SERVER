@@ -10,7 +10,11 @@
         "updated_date": "최종 수정 일자",
         "create": "생성",
         "update": "수정",
-        "cancel": "취소"
+        "cancel": "취소",
+        "placeholder": {
+            "title": "제목을 입력하세요",
+            "content": "내용을 입력하세요"
+        }
     },
     "user": {
         "title": "사용자 정보",

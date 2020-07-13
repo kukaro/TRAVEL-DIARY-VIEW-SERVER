@@ -1,5 +1,8 @@
 <template>
-    <div class="edit-btn-bold" :style="style">
+    <div class="edit-btn-bold"
+         :style="style"
+         @mouseover="hover = true"
+         @mouseleave="hover = false">
         <ctxt :value="'B'"
               :color="'white'"
               :is_bold="true"
@@ -12,9 +15,11 @@
     import {mapState} from "vuex";
     import {mU} from "../../../utils/unit";
     import Ctxt from "../../utils/ctxt";
+    import hoverMixin from './mixins/hover.mixin'
 
     export default {
         name: "edit-btn-bold",
+        mixins: [hoverMixin],
         components: {Ctxt},
         props: {
             size: {
@@ -51,7 +56,7 @@
                     border: this.border,
                     display: 'flex',
                     borderRadius: mU(this.border_radius),
-                    backgroundColor: this.bgc,
+                    backgroundColor: this.hover? this.hover_color :this.bgc,
                     marginLeft: mU(5),
                 }
             },
@@ -66,6 +71,7 @@
 
 <style scoped>
     .edit-btn-bold {
-
+        cursor: pointer;
+        transition: background-color 0.3s;
     }
 </style>

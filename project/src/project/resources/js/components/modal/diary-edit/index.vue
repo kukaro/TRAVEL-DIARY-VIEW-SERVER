@@ -1,7 +1,7 @@
 <template>
     <div class="diary-edit" :style="style">
         <diary-edit-header v-if="diary.data" :data="diary.data"/>
-        <editable-title v-if="diary.data" :value="diary.data"/>
+        <editable-title v-if="diary.data" :data="diary.data"/>
         <editable-contents v-if="diary.data" :data="diary.data"/>
         <diary-edit-footer :data="diary.data"/>
     </div>

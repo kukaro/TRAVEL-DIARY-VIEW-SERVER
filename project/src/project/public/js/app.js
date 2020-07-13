@@ -3320,6 +3320,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3398,6 +3399,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -3418,7 +3420,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     style: function style() {
       return {
         fontSize: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(this.diary.editable.title.font_size),
-        fontFamily: this.diary.editable.title.font_family
+        fontFamily: this.diary.editable.title.font_family,
+        paddingLeft: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(10)
       };
     },
     last_button_style: function last_button_style() {
@@ -3716,6 +3719,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3797,6 +3801,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -3808,7 +3813,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     Ctxt: _utils_ctxt__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
-    value: {}
+    data: {}
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
     hotred: 'color_hotred',
@@ -3820,7 +3825,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     style: function style() {
       return {
         fontSize: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(this.diary.editable.title.font_size),
-        fontFamily: this.diary.editable.title.font_family
+        fontFamily: this.diary.editable.title.font_family,
+        paddingLeft: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(10)
       };
     },
     last_button_style: function last_button_style() {
@@ -3924,6 +3930,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _utils_unit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../utils/unit */ "./resources/js/utils/unit.js");
 /* harmony import */ var _utils_ctxt__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/ctxt */ "./resources/js/components/utils/ctxt.vue");
+/* harmony import */ var _mixins_hover_mixin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./mixins/hover.mixin */ "./resources/js/components/modal/editable-toolbox/mixins/hover.mixin.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -3940,11 +3947,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "edit-btn-bold",
+  mixins: [_mixins_hover_mixin__WEBPACK_IMPORTED_MODULE_3__["default"]],
   components: {
     Ctxt: _utils_ctxt__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
@@ -3982,7 +3994,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         border: this.border,
         display: 'flex',
         borderRadius: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(this.border_radius),
-        backgroundColor: this.bgc,
+        backgroundColor: this.hover ? this.hover_color : this.bgc,
         marginLeft: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(5)
       };
     },
@@ -4007,6 +4019,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _utils_unit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../utils/unit */ "./resources/js/utils/unit.js");
+/* harmony import */ var _mixins_hover_mixin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mixins/hover.mixin */ "./resources/js/components/modal/editable-toolbox/mixins/hover.mixin.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -4019,10 +4032,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "edit-btn-image",
+  mixins: [_mixins_hover_mixin__WEBPACK_IMPORTED_MODULE_2__["default"]],
   props: {
     size: {
       "default": function _default() {
@@ -4057,7 +4075,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         border: this.border,
         display: 'flex',
         borderRadius: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(this.border_radius),
-        backgroundColor: this.bgc
+        backgroundColor: this.hover ? this.hover_color : this.bgc
       };
     },
     img_style: function img_style() {
@@ -10326,7 +10344,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.editable-contents[data-v-20f69d72] {\n    margin-top: 10px;\n    /*background-color: red;*/\n    flex: 1;\n}\n", ""]);
+exports.push([module.i, "\n.editable-contents[data-v-20f69d72] {\n    margin-top: 10px;\n    /*background-color: red;*/\n    flex: 1;\n}\n[contenteditable=true][data-v-20f69d72]:empty:before {\n    content: attr(placeholder);\n    display: block; /* For Firefox */\n}\n", ""]);
 
 // exports
 
@@ -10345,7 +10363,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.editable-title[data-v-1cdcf87b] {\n    margin-top: 10px;\n    display: flex;\n}\n.inner[data-v-1cdcf87b] {\n    margin-left: auto;\n}\n.title[data-v-1cdcf87b]{\n    margin-right: 10px;\n    flex: 1;\n    overflow: hidden;\n    white-space: nowrap;\n}\n", ""]);
+exports.push([module.i, "\n.editable-title[data-v-1cdcf87b] {\n    margin-top: 10px;\n    display: flex;\n}\n.inner[data-v-1cdcf87b] {\n    margin-left: auto;\n}\n.title[data-v-1cdcf87b] {\n    margin-right: 10px;\n    flex: 1;\n    overflow: hidden;\n    white-space: nowrap;\n}\n[contenteditable=true][data-v-1cdcf87b]:empty:before {\n    content: attr(placeholder);\n    display: block; /* For Firefox */\n}\n", ""]);
 
 // exports
 
@@ -10421,7 +10439,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.editable-contents[data-v-78b688d6] {\n    margin-top: 10px;\n    /*background-color: red;*/\n    flex: 1;\n}\n", ""]);
+exports.push([module.i, "\n.editable-contents[data-v-78b688d6] {\n    margin-top: 10px;\n    /*background-color: red;*/\n    flex: 1;\n}\n[contenteditable=true][data-v-78b688d6]:empty:before {\n    content: attr(placeholder);\n    display: block; /* For Firefox */\n}\n", ""]);
 
 // exports
 
@@ -10440,7 +10458,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.editable-header[data-v-131bc0ed] {\n    margin-top: 10px;\n    display: flex;\n}\n.inner[data-v-131bc0ed] {\n    margin-left: auto;\n}\n.title[data-v-131bc0ed]{\n    margin-right: 10px;\n    flex: 1;\n    overflow: hidden;\n    white-space: nowrap;\n}\n", ""]);
+exports.push([module.i, "\n.editable-header[data-v-131bc0ed] {\n    margin-top: 10px;\n    display: flex;\n}\n.inner[data-v-131bc0ed] {\n    margin-left: auto;\n}\n.title[data-v-131bc0ed] {\n    margin-right: 10px;\n    flex: 1;\n    overflow: hidden;\n    white-space: nowrap;\n}\n[contenteditable=true][data-v-131bc0ed]:empty:before {\n    content: attr(placeholder);\n    display: block; /* For Firefox */\n}\n", ""]);
 
 // exports
 
@@ -10478,7 +10496,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.edit-btn-bold[data-v-62c6aca1] {\n}\n", ""]);
+exports.push([module.i, "\n.edit-btn-bold[data-v-62c6aca1] {\n    cursor: pointer;\n    transition: background-color 0.3s;\n}\n", ""]);
 
 // exports
 
@@ -10497,7 +10515,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.edit-btn-image[data-v-13682622] {\n}\n", ""]);
+exports.push([module.i, "\n.edit-btn-image[data-v-13682622] {\n    cursor: pointer;\n    transition: background-color 0.3s;\n}\n", ""]);
 
 // exports
 
@@ -10516,7 +10534,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.editable-toolbox[data-v-6f708d8c] {\n    margin-top: 10px;\n    display: flex;\n}\n.inner[data-v-6f708d8c] {\n    margin-left: auto;\n}\n.title[data-v-6f708d8c] {\n    margin-right: 10px;\n    flex: 1;\n    overflow: hidden;\n    white-space: nowrap;\n}\n", ""]);
+exports.push([module.i, "\n.editable-toolbox[data-v-6f708d8c] {\n    margin-top: 10px;\n    display: flex;\n    margin-left: 10px;\n}\n.inner[data-v-6f708d8c] {\n    margin-left: auto;\n}\n.title[data-v-6f708d8c] {\n    margin-right: 10px;\n    flex: 1;\n    overflow: hidden;\n    white-space: nowrap;\n}\n", ""]);
 
 // exports
 
@@ -47106,7 +47124,10 @@ var render = function() {
     ref: "contents",
     staticClass: "editable-contents",
     style: _vm.style,
-    attrs: { contenteditable: "true" },
+    attrs: {
+      contenteditable: "true",
+      placeholder: _vm.$t("global.placeholder.content")
+    },
     domProps: {
       innerHTML: _vm._s(_vm.diary.data ? _vm.diary.data.contents : "")
     },
@@ -47136,23 +47157,17 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "editable-title" }, [
-    _c(
-      "div",
-      {
-        ref: "title",
-        staticClass: "title",
-        style: _vm.style,
-        attrs: { contenteditable: "true" },
-        on: { blur: _vm.onBlur }
+    _c("div", {
+      ref: "title",
+      staticClass: "title",
+      style: _vm.style,
+      attrs: {
+        contenteditable: "true",
+        placeholder: _vm.$t("global.placeholder.title")
       },
-      [
-        _vm._v(
-          "\n        " +
-            _vm._s(_vm.diary.data ? _vm.diary.data.title : "") +
-            "\n    "
-        )
-      ]
-    ),
+      domProps: { textContent: _vm._s(_vm.diary.data.title) },
+      on: { blur: _vm.onBlur }
+    }),
     _vm._v(" "),
     _c(
       "div",
@@ -47330,7 +47345,10 @@ var render = function() {
     ref: "contents",
     staticClass: "editable-contents",
     style: _vm.style,
-    attrs: { contenteditable: "true" },
+    attrs: {
+      contenteditable: "true",
+      placeholder: _vm.$t("global.placeholder.content")
+    },
     domProps: { innerHTML: _vm._s(_vm.data ? _vm.data.contents : "") },
     on: { blur: _vm.onBlur }
   })
@@ -47358,21 +47376,17 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "editable-header" }, [
-    _c(
-      "div",
-      {
-        ref: "title",
-        staticClass: "title",
-        style: _vm.style,
-        attrs: { contenteditable: "true" },
-        on: { blur: _vm.onBlur }
+    _c("div", {
+      ref: "title",
+      staticClass: "title",
+      style: _vm.style,
+      attrs: {
+        contenteditable: "true",
+        placeholder: _vm.$t("global.placeholder.title")
       },
-      [
-        _vm._v(
-          "\n        " + _vm._s(_vm.value ? _vm.value.title : "") + "\n    "
-        )
-      ]
-    ),
+      domProps: { textContent: _vm._s(_vm.data.title) },
+      on: { blur: _vm.onBlur }
+    }),
     _vm._v(" "),
     _c(
       "div",
@@ -47387,8 +47401,8 @@ var render = function() {
             font_color: "white",
             box_shadow: "0 1px 20px 1px " + _vm.success,
             click_event: _vm.updateDiaryDataByPostId,
-            click_event_param: _vm.value
-              ? [{ postId: _vm.value.id, data: _vm.value }]
+            click_event_param: _vm.data
+              ? [{ postId: _vm.data.id, data: _vm.data }]
               : []
           }
         }),
@@ -47440,7 +47454,7 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _vm.diary.data
-        ? _c("editable-title", { attrs: { value: _vm.diary.data } })
+        ? _c("editable-title", { attrs: { data: _vm.diary.data } })
         : _vm._e(),
       _vm._v(" "),
       _vm.diary.data
@@ -47476,7 +47490,18 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "edit-btn-bold", style: _vm.style },
+    {
+      staticClass: "edit-btn-bold",
+      style: _vm.style,
+      on: {
+        mouseover: function($event) {
+          _vm.hover = true
+        },
+        mouseleave: function($event) {
+          _vm.hover = false
+        }
+      }
+    },
     [
       _c("ctxt", {
         style: _vm.font_style,
@@ -47508,12 +47533,27 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "edit-btn-image", style: _vm.style }, [
-    _c("img", {
-      style: _vm.img_style,
-      attrs: { src: __webpack_require__(/*! ../../../../assets/img/image_btn_white.png */ "./resources/assets/img/image_btn_white.png") }
-    })
-  ])
+  return _c(
+    "div",
+    {
+      staticClass: "edit-btn-image",
+      style: _vm.style,
+      on: {
+        mouseover: function($event) {
+          _vm.hover = true
+        },
+        mouseleave: function($event) {
+          _vm.hover = false
+        }
+      }
+    },
+    [
+      _c("img", {
+        style: _vm.img_style,
+        attrs: { src: __webpack_require__(/*! ../../../../assets/img/image_btn_white.png */ "./resources/assets/img/image_btn_white.png") }
+      })
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -67566,6 +67606,31 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/modal/editable-toolbox/mixins/hover.mixin.js":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/modal/editable-toolbox/mixins/hover.mixin.js ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var data = {
+  props: {
+    hover_color: {
+      "default": 'grey'
+    }
+  },
+  data: function data() {
+    return {
+      hover: false
+    };
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (data);
+
+/***/ }),
+
 /***/ "./resources/js/components/modal/modal.vue":
 /*!*************************************************!*\
   !*** ./resources/js/components/modal/modal.vue ***!
@@ -69609,9 +69674,9 @@ var PostDto = function PostDto(_ref) {
       id = _ref$id === void 0 ? null : _ref$id,
       owner_email = _ref.owner_email,
       _ref$title = _ref.title,
-      title = _ref$title === void 0 ? '' : _ref$title,
+      title = _ref$title === void 0 ? null : _ref$title,
       _ref$contents = _ref.contents,
-      contents = _ref$contents === void 0 ? '' : _ref$contents,
+      contents = _ref$contents === void 0 ? null : _ref$contents,
       _ref$parents_post_id = _ref.parents_post_id,
       parents_post_id = _ref$parents_post_id === void 0 ? null : _ref$parents_post_id,
       created_date = _ref.created_date,
@@ -69719,7 +69784,7 @@ module.exports = JSON.parse("{\"message\":\"hello i18n !!\",\"dashboard\":\"Dash
 /*! exports provided: global, user, diary, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"global\":{\"no_picture\":\"사진 없음\",\"year\":\"년\",\"month\":\"월\",\"day\":\"일\",\"week\":\"요일\",\"current_date\":\"현재 시간\",\"created_date\":\"최초 생성 일자\",\"updated_date\":\"최종 수정 일자\",\"create\":\"생성\",\"update\":\"수정\",\"cancel\":\"취소\"},\"user\":{\"title\":\"사용자 정보\",\"email\":\"email\",\"name\":\"이름\",\"age\":\"나이\",\"birth_date\":\"생일\",\"password\":\"패스워드\",\"created_date\":\"최초 생성 일자\",\"updated_date\":\"최종 수정 일자\"},\"diary\":{\"title\":\"다이어리\",\"id\":\"ID\",\"write\":\"다이어리 쓰기\"}}");
+module.exports = JSON.parse("{\"global\":{\"no_picture\":\"사진 없음\",\"year\":\"년\",\"month\":\"월\",\"day\":\"일\",\"week\":\"요일\",\"current_date\":\"현재 시간\",\"created_date\":\"최초 생성 일자\",\"updated_date\":\"최종 수정 일자\",\"create\":\"생성\",\"update\":\"수정\",\"cancel\":\"취소\",\"placeholder\":{\"title\":\"제목을 입력하세요\",\"content\":\"내용을 입력하세요\"}},\"user\":{\"title\":\"사용자 정보\",\"email\":\"email\",\"name\":\"이름\",\"age\":\"나이\",\"birth_date\":\"생일\",\"password\":\"패스워드\",\"created_date\":\"최초 생성 일자\",\"updated_date\":\"최종 수정 일자\"},\"diary\":{\"title\":\"다이어리\",\"id\":\"ID\",\"write\":\"다이어리 쓰기\"}}");
 
 /***/ }),
 
@@ -69749,15 +69814,7 @@ var routes = [{
   path: '/',
   name: 'Home',
   component: _components_section_home_section__WEBPACK_IMPORTED_MODULE_3__["default"]
-}, // {
-//     path: '/about',
-//     name: 'About',
-//     // route level code-splitting
-//     // this generates a separate chunk (about.[hash].js) for this route
-//     // which is lazy-loaded when the route is visited.
-//     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-// }
-{
+}, {
   path: '/user',
   name: 'User',
   component: _components_section_user_info_section_index__WEBPACK_IMPORTED_MODULE_2__["default"]

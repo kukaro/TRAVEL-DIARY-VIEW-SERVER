@@ -3,6 +3,7 @@
          class="editable-contents"
          contenteditable="true"
          @blur="onBlur"
+         :placeholder="$t('global.placeholder.content')"
          :style="style"
          v-html="diary.data ? diary.data.contents : ''">
     </div>
@@ -41,5 +42,10 @@
         margin-top: 10px;
         /*background-color: red;*/
         flex: 1;
+    }
+
+    [contenteditable=true]:empty:before {
+        content: attr(placeholder);
+        display: block; /* For Firefox */
     }
 </style>

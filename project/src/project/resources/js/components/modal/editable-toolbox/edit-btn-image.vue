@@ -1,5 +1,8 @@
 <template>
-    <div class="edit-btn-image" :style="style">
+    <div class="edit-btn-image"
+         :style="style"
+         @mouseover="hover = true"
+         @mouseleave="hover = false">
         <img src="../../../../assets/img/image_btn_white.png" :style="img_style">
     </div>
 </template>
@@ -7,9 +10,11 @@
 <script>
     import {mapState} from "vuex";
     import {mU} from "../../../utils/unit";
+    import hoverMixin from './mixins/hover.mixin'
 
     export default {
         name: "edit-btn-image",
+        mixins: [hoverMixin],
         props: {
             size: {
                 default() {
@@ -45,7 +50,7 @@
                     border: this.border,
                     display: 'flex',
                     borderRadius: mU(this.border_radius),
-                    backgroundColor: this.bgc,
+                    backgroundColor: this.hover? this.hover_color :this.bgc,
                 }
             },
             img_style() {
@@ -61,6 +66,7 @@
 
 <style scoped>
     .edit-btn-image {
-
+        cursor: pointer;
+        transition: background-color 0.3s;
     }
 </style>

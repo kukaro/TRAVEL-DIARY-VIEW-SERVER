@@ -34,6 +34,7 @@
     .editable-toolbox {
         margin-top: 10px;
         display: flex;
+        margin-left: 10px;
     }
 
     .inner {
