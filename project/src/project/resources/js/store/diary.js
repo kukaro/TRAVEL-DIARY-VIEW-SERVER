@@ -31,20 +31,32 @@ const data = {
             content_max_length: 30,
         },
         refined_data: {},
-        editable:{
-            title:{
+        editable: {
+            title: {
                 height: 45
             }
         },
     },
     getters: {},
     mutations: {
-        successCreateDiaryData(state,res){
-            console.log('success');
+        successCreateDiaryData(state, res) {
+            console.log('successCreateDiaryData');
+            const files = this.state[`${prefix}_files`];
+            const data = this.state[`modal_diary`].data;
+            if (files.length !== 0) {
+                console.log('디버그 중!');
+                console.log(files);
+                console.log(data);
+                const formData = new FormData();
+                for (const file of files) {
+                    formData.append(file.hash, file.file);
+                }
+                this.dispatch(`${prefix}_createFileDataByPost`, {data: formData});
+            }
             this.dispatch(`${prefix}_setDiaryDataByOwner`, {owner_email: this.state[`sess_owner`].email})
             this.commit(`modal_closeModal`);
         },
-        failCreateDiaryData(state,res){
+        failCreateDiaryData(state, res) {
             console.log('failCreateDiaryData');
         },
         successUpdateDiaryDataByPostId(state, res) {
@@ -85,7 +97,7 @@ const data = {
             this.state[`${prefix}_data`] = null;
             this.state[`${prefix}_refined_data`] = {};
         },
-        cleanFileData(state){
+        cleanFileData(state) {
             this.state[`${prefix}_files`] = [];
         }
     },
@@ -137,6 +149,12 @@ const data = {
         },
         createDiaryData({commit}, {data = {}, headers = {}}) {
             const jwt = SessionStorage.getJwt();
+            const imgReg = /<img\s+[^>]*src="([^"]*)"[^>]*>/g;
+            const files = this.state[`${prefix}_files`];
+            let idx = 0;
+            data.contents = data.contents ? data.contents.replace(imgReg, () => {
+                return `[#${files[idx++].hash}#]`;
+            }) : data.contents;
             headers = {
                 Authorization: `${jwt.token_type} ${jwt.access_token}`,
                 ...headers,
@@ -144,6 +162,23 @@ const data = {
             call(commit,
                 'post',
                 `/post`,
+                `${prefix}_successCreateDiaryData`,
+                `${prefix}_failCreateDiaryData`,
+                data,
+                headers,
+            );
+        },
+        createFileDataByPost({commit}, {data = {}, headers = {}}) {
+            console.log('도달!!');
+            const jwt = SessionStorage.getJwt();
+            headers = {
+                Authorization: `${jwt.token_type} ${jwt.access_token}`,
+                'Content-Type': 'multipart/form-data',
+                ...headers,
+            };
+            call(commit,
+                'post',
+                `/file`,
                 `${prefix}_successCreateDiaryData`,
                 `${prefix}_failCreateDiaryData`,
                 data,

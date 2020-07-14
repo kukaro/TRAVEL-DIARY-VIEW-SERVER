@@ -40,7 +40,7 @@ export function call(commit,
                      success_mutation_name,
                      fail_mutation_name,
                      data = {},
-                     headers={}) {
+                     headers = {}) {
     method = method.toLowerCase();
     const valid = valid_method.some((value, key) => {
         if (value === method) {

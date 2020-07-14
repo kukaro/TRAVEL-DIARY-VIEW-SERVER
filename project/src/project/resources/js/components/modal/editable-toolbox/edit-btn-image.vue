@@ -13,6 +13,8 @@
     import {mapMutations, mapState} from "vuex";
     import {mU} from "../../../utils/unit";
     import hoverMixin from './mixins/hover.mixin'
+    import FileDto from "../../../dto/FileDto";
+    import {sha256} from "js-sha256";
 
     export default {
         name: "edit-btn-image",
@@ -72,8 +74,14 @@
                 this.$refs['file'].click();
             },
             onFileChange($e) {
-                this.files.push(this.$refs['file'].files[0]);
-                this.addImageToText()
+                for(let file of this.$refs['file'].files){
+                    let fileDto = new FileDto({
+                        file: file,
+                        hash: sha256('' + new Date().getTime()),
+                    });
+                    this.files.push(fileDto);
+                    this.addImageToText(fileDto);
+                }
             }
         },
         data() {
