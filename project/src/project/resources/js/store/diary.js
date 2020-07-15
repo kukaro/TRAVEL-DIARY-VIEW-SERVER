@@ -149,12 +149,6 @@ const data = {
         },
         createDiaryData({commit}, {data = {}, headers = {}}) {
             const jwt = SessionStorage.getJwt();
-            const imgReg = /<img\s+[^>]*src="([^"]*)"[^>]*>/g;
-            const files = this.state[`${prefix}_files`];
-            let idx = 0;
-            data.contents = data.contents ? data.contents.replace(imgReg, () => {
-                return `[#${files[idx++].hash}#]`;
-            }) : data.contents;
             headers = {
                 Authorization: `${jwt.token_type} ${jwt.access_token}`,
                 ...headers,
@@ -184,6 +178,14 @@ const data = {
                 data,
                 headers,
             );
+        },
+        replaceContent({commit}, {data}) {
+            const imgReg = /<img\s+[^>]*src="([^"]*)"[^>]*>/g;
+            const files = this.state[`${prefix}_files`];
+            let idx = 0;
+            data.contents = data.contents ? data.contents.replace(imgReg, () => {
+                return `[#${files[idx++].hash}#]`;
+            }) : data.contents;
         }
     }
 }

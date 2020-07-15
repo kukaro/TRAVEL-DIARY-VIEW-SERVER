@@ -72219,12 +72219,6 @@ var data = {
           _ref6$headers = _ref6.headers,
           headers = _ref6$headers === void 0 ? {} : _ref6$headers;
       var jwt = _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_1__["default"].getJwt();
-      var imgReg = /<img\s+[^>]*src="([^"]*)"[^>]*>/g;
-      var files = this.state["".concat(prefix, "_files")];
-      var idx = 0;
-      data.contents = data.contents ? data.contents.replace(imgReg, function () {
-        return "[#".concat(files[idx++].hash, "#]");
-      }) : data.contents;
       headers = _objectSpread({
         Authorization: "".concat(jwt.token_type, " ").concat(jwt.access_token)
       }, headers);
@@ -72243,6 +72237,16 @@ var data = {
         'Content-Type': 'multipart/form-data'
       }, headers);
       Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["call"])(commit, 'post', "/file", "".concat(prefix, "_successCreateDiaryData"), "".concat(prefix, "_failCreateDiaryData"), data, headers);
+    },
+    replaceContent: function replaceContent(_ref9, _ref10) {
+      var commit = _ref9.commit;
+      var data = _ref10.data;
+      var imgReg = /<img\s+[^>]*src="([^"]*)"[^>]*>/g;
+      var files = this.state["".concat(prefix, "_files")];
+      var idx = 0;
+      data.contents = data.contents ? data.contents.replace(imgReg, function () {
+        return "[#".concat(files[idx++].hash, "#]");
+      }) : data.contents;
     }
   }
 };
