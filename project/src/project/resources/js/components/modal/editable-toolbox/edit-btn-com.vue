@@ -1,31 +1,30 @@
 <template>
-    <div class="edit-btn-image"
+    <div class="edit-btn-com"
          :style="style"
          @mouseover="hover = true"
          @mouseleave="hover = false"
-         @click.self="onClick">
-        <edit-btn-storage-selector :is_display="is_selector"
-                                   :top="size.height"
-                                   :width="size.width * 2"
-                                   :height="size.height"
-                                   :border_radius="border_radius"
-                                   :border="border"
-                                   :padding="5"
-                                   @closeEvent="onCloseEvent"/>
-        <img src="../../../../assets/img/image_btn_white.png" :style="img_style" @click.self="onClick">
+         @click="onCloseEvent">
+        <ctxt :value="'컴'"
+              :color="'white'"
+              :is_bold="true"
+              :size="20"
+              :style="font_style"/>
+        <input ref="file" type="file" class="edit-btn-input" multiple @change="onFileChange"/>
     </div>
 </template>
 
 <script>
     import {mapMutations, mapState} from "vuex";
     import {mU} from "../../../utils/unit";
+    import Ctxt from "../../utils/ctxt";
     import hoverMixin from './mixins/hover.mixin'
-    import EditBtnStorageSelector from "./edit-btn-storage-selector";
+    import FileDto from "../../../dto/FileDto";
+    import {sha256} from "js-sha256";
 
     export default {
-        name: "edit-btn-image",
-        components: {EditBtnStorageSelector},
+        name: "edit-btn-com",
         mixins: [hoverMixin],
+        components: {Ctxt},
         props: {
             size: {
                 default() {
@@ -63,12 +62,11 @@
                     display: 'flex',
                     borderRadius: mU(this.border_radius),
                     backgroundColor: this.hover ? this.hover_color : this.bgc,
+                    marginLeft: mU(5),
                 }
             },
-            img_style() {
+            font_style() {
                 return {
-                    width: mU(this.size.width - 2),
-                    height: mU(this.size.height - 2),
                     margin: 'auto',
                 }
             },
@@ -77,26 +75,28 @@
             ...mapMutations({
                 addImageToText: `file_addImageToText`,
             }),
-            onClick() {
-                this.is_selector = !this.is_selector;
-            },
             onCloseEvent() {
-                this.is_selector = false;
-            }
-        },
-        data() {
-            return {
-                is_selector: false,
-            }
+                this.$refs['file'].click();
+                this.$emit('closeEvent', true);
+            },
+            onFileChange($e) {
+                for (let file of this.$refs['file'].files) {
+                    let fileDto = new FileDto({
+                        file: file,
+                        hash: sha256('' + new Date().getTime()),
+                    });
+                    this.files.push(fileDto);
+                    this.addImageToText(fileDto);
+                }
+            },
         }
     }
 </script>
 
 <style scoped>
-    .edit-btn-image {
+    .edit-btn-com {
         cursor: pointer;
         transition: background-color 0.3s;
-        position: relative;
     }
 
     input {
@@ -105,5 +105,6 @@
         height: 100%;
         border: 0;
         padding: 0;
+        display: none;
     }
 </style>
