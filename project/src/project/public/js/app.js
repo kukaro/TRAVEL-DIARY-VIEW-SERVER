@@ -72566,6 +72566,34 @@ var PostDto = function PostDto(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/dto/PostPictureDto.js":
+/*!********************************************!*\
+  !*** ./resources/js/dto/PostPictureDto.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var PostPictureDto = function PostPictureDto(_ref) {
+  var _ref$id = _ref.id,
+      id = _ref$id === void 0 ? null : _ref$id,
+      post_id = _ref.post_id,
+      picture_id = _ref.picture_id;
+
+  _classCallCheck(this, PostPictureDto);
+
+  this.id = id;
+  this.post_id = post_id;
+  this.picture_id = picture_id;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (PostPictureDto);
+
+/***/ }),
+
 /***/ "./resources/js/dto/UserDto.js":
 /*!*************************************!*\
   !*** ./resources/js/dto/UserDto.js ***!
@@ -72949,11 +72977,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/request */ "./resources/js/utils/request/index.js");
 /* harmony import */ var _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../storage/sessionstorage */ "./resources/js/storage/sessionstorage.js");
 /* harmony import */ var _dto_PostDto__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../dto/PostDto */ "./resources/js/dto/PostDto.js");
+/* harmony import */ var _dto_PostPictureDto__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../dto/PostPictureDto */ "./resources/js/dto/PostPictureDto.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 
 
 
@@ -72994,14 +73030,33 @@ var data = {
   },
   getters: {},
   mutations: {
-    successCreateDiaryData: function successCreateDiaryData(state, res) {
-      console.log('successCreateDiaryData');
+    beforeCloseModal: function beforeCloseModal(state, res) {
       var files = this.state["".concat(prefix, "_files")];
       var data = this.state["modal_diary"].data;
-      console.log(files);
       this.dispatch("".concat(prefix, "_setDiaryDataByOwner"), {
         owner_email: this.state["sess_owner"].email
       });
+
+      var _iterator = _createForOfIteratorHelper(files),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var file = _step.value;
+          this.dispatch("".concat(prefix, "_linkDiaryAndPicture"), {
+            data: new _dto_PostPictureDto__WEBPACK_IMPORTED_MODULE_3__["default"]({
+              post_id: data.id,
+              picture_id: file.pictureId
+            })
+          });
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
+      this.commit("".concat(prefix, "_cleanFileData"));
       this.commit("modal_closeModal");
     },
     failCreateDiaryData: function failCreateDiaryData(state, res) {
@@ -73016,12 +73071,13 @@ var data = {
     failCreateFileDataByOwner: function failCreateFileDataByOwner(state, res) {
       console.log('failCreateFileDataByOwner');
     },
+    successCreateDiaryData: function successCreateDiaryData(state, res) {
+      console.log('successCreateDiaryData');
+      this.state["modal_diary"].data.id = res.data.id;
+      this.commit("".concat(prefix, "_beforeCloseModal"));
+    },
     successUpdateDiaryDataByPostId: function successUpdateDiaryDataByPostId(state, res) {
-      // console.log('successUpdateDiaryDataByPostId');
-      this.dispatch("".concat(prefix, "_setDiaryDataByOwner"), {
-        owner_email: this.state["sess_owner"].email
-      });
-      this.commit("modal_closeModal");
+      this.commit("".concat(prefix, "_beforeCloseModal"));
     },
     failUpdateDiaryDataByPostId: function failUpdateDiaryDataByPostId(state, res) {
       console.log('failUpdateDiaryDataByPostId');
@@ -73066,6 +73122,12 @@ var data = {
     },
     cleanFileData: function cleanFileData(state) {
       this.state["".concat(prefix, "_files")] = [];
+    },
+    successLinkDiaryAndPicture: function successLinkDiaryAndPicture(state, res) {
+      console.log('successLinkDiaryAndPicture');
+    },
+    failLinkDiaryAndPicture: function failLinkDiaryAndPicture(state, res) {
+      console.log('failLinkDiaryAndPicture');
     }
   },
   actions: {
@@ -73151,6 +73213,20 @@ var data = {
       data.contents = data.contents ? data.contents.replace(imgReg, function () {
         return "[#".concat(files[idx++].hash, "#]");
       }) : data.contents;
+    },
+    linkDiaryAndPicture: function linkDiaryAndPicture(_ref11, _ref12) {
+      var commit = _ref11.commit;
+      var _ref12$data = _ref12.data,
+          data = _ref12$data === void 0 ? {} : _ref12$data,
+          _ref12$headers = _ref12.headers,
+          headers = _ref12$headers === void 0 ? {} : _ref12$headers,
+          _ref12$param = _ref12.param,
+          param = _ref12$param === void 0 ? {} : _ref12$param;
+      var jwt = _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_1__["default"].getJwt();
+      headers = _objectSpread({
+        Authorization: "".concat(jwt.token_type, " ").concat(jwt.access_token)
+      }, headers);
+      Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["call"])(commit, 'post', "/post-picture", "".concat(prefix, "_successLinkDiaryAndPicture"), "".concat(prefix, "_failLinkDiaryAndPicture"), data, headers, param);
     }
   }
 };
