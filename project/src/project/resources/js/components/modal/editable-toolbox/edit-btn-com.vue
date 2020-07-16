@@ -14,12 +14,13 @@
 </template>
 
 <script>
-    import {mapMutations, mapState} from "vuex";
+    import {mapActions, mapMutations, mapState} from "vuex";
     import {mU} from "../../../utils/unit";
     import Ctxt from "../../utils/ctxt";
     import hoverMixin from './mixins/hover.mixin'
     import FileDto from "../../../dto/FileDto";
     import {sha256} from "js-sha256";
+    import PictureDto from "../../../dto/PictureDto";
 
     export default {
         name: "edit-btn-com",
@@ -50,6 +51,7 @@
                 grey200: 'color_grey200',
                 grey150: 'color_grey150',
                 files: 'diary_files',
+                owner: 'sess_owner',
             }),
             bgc() {
                 return this.bgc_color || 'black';
@@ -75,18 +77,28 @@
             ...mapMutations({
                 addImageToText: `file_addImageToText`,
             }),
+            ...mapActions({
+                createPictureByOwner: `picture_createPictureByOwner`
+            }),
             onCloseEvent() {
                 this.$refs['file'].click();
                 this.$emit('closeEvent', true);
             },
             onFileChange($e) {
                 for (let file of this.$refs['file'].files) {
+                    const now = new Date();
                     let fileDto = new FileDto({
                         file: file,
-                        hash: sha256('' + new Date().getTime()),
+                        hash: sha256('' + now.getTime()),
                     });
-                    this.files.push(fileDto);
-                    this.addImageToText(fileDto);
+                    let pictureDto = new PictureDto({
+                        owner_email: this.owner.email,
+                        location: `${this.owner.email}/${now.getFullYear()}/${now.getMonth()}/${now.getDay()}/${fileDto.hash}.${fileDto.ext}`,
+                        path: `${this.owner.email}/${now.getFullYear()}/${now.getMonth()}/${now.getDay()}/${fileDto.hash}.${fileDto.ext}`,
+                        created_date: now,
+                        updated_date: now,
+                    });
+                    this.createPictureByOwner({data: pictureDto, param: {fileDto, pictureDto}});
                 }
             },
         }

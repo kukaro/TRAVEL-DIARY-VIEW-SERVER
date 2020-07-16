@@ -4371,6 +4371,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dto_FileDto__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../dto/FileDto */ "./resources/js/dto/FileDto.js");
 /* harmony import */ var js_sha256__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! js-sha256 */ "./node_modules/js-sha256/src/sha256.js");
 /* harmony import */ var js_sha256__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(js_sha256__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _dto_PictureDto__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../dto/PictureDto */ "./resources/js/dto/PictureDto.js");
 function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -4398,6 +4399,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+
 
 
 
@@ -4433,7 +4435,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     grey220: 'color_grey220',
     grey200: 'color_grey200',
     grey150: 'color_grey150',
-    files: 'diary_files'
+    files: 'diary_files',
+    owner: 'sess_owner'
   })), {}, {
     bgc: function bgc() {
       return this.bgc_color || 'black';
@@ -4455,8 +4458,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       };
     }
   }),
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])({
+  methods: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])({
     addImageToText: "file_addImageToText"
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])({
+    createPictureByOwner: "picture_createPictureByOwner"
   })), {}, {
     onCloseEvent: function onCloseEvent() {
       this.$refs['file'].click();
@@ -4469,12 +4474,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       try {
         for (_iterator.s(); !(_step = _iterator.n()).done;) {
           var file = _step.value;
+          var now = new Date();
           var fileDto = new _dto_FileDto__WEBPACK_IMPORTED_MODULE_4__["default"]({
             file: file,
-            hash: Object(js_sha256__WEBPACK_IMPORTED_MODULE_5__["sha256"])('' + new Date().getTime())
+            hash: Object(js_sha256__WEBPACK_IMPORTED_MODULE_5__["sha256"])('' + now.getTime())
           });
-          this.files.push(fileDto);
-          this.addImageToText(fileDto);
+          var pictureDto = new _dto_PictureDto__WEBPACK_IMPORTED_MODULE_6__["default"]({
+            owner_email: this.owner.email,
+            location: "".concat(this.owner.email, "/").concat(now.getFullYear(), "/").concat(now.getMonth(), "/").concat(now.getDay(), "/").concat(fileDto.hash, ".").concat(fileDto.ext),
+            path: "".concat(this.owner.email, "/").concat(now.getFullYear(), "/").concat(now.getMonth(), "/").concat(now.getDay(), "/").concat(fileDto.hash, ".").concat(fileDto.ext),
+            created_date: now,
+            updated_date: now
+          });
+          this.createPictureByOwner({
+            data: pictureDto,
+            param: {
+              fileDto: fileDto,
+              pictureDto: pictureDto
+            }
+          });
         }
       } catch (err) {
         _iterator.e(err);
@@ -72437,6 +72455,9 @@ var FileDto = function FileDto(_ref) {
   this.file = file;
   this.hash = hash;
   this.html = null;
+  var tmp = this.file.name.split('.');
+  this.ext = tmp[tmp.length - 1];
+  this.pictureId = null;
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (FileDto);
@@ -72469,6 +72490,40 @@ var GlobalHeaderDto = function GlobalHeaderDto(path, real_name, view_name) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (GlobalHeaderDto);
+
+/***/ }),
+
+/***/ "./resources/js/dto/PictureDto.js":
+/*!****************************************!*\
+  !*** ./resources/js/dto/PictureDto.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var PictureDto = function PictureDto(_ref) {
+  var _ref$id = _ref.id,
+      id = _ref$id === void 0 ? null : _ref$id,
+      owner_email = _ref.owner_email,
+      location = _ref.location,
+      path = _ref.path,
+      created_date = _ref.created_date,
+      updated_date = _ref.updated_date;
+
+  _classCallCheck(this, PictureDto);
+
+  this.id = id;
+  this.owner_email = owner_email;
+  this.location = location;
+  this.path = path;
+  this.created_date = created_date;
+  this.updated_date = updated_date;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (PictureDto);
 
 /***/ }),
 
@@ -72900,12 +72955,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 
 
 
@@ -72949,32 +72998,7 @@ var data = {
       console.log('successCreateDiaryData');
       var files = this.state["".concat(prefix, "_files")];
       var data = this.state["modal_diary"].data;
-
-      if (files.length !== 0) {
-        console.log('디버그 중!');
-        console.log(files);
-        console.log(data);
-        var formData = new FormData();
-
-        var _iterator = _createForOfIteratorHelper(files),
-            _step;
-
-        try {
-          for (_iterator.s(); !(_step = _iterator.n()).done;) {
-            var file = _step.value;
-            formData.append(file.hash, file.file);
-          }
-        } catch (err) {
-          _iterator.e(err);
-        } finally {
-          _iterator.f();
-        }
-
-        this.dispatch("".concat(prefix, "_createFileDataByPost"), {
-          data: formData
-        });
-      }
-
+      console.log(files);
       this.dispatch("".concat(prefix, "_setDiaryDataByOwner"), {
         owner_email: this.state["sess_owner"].email
       });
@@ -72982,6 +73006,15 @@ var data = {
     },
     failCreateDiaryData: function failCreateDiaryData(state, res) {
       console.log('failCreateDiaryData');
+    },
+    successCreateFileDataByOwner: function successCreateFileDataByOwner(state, res) {
+      console.log('successCreateFileDataByOwner');
+      var files = this.state["".concat(prefix, "_files")];
+      files.push(res.param.fileDto);
+      this.commit("file_addImageToText", _objectSpread({}, res.param));
+    },
+    failCreateFileDataByOwner: function failCreateFileDataByOwner(state, res) {
+      console.log('failCreateFileDataByOwner');
     },
     successUpdateDiaryDataByPostId: function successUpdateDiaryDataByPostId(state, res) {
       // console.log('successUpdateDiaryDataByPostId');
@@ -73094,19 +73127,20 @@ var data = {
       }, headers);
       Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["call"])(commit, 'post', "/post", "".concat(prefix, "_successCreateDiaryData"), "".concat(prefix, "_failCreateDiaryData"), data, headers);
     },
-    createFileDataByPost: function createFileDataByPost(_ref7, _ref8) {
+    createFileDataByOwner: function createFileDataByOwner(_ref7, _ref8) {
       var commit = _ref7.commit;
       var _ref8$data = _ref8.data,
           data = _ref8$data === void 0 ? {} : _ref8$data,
           _ref8$headers = _ref8.headers,
-          headers = _ref8$headers === void 0 ? {} : _ref8$headers;
-      console.log('도달!!');
+          headers = _ref8$headers === void 0 ? {} : _ref8$headers,
+          _ref8$param = _ref8.param,
+          param = _ref8$param === void 0 ? {} : _ref8$param;
       var jwt = _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_1__["default"].getJwt();
       headers = _objectSpread({
         Authorization: "".concat(jwt.token_type, " ").concat(jwt.access_token),
         'Content-Type': 'multipart/form-data'
       }, headers);
-      Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["call"])(commit, 'post', "/file", "".concat(prefix, "_successCreateDiaryData"), "".concat(prefix, "_failCreateDiaryData"), data, headers);
+      Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["call"])(commit, 'post', "/file", "".concat(prefix, "_successCreateFileDataByOwner"), "".concat(prefix, "_failCreateFileDataByOwner"), data, headers, param);
     },
     replaceContent: function replaceContent(_ref9, _ref10) {
       var commit = _ref9.commit;
@@ -73140,17 +73174,19 @@ var data = {
   getters: {},
   mutations: {
     //TODO: 파일 서버에 저장해야함
-    addImageToText: function addImageToText(state, fileDto) {
-      var _this = this;
+    addImageToText: function addImageToText(state, _ref) {
+      var pictureDto = _ref.pictureDto,
+          fileDto = _ref.fileDto;
+      console.log('addImageToText'); // const fr = new FileReader();
 
-      var fr = new FileReader();
-
-      fr.onload = function (e) {
-        fileDto.html = "<img src=\"".concat(e.target.result, "\" alt=\"").concat(fileDto.hash, "\"/>");
-        _this.state["modal_diary"].data.contents += fileDto.html;
-      };
-
-      fr.readAsDataURL(fileDto.file);
+      fileDto.html = "<img src=\"/api/file/".concat(pictureDto.location, "\" alt=\"").concat(fileDto.hash, "\"/>");
+      this.state["modal_diary"].data.contents += fileDto.html; // fr.onload = (e) => {
+      // console.log('ProgressEvent');
+      // fileDto.html = `<img src="${e.target.result}" alt="${fileDto.hash}"/>`;
+      // fileDto.html = `<img src="/api/file/${pictureDto.location}" alt="${fileDto.hash}"/>`;
+      // this.state[`modal_diary`].data.contents += fileDto.html;
+      // };
+      // fr.readAsDataURL(fileDto.file);
     }
   },
   actions: {}
@@ -73327,6 +73363,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _diary__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./diary */ "./resources/js/store/diary.js");
 /* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modal */ "./resources/js/store/modal.js");
 /* harmony import */ var _file__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./file */ "./resources/js/store/file.js");
+/* harmony import */ var _picture__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./picture */ "./resources/js/store/picture.js");
+
 
 
 
@@ -73355,6 +73393,7 @@ Object(_utils_helper__WEBPACK_IMPORTED_MODULE_2__["sBind"])(_font__WEBPACK_IMPOR
 Object(_utils_helper__WEBPACK_IMPORTED_MODULE_2__["sBind"])(_diary__WEBPACK_IMPORTED_MODULE_9__["default"].prefix, _diary__WEBPACK_IMPORTED_MODULE_9__["default"], data);
 Object(_utils_helper__WEBPACK_IMPORTED_MODULE_2__["sBind"])(_modal__WEBPACK_IMPORTED_MODULE_10__["default"].prefix, _modal__WEBPACK_IMPORTED_MODULE_10__["default"], data);
 Object(_utils_helper__WEBPACK_IMPORTED_MODULE_2__["sBind"])(_file__WEBPACK_IMPORTED_MODULE_11__["default"].prefix, _file__WEBPACK_IMPORTED_MODULE_11__["default"], data);
+Object(_utils_helper__WEBPACK_IMPORTED_MODULE_2__["sBind"])(_picture__WEBPACK_IMPORTED_MODULE_12__["default"].prefix, _picture__WEBPACK_IMPORTED_MODULE_12__["default"], data);
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store(data));
 
 /***/ }),
@@ -73503,6 +73542,78 @@ var data = {
     }
   },
   actions: {}
+};
+/* harmony default export */ __webpack_exports__["default"] = (data);
+
+/***/ }),
+
+/***/ "./resources/js/store/picture.js":
+/*!***************************************!*\
+  !*** ./resources/js/store/picture.js ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../storage/sessionstorage */ "./resources/js/storage/sessionstorage.js");
+/* harmony import */ var _utils_request__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/request */ "./resources/js/utils/request/index.js");
+/* harmony import */ var _dto_FileDto__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../dto/FileDto */ "./resources/js/dto/FileDto.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var prefix = 'picture';
+var data = {
+  prefix: prefix,
+  state: {},
+  getters: {},
+  mutations: {
+    successCreatePictureByOwner: function successCreatePictureByOwner(state, res) {
+      console.log('successCreatePictureByOwner');
+      var fileDto = res.param.fileDto;
+      var pictureDto = res.param.pictureDto;
+      pictureDto.id = fileDto.pictureId = res.data.id;
+
+      if (fileDto instanceof _dto_FileDto__WEBPACK_IMPORTED_MODULE_2__["default"]) {
+        var formData = new FormData();
+        formData.append('file', fileDto.file);
+        formData.append('picture_id', res.data.id);
+        formData.append('file_path', pictureDto.location);
+        this.dispatch("diary_createFileDataByOwner", {
+          data: formData,
+          param: {
+            fileDto: fileDto,
+            pictureDto: pictureDto
+          }
+        });
+      }
+    },
+    failCreatePictureByOwner: function failCreatePictureByOwner(state, res) {
+      console.log('failCreatePictureByOwner');
+      console.log(res);
+    }
+  },
+  actions: {
+    createPictureByOwner: function createPictureByOwner(_ref, _ref2) {
+      var commit = _ref.commit;
+      var _ref2$data = _ref2.data,
+          data = _ref2$data === void 0 ? {} : _ref2$data,
+          _ref2$headers = _ref2.headers,
+          headers = _ref2$headers === void 0 ? {} : _ref2$headers,
+          param = _ref2.param;
+      var jwt = _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_0__["default"].getJwt();
+      headers = _objectSpread({
+        Authorization: "".concat(jwt.token_type, " ").concat(jwt.access_token)
+      }, headers);
+      Object(_utils_request__WEBPACK_IMPORTED_MODULE_1__["call"])(commit, 'post', '/picture', "".concat(prefix, "_successCreatePictureByOwner"), "".concat(prefix, "_failCreatePictureByOwner"), data, headers, param);
+    }
+  }
 };
 /* harmony default export */ __webpack_exports__["default"] = (data);
 
@@ -73749,6 +73860,7 @@ function loginCall(commit, data, success_mutation_name, fail_mutation_name) {
 function call(commit, method, path, success_mutation_name, fail_mutation_name) {
   var data = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : {};
   var headers = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : {};
+  var param = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : null;
   method = method.toLowerCase();
   var valid = valid_method.some(function (value, key) {
     if (value === method) {
@@ -73765,7 +73877,9 @@ function call(commit, method, path, success_mutation_name, fail_mutation_name) {
       data: data,
       headers: headers
     }).then(function (res) {
-      commit(success_mutation_name, res.data);
+      var data = res.data;
+      data.param = param;
+      commit(success_mutation_name, data);
     })["catch"](function (res) {
       commit(fail_mutation_name, res);
     });

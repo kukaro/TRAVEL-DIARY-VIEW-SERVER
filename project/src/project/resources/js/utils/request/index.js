@@ -40,7 +40,8 @@ export function call(commit,
                      success_mutation_name,
                      fail_mutation_name,
                      data = {},
-                     headers = {}) {
+                     headers = {},
+                     param = null) {
     method = method.toLowerCase();
     const valid = valid_method.some((value, key) => {
         if (value === method) {
@@ -55,7 +56,9 @@ export function call(commit,
             data,
             headers
         }).then((res) => {
-            commit(success_mutation_name, res.data);
+            let data = res.data;
+            data.param = param;
+            commit(success_mutation_name, data);
         }).catch((res) => {
             commit(fail_mutation_name, res)
         })

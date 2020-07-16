@@ -43,21 +43,21 @@ const data = {
             console.log('successCreateDiaryData');
             const files = this.state[`${prefix}_files`];
             const data = this.state[`modal_diary`].data;
-            if (files.length !== 0) {
-                console.log('디버그 중!');
-                console.log(files);
-                console.log(data);
-                const formData = new FormData();
-                for (const file of files) {
-                    formData.append(file.hash, file.file);
-                }
-                this.dispatch(`${prefix}_createFileDataByPost`, {data: formData});
-            }
+            console.log(files);
             this.dispatch(`${prefix}_setDiaryDataByOwner`, {owner_email: this.state[`sess_owner`].email})
             this.commit(`modal_closeModal`);
         },
         failCreateDiaryData(state, res) {
             console.log('failCreateDiaryData');
+        },
+        successCreateFileDataByOwner(state, res) {
+            console.log('successCreateFileDataByOwner');
+            let files = this.state[`${prefix}_files`];
+            files.push(res.param.fileDto);
+            this.commit(`file_addImageToText`, {...res.param});
+        },
+        failCreateFileDataByOwner(state, res) {
+            console.log('failCreateFileDataByOwner');
         },
         successUpdateDiaryDataByPostId(state, res) {
             // console.log('successUpdateDiaryDataByPostId');
@@ -162,8 +162,7 @@ const data = {
                 headers,
             );
         },
-        createFileDataByPost({commit}, {data = {}, headers = {}}) {
-            console.log('도달!!');
+        createFileDataByOwner({commit}, {data = {}, headers = {}, param = {}}) {
             const jwt = SessionStorage.getJwt();
             headers = {
                 Authorization: `${jwt.token_type} ${jwt.access_token}`,
@@ -173,10 +172,11 @@ const data = {
             call(commit,
                 'post',
                 `/file`,
-                `${prefix}_successCreateDiaryData`,
-                `${prefix}_failCreateDiaryData`,
+                `${prefix}_successCreateFileDataByOwner`,
+                `${prefix}_failCreateFileDataByOwner`,
                 data,
                 headers,
+                param,
             );
         },
         replaceContent({commit}, {data}) {
