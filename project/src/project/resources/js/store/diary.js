@@ -1,6 +1,7 @@
 import {call} from "../utils/request";
 import SessionStorage from "../storage/sessionstorage";
 import PostDto from "../dto/PostDto";
+import PostPictureDto from "../dto/PostPictureDto";
 
 const prefix = 'diary';
 
@@ -39,12 +40,19 @@ const data = {
     },
     getters: {},
     mutations: {
-        successCreateDiaryData(state, res) {
-            console.log('successCreateDiaryData');
-            const files = this.state[`${prefix}_files`];
-            const data = this.state[`modal_diary`].data;
-            console.log(files);
+        beforeCloseModal(state, res) {
+            let files = this.state[`${prefix}_files`];
+            let data = this.state[`modal_diary`].data;
             this.dispatch(`${prefix}_setDiaryDataByOwner`, {owner_email: this.state[`sess_owner`].email})
+            for (let file of files) {
+                this.dispatch(`${prefix}_linkDiaryAndPicture`, {
+                    data: new PostPictureDto({
+                        post_id: data.id,
+                        picture_id: file.pictureId,
+                    })
+                });
+            }
+            this.commit(`${prefix}_cleanFileData`);
             this.commit(`modal_closeModal`);
         },
         failCreateDiaryData(state, res) {
@@ -59,10 +67,13 @@ const data = {
         failCreateFileDataByOwner(state, res) {
             console.log('failCreateFileDataByOwner');
         },
+        successCreateDiaryData(state, res) {
+            console.log('successCreateDiaryData');
+            this.state[`modal_diary`].data.id = res.data.id;
+            this.commit(`${prefix}_beforeCloseModal`);
+        },
         successUpdateDiaryDataByPostId(state, res) {
-            // console.log('successUpdateDiaryDataByPostId');
-            this.dispatch(`${prefix}_setDiaryDataByOwner`, {owner_email: this.state[`sess_owner`].email})
-            this.commit(`modal_closeModal`);
+            this.commit(`${prefix}_beforeCloseModal`);
         },
         failUpdateDiaryDataByPostId(state, res) {
             console.log('failUpdateDiaryDataByPostId');
@@ -99,7 +110,13 @@ const data = {
         },
         cleanFileData(state) {
             this.state[`${prefix}_files`] = [];
-        }
+        },
+        successLinkDiaryAndPicture(state, res) {
+            console.log('successLinkDiaryAndPicture');
+        },
+        failLinkDiaryAndPicture(state, res) {
+            console.log('failLinkDiaryAndPicture');
+        },
     },
     actions: {
         setDiaryDataByOwner({commit}, {owner_email = null, data = {}, headers = {}}) {
@@ -186,6 +203,22 @@ const data = {
             data.contents = data.contents ? data.contents.replace(imgReg, () => {
                 return `[#${files[idx++].hash}#]`;
             }) : data.contents;
+        },
+        linkDiaryAndPicture({commit}, {data = {}, headers = {}, param = {}}) {
+            const jwt = SessionStorage.getJwt();
+            headers = {
+                Authorization: `${jwt.token_type} ${jwt.access_token}`,
+                ...headers,
+            };
+            call(commit,
+                'post',
+                `/post-picture`,
+                `${prefix}_successLinkDiaryAndPicture`,
+                `${prefix}_failLinkDiaryAndPicture`,
+                data,
+                headers,
+                param,
+            );
         }
     }
 }
