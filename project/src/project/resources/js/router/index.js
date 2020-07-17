@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import UserInfoSection from '../components/section/user-info-section/index'
 import HomeSection from '../components/section/home-section'
 import DiarySection from '../components/section/diary-section'
+import GallerySection from '../components/section/gallery-section'
 
 Vue.use(VueRouter)
 
@@ -17,10 +18,14 @@ const routes = [
         path: '/user',
         name: 'User',
         component: UserInfoSection
-    },{
+    }, {
         path: '/diary',
         name: 'Diary',
         component: DiarySection
+    }, {
+        path: '/gallery',
+        name: 'Gallery',
+        component: GallerySection
     }
 ]
 

@@ -30,11 +30,10 @@ window.Vue = Vue;
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
 const app = new Vue({
     router,
-    store,
     i18n,
+    store,
     render: h => h(Root)
 }).$mount('#app');
 

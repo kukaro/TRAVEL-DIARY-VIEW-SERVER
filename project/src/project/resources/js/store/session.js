@@ -26,6 +26,7 @@ const data = {
         successSetOwner(state, res) {
             state[`${prefix}_owner`] = new UserDto(res.data);
             state[`${prefix}_is_login`] = true;
+            this.dispatch(`gallery_getAllPicturesByOwner`,{});
         },
         failSetOwner(state, res) {
             console.log(res);

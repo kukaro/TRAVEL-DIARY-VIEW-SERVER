@@ -11,6 +11,7 @@ import diaryStore from './diary'
 import modalStore from './modal'
 import fileStore from './file'
 import pictureStore from './picture'
+import galleryStore from './gallery'
 
 Vue.use(Vuex)
 
@@ -31,5 +32,6 @@ sBind(diaryStore.prefix, diaryStore, data);
 sBind(modalStore.prefix, modalStore, data);
 sBind(fileStore.prefix, fileStore, data);
 sBind(pictureStore.prefix, pictureStore, data);
+sBind(galleryStore.prefix, galleryStore, data);
 
 export default new Vuex.Store(data);

@@ -37,5 +37,16 @@
         "title": "다이어리",
         "id": "ID",
         "write": "다이어리 쓰기"
+    },
+    "gallery": {
+        "title": "갤러리",
+        "write": "사진 올리기"
+    },
+    "order": {
+        "date_criteria": "날짜별",
+        "group_criteria": "그룹별",
+        "location_criteria": "지역별",
+        "time_inc": "최근 날짜순으로 변경",
+        "time_dec": "오래된 날짜순으로 변경"
     }
 }
