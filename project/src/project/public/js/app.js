@@ -6081,10 +6081,72 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /*!*******************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/section/gallery-section/img-card.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/package.json: Error while parsing JSON - Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at readConfigPackage (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/@babel/core/lib/config/files/package.js:57:20)\n    at /root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/@babel/core/lib/config/files/utils.js:37:12\n    at Generator.next (<anonymous>)\n    at Function.<anonymous> (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/@babel/core/lib/gensync-utils/async.js:26:3)\n    at Generator.next (<anonymous>)\n    at step (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/gensync/index.js:254:32)\n    at gen.next (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/gensync/index.js:266:13)\n    at async.call.value (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/gensync/index.js:216:11)\n    at errback.call (/root/TRAVEL-DIARY-DOCKER/TRAVEL-DIARY-VIEW-SERVER/project/src/project/node_modules/gensync/index.js:184:28)\n    at FSReqCallback.readFileAfterClose [as oncomplete] (internal/fs/read_file_context.js:53:3)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utils_unit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../utils/unit */ "./resources/js/utils/unit.js");
+/* harmony import */ var _utils_helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../utils/helper */ "./resources/js/utils/helper.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "img-card",
+  props: {
+    data: {
+      required: true
+    }
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])({
+    prime: "color_pime",
+    img_card: "gallery_img_card"
+  })), {}, {
+    style: function style() {
+      return {
+        width: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mU"])(!this.is_init ? 0 : this.img_card.size.width),
+        height: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mU"])(!this.is_init ? 0 : this.img_card.size.height),
+        backgroundColor: 'white',
+        border: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mB"])(1, 'solid', this.prime),
+        transition: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mT"])('width', this.img_card.ani_duration, 'height', this.img_card.ani_duration)
+      };
+    },
+    img_style: function img_style() {
+      return {
+        maxWidth: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mU"])(this.img_card.size.width),
+        maxHeight: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mU"])(this.img_card.size.height),
+        margin: 'auto'
+      };
+    }
+  }),
+  data: function data() {
+    return {
+      is_init: false
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    this.$nextTick(function () {
+      _this.is_init = true;
+    });
+  }
+});
 
 /***/ }),
 
@@ -73542,15 +73604,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************************************************!*\
   !*** ./resources/js/components/section/gallery-section/img-card.vue ***!
   \**********************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _img_card_vue_vue_type_template_id_08eb38d8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./img-card.vue?vue&type=template&id=08eb38d8&scoped=true& */ "./resources/js/components/section/gallery-section/img-card.vue?vue&type=template&id=08eb38d8&scoped=true&");
 /* harmony import */ var _img_card_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./img-card.vue?vue&type=script&lang=js& */ "./resources/js/components/section/gallery-section/img-card.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _img_card_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _img_card_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _img_card_vue_vue_type_style_index_0_id_08eb38d8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./img-card.vue?vue&type=style&index=0&id=08eb38d8&scoped=true&lang=css& */ "./resources/js/components/section/gallery-section/img-card.vue?vue&type=style&index=0&id=08eb38d8&scoped=true&lang=css&");
+/* empty/unused harmony star reexport *//* harmony import */ var _img_card_vue_vue_type_style_index_0_id_08eb38d8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./img-card.vue?vue&type=style&index=0&id=08eb38d8&scoped=true&lang=css& */ "./resources/js/components/section/gallery-section/img-card.vue?vue&type=style&index=0&id=08eb38d8&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -73582,15 +73643,13 @@ component.options.__file = "resources/js/components/section/gallery-section/img-
 /*!***********************************************************************************************!*\
   !*** ./resources/js/components/section/gallery-section/img-card.vue?vue&type=script&lang=js& ***!
   \***********************************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_img_card_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./img-card.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/section/gallery-section/img-card.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_img_card_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_img_card_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_img_card_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_img_card_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_img_card_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_img_card_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
