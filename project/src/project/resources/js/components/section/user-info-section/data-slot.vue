@@ -2,7 +2,6 @@
     <div class="data-slot" :style="style">
         <picture-slot/>
         <info-slot/>
-<!--        {{owner}}-->
     </div>
 </template>
 

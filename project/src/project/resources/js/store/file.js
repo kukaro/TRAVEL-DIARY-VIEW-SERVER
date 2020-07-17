@@ -7,7 +7,6 @@ const data = {
     mutations: {
         //TODO: 파일 서버에 저장해야함
         addImageToText(state, {pictureDto, fileDto}) {
-            console.log('addImageToText');
             // const fr = new FileReader();
             fileDto.html = `<img src="/api/file/${pictureDto.location}" alt="${fileDto.hash}"/>`;
             this.state[`modal_diary`].data.contents += fileDto.html;

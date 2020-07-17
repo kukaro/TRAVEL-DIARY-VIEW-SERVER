@@ -1,12 +1,12 @@
 <template>
     <section class="gallery-section" :style="style">
         <title-slot/>
-        <data-slot/>
+        <data-slot  v-if="pictures && (pictures.length !== 0)"/>
     </section>
 </template>
 
 <script>
-    import {mapState, mapActions} from "vuex";
+    import {mapState, mapActions, mapMutations} from "vuex";
     import TitleSlot from "./title-slot";
     import DataSlot from "./data-slot";
 
@@ -19,7 +19,7 @@
                 global_setting: "global_setting",
                 section: "user_section",
                 owner: "sess_owner",
-                pictures: "gallery_pictures",
+                pictures: "gallery_refined_pictures",
             }),
             style() {
                 return {};
@@ -29,12 +29,14 @@
             ...mapActions({
                 getAllPicturesByOwner: `gallery_getAllPicturesByOwner`,
             }),
+            ...mapMutations({
+                refinedPictures: `gallery_refinedPictures`,
+            }),
         },
         created() {
-            console.log('gallery-section-start');
+            this.getAllPicturesByOwner({});
         },
         destroyed() {
-            console.log('gallery-section-end');
         }
     };
 </script>

@@ -1,24 +1,55 @@
 import SessionStorage from "../storage/sessionstorage";
 import {call} from "../utils/request";
+import PictureDto from "../dto/PictureDto";
 
 const prefix = 'gallery';
+export const time_mode = {
+    inc: 'inc',
+    dec: 'dec',
+};
 
 const data = {
     prefix,
     state: {
         pictures: [],
+        refined_pictures: [],
         settings: {
             order_slot: {
                 width: 45,
-            }
+            },
         },
         criteria: {
             chosen_idx: 0,
-            list: []
-        }
+            list: [],
+            time: {
+                mode: time_mode.dec,
+            },
+        },
+        img_card: {
+            size: {
+                width: 150,
+                height: 150,
+            },
+            ani_duration: 1,
+        },
     },
     getters: {},
     mutations: {
+        refinedPictures(state) {
+            let pictures = this.state[`${prefix}_pictures`];
+            pictures = pictures.map((value, key) => {
+                return new PictureDto(value);
+            });
+            this.state[`${prefix}_refined_pictures`] = pictures;
+        },
+        reverseTimeMode() {
+            let cur_mode = this.state[`${prefix}_criteria`].time;
+            if (cur_mode.mode === time_mode.dec) {
+                cur_mode.mode = time_mode.inc;
+            } else {
+                cur_mode.mode = time_mode.dec;
+            }
+        },
         init_list(state, payload) {
             this.state[`${prefix}_criteria`].list = payload;
         },
@@ -26,8 +57,8 @@ const data = {
             this.state[`${prefix}_criteria`].chosen_idx = payload;
         },
         successGetAllPicturesByOwner(state, res) {
-            console.log('successGetAllPicturesByOwner');
             this.state[`${prefix}_pictures`] = res.data;
+            this.commit(`${prefix}_refinedPictures`);
         },
         failGetAllPicturesByOwner(state, res) {
             console.log('failGetAllPicturesByOwner');

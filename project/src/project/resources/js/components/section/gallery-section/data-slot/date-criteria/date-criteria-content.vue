@@ -1,12 +1,21 @@
 <template>
     <div class="date-criteria-content">
-
+        <ImgCard v-for="(value, key) in pictures"
+                 :key="key"
+                 :data="value"/>
     </div>
 </template>
 
 <script>
+    import ImgCard from "../../img-card";
     export default {
-        name: "date-criteria-content"
+        name: "date-criteria-content",
+        components: {ImgCard},
+        props: {
+            pictures: {
+                required: true,
+            }
+        },
     }
 </script>
 
@@ -14,9 +23,10 @@
     .date-criteria-content {
         height: 100%;
         flex-direction: column;
-        display: flex;
+        display: block;
         overflow: scroll;
-        background-color: pink;
+        margin: 10px;
+        line-height: 0px;
         -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none; /* Firefox */
     }

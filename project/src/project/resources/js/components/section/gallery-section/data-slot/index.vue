@@ -1,11 +1,11 @@
 <template>
     <div class="data-slot">
-        <date-criteria v-if="criteria.chosen_idx===0"/>
+        <date-criteria v-if="criteria.chosen_idx===0" :pictures="pictures"/>
     </div>
 </template>
 
 <script>
-    import {mapState} from "vuex";
+    import {mapMutations, mapState} from "vuex";
     import DateCriteria from "./date-criteria";
 
     export default {
@@ -18,6 +18,12 @@
                 global_setting: 'global_setting',
                 diaries: 'diary_refined_data',
                 criteria: `gallery_criteria`,
+                pictures: `gallery_pictures`,
+            }),
+        },
+        methods: {
+            ...mapMutations({
+                refinedPictures: `gallery_refinedPictures`,
             }),
         },
         created() {
