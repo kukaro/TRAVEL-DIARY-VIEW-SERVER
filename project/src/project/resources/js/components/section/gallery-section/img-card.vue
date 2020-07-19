@@ -28,7 +28,7 @@
                     width: mU(!this.is_init ? 0 : this.img_card.size.width),
                     height: mU(!this.is_init ? 0 : this.img_card.size.height),
                     backgroundColor: 'white',
-                    border: mB(1, 'solid', this.prime),
+                    border: mB(1, 'solid', !this.is_init ? 'transparent' : this.prime),
                     transition: mT('width', this.img_card.ani_duration, 'height', this.img_card.ani_duration),
                 }
             },
@@ -46,9 +46,9 @@
             }
         },
         created() {
-            this.$nextTick(() => {
+            setTimeout(() => {
                 this.is_init = true;
-            });
+            }, 0);
         }
     }
 </script>

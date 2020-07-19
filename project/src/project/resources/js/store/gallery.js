@@ -30,7 +30,7 @@ const data = {
                 width: 150,
                 height: 150,
             },
-            ani_duration: 1,
+            ani_duration: 0.5,
         },
     },
     getters: {},

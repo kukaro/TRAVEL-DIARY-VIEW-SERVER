@@ -6122,7 +6122,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         width: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mU"])(!this.is_init ? 0 : this.img_card.size.width),
         height: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mU"])(!this.is_init ? 0 : this.img_card.size.height),
         backgroundColor: 'white',
-        border: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mB"])(1, 'solid', this.prime),
+        border: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mB"])(1, 'solid', !this.is_init ? 'transparent' : this.prime),
         transition: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mT"])('width', this.img_card.ani_duration, 'height', this.img_card.ani_duration)
       };
     },
@@ -6142,9 +6142,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   created: function created() {
     var _this = this;
 
-    this.$nextTick(function () {
+    setTimeout(function () {
       _this.is_init = true;
-    });
+    }, 0);
   }
 });
 
@@ -75778,7 +75778,7 @@ var data = {
         width: 150,
         height: 150
       },
-      ani_duration: 1
+      ani_duration: 0.5
     }
   },
   getters: {},
@@ -76560,9 +76560,9 @@ function makeTransition() {
 
   for (var idx = 0; idx < arguments.length; idx++) {
     if (idx === 0) {
-      ret += "".concat(arguments[0], " 1s ease ");
+      ret += "".concat(arguments[0], " ");
     } else if (idx % 2 === 0) {
-      ret += ", ".concat(arguments[idx], " 1s ease ");
+      ret += ", ".concat(arguments[idx], " ");
     } else {
       ret += "".concat(arguments[idx], "s");
     }

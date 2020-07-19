@@ -29,9 +29,9 @@ export function makeTransition() {
     let ret = '';
     for (let idx = 0; idx < arguments.length; idx++) {
         if (idx === 0) {
-            ret += `${arguments[0]} 1s ease `;
+            ret += `${arguments[0]} `;
         } else if (idx % 2 === 0) {
-            ret += `, ${arguments[idx]} 1s ease `;
+            ret += `, ${arguments[idx]} `;
         } else {
             ret += `${arguments[idx]}s`;
         }
