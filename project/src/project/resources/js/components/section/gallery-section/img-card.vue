@@ -1,5 +1,5 @@
 <template>
-    <div class="img-card" :style="style">
+    <div class="img-card" :style="style" @click="onClick">
         <div class="inner">
             <img :src="`/api/file/${data.location}`" :style="img_style">
         </div>
@@ -9,13 +9,16 @@
 <script>
     import {mB, mT, mU} from "../../../utils/unit";
     import {randomColor} from "../../../utils/helper";
-    import {mapState} from "vuex";
+    import {mapMutations, mapState} from "vuex";
 
     export default {
         name: "img-card",
         props: {
             data: {
-                required: true
+                required: true,
+            },
+            idx: {
+                required: true,
             }
         },
         computed: {
@@ -38,6 +41,14 @@
                     maxHeight: mU(this.img_card.size.height),
                     margin: 'auto',
                 }
+            }
+        },
+        methods: {
+            ...mapMutations({
+                setVisibility: `gallery_setVisibility`
+            }),
+            onClick() {
+                this.setVisibility();
             }
         },
         data() {

@@ -2,6 +2,7 @@
     <div class="date-criteria-content">
         <ImgCard v-for="(value, key) in pictures"
                  :key="key"
+                 :idx="key"
                  :data="value"/>
     </div>
 </template>

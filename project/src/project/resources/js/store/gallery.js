@@ -32,9 +32,17 @@ const data = {
             },
             ani_duration: 0.5,
         },
+        aside: {
+            visibility: false,
+            width: 600,
+            bgc: 'white',
+        }
     },
     getters: {},
     mutations: {
+        setVisibility(state) {
+            this.state[`${prefix}_aside`].visibility = !this.state[`${prefix}_aside`].visibility;
+        },
         refinedPictures(state) {
             let pictures = this.state[`${prefix}_pictures`];
             pictures = pictures.map((value, key) => {

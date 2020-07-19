@@ -1,7 +1,10 @@
 <template>
     <section class="gallery-section" :style="style">
-        <title-slot/>
-        <data-slot  v-if="pictures && (pictures.length !== 0)"/>
+        <div class="content">
+            <title-slot/>
+            <data-slot  v-if="pictures && (pictures.length !== 0)"/>
+        </div>
+        <gallery-aside/>
     </section>
 </template>
 
@@ -9,10 +12,11 @@
     import {mapState, mapActions, mapMutations} from "vuex";
     import TitleSlot from "./title-slot";
     import DataSlot from "./data-slot";
+    import GalleryAside from "../../aside/gallery-aside/index";
 
     export default {
         name: "gallery-section",
-        components: {DataSlot, TitleSlot},
+        components: {GalleryAside, DataSlot, TitleSlot},
         computed: {
             ...mapState({
                 global_article: "global_article",
@@ -20,6 +24,7 @@
                 section: "user_section",
                 owner: "sess_owner",
                 pictures: "gallery_refined_pictures",
+                aside: `gallery_aside`,
             }),
             style() {
                 return {};
@@ -42,7 +47,12 @@
 </script>
 
 <style lang="scss" scoped>
-    section {
+    section{
+        display: flex;
+        width: 100%;
+        height:100%;
+    }
+    .content {
         display: flex;
         flex-direction: column;
         width: 100%;
