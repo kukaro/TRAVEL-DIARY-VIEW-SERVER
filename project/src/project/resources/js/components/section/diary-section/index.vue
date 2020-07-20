@@ -9,9 +9,12 @@
     import TitleSlot from "../diary-section/title-slot";
     import DataSlot from "../diary-section/data-slot";
     import {mapActions, mapState} from "vuex";
+    import SectionMixin from "../mixins/section.mixin";
 
     export default {
         name: "diary-section",
+        mixins: [SectionMixin],
+
         components: {DataSlot, TitleSlot},
         computed: {
             ...mapState({

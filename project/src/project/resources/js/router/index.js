@@ -17,15 +17,24 @@ const routes = [
     {
         path: '/user',
         name: 'User',
-        component: UserInfoSection
+        component: UserInfoSection,
+        props: {
+            idx: 0,
+        },
     }, {
         path: '/diary',
         name: 'Diary',
-        component: DiarySection
+        component: DiarySection,
+        props: {
+            idx: 2,
+        },
     }, {
         path: '/gallery',
         name: 'Gallery',
-        component: GallerySection
+        component: GallerySection,
+        props: {
+            idx: 3,
+        },
     }
 ]
 

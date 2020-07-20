@@ -34,8 +34,8 @@
                         <td>
                             <ctxt :value="value.updated_date"/>
                         </td>
-                        <td class="last_td cursor">
-                            <ctxt :value="$t('global.show')" :is_bold="true"/>
+                        <td class="last_td cursor" @click="onClick(key)">
+                            <ctxt :value="$t('global.show')" :is_bold="true" :color="prime"/>
                         </td>
                     </tr>
                 </table>
@@ -51,6 +51,7 @@
     import CloseButton from "../../input/close-button";
     import Ctxt from "../../utils/ctxt";
     import Separator from "../../common/separator";
+    import {mode} from "../../../store/modal";
 
     export default {
         name: "gallery-aside",
@@ -64,6 +65,7 @@
                 pictures: `gallery_pictures`,
                 grey220: `color_grey220`,
                 picture_post: `gallery_picture_post`,
+                prime: `color_prime`,
             }),
             style() {
                 return {
@@ -86,7 +88,7 @@
             },
             value() {
                 let ret = null;
-                if (this.pictures && this.picture_idx!==null && this.pictures.length !== 0) {
+                if (this.pictures && this.picture_idx !== null && this.pictures.length !== 0) {
                     ret = JSON.parse(JSON.stringify(this.pictures[this.picture_idx]));
                     delete ret['location'];
                     delete ret['path'];
@@ -98,6 +100,9 @@
             ...mapMutations({
                 setVisibility: `gallery_setVisibility`,
                 setPictureIdx: `gallery_setPictureIdx`,
+                getListItemByName: `global_getListItemByName`,
+                openModal: `modal_openModal`,
+                setDiaryData: `modal_setDiaryData`,
             }),
             close() {
                 if (this.aside.visibility) {
@@ -106,6 +111,13 @@
                         this.setPictureIdx(null);
                     }
                 }
+            },
+            onClick(key) {
+                let post = this.picture_post[key];
+                this.setDiaryData(post);
+                this.openModal(mode.diary);
+                this.$router.push('/diary').catch(() => {
+                });
             }
         },
         created() {
@@ -146,16 +158,18 @@
         height: 30px;
     }
 
-    .link-post{
+    .link-post {
         display: flex;
         flex-direction: column;
-        margin-top:20px;
+        margin-top: 20px;
         flex: 1;
     }
-    .link-post-header{
+
+    .link-post-header {
         margin-bottom: 10px;
     }
-    .cursor{
+
+    .cursor {
         cursor: pointer;
     }
 </style>

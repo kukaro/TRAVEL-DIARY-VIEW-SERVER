@@ -13,9 +13,11 @@
     import TitleSlot from "./title-slot";
     import DataSlot from "./data-slot";
     import GalleryAside from "../../aside/gallery-aside/index";
+    import SectionMixin from "../mixins/section.mixin";
 
     export default {
         name: "gallery-section",
+        mixins: [SectionMixin],
         components: {GalleryAside, DataSlot, TitleSlot},
         computed: {
             ...mapState({

@@ -2057,6 +2057,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _input_close_button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../input/close-button */ "./resources/js/components/input/close-button.vue");
 /* harmony import */ var _utils_ctxt__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/ctxt */ "./resources/js/components/utils/ctxt.vue");
 /* harmony import */ var _common_separator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../common/separator */ "./resources/js/components/common/separator.vue");
+/* harmony import */ var _store_modal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../store/modal */ "./resources/js/store/modal.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2115,6 +2116,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "gallery-aside",
   components: {
@@ -2129,7 +2131,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     picture_idx: "gallery_picture_idx",
     pictures: "gallery_pictures",
     grey220: "color_grey220",
-    picture_post: "gallery_picture_post"
+    picture_post: "gallery_picture_post",
+    prime: "color_prime"
   })), {}, {
     style: function style() {
       return {
@@ -2164,7 +2167,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])({
     setVisibility: "gallery_setVisibility",
-    setPictureIdx: "gallery_setPictureIdx"
+    setPictureIdx: "gallery_setPictureIdx",
+    getListItemByName: "global_getListItemByName",
+    openModal: "modal_openModal",
+    setDiaryData: "modal_setDiaryData"
   })), {}, {
     close: function close() {
       if (this.aside.visibility) {
@@ -2174,6 +2180,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           this.setPictureIdx(null);
         }
       }
+    },
+    onClick: function onClick(key) {
+      var post = this.picture_post[key];
+      this.setDiaryData(post);
+      this.openModal(_store_modal__WEBPACK_IMPORTED_MODULE_5__["mode"].diary);
+      this.$router.push('/diary')["catch"](function () {});
     }
   }),
   created: function created() {},
@@ -5967,6 +5979,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _diary_section_title_slot__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../diary-section/title-slot */ "./resources/js/components/section/diary-section/title-slot.vue");
 /* harmony import */ var _diary_section_data_slot__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../diary-section/data-slot */ "./resources/js/components/section/diary-section/data-slot.vue");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins_section_mixin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../mixins/section.mixin */ "./resources/js/components/section/mixins/section.mixin.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -5983,8 +5996,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "diary-section",
+  mixins: [_mixins_section_mixin__WEBPACK_IMPORTED_MODULE_3__["default"]],
   components: {
     DataSlot: _diary_section_data_slot__WEBPACK_IMPORTED_MODULE_1__["default"],
     TitleSlot: _diary_section_title_slot__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -6666,6 +6681,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _title_slot__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./title-slot */ "./resources/js/components/section/gallery-section/title-slot.vue");
 /* harmony import */ var _data_slot__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./data-slot */ "./resources/js/components/section/gallery-section/data-slot/index.vue");
 /* harmony import */ var _aside_gallery_aside_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../aside/gallery-aside/index */ "./resources/js/components/aside/gallery-aside/index.vue");
+/* harmony import */ var _mixins_section_mixin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../mixins/section.mixin */ "./resources/js/components/section/mixins/section.mixin.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -6686,8 +6702,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "gallery-section",
+  mixins: [_mixins_section_mixin__WEBPACK_IMPORTED_MODULE_4__["default"]],
   components: {
     GalleryAside: _aside_gallery_aside_index__WEBPACK_IMPORTED_MODULE_3__["default"],
     DataSlot: _data_slot__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -6987,6 +7005,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dto_UserDto__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../dto/UserDto */ "./resources/js/dto/UserDto.js");
 /* harmony import */ var _title_slot__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./title-slot */ "./resources/js/components/section/user-info-section/title-slot.vue");
 /* harmony import */ var _data_slot__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./data-slot */ "./resources/js/components/section/user-info-section/data-slot.vue");
+/* harmony import */ var _mixins_section_mixin__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../mixins/section.mixin */ "./resources/js/components/section/mixins/section.mixin.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -7005,8 +7024,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "user-info-section",
+  mixins: [_mixins_section_mixin__WEBPACK_IMPORTED_MODULE_5__["default"]],
   components: {
     DataSlot: _data_slot__WEBPACK_IMPORTED_MODULE_4__["default"],
     TitleSlot: _title_slot__WEBPACK_IMPORTED_MODULE_3__["default"]
@@ -12172,7 +12193,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.gallery-aside[data-v-3f27bfae] {\n    position: absolute;\n    display: flex;\n    flex-direction: column;\n}\n.header[data-v-3f27bfae] {\n    display: flex;\n    margin-bottom: 20px;\n}\n.content[data-v-3f27bfae] {\n    margin-top: 20px;\n    margin-bottom: 20px;\n}\ntable[data-v-3f27bfae] {\n    width: 100%;\n}\n.last_td[data-v-3f27bfae] {\n    text-align: right;\n}\ntr[data-v-3f27bfae] {\n    height: 30px;\n}\n.link-post[data-v-3f27bfae]{\n    display: flex;\n    flex-direction: column;\n    margin-top:20px;\n    flex: 1;\n}\n.link-post-header[data-v-3f27bfae]{\n    margin-bottom: 10px;\n}\n.cursor[data-v-3f27bfae]{\n    cursor: pointer;\n}\n", ""]);
+exports.push([module.i, "\n.gallery-aside[data-v-3f27bfae] {\n    position: absolute;\n    display: flex;\n    flex-direction: column;\n}\n.header[data-v-3f27bfae] {\n    display: flex;\n    margin-bottom: 20px;\n}\n.content[data-v-3f27bfae] {\n    margin-top: 20px;\n    margin-bottom: 20px;\n}\ntable[data-v-3f27bfae] {\n    width: 100%;\n}\n.last_td[data-v-3f27bfae] {\n    text-align: right;\n}\ntr[data-v-3f27bfae] {\n    height: 30px;\n}\n.link-post[data-v-3f27bfae] {\n    display: flex;\n    flex-direction: column;\n    margin-top: 20px;\n    flex: 1;\n}\n.link-post-header[data-v-3f27bfae] {\n    margin-bottom: 10px;\n}\n.cursor[data-v-3f27bfae] {\n    cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -49987,12 +50008,20 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "td",
-                        { staticClass: "last_td cursor" },
+                        {
+                          staticClass: "last_td cursor",
+                          on: {
+                            click: function($event) {
+                              return _vm.onClick(key)
+                            }
+                          }
+                        },
                         [
                           _c("ctxt", {
                             attrs: {
                               value: _vm.$t("global.show"),
-                              is_bold: true
+                              is_bold: true,
+                              color: _vm.prime
                             }
                           })
                         ],
@@ -75360,6 +75389,41 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/section/mixins/section.mixin.js":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/section/mixins/section.mixin.js ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+var data = {
+  props: {
+    idx: {
+      required: true
+    }
+  },
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])({
+    getListItemByName: "global_getListItemByName",
+    setListChosenIdx: "global_setListChosenIdx"
+  })),
+  created: function created() {
+    this.setListChosenIdx(this.idx);
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (data);
+
+/***/ }),
+
 /***/ "./resources/js/components/section/user-info-section/data-slot.vue":
 /*!*************************************************************************!*\
   !*** ./resources/js/components/section/user-info-section/data-slot.vue ***!
@@ -76499,15 +76563,24 @@ var routes = [{
 }, {
   path: '/user',
   name: 'User',
-  component: _components_section_user_info_section_index__WEBPACK_IMPORTED_MODULE_2__["default"]
+  component: _components_section_user_info_section_index__WEBPACK_IMPORTED_MODULE_2__["default"],
+  props: {
+    idx: 0
+  }
 }, {
   path: '/diary',
   name: 'Diary',
-  component: _components_section_diary_section__WEBPACK_IMPORTED_MODULE_4__["default"]
+  component: _components_section_diary_section__WEBPACK_IMPORTED_MODULE_4__["default"],
+  props: {
+    idx: 2
+  }
 }, {
   path: '/gallery',
   name: 'Gallery',
-  component: _components_section_gallery_section__WEBPACK_IMPORTED_MODULE_5__["default"]
+  component: _components_section_gallery_section__WEBPACK_IMPORTED_MODULE_5__["default"],
+  props: {
+    idx: 3
+  }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'hash',
@@ -77376,6 +77449,23 @@ var data = {
   },
   getters: {},
   mutations: {
+    getListItemByName: function getListItemByName(state, payload) {
+      var ret = {
+        path: null,
+        idx: null
+      };
+      var list = this.state["".concat(prefix, "_list")];
+
+      for (var idx in list) {
+        if (list[idx].path === payload) {
+          ret.path = list[idx].path;
+          ret.idx = idx;
+          break;
+        }
+      }
+
+      return ret;
+    },
     setListChosenIdx: function setListChosenIdx(state, payload) {
       this.state["".concat(prefix, "_list_chosen_idx")] = payload;
     },

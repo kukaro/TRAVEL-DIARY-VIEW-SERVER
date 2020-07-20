@@ -99,6 +99,21 @@ const data = {
     },
     getters: {},
     mutations: {
+        getListItemByName(state,payload){
+            let ret = {
+                path:null,
+                idx:null,
+            }
+            let list = this.state[`${prefix}_list`]
+            for(let idx in list){
+                if(list[idx].path===payload){
+                    ret.path = list[idx].path;
+                    ret.idx = idx;
+                    break;
+                }
+            }
+            return ret;
+        },
         setListChosenIdx(state, payload) {
             this.state[`${prefix}_list_chosen_idx`] = payload;
         },

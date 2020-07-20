@@ -11,9 +11,11 @@ import { mapState, mapActions } from "vuex";
 import UserDto from "../../../dto/UserDto";
 import TitleSlot from "./title-slot";
 import DataSlot from "./data-slot";
+import SectionMixin from '../mixins/section.mixin'
 
 export default {
     name: "user-info-section",
+    mixins: [SectionMixin],
     components: {DataSlot, TitleSlot},
     computed: {
         ...mapState({
