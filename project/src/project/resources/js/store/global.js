@@ -99,14 +99,14 @@ const data = {
     },
     getters: {},
     mutations: {
-        getListItemByName(state,payload){
+        getListItemByName(state, payload) {
             let ret = {
-                path:null,
-                idx:null,
+                path: null,
+                idx: null,
             }
             let list = this.state[`${prefix}_list`]
-            for(let idx in list){
-                if(list[idx].path===payload){
+            for (let idx in list) {
+                if (list[idx].path === payload) {
                     ret.path = list[idx].path;
                     ret.idx = idx;
                     break;
@@ -119,7 +119,7 @@ const data = {
         },
         setGlobalEvent(state, payload) {
             document.onkeyup = (e) => {
-                if(e.code==='Escape'){
+                if (e.code === 'Escape') {
                     this.commit(`modal_closeModal`);
                 }
             };

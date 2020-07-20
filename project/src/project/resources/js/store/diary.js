@@ -59,9 +59,17 @@ const data = {
             console.log('failCreateDiaryData');
         },
         successCreateFileDataByOwner(state, res) {
-            let files = this.state[`${prefix}_files`];
-            files.push(res.param.fileDto);
-            this.commit(`file_addImageToText`, {...res.param});
+            if (res.param.is_gallery !== true) {
+                let files = this.state[`${prefix}_files`];
+                files.push(res.param.fileDto);
+                this.commit(`file_addImageToText`, {...res.param});
+            } else {
+                let pictures = this.state[`gallery_pictures`];
+                if (pictures === null) {
+                    this.commit(`gallery_initEmptyPictures`);
+                }
+                pictures.push(res.param.pictureDto);
+            }
         },
         failCreateFileDataByOwner(state, res) {
             console.log('failCreateFileDataByOwner');
@@ -162,7 +170,7 @@ const data = {
                 );
             }
         },
-        createDiaryData({commit}, {data = {}, headers = {}}) {
+        createDiaryData({commit}, {data = {}, headers = {}, param}) {
             const jwt = SessionStorage.getJwt();
             headers = {
                 Authorization: `${jwt.token_type} ${jwt.access_token}`,
@@ -175,6 +183,7 @@ const data = {
                 `${prefix}_failCreateDiaryData`,
                 data,
                 headers,
+                param,
             );
         },
         createFileDataByOwner({commit}, {data = {}, headers = {}, param = {}}) {

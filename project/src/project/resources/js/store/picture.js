@@ -19,7 +19,10 @@ const data = {
                 formData.append('file', fileDto.file);
                 formData.append('picture_id', res.data.id);
                 formData.append('file_path', pictureDto.location);
-                this.dispatch(`diary_createFileDataByOwner`, {data: formData, param: {fileDto, pictureDto}});
+                this.dispatch(`diary_createFileDataByOwner`, {
+                    data: formData,
+                    param: {fileDto, pictureDto, is_gallery: res.param.is_gallery}
+                });
             }
         },
         failCreatePictureByOwner(state, res) {
@@ -28,6 +31,13 @@ const data = {
         }
     },
     actions: {
+        /**
+         *
+         * @param commit
+         * @param data
+         * @param headers
+         * @param param - is_gallery가 넘어올 수 있습니다.
+         */
         createPictureByOwner({commit}, {data = {}, headers = {}, param}) {
             const jwt = SessionStorage.getJwt();
             headers = {

@@ -6820,6 +6820,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _input_td_button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../input/td-button */ "./resources/js/components/input/td-button.vue");
 /* harmony import */ var _title_criteria__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./title-criteria */ "./resources/js/components/section/gallery-section/title-criteria.vue");
+/* harmony import */ var _dto_FileDto__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../dto/FileDto */ "./resources/js/dto/FileDto.js");
+/* harmony import */ var js_sha256__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! js-sha256 */ "./node_modules/js-sha256/src/sha256.js");
+/* harmony import */ var js_sha256__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(js_sha256__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _dto_PictureDto__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../dto/PictureDto */ "./resources/js/dto/PictureDto.js");
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -6844,6 +6854,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+
+
+
 
 
 
@@ -6861,7 +6875,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     title: 'user_title',
     white: 'color_white',
     chosen_prime: 'color_chosen_prime',
-    prime: 'color_prime'
+    prime: 'color_prime',
+    owner: 'sess_owner'
   })), {}, {
     style: function style() {
       return {
@@ -6891,11 +6906,47 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       };
     }
   }),
-  methods: {
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])({
+    createPictureByOwner: "picture_createPictureByOwner"
+  })), {}, {
     onClick: function onClick() {
-      console.log('사진 올리기 클릭!!');
+      this.$refs['file'].click();
+    },
+    onFileChange: function onFileChange($e) {
+      var _iterator = _createForOfIteratorHelper(this.$refs['file'].files),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var file = _step.value;
+          var now = new Date();
+          var fileDto = new _dto_FileDto__WEBPACK_IMPORTED_MODULE_5__["default"]({
+            file: file,
+            hash: Object(js_sha256__WEBPACK_IMPORTED_MODULE_6__["sha256"])('' + now.getTime())
+          });
+          var pictureDto = new _dto_PictureDto__WEBPACK_IMPORTED_MODULE_7__["default"]({
+            owner_email: this.owner.email,
+            location: "".concat(this.owner.email, "/").concat(now.getFullYear(), "/").concat(now.getMonth(), "/").concat(now.getDay(), "/").concat(fileDto.hash, ".").concat(fileDto.ext),
+            path: "".concat(this.owner.email, "/").concat(now.getFullYear(), "/").concat(now.getMonth(), "/").concat(now.getDay(), "/").concat(fileDto.hash, ".").concat(fileDto.ext),
+            created_date: now,
+            updated_date: now
+          });
+          this.createPictureByOwner({
+            data: pictureDto,
+            param: {
+              fileDto: fileDto,
+              pictureDto: pictureDto,
+              is_gallery: true
+            }
+          });
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
     }
-  }
+  })
 });
 
 /***/ }),
@@ -13086,7 +13137,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.title-slot[data-v-e4920fe6] {\n    display: flex;\n    width: 100%;\n}\n.inner[data-v-e4920fe6] {\n    display: flex;\n    width: 100%;\n}\n", ""]);
+exports.push([module.i, "\n.title-slot[data-v-e4920fe6] {\n    display: flex;\n    width: 100%;\n}\n.inner[data-v-e4920fe6] {\n    display: flex;\n    width: 100%;\n}\n.edit-btn-input[data-v-e4920fe6] {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    border: 0;\n    padding: 0;\n    display: none;\n}\n", ""]);
 
 // exports
 
@@ -52765,6 +52816,13 @@ var render = function() {
             font_color: _vm.white,
             click_event: _vm.onClick
           }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          ref: "file",
+          staticClass: "edit-btn-input",
+          attrs: { type: "file", multiple: "" },
+          on: { change: _vm.onFileChange }
         })
       ],
       1
@@ -76924,9 +76982,19 @@ var data = {
       console.log('failCreateDiaryData');
     },
     successCreateFileDataByOwner: function successCreateFileDataByOwner(state, res) {
-      var files = this.state["".concat(prefix, "_files")];
-      files.push(res.param.fileDto);
-      this.commit("file_addImageToText", _objectSpread({}, res.param));
+      if (res.param.is_gallery !== true) {
+        var files = this.state["".concat(prefix, "_files")];
+        files.push(res.param.fileDto);
+        this.commit("file_addImageToText", _objectSpread({}, res.param));
+      } else {
+        var pictures = this.state["gallery_pictures"];
+
+        if (pictures === null) {
+          this.commit("gallery_initEmptyPictures");
+        }
+
+        pictures.push(res.param.pictureDto);
+      }
     },
     failCreateFileDataByOwner: function failCreateFileDataByOwner(state, res) {
       console.log('failCreateFileDataByOwner');
@@ -77041,12 +77109,13 @@ var data = {
       var _ref6$data = _ref6.data,
           data = _ref6$data === void 0 ? {} : _ref6$data,
           _ref6$headers = _ref6.headers,
-          headers = _ref6$headers === void 0 ? {} : _ref6$headers;
+          headers = _ref6$headers === void 0 ? {} : _ref6$headers,
+          param = _ref6.param;
       var jwt = _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_1__["default"].getJwt();
       headers = _objectSpread({
         Authorization: "".concat(jwt.token_type, " ").concat(jwt.access_token)
       }, headers);
-      Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["call"])(commit, 'post', "/post", "".concat(prefix, "_successCreateDiaryData"), "".concat(prefix, "_failCreateDiaryData"), data, headers);
+      Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["call"])(commit, 'post', "/post", "".concat(prefix, "_successCreateDiaryData"), "".concat(prefix, "_failCreateDiaryData"), data, headers, param);
     },
     createFileDataByOwner: function createFileDataByOwner(_ref7, _ref8) {
       var commit = _ref7.commit;
@@ -77256,6 +77325,9 @@ var data = {
   },
   getters: {},
   mutations: {
+    initEmptyPictures: function initEmptyPictures(state) {
+      this.state["".concat(prefix, "_pictures")] = [];
+    },
     setPictureIdx: function setPictureIdx(state, payload) {
       this.state["".concat(prefix, "_picture_idx")] = payload;
 
@@ -77739,7 +77811,8 @@ var data = {
           data: formData,
           param: {
             fileDto: fileDto,
-            pictureDto: pictureDto
+            pictureDto: pictureDto,
+            is_gallery: res.param.is_gallery
           }
         });
       }
@@ -77750,6 +77823,13 @@ var data = {
     }
   },
   actions: {
+    /**
+     *
+     * @param commit
+     * @param data
+     * @param headers
+     * @param param - is_gallery가 넘어올 수 있습니다.
+     */
     createPictureByOwner: function createPictureByOwner(_ref, _ref2) {
       var commit = _ref.commit;
       var _ref2$data = _ref2.data,

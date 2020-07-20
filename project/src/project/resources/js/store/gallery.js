@@ -42,6 +42,9 @@ const data = {
     },
     getters: {},
     mutations: {
+        initEmptyPictures(state){
+            this.state[`${prefix}_pictures`] = [];
+        },
         setPictureIdx(state, payload) {
             this.state[`${prefix}_picture_idx`] = payload;
             if (payload !== null) {

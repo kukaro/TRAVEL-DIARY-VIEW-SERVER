@@ -12,6 +12,7 @@
                 :font_color="white"
                 :click_event="onClick"
             />
+            <input ref="file" type="file" class="edit-btn-input" multiple @change="onFileChange"/>
         </div>
     </div>
 </template>
@@ -19,9 +20,12 @@
 <script>
     import Ctxt from "../../utils/ctxt";
     import {mU, calcAOB} from "../../../utils/unit";
-    import {mapState} from "vuex";
+    import {mapActions, mapMutations, mapState} from "vuex";
     import TdButton from '../../input/td-button';
     import TitleCriteria from "./title-criteria";
+    import FileDto from "../../../dto/FileDto";
+    import {sha256} from "js-sha256";
+    import PictureDto from "../../../dto/PictureDto";
 
     export default {
         name: "title-slot",
@@ -32,7 +36,8 @@
                 title: 'user_title',
                 white: 'color_white',
                 chosen_prime: 'color_chosen_prime',
-                prime: 'color_prime'
+                prime: 'color_prime',
+                owner: 'sess_owner',
             }),
             style() {
                 return {
@@ -51,7 +56,7 @@
                     marginLeft: mU(15)
                 }
             },
-            criteria_style(){
+            criteria_style() {
                 return {
                     marginLeft: 'auto',
                 }
@@ -63,9 +68,29 @@
             },
         },
         methods: {
+            ...mapActions({
+                createPictureByOwner: `picture_createPictureByOwner`
+            }),
             onClick() {
-                console.log('사진 올리기 클릭!!');
-            }
+                this.$refs['file'].click();
+            },
+            onFileChange($e) {
+                for (let file of this.$refs['file'].files) {
+                    const now = new Date();
+                    let fileDto = new FileDto({
+                        file: file,
+                        hash: sha256('' + now.getTime()),
+                    });
+                    let pictureDto = new PictureDto({
+                        owner_email: this.owner.email,
+                        location: `${this.owner.email}/${now.getFullYear()}/${now.getMonth()}/${now.getDay()}/${fileDto.hash}.${fileDto.ext}`,
+                        path: `${this.owner.email}/${now.getFullYear()}/${now.getMonth()}/${now.getDay()}/${fileDto.hash}.${fileDto.ext}`,
+                        created_date: now,
+                        updated_date: now,
+                    });
+                    this.createPictureByOwner({data: pictureDto, param: {fileDto, pictureDto, is_gallery: true}});
+                }
+            },
         }
     }
 </script>
@@ -79,5 +104,14 @@
     .inner {
         display: flex;
         width: 100%;
+    }
+
+    .edit-btn-input {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        padding: 0;
+        display: none;
     }
 </style>
