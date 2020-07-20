@@ -17,6 +17,31 @@
                 </tr>
             </table>
         </div>
+        <separator :margin="5" :color="grey220"/>
+        <div class="link-post">
+            <div class="link-post-header">
+                <Ctxt :value="$t('gallery.picture_post')" :size="20"/>
+            </div>
+            <div class="link-post-content">
+                <table v-if="picture_post && picture_post.length !== 0">
+                    <tr v-for="(value, key) in picture_post">
+                        <td>
+                            <ctxt :value="value.id" :is_bold="true"/>
+                        </td>
+                        <td>
+                            <ctxt :value="value.title"/>
+                        </td>
+                        <td>
+                            <ctxt :value="value.updated_date"/>
+                        </td>
+                        <td class="last_td cursor">
+                            <ctxt :value="$t('global.show')" :is_bold="true"/>
+                        </td>
+                    </tr>
+                </table>
+                <ctxt v-else :value="$t('global.not_data')"/>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -38,6 +63,7 @@
                 picture_idx: `gallery_picture_idx`,
                 pictures: `gallery_pictures`,
                 grey220: `color_grey220`,
+                picture_post: `gallery_picture_post`,
             }),
             style() {
                 return {
@@ -104,8 +130,8 @@
     }
 
     .content {
-        flex: 1;
         margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     table {
@@ -118,5 +144,18 @@
 
     tr {
         height: 30px;
+    }
+
+    .link-post{
+        display: flex;
+        flex-direction: column;
+        margin-top:20px;
+        flex: 1;
+    }
+    .link-post-header{
+        margin-bottom: 10px;
+    }
+    .cursor{
+        cursor: pointer;
     }
 </style>

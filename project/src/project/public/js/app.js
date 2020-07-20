@@ -2085,6 +2085,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2103,7 +2128,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     global_setting: "global_setting",
     picture_idx: "gallery_picture_idx",
     pictures: "gallery_pictures",
-    grey220: "color_grey220"
+    grey220: "color_grey220",
+    picture_post: "gallery_picture_post"
   })), {}, {
     style: function style() {
       return {
@@ -11899,7 +11925,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.gallery-aside[data-v-3f27bfae] {\n    position: absolute;\n    display: flex;\n    flex-direction: column;\n}\n.header[data-v-3f27bfae] {\n    display: flex;\n    margin-bottom: 20px;\n}\n.content[data-v-3f27bfae] {\n    flex: 1;\n    margin-top: 20px;\n}\ntable[data-v-3f27bfae] {\n    width: 100%;\n}\n.last_td[data-v-3f27bfae] {\n    text-align: right;\n}\ntr[data-v-3f27bfae] {\n    height: 30px;\n}\n", ""]);
+exports.push([module.i, "\n.gallery-aside[data-v-3f27bfae] {\n    position: absolute;\n    display: flex;\n    flex-direction: column;\n}\n.header[data-v-3f27bfae] {\n    display: flex;\n    margin-bottom: 20px;\n}\n.content[data-v-3f27bfae] {\n    margin-top: 20px;\n    margin-bottom: 20px;\n}\ntable[data-v-3f27bfae] {\n    width: 100%;\n}\n.last_td[data-v-3f27bfae] {\n    text-align: right;\n}\ntr[data-v-3f27bfae] {\n    height: 30px;\n}\n.link-post[data-v-3f27bfae]{\n    display: flex;\n    flex-direction: column;\n    margin-top:20px;\n    flex: 1;\n}\n.link-post-header[data-v-3f27bfae]{\n    margin-bottom: 10px;\n}\n.cursor[data-v-3f27bfae]{\n    cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -49567,6 +49593,74 @@ var render = function() {
           }),
           0
         )
+      ]),
+      _vm._v(" "),
+      _c("separator", { attrs: { margin: 5, color: _vm.grey220 } }),
+      _vm._v(" "),
+      _c("div", { staticClass: "link-post" }, [
+        _c(
+          "div",
+          { staticClass: "link-post-header" },
+          [
+            _c("Ctxt", {
+              attrs: { value: _vm.$t("gallery.picture_post"), size: 20 }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "link-post-content" },
+          [
+            _vm.picture_post && _vm.picture_post.length !== 0
+              ? _c(
+                  "table",
+                  _vm._l(_vm.picture_post, function(value, key) {
+                    return _c("tr", [
+                      _c(
+                        "td",
+                        [
+                          _c("ctxt", {
+                            attrs: { value: value.id, is_bold: true }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        [_c("ctxt", { attrs: { value: value.title } })],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        [_c("ctxt", { attrs: { value: value.updated_date } })],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        { staticClass: "last_td cursor" },
+                        [
+                          _c("ctxt", {
+                            attrs: {
+                              value: _vm.$t("global.show"),
+                              is_bold: true
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ])
+                  }),
+                  0
+                )
+              : _c("ctxt", { attrs: { value: _vm.$t("global.not_data") } })
+          ],
+          1
+        )
       ])
     ],
     1
@@ -75753,7 +75847,7 @@ module.exports = JSON.parse("{\"message\":\"hello i18n !!\",\"dashboard\":\"Dash
 /*! exports provided: global, user, diary, gallery, order, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"global\":{\"no_picture\":\"사진 없음\",\"year\":\"년\",\"month\":\"월\",\"day\":\"일\",\"week\":\"요일\",\"current_date\":\"현재 시간\",\"created_date\":\"최초 생성 일자\",\"updated_date\":\"최종 수정 일자\",\"create\":\"생성\",\"update\":\"수정\",\"cancel\":\"취소\",\"placeholder\":{\"default\":\"입력하세요.\",\"title\":\"제목을 입력하세요\",\"content\":\"내용을 입력하세요\"},\"signup\":\"회원가입\",\"password_reset\":\"비밀번호 찾기\",\"login\":\"로그인\",\"password\":\"비밀번호\",\"password_confirmation\":\"비밀번호 확인\"},\"user\":{\"title\":\"사용자 정보\",\"email\":\"email\",\"name\":\"이름\",\"age\":\"나이\",\"birth_date\":\"생일\",\"password\":\"비밀번호\",\"password_confirmation\":\"비밀번호 확인\",\"created_date\":\"최초 생성 일자\",\"updated_date\":\"최종 수정 일자\"},\"diary\":{\"title\":\"다이어리\",\"id\":\"ID\",\"write\":\"다이어리 쓰기\"},\"gallery\":{\"title\":\"갤러리\",\"write\":\"사진 올리기\",\"info\":\"사진 정보\",\"picture\":{\"id\":\"고유 번호\",\"owner_email\":\"소유주 이메일\",\"created_date\":\"최초 생성 일자\",\"updated_date\":\"최종 수정 일자\"}},\"order\":{\"date_criteria\":\"날짜별\",\"group_criteria\":\"그룹별\",\"location_criteria\":\"지역별\",\"time_inc\":\"최근 날짜순으로 변경 ▼\",\"time_dec\":\"오래된 날짜순으로 변경 ▲\"}}");
+module.exports = JSON.parse("{\"global\":{\"no_picture\":\"사진 없음\",\"year\":\"년\",\"month\":\"월\",\"day\":\"일\",\"week\":\"요일\",\"current_date\":\"현재 시간\",\"created_date\":\"최초 생성 일자\",\"updated_date\":\"최종 수정 일자\",\"create\":\"생성\",\"update\":\"수정\",\"cancel\":\"취소\",\"placeholder\":{\"default\":\"입력하세요.\",\"title\":\"제목을 입력하세요\",\"content\":\"내용을 입력하세요\"},\"signup\":\"회원가입\",\"password_reset\":\"비밀번호 찾기\",\"login\":\"로그인\",\"password\":\"비밀번호\",\"password_confirmation\":\"비밀번호 확인\",\"show\":\"보기\",\"not_data\":\"데이터가 없습니다.\"},\"user\":{\"title\":\"사용자 정보\",\"email\":\"email\",\"name\":\"이름\",\"age\":\"나이\",\"birth_date\":\"생일\",\"password\":\"비밀번호\",\"password_confirmation\":\"비밀번호 확인\",\"created_date\":\"최초 생성 일자\",\"updated_date\":\"최종 수정 일자\"},\"diary\":{\"title\":\"다이어리\",\"id\":\"ID\",\"write\":\"다이어리 쓰기\"},\"gallery\":{\"title\":\"갤러리\",\"write\":\"사진 올리기\",\"info\":\"사진 정보\",\"picture\":{\"id\":\"고유 번호\",\"owner_email\":\"소유주 이메일\",\"created_date\":\"최초 생성 일자\",\"updated_date\":\"최종 수정 일자\"},\"picture_post\":\"사용중인 다이어리\"},\"order\":{\"date_criteria\":\"날짜별\",\"group_criteria\":\"그룹별\",\"location_criteria\":\"지역별\",\"time_inc\":\"최근 날짜순으로 변경 ▼\",\"time_dec\":\"오래된 날짜순으로 변경 ▲\"}}");
 
 /***/ }),
 
@@ -76405,6 +76499,7 @@ var data = {
     pictures: [],
     refined_pictures: [],
     picture_idx: null,
+    picture_post: [],
     settings: {
       order_slot: {
         width: 45
@@ -76434,6 +76529,12 @@ var data = {
   mutations: {
     setPictureIdx: function setPictureIdx(state, payload) {
       this.state["".concat(prefix, "_picture_idx")] = payload;
+
+      if (payload !== null) {
+        this.dispatch("".concat(prefix, "_getAllPostsByPicture"), {});
+      } else {
+        this.state["".concat(prefix, "_picture_post")] = [];
+      }
     },
     setVisibility: function setVisibility(state) {
       this.state["".concat(prefix, "_aside")].visibility = !this.state["".concat(prefix, "_aside")].visibility;
@@ -76444,6 +76545,7 @@ var data = {
         return new _dto_PictureDto__WEBPACK_IMPORTED_MODULE_2__["default"](value);
       });
       this.state["".concat(prefix, "_refined_pictures")] = pictures;
+      this.state["".concat(prefix, "_pictures")] = pictures;
     },
     reverseTimeMode: function reverseTimeMode() {
       var cur_mode = this.state["".concat(prefix, "_criteria")].time;
@@ -76467,6 +76569,13 @@ var data = {
     failGetAllPicturesByOwner: function failGetAllPicturesByOwner(state, res) {
       console.log('failGetAllPicturesByOwner');
       console.log(res);
+    },
+    successGetAllPostsByPicture: function successGetAllPostsByPicture(state, res) {
+      this.state["".concat(prefix, "_picture_post")] = res.data;
+    },
+    failGetAllPostsByPicture: function failGetAllPostsByPicture(state, res) {
+      console.log('failGetAllPicturesByOwner');
+      console.log(res);
     }
   },
   actions: {
@@ -76484,6 +76593,23 @@ var data = {
 
       if (owner.email) {
         Object(_utils_request__WEBPACK_IMPORTED_MODULE_1__["call"])(commit, 'get', "/picture/user/".concat(owner.email), "".concat(prefix, "_successGetAllPicturesByOwner"), "".concat(prefix, "_failGetAllPicturesByOwner"), data, headers);
+      }
+    },
+    getAllPostsByPicture: function getAllPostsByPicture(_ref3, _ref4) {
+      var commit = _ref3.commit;
+      var _ref4$data = _ref4.data,
+          data = _ref4$data === void 0 ? {} : _ref4$data,
+          _ref4$headers = _ref4.headers,
+          headers = _ref4$headers === void 0 ? {} : _ref4$headers;
+      var jwt = _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_0__["default"].getJwt();
+      headers = _objectSpread({
+        Authorization: "".concat(jwt.token_type, " ").concat(jwt.access_token)
+      }, headers);
+      var picture_idx = this.state["".concat(prefix, "_picture_idx")];
+      var pictures = this.state["".concat(prefix, "_pictures")];
+
+      if (picture_idx !== null) {
+        Object(_utils_request__WEBPACK_IMPORTED_MODULE_1__["call"])(commit, 'get', "/post/picture/".concat(pictures[picture_idx].id), "".concat(prefix, "_successGetAllPostsByPicture"), "".concat(prefix, "_failGetAllPostsByPicture"), data, headers);
       }
     }
   }

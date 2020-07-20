@@ -14,6 +14,7 @@ const data = {
         pictures: [],
         refined_pictures: [],
         picture_idx: null,
+        picture_post: [],
         settings: {
             order_slot: {
                 width: 45,
@@ -43,6 +44,11 @@ const data = {
     mutations: {
         setPictureIdx(state, payload) {
             this.state[`${prefix}_picture_idx`] = payload;
+            if (payload !== null) {
+                this.dispatch(`${prefix}_getAllPostsByPicture`,{});
+            } else {
+                this.state[`${prefix}_picture_post`] = [];
+            }
         },
         setVisibility(state) {
             this.state[`${prefix}_aside`].visibility = !this.state[`${prefix}_aside`].visibility;
@@ -53,6 +59,7 @@ const data = {
                 return new PictureDto(value);
             });
             this.state[`${prefix}_refined_pictures`] = pictures;
+            this.state[`${prefix}_pictures`] = pictures;
         },
         reverseTimeMode() {
             let cur_mode = this.state[`${prefix}_criteria`].time;
@@ -76,6 +83,13 @@ const data = {
             console.log('failGetAllPicturesByOwner');
             console.log(res);
         },
+        successGetAllPostsByPicture(state, res) {
+            this.state[`${prefix}_picture_post`] = res.data;
+        },
+        failGetAllPostsByPicture(state, res) {
+            console.log('failGetAllPicturesByOwner');
+            console.log(res);
+        },
     },
     actions: {
         getAllPicturesByOwner({commit}, {data = {}, headers = {}}) {
@@ -91,6 +105,25 @@ const data = {
                     `/picture/user/${owner.email}`,
                     `${prefix}_successGetAllPicturesByOwner`,
                     `${prefix}_failGetAllPicturesByOwner`,
+                    data,
+                    headers
+                );
+            }
+        },
+        getAllPostsByPicture({commit}, {data = {}, headers = {}}) {
+            const jwt = SessionStorage.getJwt();
+            headers = {
+                Authorization: `${jwt.token_type} ${jwt.access_token}`,
+                ...headers
+            };
+            const picture_idx = this.state[`${prefix}_picture_idx`];
+            const pictures = this.state[`${prefix}_pictures`];
+            if (picture_idx !== null) {
+                call(commit,
+                    'get',
+                    `/post/picture/${pictures[picture_idx].id}`,
+                    `${prefix}_successGetAllPostsByPicture`,
+                    `${prefix}_failGetAllPostsByPicture`,
                     data,
                     headers
                 );
