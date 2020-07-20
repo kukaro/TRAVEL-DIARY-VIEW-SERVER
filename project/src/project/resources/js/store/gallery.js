@@ -11,8 +11,8 @@ export const time_mode = {
 const data = {
     prefix,
     state: {
-        pictures: [],
-        refined_pictures: [],
+        pictures: null,
+        refined_pictures: null,
         picture_idx: null,
         picture_post: [],
         settings: {

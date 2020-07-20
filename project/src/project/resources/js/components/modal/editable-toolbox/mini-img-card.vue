@@ -1,5 +1,5 @@
 <template>
-    <div class="img-card" :style="style" @click="onClick">
+    <div class="mini-img-card" :style="style" @click.prevent="onClick">
         <div class="inner">
             <img :src="`/api/file/${data.location}`" :style="img_style">
         </div>
@@ -7,11 +7,13 @@
 </template>
 
 <script>
-    import {mB, mT, mU} from "../../../utils/unit";
     import {mapMutations, mapState} from "vuex";
+    import {mB, mT, mU} from "../../../utils/unit";
+    import FileDto from "../../../dto/FileDto";
 
+    //TODO: 현재 img-card와 강하게 연결되어있음, 이거 연결 끊어야할 수 있음
     export default {
-        name: "img-card",
+        name: "mini-img-card",
         props: {
             data: {
                 required: true,
@@ -26,7 +28,7 @@
                 default: 1,
             },
             highlight_mode: {
-                default: true,
+                default: false,
             },
             border: {
                 default: 1,
@@ -35,9 +37,10 @@
         computed: {
             ...mapState({
                 prime: `color_pime`,
-                img_card: `gallery_img_card`,
+                img_card: `edit_mini_img_card`,
                 aside: `gallery_aside`,
                 picture_idx: `gallery_picture_idx`,
+                diary_files: `diary_files`,
             }),
             style() {
                 return {
@@ -81,17 +84,23 @@
             ...mapMutations({
                 setVisibility: `gallery_setVisibility`,
                 setPictureIdx: `gallery_setPictureIdx`,
+                addImageToText: `file_addImageToText`,
             }),
             onClick() {
-                if (!this.aside.visibility) {
-                    this.setVisibility();
-                    this.setPictureIdx(this.idx);
-                } else if (this.aside.visibility && this.idx === this.picture_idx) {
-                    this.setVisibility();
-                    this.setPictureIdx(null);
-                } else {
-                    this.setPictureIdx(this.idx);
-                }
+                let files = this.diary_files;
+                let hash = this.data.location.split('/')[4].split('.')[0];
+                let fileDto = new FileDto(
+                    {
+                        file: null,
+                        hash,
+                        pictureId: this.data.id,
+                    });
+                this.addImageToText({
+                    pictureDto: this.data,
+                    fileDto
+                });
+                files.push(fileDto);
+                this.$emit('closeEvent', true);
             },
         },
         data() {
@@ -108,7 +117,7 @@
 </script>
 
 <style scoped>
-    .img-card {
+    .mini-img-card {
         cursor: pointer;
         margin: 5px;
         display: inline-block;

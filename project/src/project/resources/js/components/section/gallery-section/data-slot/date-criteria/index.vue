@@ -19,7 +19,7 @@
         props: {
             pictures: {
                 required: true
-            }
+            },
         },
         computed: {
             ...mapState({

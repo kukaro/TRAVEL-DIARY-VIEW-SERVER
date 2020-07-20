@@ -59,7 +59,6 @@ const data = {
             console.log('failCreateDiaryData');
         },
         successCreateFileDataByOwner(state, res) {
-            console.log('successCreateFileDataByOwner');
             let files = this.state[`${prefix}_files`];
             files.push(res.param.fileDto);
             this.commit(`file_addImageToText`, {...res.param});
@@ -68,7 +67,6 @@ const data = {
             console.log('failCreateFileDataByOwner');
         },
         successCreateDiaryData(state, res) {
-            console.log('successCreateDiaryData');
             this.state[`modal_diary`].data.id = res.data.id;
             this.commit(`${prefix}_beforeCloseModal`);
         },
