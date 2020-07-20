@@ -44,7 +44,7 @@
                 default(){
                     return [];
                 }
-            }
+            },
         },
         computed: {
             ...mapState({

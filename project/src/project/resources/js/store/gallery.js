@@ -13,6 +13,7 @@ const data = {
     state: {
         pictures: [],
         refined_pictures: [],
+        picture_idx: null,
         settings: {
             order_slot: {
                 width: 45,
@@ -27,19 +28,22 @@ const data = {
         },
         img_card: {
             size: {
-                width: 150,
-                height: 150,
+                width: 220,
+                height: 220,
             },
             ani_duration: 0.5,
         },
         aside: {
             visibility: false,
-            width: 600,
+            width: 400,
             bgc: 'white',
         }
     },
     getters: {},
     mutations: {
+        setPictureIdx(state, payload) {
+            this.state[`${prefix}_picture_idx`] = payload;
+        },
         setVisibility(state) {
             this.state[`${prefix}_aside`].visibility = !this.state[`${prefix}_aside`].visibility;
         },

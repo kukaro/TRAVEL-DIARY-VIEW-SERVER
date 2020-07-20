@@ -19,6 +19,7 @@
                 diaries: 'diary_refined_data',
                 criteria: `gallery_criteria`,
                 pictures: `gallery_pictures`,
+                aside: `gallery_aside`,
             }),
         },
         methods: {

@@ -3,12 +3,14 @@
         <ImgCard v-for="(value, key) in pictures"
                  :key="key"
                  :idx="key"
-                 :data="value"/>
+                 :data="value"
+                 :highlight_border="5"/>
     </div>
 </template>
 
 <script>
     import ImgCard from "../../img-card";
+
     export default {
         name: "date-criteria-content",
         components: {ImgCard},
@@ -27,7 +29,7 @@
         display: block;
         overflow: scroll;
         margin: 10px;
-        line-height: 0px;
+        line-height: 0;
         -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none; /* Firefox */
     }

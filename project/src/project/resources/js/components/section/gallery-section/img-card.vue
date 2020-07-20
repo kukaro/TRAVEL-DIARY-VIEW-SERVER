@@ -19,19 +19,33 @@
             },
             idx: {
                 required: true,
+            },
+            highlight_color: {
+                default: 'skyblue',
+            },
+            highlight_border: {
+                default: 1,
+            },
+            highlight_mode: {
+                default: true,
+            },
+            border: {
+                default: 1,
             }
         },
         computed: {
             ...mapState({
                 prime: `color_pime`,
                 img_card: `gallery_img_card`,
+                aside: `gallery_aside`,
+                picture_idx: `gallery_picture_idx`,
             }),
             style() {
                 return {
-                    width: mU(!this.is_init ? 0 : this.img_card.size.width),
-                    height: mU(!this.is_init ? 0 : this.img_card.size.height),
+                    width: this.width_result,
+                    height: this.height_result,
                     backgroundColor: 'white',
-                    border: mB(1, 'solid', !this.is_init ? 'transparent' : this.prime),
+                    border: this.highlight_result,
                     transition: mT('width', this.img_card.ani_duration, 'height', this.img_card.ani_duration),
                 }
             },
@@ -41,15 +55,45 @@
                     maxHeight: mU(this.img_card.size.height),
                     margin: 'auto',
                 }
+            },
+            highlight_result() {
+                if (this.highlight_mode && this.picture_idx !== null && this.idx === this.picture_idx) {
+                    return mB(this.highlight_border, 'solid', !this.is_init ? 'transparent' : this.highlight_color);
+                } else {
+                    return mB(this.border, 'solid', !this.is_init ? 'transparent' : this.prime);
+                }
+            },
+            width_result() {
+                if (this.highlight_mode && this.picture_idx !== null && this.idx === this.picture_idx) {
+                    return mU(!this.is_init ? 0 : this.img_card.size.width - this.highlight_border * 2);
+                } else {
+                    return mU(!this.is_init ? 0 : this.img_card.size.width - this.border * 2);
+                }
+            },
+            height_result() {
+                if (this.highlight_mode && this.picture_idx !== null && this.idx === this.picture_idx) {
+                    return mU(!this.is_init ? 0 : this.img_card.size.height - this.highlight_border * 2);
+                } else {
+                    return mU(!this.is_init ? 0 : this.img_card.size.height - this.border * 2);
+                }
             }
         },
         methods: {
             ...mapMutations({
-                setVisibility: `gallery_setVisibility`
+                setVisibility: `gallery_setVisibility`,
+                setPictureIdx: `gallery_setPictureIdx`,
             }),
             onClick() {
-                this.setVisibility();
-            }
+                if (!this.aside.visibility) {
+                    this.setVisibility();
+                    this.setPictureIdx(this.idx);
+                } else if (this.aside.visibility && this.idx === this.picture_idx) {
+                    this.setVisibility();
+                    this.setPictureIdx(null);
+                } else {
+                    this.setPictureIdx(this.idx);
+                }
+            },
         },
         data() {
             return {
@@ -60,7 +104,7 @@
             setTimeout(() => {
                 this.is_init = true;
             }, 0);
-        }
+        },
     }
 </script>
 

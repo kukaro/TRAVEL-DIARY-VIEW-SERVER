@@ -40,13 +40,20 @@
     },
     "gallery": {
         "title": "갤러리",
-        "write": "사진 올리기"
+        "write": "사진 올리기",
+        "info": "사진 정보",
+        "picture": {
+            "id": "고유 번호",
+            "owner_email": "소유주 이메일",
+            "created_date": "최초 생성 일자",
+            "updated_date": "최종 수정 일자"
+        }
     },
     "order": {
         "date_criteria": "날짜별",
         "group_criteria": "그룹별",
         "location_criteria": "지역별",
-        "time_inc": "최근 날짜순으로 변경",
-        "time_dec": "오래된 날짜순으로 변경"
+        "time_inc": "최근 날짜순으로 변경 ▼",
+        "time_dec": "오래된 날짜순으로 변경 ▲"
     }
 }

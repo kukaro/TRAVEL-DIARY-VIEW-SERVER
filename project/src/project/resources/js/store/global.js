@@ -29,7 +29,7 @@ const data = {
             padding: {
                 value: 20
             },
-            bgc: 'rgb(230, 230, 230)',
+            bgc: 'rgb(220, 220, 220)',
             bgc_opacity: 0.1
         },
         header: {
