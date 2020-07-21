@@ -9,7 +9,10 @@
               :is_bold="true"
               :size="20"
               :style="font_style"/>
-        <input ref="file" type="file" class="edit-btn-input" multiple @change="onFileChange"/>
+        <input ref="file"
+               type="file"
+               class="edit-btn-input" multiple
+               @change="onFileChangeEvent"/>
     </div>
 </template>
 
@@ -76,6 +79,7 @@
         methods: {
             ...mapMutations({
                 addImageToText: `file_addImageToText`,
+                onFileChange: `file_onFileChange`,
             }),
             ...mapActions({
                 createPictureByOwner: `picture_createPictureByOwner`
@@ -84,22 +88,9 @@
                 this.$refs['file'].click();
                 this.$emit('closeEvent', true);
             },
-            onFileChange($e) {
-                for (let file of this.$refs['file'].files) {
-                    const now = new Date();
-                    let fileDto = new FileDto({
-                        file: file,
-                        hash: sha256('' + now.getTime()),
-                    });
-                    let pictureDto = new PictureDto({
-                        owner_email: this.owner.email,
-                        location: `${this.owner.email}/${now.getFullYear()}/${now.getMonth()}/${now.getDay()}/${fileDto.hash}.${fileDto.ext}`,
-                        path: `${this.owner.email}/${now.getFullYear()}/${now.getMonth()}/${now.getDay()}/${fileDto.hash}.${fileDto.ext}`,
-                        created_date: now,
-                        updated_date: now,
-                    });
-                    this.createPictureByOwner({data: pictureDto, param: {fileDto, pictureDto}});
-                }
+            onFileChangeEvent($e) {
+                let files = this.$refs['file'].files;
+                this.onFileChange({files});
             },
         }
     }

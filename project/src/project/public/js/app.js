@@ -4950,18 +4950,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var js_sha256__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! js-sha256 */ "./node_modules/js-sha256/src/sha256.js");
 /* harmony import */ var js_sha256__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(js_sha256__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _dto_PictureDto__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../dto/PictureDto */ "./resources/js/dto/PictureDto.js");
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
 //
 //
 //
@@ -5037,7 +5034,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   methods: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])({
-    addImageToText: "file_addImageToText"
+    addImageToText: "file_addImageToText",
+    onFileChange: "file_onFileChange"
   })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])({
     createPictureByOwner: "picture_createPictureByOwner"
   })), {}, {
@@ -5045,38 +5043,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$refs['file'].click();
       this.$emit('closeEvent', true);
     },
-    onFileChange: function onFileChange($e) {
-      var _iterator = _createForOfIteratorHelper(this.$refs['file'].files),
-          _step;
-
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var file = _step.value;
-          var now = new Date();
-          var fileDto = new _dto_FileDto__WEBPACK_IMPORTED_MODULE_4__["default"]({
-            file: file,
-            hash: Object(js_sha256__WEBPACK_IMPORTED_MODULE_5__["sha256"])('' + now.getTime())
-          });
-          var pictureDto = new _dto_PictureDto__WEBPACK_IMPORTED_MODULE_6__["default"]({
-            owner_email: this.owner.email,
-            location: "".concat(this.owner.email, "/").concat(now.getFullYear(), "/").concat(now.getMonth(), "/").concat(now.getDay(), "/").concat(fileDto.hash, ".").concat(fileDto.ext),
-            path: "".concat(this.owner.email, "/").concat(now.getFullYear(), "/").concat(now.getMonth(), "/").concat(now.getDay(), "/").concat(fileDto.hash, ".").concat(fileDto.ext),
-            created_date: now,
-            updated_date: now
-          });
-          this.createPictureByOwner({
-            data: pictureDto,
-            param: {
-              fileDto: fileDto,
-              pictureDto: pictureDto
-            }
-          });
-        }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
+    onFileChangeEvent: function onFileChangeEvent($e) {
+      var files = this.$refs['file'].files;
+      this.onFileChange({
+        files: files
+      });
     }
   })
 });
@@ -7086,18 +7057,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var js_sha256__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! js-sha256 */ "./node_modules/js-sha256/src/sha256.js");
 /* harmony import */ var js_sha256__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(js_sha256__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _dto_PictureDto__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../dto/PictureDto */ "./resources/js/dto/PictureDto.js");
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
 //
 //
 //
@@ -7168,45 +7135,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       };
     }
   }),
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])({
+  methods: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])({
     createPictureByOwner: "picture_createPictureByOwner"
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapMutations"])({
+    onFileChange: "file_onFileChange"
   })), {}, {
     onClick: function onClick() {
       this.$refs['file'].click();
     },
-    onFileChange: function onFileChange($e) {
-      var _iterator = _createForOfIteratorHelper(this.$refs['file'].files),
-          _step;
-
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var file = _step.value;
-          var now = new Date();
-          var fileDto = new _dto_FileDto__WEBPACK_IMPORTED_MODULE_5__["default"]({
-            file: file,
-            hash: Object(js_sha256__WEBPACK_IMPORTED_MODULE_6__["sha256"])('' + now.getTime())
-          });
-          var pictureDto = new _dto_PictureDto__WEBPACK_IMPORTED_MODULE_7__["default"]({
-            owner_email: this.owner.email,
-            location: "".concat(this.owner.email, "/").concat(now.getFullYear(), "/").concat(now.getMonth(), "/").concat(now.getDay(), "/").concat(fileDto.hash, ".").concat(fileDto.ext),
-            path: "".concat(this.owner.email, "/").concat(now.getFullYear(), "/").concat(now.getMonth(), "/").concat(now.getDay(), "/").concat(fileDto.hash, ".").concat(fileDto.ext),
-            created_date: now,
-            updated_date: now
-          });
-          this.createPictureByOwner({
-            data: pictureDto,
-            param: {
-              fileDto: fileDto,
-              pictureDto: pictureDto,
-              is_gallery: true
-            }
-          });
-        }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
+    onFileChangeEvent: function onFileChangeEvent($e) {
+      var files = this.$refs['file'].files;
+      this.onFileChange({
+        files: files,
+        is_gallery: true
+      });
     }
   })
 });
@@ -52193,7 +52135,7 @@ var render = function() {
         ref: "file",
         staticClass: "edit-btn-input",
         attrs: { type: "file", multiple: "" },
-        on: { change: _vm.onFileChange }
+        on: { change: _vm.onFileChangeEvent }
       })
     ],
     1
@@ -53398,7 +53340,7 @@ var render = function() {
           ref: "file",
           staticClass: "edit-btn-input",
           attrs: { type: "file", multiple: "" },
-          on: { change: _vm.onFileChange }
+          on: { change: _vm.onFileChangeEvent }
         })
       ],
       1
@@ -77861,6 +77803,8 @@ var data = {
       console.log('failCreateDiaryData');
     },
     successCreateFileDataByOwner: function successCreateFileDataByOwner(state, res) {
+      console.log('successCreateFilDataByOwner');
+
       if (res.param.is_gallery !== true) {
         var files = this.state["".concat(prefix, "_files")];
         files.push(res.param.fileDto);
@@ -78104,6 +78048,19 @@ var data = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _dto_FileDto__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../dto/FileDto */ "./resources/js/dto/FileDto.js");
+/* harmony import */ var js_sha256__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! js-sha256 */ "./node_modules/js-sha256/src/sha256.js");
+/* harmony import */ var js_sha256__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(js_sha256__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _dto_PictureDto__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../dto/PictureDto */ "./resources/js/dto/PictureDto.js");
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+
 var prefix = 'file';
 var data = {
   prefix: prefix,
@@ -78123,6 +78080,45 @@ var data = {
       // this.state[`modal_diary`].data.contents += fileDto.html;
       // };
       // fr.readAsDataURL(fileDto.file);
+    },
+    onFileChange: function onFileChange(state, _ref2) {
+      var files = _ref2.files,
+          _ref2$is_gallery = _ref2.is_gallery,
+          is_gallery = _ref2$is_gallery === void 0 ? false : _ref2$is_gallery;
+      var owner = this.state["sess_owner"];
+
+      var _iterator = _createForOfIteratorHelper(files),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var file = _step.value;
+          var now = new Date();
+          var fileDto = new _dto_FileDto__WEBPACK_IMPORTED_MODULE_0__["default"]({
+            file: file,
+            hash: Object(js_sha256__WEBPACK_IMPORTED_MODULE_1__["sha256"])('' + now.getTime())
+          });
+          var pictureDto = new _dto_PictureDto__WEBPACK_IMPORTED_MODULE_2__["default"]({
+            owner_email: owner.email,
+            location: "".concat(owner.email, "/").concat(now.getFullYear(), "/").concat(now.getMonth() + 1, "/").concat(now.getDate(), "/").concat(fileDto.hash, ".").concat(fileDto.ext),
+            path: "".concat(owner.email, "/").concat(now.getFullYear(), "/").concat(now.getMonth() + 1, "/").concat(now.getDate(), "/").concat(fileDto.hash, ".").concat(fileDto.ext),
+            created_date: now,
+            updated_date: now
+          });
+          this.dispatch("picture_createPictureByOwner", {
+            data: pictureDto,
+            param: {
+              fileDto: fileDto,
+              pictureDto: pictureDto,
+              is_gallery: is_gallery
+            }
+          });
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
     }
   },
   actions: {}

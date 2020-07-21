@@ -66,6 +66,7 @@ const data = {
             console.log('failCreateDiaryData');
         },
         successCreateFileDataByOwner(state, res) {
+            console.log('successCreateFilDataByOwner');
             if (res.param.is_gallery !== true) {
                 let files = this.state[`${prefix}_files`];
                 files.push(res.param.fileDto);

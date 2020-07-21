@@ -10,9 +10,11 @@
                 :color="prime"
                 :box_shadow="`0 1px 10px 1px ${prime}`"
                 :font_color="white"
-                :click_event="onClick"
-            />
-            <input ref="file" type="file" class="edit-btn-input" multiple @change="onFileChange"/>
+                :click_event="onClick"/>
+            <input ref="file"
+                   type="file"
+                   class="edit-btn-input" multiple
+                   @change="onFileChangeEvent"/>
         </div>
     </div>
 </template>
@@ -69,27 +71,17 @@
         },
         methods: {
             ...mapActions({
-                createPictureByOwner: `picture_createPictureByOwner`
+                createPictureByOwner: `picture_createPictureByOwner`,
+            }),
+            ...mapMutations({
+                onFileChange: `file_onFileChange`,
             }),
             onClick() {
                 this.$refs['file'].click();
             },
-            onFileChange($e) {
-                for (let file of this.$refs['file'].files) {
-                    const now = new Date();
-                    let fileDto = new FileDto({
-                        file: file,
-                        hash: sha256('' + now.getTime()),
-                    });
-                    let pictureDto = new PictureDto({
-                        owner_email: this.owner.email,
-                        location: `${this.owner.email}/${now.getFullYear()}/${now.getMonth()}/${now.getDay()}/${fileDto.hash}.${fileDto.ext}`,
-                        path: `${this.owner.email}/${now.getFullYear()}/${now.getMonth()}/${now.getDay()}/${fileDto.hash}.${fileDto.ext}`,
-                        created_date: now,
-                        updated_date: now,
-                    });
-                    this.createPictureByOwner({data: pictureDto, param: {fileDto, pictureDto, is_gallery: true}});
-                }
+            onFileChangeEvent($e) {
+                let files = this.$refs['file'].files;
+                this.onFileChange({files, is_gallery: true});
             },
         }
     }
