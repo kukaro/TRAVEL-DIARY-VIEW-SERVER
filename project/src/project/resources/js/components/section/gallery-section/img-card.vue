@@ -99,7 +99,6 @@
                     this.setPictureIdx(this.idx);
                 } else if (this.aside.visibility && this.idx === this.picture_idx) {
                     this.setVisibility();
-                    this.setPictureIdx(null);
                 } else {
                     this.setPictureIdx(this.idx);
                 }

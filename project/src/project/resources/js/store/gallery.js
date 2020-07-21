@@ -44,13 +44,14 @@ const data = {
     },
     getters: {},
     mutations: {
-        setRemoveIdx(state,payload){
+        setRemoveIdx(state, payload) {
             this.state[`${prefix}_remove_idx`] = payload;
         },
         successRemovePictureByOwner(state, res) {
             console.log('successRemovePictureData');
             let aside = this.state[`${prefix}_aside`];
             aside.visibility = false;
+            this.commit(`${prefix}_setPictureIdx`, null);
             this.dispatch(`file_deleteFile`, {data: res.param.data});
             this.dispatch(`${prefix}_getAllPicturesByOwner`, {});
         },

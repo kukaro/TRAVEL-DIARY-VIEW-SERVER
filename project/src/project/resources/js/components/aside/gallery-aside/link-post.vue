@@ -49,6 +49,7 @@
             ...mapMutations({
                 openModal: `modal_openModal`,
                 setDiaryData: `modal_setDiaryData`,
+                setPictureIdx: `gallery_setPictureIdx`,
             }),
             onClick(key) {
                 let post = this.picture_post[key];

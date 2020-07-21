@@ -2319,7 +2319,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   })),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])({
     openModal: "modal_openModal",
-    setDiaryData: "modal_setDiaryData"
+    setDiaryData: "modal_setDiaryData",
+    setPictureIdx: "gallery_setPictureIdx"
   })), {}, {
     onClick: function onClick(key) {
       var post = this.picture_post[key];
@@ -6894,7 +6895,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.setPictureIdx(this.idx);
       } else if (this.aside.visibility && this.idx === this.picture_idx) {
         this.setVisibility();
-        this.setPictureIdx(null);
       } else {
         this.setPictureIdx(this.idx);
       }
@@ -78260,6 +78260,7 @@ var data = {
       console.log('successRemovePictureData');
       var aside = this.state["".concat(prefix, "_aside")];
       aside.visibility = false;
+      this.commit("".concat(prefix, "_setPictureIdx"), null);
       this.dispatch("file_deleteFile", {
         data: res.param.data
       });
