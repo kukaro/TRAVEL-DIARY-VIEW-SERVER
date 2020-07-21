@@ -121,6 +121,7 @@ const data = {
             document.onkeyup = (e) => {
                 if (e.code === 'Escape') {
                     this.commit(`modal_closeModal`);
+                    this.state[`gallery_aside`].visibility = false;
                 }
             };
         }

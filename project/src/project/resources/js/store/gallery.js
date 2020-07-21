@@ -42,13 +42,24 @@ const data = {
     },
     getters: {},
     mutations: {
-        initEmptyPictures(state){
+        successRemovePictureByOwner(state, res) {
+            console.log('successRemovePictureData');
+            let aside = this.state[`${prefix}_aside`];
+            aside.visibility = false;
+            this.commit(`${prefix}_setPictureIdx`, null);
+            this.dispatch(`${prefix}_getAllPicturesByOwner`, {});
+        },
+        failRemovePictureByOwner(state, res) {
+            console.log('failRemovePictureData');
+            console.log(res);
+        },
+        initEmptyPictures(state) {
             this.state[`${prefix}_pictures`] = [];
         },
         setPictureIdx(state, payload) {
             this.state[`${prefix}_picture_idx`] = payload;
             if (payload !== null) {
-                this.dispatch(`${prefix}_getAllPostsByPicture`,{});
+                this.dispatch(`${prefix}_getAllPostsByPicture`, {});
             } else {
                 this.state[`${prefix}_picture_post`] = [];
             }
@@ -95,6 +106,22 @@ const data = {
         },
     },
     actions: {
+        removePictureByOwner({commit}, {data = {}, headers = {}}) {
+            const jwt = SessionStorage.getJwt();
+            headers = {
+                Authorization: `${jwt.token_type} ${jwt.access_token}`,
+                ...headers
+            };
+            let owner = this.state[`sess_owner`];
+            call(commit,
+                'delete',
+                `/picture/${data.id}`,
+                `${prefix}_successRemovePictureByOwner`,
+                `${prefix}_failRemovePictureByOwner`,
+                data,
+                headers
+            );
+        },
         getAllPicturesByOwner({commit}, {data = {}, headers = {}}) {
             const jwt = SessionStorage.getJwt();
             headers = {

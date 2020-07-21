@@ -40,6 +40,13 @@ const data = {
     },
     getters: {},
     mutations: {
+        successRemoveDiaryData(state, res){
+            this.dispatch(`${prefix}_setDiaryDataByOwner`, {owner_email: this.state[`sess_owner`].email});
+        },
+        failRemoveDiaryData(state,res){
+            console.log('failRemoveDiaryData');
+            console.log(res);
+        },
         beforeCloseModal(state, res) {
             let files = this.state[`${prefix}_files`];
             let data = this.state[`modal_diary`].data;
@@ -125,6 +132,22 @@ const data = {
         },
     },
     actions: {
+        removeDiaryData({commit},{data={},headers={}}){
+            const jwt = SessionStorage.getJwt();
+            headers = {
+                Authorization: `${jwt.token_type} ${jwt.access_token}`,
+                ...headers
+            };
+            let owner= this.state[`sess_owner`];
+            call(commit,
+                'delete',
+                `/post/${data.id}`,
+                `${prefix}_successRemoveDiaryData`,
+                `${prefix}_failRemoveDiaryData`,
+                data,
+                headers
+            );
+        },
         setDiaryDataByOwner({commit}, {owner_email = null, data = {}, headers = {}}) {
             const jwt = SessionStorage.getJwt();
             headers = {

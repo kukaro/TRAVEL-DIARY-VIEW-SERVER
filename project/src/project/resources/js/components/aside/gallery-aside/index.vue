@@ -18,30 +18,9 @@
             </table>
         </div>
         <separator :margin="5" :color="grey220"/>
-        <div class="link-post">
-            <div class="link-post-header">
-                <Ctxt :value="$t('gallery.picture_post')" :size="20"/>
-            </div>
-            <div class="link-post-content">
-                <table v-if="picture_post && picture_post.length !== 0">
-                    <tr v-for="(value, key) in picture_post">
-                        <td>
-                            <ctxt :value="value.id" :is_bold="true"/>
-                        </td>
-                        <td>
-                            <ctxt :value="value.title"/>
-                        </td>
-                        <td>
-                            <ctxt :value="value.updated_date"/>
-                        </td>
-                        <td class="last_td cursor" @click="onClick(key)">
-                            <ctxt :value="$t('global.show')" :is_bold="true" :color="prime"/>
-                        </td>
-                    </tr>
-                </table>
-                <ctxt v-else :value="$t('global.not_data')"/>
-            </div>
-        </div>
+        <link-post/>
+        <separator :margin="5" :color="grey220"/>
+        <gallery-aside-footer/>
     </div>
 </template>
 
@@ -51,11 +30,12 @@
     import CloseButton from "../../input/close-button";
     import Ctxt from "../../utils/ctxt";
     import Separator from "../../common/separator";
-    import {mode} from "../../../store/modal";
+    import LinkPost from "./link-post";
+    import GalleryAsideFooter from "./gallery-aside-footer";
 
     export default {
         name: "gallery-aside",
-        components: {Separator, Ctxt, CloseButton},
+        components: {GalleryAsideFooter, LinkPost, Separator, Ctxt, CloseButton},
         computed: {
             ...mapState({
                 aside: `gallery_aside`,
@@ -112,13 +92,6 @@
                     }
                 }
             },
-            onClick(key) {
-                let post = this.picture_post[key];
-                this.setDiaryData(post);
-                this.openModal(mode.diary);
-                this.$router.push('/diary').catch(() => {
-                });
-            }
         },
         created() {
 
@@ -156,20 +129,5 @@
 
     tr {
         height: 30px;
-    }
-
-    .link-post {
-        display: flex;
-        flex-direction: column;
-        margin-top: 20px;
-        flex: 1;
-    }
-
-    .link-post-header {
-        margin-bottom: 10px;
-    }
-
-    .cursor {
-        cursor: pointer;
     }
 </style>

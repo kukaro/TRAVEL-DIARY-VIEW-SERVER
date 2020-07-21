@@ -11,6 +11,7 @@
         "create": "생성",
         "update": "수정",
         "cancel": "취소",
+        "delete": "삭제",
         "placeholder": {
             "default": "입력하세요.",
             "title": "제목을 입력하세요",
