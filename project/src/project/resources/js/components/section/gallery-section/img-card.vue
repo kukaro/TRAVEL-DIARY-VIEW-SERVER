@@ -38,6 +38,7 @@
                 img_card: `gallery_img_card`,
                 aside: `gallery_aside`,
                 picture_idx: `gallery_picture_idx`,
+                remove_idx: `gallery_remove_idx`,
             }),
             style() {
                 return {
@@ -45,7 +46,10 @@
                     height: this.height_result,
                     backgroundColor: 'white',
                     border: this.highlight_result,
-                    transition: mT('width', this.img_card.ani_duration, 'height', this.img_card.ani_duration),
+                    transition: mT('width', this.img_card.ani_duration,
+                        'height', this.img_card.ani_duration,
+                        'opacity', this.img_card.ani_duration),
+                    opacity: this.opacity_result,
                 }
             },
             img_style() {
@@ -75,7 +79,14 @@
                 } else {
                     return mU(!this.is_init ? 0 : this.img_card.size.height - this.border * 2);
                 }
-            }
+            },
+            opacity_result() {
+                if (this.remove_idx !== this.idx) {
+                    return this.img_card.opacity;
+                } else {
+                    return 0;
+                }
+            },
         },
         methods: {
             ...mapMutations({

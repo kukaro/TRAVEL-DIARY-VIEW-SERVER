@@ -2086,18 +2086,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     TrashButton: _input_trashe_button__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {},
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])({
+  methods: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapMutations"])({
+    setRemoveIdx: "gallery_setRemoveIdx"
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])({
     removePictureByOwner: "gallery_removePictureByOwner"
   })), {}, {
     onClick: function onClick() {
-      this.removePictureByOwner({
-        data: this.data
-      });
+      var _this = this;
+
+      this.setRemoveIdx(this.picture_idx);
+      setTimeout(function () {
+        _this.removePictureByOwner({
+          data: _this.data
+        });
+      }, this.img_card.ani_duration * 1000);
     }
   }),
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])({
     picture_idx: "gallery_picture_idx",
-    pictures: "gallery_pictures"
+    pictures: "gallery_pictures",
+    img_card: "gallery_img_card"
   })), {}, {
     color: function color() {
       return this.hover ? 'red' : 'black';
@@ -6829,7 +6837,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     prime: "color_pime",
     img_card: "gallery_img_card",
     aside: "gallery_aside",
-    picture_idx: "gallery_picture_idx"
+    picture_idx: "gallery_picture_idx",
+    remove_idx: "gallery_remove_idx"
   })), {}, {
     style: function style() {
       return {
@@ -6837,7 +6846,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         height: this.height_result,
         backgroundColor: 'white',
         border: this.highlight_result,
-        transition: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mT"])('width', this.img_card.ani_duration, 'height', this.img_card.ani_duration)
+        transition: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mT"])('width', this.img_card.ani_duration, 'height', this.img_card.ani_duration, 'opacity', this.img_card.ani_duration),
+        opacity: this.opacity_result
       };
     },
     img_style: function img_style() {
@@ -6866,6 +6876,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mU"])(!this.is_init ? 0 : this.img_card.size.height - this.highlight_border * 2);
       } else {
         return Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mU"])(!this.is_init ? 0 : this.img_card.size.height - this.border * 2);
+      }
+    },
+    opacity_result: function opacity_result() {
+      if (this.remove_idx !== this.idx) {
+        return this.img_card.opacity;
+      } else {
+        return 0;
       }
     }
   }),
@@ -78052,11 +78069,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var js_sha256__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! js-sha256 */ "./node_modules/js-sha256/src/sha256.js");
 /* harmony import */ var js_sha256__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(js_sha256__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _dto_PictureDto__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../dto/PictureDto */ "./resources/js/dto/PictureDto.js");
+/* harmony import */ var _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../storage/sessionstorage */ "./resources/js/storage/sessionstorage.js");
+/* harmony import */ var _utils_request__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/request */ "./resources/js/utils/request/index.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
 
 
 
@@ -78067,19 +78094,18 @@ var data = {
   state: {},
   getters: {},
   mutations: {
+    successDeleteFile: function successDeleteFile() {
+      console.log('successDeleteFile');
+    },
+    failDeleteFile: function failDeleteFile() {
+      console.log('failDeleteFile');
+    },
     //TODO: 파일 서버에 저장해야함
     addImageToText: function addImageToText(state, _ref) {
       var pictureDto = _ref.pictureDto,
           fileDto = _ref.fileDto;
-      // const fr = new FileReader();
       fileDto.html = "<img src=\"/api/file/".concat(pictureDto.location, "\" alt=\"").concat(fileDto.hash, "\"/><br>");
-      this.state["modal_diary"].data.contents += fileDto.html; // fr.onload = (e) => {
-      // console.log('ProgressEvent');
-      // fileDto.html = `<img src="${e.target.result}" alt="${fileDto.hash}"/>`;
-      // fileDto.html = `<img src="/api/file/${pictureDto.location}" alt="${fileDto.hash}"/>`;
-      // this.state[`modal_diary`].data.contents += fileDto.html;
-      // };
-      // fr.readAsDataURL(fileDto.file);
+      this.state["modal_diary"].data.contents += fileDto.html;
     },
     onFileChange: function onFileChange(state, _ref2) {
       var files = _ref2.files,
@@ -78121,7 +78147,20 @@ var data = {
       }
     }
   },
-  actions: {}
+  actions: {
+    deleteFile: function deleteFile(_ref3, _ref4) {
+      var commit = _ref3.commit;
+      var _ref4$data = _ref4.data,
+          data = _ref4$data === void 0 ? {} : _ref4$data,
+          _ref4$headers = _ref4.headers,
+          headers = _ref4$headers === void 0 ? {} : _ref4$headers;
+      var jwt = _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_3__["default"].getJwt();
+      headers = _objectSpread({
+        Authorization: "".concat(jwt.token_type, " ").concat(jwt.access_token)
+      }, headers);
+      Object(_utils_request__WEBPACK_IMPORTED_MODULE_4__["call"])(commit, 'delete', "/file/".concat(data.location), "".concat(prefix, "_successDeleteFile"), "".concat(prefix, "_failDeleteFile"), data, headers);
+    }
+  }
 };
 /* harmony default export */ __webpack_exports__["default"] = (data);
 
@@ -78185,6 +78224,7 @@ var data = {
     pictures: null,
     refined_pictures: null,
     picture_idx: null,
+    remove_idx: null,
     picture_post: [],
     settings: {
       order_slot: {
@@ -78203,7 +78243,8 @@ var data = {
         width: 220,
         height: 220
       },
-      ani_duration: 0.5
+      ani_duration: 0.5,
+      opacity: 1
     },
     aside: {
       visibility: false,
@@ -78213,11 +78254,16 @@ var data = {
   },
   getters: {},
   mutations: {
+    setRemoveIdx: function setRemoveIdx(state, payload) {
+      this.state["".concat(prefix, "_remove_idx")] = payload;
+    },
     successRemovePictureByOwner: function successRemovePictureByOwner(state, res) {
       console.log('successRemovePictureData');
       var aside = this.state["".concat(prefix, "_aside")];
       aside.visibility = false;
-      this.commit("".concat(prefix, "_setPictureIdx"), null);
+      this.dispatch("file_deleteFile", {
+        data: res.param.data
+      });
       this.dispatch("".concat(prefix, "_getAllPicturesByOwner"), {});
     },
     failRemovePictureByOwner: function failRemovePictureByOwner(state, res) {
@@ -78264,6 +78310,8 @@ var data = {
     },
     successGetAllPicturesByOwner: function successGetAllPicturesByOwner(state, res) {
       this.state["".concat(prefix, "_pictures")] = res.data;
+      this.state["".concat(prefix, "_remove_idx")] = null;
+      this.state["".concat(prefix, "_picture_idx")] = null;
       this.commit("".concat(prefix, "_refinedPictures"));
     },
     failGetAllPicturesByOwner: function failGetAllPicturesByOwner(state, res) {
@@ -78290,7 +78338,9 @@ var data = {
         Authorization: "".concat(jwt.token_type, " ").concat(jwt.access_token)
       }, headers);
       var owner = this.state["sess_owner"];
-      Object(_utils_request__WEBPACK_IMPORTED_MODULE_1__["call"])(commit, 'delete', "/picture/".concat(data.id), "".concat(prefix, "_successRemovePictureByOwner"), "".concat(prefix, "_failRemovePictureByOwner"), data, headers);
+      Object(_utils_request__WEBPACK_IMPORTED_MODULE_1__["call"])(commit, 'delete', "/picture/".concat(data.id), "".concat(prefix, "_successRemovePictureByOwner"), "".concat(prefix, "_failRemovePictureByOwner"), data, headers, {
+        data: data
+      });
     },
     getAllPicturesByOwner: function getAllPicturesByOwner(_ref3, _ref4) {
       var commit = _ref3.commit;

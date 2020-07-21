@@ -1,6 +1,8 @@
 import FileDto from "../dto/FileDto";
 import {sha256} from "js-sha256";
 import PictureDto from "../dto/PictureDto";
+import SessionStorage from "../storage/sessionstorage";
+import {call} from "../utils/request";
 
 const prefix = 'file';
 
@@ -9,18 +11,16 @@ const data = {
     state: {},
     getters: {},
     mutations: {
+        successDeleteFile(){
+            console.log('successDeleteFile');
+        },
+        failDeleteFile(){
+            console.log('failDeleteFile');
+        },
         //TODO: 파일 서버에 저장해야함
         addImageToText(state, {pictureDto, fileDto}) {
-            // const fr = new FileReader();
             fileDto.html = `<img src="/api/file/${pictureDto.location}" alt="${fileDto.hash}"/><br>`;
             this.state[`modal_diary`].data.contents += fileDto.html;
-            // fr.onload = (e) => {
-            // console.log('ProgressEvent');
-            // fileDto.html = `<img src="${e.target.result}" alt="${fileDto.hash}"/>`;
-            // fileDto.html = `<img src="/api/file/${pictureDto.location}" alt="${fileDto.hash}"/>`;
-            // this.state[`modal_diary`].data.contents += fileDto.html;
-            // };
-            // fr.readAsDataURL(fileDto.file);
         },
         onFileChange(state, {files, is_gallery = false}) {
             let owner = this.state[`sess_owner`];
@@ -42,9 +42,25 @@ const data = {
                     param: {fileDto, pictureDto, is_gallery}
                 });
             }
-        }
+        },
     },
-    actions: {}
+    actions: {
+        deleteFile({commit},{data={},headers={}}){
+            const jwt = SessionStorage.getJwt();
+            headers = {
+                Authorization: `${jwt.token_type} ${jwt.access_token}`,
+                ...headers
+            };
+            call(commit,
+                'delete',
+                `/file/${data.location}`,
+                `${prefix}_successDeleteFile`,
+                `${prefix}_failDeleteFile`,
+                data,
+                headers,
+            );
+        }
+    }
 }
 
 export default data;

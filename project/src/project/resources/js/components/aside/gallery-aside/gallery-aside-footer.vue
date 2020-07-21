@@ -16,24 +16,31 @@
 <script>
     import TrashButton from "../../input/trashe-button";
     import Ctxt from "../../utils/ctxt";
-    import {mapActions, mapState} from "vuex";
+    import {mapActions, mapMutations, mapState} from "vuex";
 
     export default {
         name: "gallery-aside-footer",
         components: {Ctxt, TrashButton},
         props: {},
         methods: {
+            ...mapMutations({
+                setRemoveIdx: `gallery_setRemoveIdx`,
+            }),
             ...mapActions({
                 removePictureByOwner: `gallery_removePictureByOwner`,
             }),
             onClick() {
-                this.removePictureByOwner({data: this.data});
+                this.setRemoveIdx(this.picture_idx);
+                setTimeout(() => {
+                    this.removePictureByOwner({data: this.data});
+                }, this.img_card.ani_duration * 1000);
             },
         },
         computed: {
             ...mapState({
                 picture_idx: `gallery_picture_idx`,
                 pictures: `gallery_pictures`,
+                img_card: `gallery_img_card`,
             }),
             color() {
                 return this.hover ? 'red' : 'black';

@@ -14,6 +14,7 @@ const data = {
         pictures: null,
         refined_pictures: null,
         picture_idx: null,
+        remove_idx: null,
         picture_post: [],
         settings: {
             order_slot: {
@@ -33,6 +34,7 @@ const data = {
                 height: 220,
             },
             ani_duration: 0.5,
+            opacity: 1,
         },
         aside: {
             visibility: false,
@@ -42,11 +44,14 @@ const data = {
     },
     getters: {},
     mutations: {
+        setRemoveIdx(state,payload){
+            this.state[`${prefix}_remove_idx`] = payload;
+        },
         successRemovePictureByOwner(state, res) {
             console.log('successRemovePictureData');
             let aside = this.state[`${prefix}_aside`];
             aside.visibility = false;
-            this.commit(`${prefix}_setPictureIdx`, null);
+            this.dispatch(`file_deleteFile`, {data: res.param.data});
             this.dispatch(`${prefix}_getAllPicturesByOwner`, {});
         },
         failRemovePictureByOwner(state, res) {
@@ -91,6 +96,8 @@ const data = {
         },
         successGetAllPicturesByOwner(state, res) {
             this.state[`${prefix}_pictures`] = res.data;
+            this.state[`${prefix}_remove_idx`] = null;
+            this.state[`${prefix}_picture_idx`] = null;
             this.commit(`${prefix}_refinedPictures`);
         },
         failGetAllPicturesByOwner(state, res) {
@@ -119,7 +126,8 @@ const data = {
                 `${prefix}_successRemovePictureByOwner`,
                 `${prefix}_failRemovePictureByOwner`,
                 data,
-                headers
+                headers,
+                {data}
             );
         },
         getAllPicturesByOwner({commit}, {data = {}, headers = {}}) {
