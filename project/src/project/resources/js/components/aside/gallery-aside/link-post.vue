@@ -26,7 +26,7 @@
 </template>
 
 <script>
-    import {mapState} from "vuex";
+    import {mapMutations, mapState} from "vuex";
     import {mode} from "../../../store/modal";
     import Ctxt from "../../utils/ctxt";
 
@@ -45,7 +45,11 @@
                 prime: `color_prime`,
             }),
         },
-        methods:{
+        methods: {
+            ...mapMutations({
+                openModal: `modal_openModal`,
+                setDiaryData: `modal_setDiaryData`,
+            }),
             onClick(key) {
                 let post = this.picture_post[key];
                 this.setDiaryData(post);

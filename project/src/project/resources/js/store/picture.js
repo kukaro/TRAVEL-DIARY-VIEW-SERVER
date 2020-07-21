@@ -39,6 +39,7 @@ const data = {
          * @param param - is_gallery가 넘어올 수 있습니다.
          */
         createPictureByOwner({commit}, {data = {}, headers = {}, param}) {
+            console.log(param.fileDto.file);
             const jwt = SessionStorage.getJwt();
             headers = {
                 Authorization: `${jwt.token_type} ${jwt.access_token}`,

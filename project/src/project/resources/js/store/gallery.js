@@ -97,7 +97,6 @@ const data = {
         successGetAllPicturesByOwner(state, res) {
             this.state[`${prefix}_pictures`] = res.data;
             this.state[`${prefix}_remove_idx`] = null;
-            this.state[`${prefix}_picture_idx`] = null;
             this.commit(`${prefix}_refinedPictures`);
         },
         failGetAllPicturesByOwner(state, res) {

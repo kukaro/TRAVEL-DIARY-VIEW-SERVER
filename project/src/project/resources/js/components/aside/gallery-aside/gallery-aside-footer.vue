@@ -30,10 +30,7 @@
                 removePictureByOwner: `gallery_removePictureByOwner`,
             }),
             onClick() {
-                this.setRemoveIdx(this.picture_idx);
-                setTimeout(() => {
-                    this.removePictureByOwner({data: this.data});
-                }, this.img_card.ani_duration * 1000);
+                this.removePictureByOwner({data: this.data});
             },
         },
         computed: {

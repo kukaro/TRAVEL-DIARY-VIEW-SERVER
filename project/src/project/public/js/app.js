@@ -2092,14 +2092,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     removePictureByOwner: "gallery_removePictureByOwner"
   })), {}, {
     onClick: function onClick() {
-      var _this = this;
-
-      this.setRemoveIdx(this.picture_idx);
-      setTimeout(function () {
-        _this.removePictureByOwner({
-          data: _this.data
-        });
-      }, this.img_card.ani_duration * 1000);
+      this.removePictureByOwner({
+        data: this.data
+      });
     }
   }),
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])({
@@ -2322,14 +2317,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     picture_post: "gallery_picture_post",
     prime: "color_prime"
   })),
-  methods: {
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])({
+    openModal: "modal_openModal",
+    setDiaryData: "modal_setDiaryData"
+  })), {}, {
     onClick: function onClick(key) {
       var post = this.picture_post[key];
       this.setDiaryData(post);
       this.openModal(_store_modal__WEBPACK_IMPORTED_MODULE_1__["mode"].diary);
       this.$router.push('/diary')["catch"](function () {});
     }
-  }
+  })
 });
 
 /***/ }),
@@ -78119,6 +78117,7 @@ var data = {
       try {
         for (_iterator.s(); !(_step = _iterator.n()).done;) {
           var file = _step.value;
+          console.log(file);
           var now = new Date();
           var fileDto = new _dto_FileDto__WEBPACK_IMPORTED_MODULE_0__["default"]({
             file: file,
@@ -78311,7 +78310,6 @@ var data = {
     successGetAllPicturesByOwner: function successGetAllPicturesByOwner(state, res) {
       this.state["".concat(prefix, "_pictures")] = res.data;
       this.state["".concat(prefix, "_remove_idx")] = null;
-      this.state["".concat(prefix, "_picture_idx")] = null;
       this.commit("".concat(prefix, "_refinedPictures"));
     },
     failGetAllPicturesByOwner: function failGetAllPicturesByOwner(state, res) {
@@ -78801,6 +78799,7 @@ var data = {
           _ref2$headers = _ref2.headers,
           headers = _ref2$headers === void 0 ? {} : _ref2$headers,
           param = _ref2.param;
+      console.log(param.fileDto.file);
       var jwt = _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_0__["default"].getJwt();
       headers = _objectSpread({
         Authorization: "".concat(jwt.token_type, " ").concat(jwt.access_token)

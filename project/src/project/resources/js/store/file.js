@@ -25,6 +25,7 @@ const data = {
         onFileChange(state, {files, is_gallery = false}) {
             let owner = this.state[`sess_owner`];
             for (let file of files) {
+                console.log(file);
                 const now = new Date();
                 let fileDto = new FileDto({
                     file: file,
