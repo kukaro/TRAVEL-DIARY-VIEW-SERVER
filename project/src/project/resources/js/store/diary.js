@@ -158,7 +158,7 @@ const data = {
             if (owner_email) {
                 call(commit,
                     'get',
-                    `/post/user/${owner_email}`,
+                    `/post/user`,
                     `${prefix}_successSetDiaryDataByOwner`,
                     `${prefix}_failSetDiaryDataByOwner`,
                     data,

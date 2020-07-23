@@ -6097,6 +6097,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -6159,6 +6161,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return {
         marginTop: 'auto',
         marginBottom: 'auto'
+      };
+    },
+    text_style: function text_style() {
+      return {
+        marginTop: 'auto',
+        marginBottom: 'auto',
+        textOverflow: 'ellipsis',
+        overflow: 'hidden',
+        whiteSpace: 'nowrap'
       };
     },
     content: function content() {
@@ -6316,6 +6327,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         // borderRadius: mU(this.global_setting.border_radius.value),
         backgroundColor: this.color
       };
+    },
+    text_style: function text_style() {
+      return {};
     }
   })
 });
@@ -52755,14 +52769,21 @@ var render = function() {
             "div",
             { staticClass: "up", style: _vm.up_style },
             [
-              _c("ctxt", {
-                style: _vm.center,
-                attrs: {
-                  value: _vm.data.title,
-                  color: _vm.title_color,
-                  size: _vm.day_card.title_size
-                }
-              }),
+              _c(
+                "div",
+                { staticClass: "title-slot", style: _vm.text_style },
+                [
+                  _c("ctxt", {
+                    style: _vm.text_style,
+                    attrs: {
+                      value: _vm.data.title,
+                      color: _vm.title_color,
+                      size: _vm.day_card.title_size
+                    }
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
               _c("mini-card", {
                 style: _vm.center,
@@ -52890,7 +52911,12 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "mini-card", style: _vm.style },
-    [_c("ctxt", { attrs: { value: _vm.value, color: _vm.font_color } })],
+    [
+      _c("ctxt", {
+        style: _vm.text_style,
+        attrs: { value: _vm.value, color: _vm.font_color }
+      })
+    ],
     1
   )
 }
@@ -77923,7 +77949,7 @@ var data = {
       }, headers);
 
       if (owner_email) {
-        Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["call"])(commit, 'get', "/post/user/".concat(owner_email), "".concat(prefix, "_successSetDiaryDataByOwner"), "".concat(prefix, "_failSetDiaryDataByOwner"), data, headers);
+        Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["call"])(commit, 'get', "/post/user", "".concat(prefix, "_successSetDiaryDataByOwner"), "".concat(prefix, "_failSetDiaryDataByOwner"), data, headers);
       }
     },
 
