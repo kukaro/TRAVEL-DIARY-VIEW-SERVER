@@ -24,7 +24,8 @@
         "password": "비밀번호",
         "password_confirmation": "비밀번호 확인",
         "show": "보기",
-        "not_data": "데이터가 없습니다."
+        "not_data": "데이터가 없습니다.",
+        "return_normal_login" : "\uD83E\uDC14 일반 로그인"
     },
     "user": {
         "title": "사용자 정보",

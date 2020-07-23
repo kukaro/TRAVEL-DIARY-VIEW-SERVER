@@ -6,12 +6,14 @@ const prefix = 'hiworks';
 
 const data = {
     prefix,
-    state: {},
+    state: {
+        hiworks_html: null
+    },
     getters: {},
     mutations: {
         successOpenHiworks(state, res) {
-            console.log(`successOpenHiworks`);
-            console.log(res);
+            // console.log(`successOpenHiworks`);
+            this.state[`${prefix}_hiworks_html`] = res.data;
         },
         failOpenHiworks(state, res) {
             console.log(`failOpenHiworks`);
@@ -22,14 +24,14 @@ const data = {
         openHiworks({commit}) {
             axios.request({
                 method: 'get',
-                url: fullHiworksOauthUri(),
+                url: '/api/hiworks',
                 headers: {
                     'Content-type': 'text/html'
                 }
             }).then(res => {
-                console.log(res);
+                commit(`${prefix}_successOpenHiworks`,res)
             }).catch((res) => {
-                commit()
+                commit(`${prefix}_failOpenHiworks`, res)
             })
         }
     }

@@ -69,6 +69,7 @@
 
 <style lang="scss">
     @import "../../sass/default.css";
+    @import "../../sass/hiworks.scss";
     html,
     body,
     #app {

@@ -1,21 +1,16 @@
 <template>
-    <input class="hiworks-login-btn"
-           type="button"
-           :value="`${$t('global.hiworks')} ${$t('global.login')}`"
-           @click="onClick()"
-           :style="style"/>
+    <input class="login-btn" type="button" :value="$t('global.login')" @click="setLogin(value)" :style="style"/>
 </template>
 
 <script>
     import {call} from "../../../utils/request";
-    import {mapActions, mapMutations, mapState} from "vuex";
+    import {mapActions, mapState} from "vuex";
+    import axios from "axios";
     import config from "../../../config";
     import {mU} from "../../../utils/unit";
-    import {fullHiworksOauthUri} from "../../../utils/hiworks";
-    import {types} from "../../../store/login";
 
     export default {
-        name: "hiworks-login-btn",
+        name: "login-btn",
         props: {
             value: {
                 email: "",
@@ -28,13 +23,12 @@
                 font_korean: 'font_korean',
                 white: 'color_white',
                 prime: 'color_prime',
-                input: 'global_input',
-                hiworks_prime: `color_hiworks_prime`,
+                input: 'global_input'
             }),
             style() {
                 return {
                     height: mU(this.input.height + 4),
-                    backgroundColor: this.hiworks_prime,
+                    backgroundColor: this.prime,
                     border: mU(0),
                     color: this.white,
                     fontSize: mU(this.input.font_size),
@@ -49,21 +43,14 @@
         },
         methods: {
             ...mapActions({
-                openHiworks:`hiworks_openHiworks`,
-            }),
-            ...mapMutations({
-                setLoginType: `login_setLoginType`,
-            }),
-            onClick(){
-                this.setLoginType(types.hiworks);
-                this.openHiworks();
-            }
+                setLogin: "sess_setLogin",
+            })
         }
     };
 </script>
 
 <style lang="scss" scoped>
-    .hiworks-login-btn {
+    .login-btn {
         cursor: pointer;
     }
 </style>

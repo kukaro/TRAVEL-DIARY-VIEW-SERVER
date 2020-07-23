@@ -6,6 +6,7 @@
         <quote/>
         <login-box v-if="types.login === type"/>
         <signup-box v-if="types.signup === type"/>
+        <hiworks-login-box v-if="types.hiworks === type"/>
     </div>
 </template>
 
@@ -16,10 +17,12 @@
     import Quote from "../common/quote";
     import SignupBox from "../common/signup-box/index";
     import {types} from '../../store/login';
+    import HiworksLoginBox from "../common/hiworks-login-box/index";
 
     export default {
         name: "login-page",
         components: {
+            HiworksLoginBox,
             SignupBox,
             Quote,
             loginBox

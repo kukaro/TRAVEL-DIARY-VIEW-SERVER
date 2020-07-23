@@ -1,6 +1,6 @@
 const prefix = 'login';
 
-export const types = {login: 'login', signup: 'signup'};
+export const types = {login: 'login', signup: 'signup', hiworks: 'hiworks'};
 const data = {
     prefix,
     state: {
