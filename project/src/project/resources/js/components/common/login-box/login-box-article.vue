@@ -3,7 +3,8 @@
         <form>
             <form-input v-model="user.email" class="margin-bottom" :placeholder="$t('user.email')"/>
             <form-input v-model="user.password" :type="'password'" :enter_cb="onEnter" class="margin-bottom" :placeholder="$t('user.password')"/>
-            <login-btn v-model="user"/>
+            <login-btn v-model="user" class="margin-bottom"/>
+            <hiworks-login-btn/>
         </form>
     </div>
 </template>
@@ -13,10 +14,11 @@
     import LoginBtn from "./login-btn";
     import FormInput from "../../input/form-input";
     import {mapActions, mapMutations, mapState} from "vuex";
+    import HiworksLoginBtn from "./hiworks-login-btn";
 
     export default {
         name: "login-box-article",
-        components: {FormInput, LoginBtn},
+        components: {HiworksLoginBtn, FormInput, LoginBtn},
         computed: {
             ...mapState({
                 user: 'login_form_user',
@@ -37,6 +39,7 @@
 <style scoped>
     .login-box-article {
         display: flex;
+
     }
 
     form {

@@ -1,16 +1,20 @@
 <template>
-    <input class="login-btn" type="button" :value="$t('global.login')" @click="setLogin(value)" :style="style"/>
+    <input class="hiworks-login-btn"
+           type="button"
+           :value="`${$t('global.hiworks')} ${$t('global.login')}`"
+           @click="onClick()"
+           :style="style"/>
 </template>
 
 <script>
     import {call} from "../../../utils/request";
     import {mapActions, mapState} from "vuex";
-    import axios from "axios";
     import config from "../../../config";
     import {mU} from "../../../utils/unit";
+    import {fullHiworksOauthUri} from "../../../utils/hiworks";
 
     export default {
-        name: "login-btn",
+        name: "hiworks-login-btn",
         props: {
             value: {
                 email: "",
@@ -23,12 +27,13 @@
                 font_korean: 'font_korean',
                 white: 'color_white',
                 prime: 'color_prime',
-                input: 'global_input'
+                input: 'global_input',
+                hiworks_prime: `color_hiworks_prime`,
             }),
             style() {
                 return {
                     height: mU(this.input.height + 4),
-                    backgroundColor: this.prime,
+                    backgroundColor: this.hiworks_prime,
                     border: mU(0),
                     color: this.white,
                     fontSize: mU(this.input.font_size),
@@ -43,14 +48,17 @@
         },
         methods: {
             ...mapActions({
-                setLogin: "sess_setLogin",
-            })
+                openHiworks:`hiworks_openHiworks`,
+            }),
+            onClick(){
+                // this.openHiworks();
+            }
         }
     };
 </script>
 
 <style lang="scss" scoped>
-    .login-btn {
+    .hiworks-login-btn {
         cursor: pointer;
     }
 </style>

@@ -17,6 +17,7 @@ const data = {
         grey220: 'rgb(220, 220, 220)',
         grey200: 'rgb(200, 200, 200)',
         grey150: 'rgb(150, 150, 150)',
+        hiworks_prime: 'rgb(41, 133, 219)',
     },
     getters: {},
     mutations: {},

@@ -34,7 +34,9 @@
                     width: mU(100, "%"),
                     height: mU(100, "%"),
                     backgroundColor: this.bgc,
-                    display: "flex"
+                    display: "flex",
+                    overflow: 'hidden',
+                    position: 'relative',
                 };
             }
         },

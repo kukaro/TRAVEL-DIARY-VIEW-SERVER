@@ -28,7 +28,7 @@ export default {
         }),
         style() {
             return {
-                width: mU(this.box.width),
+                minWidth: mU(this.box.width),
                 height: mU(100,'%'),
                 backgroundColor: this.box.bgc,
                 marginLeft: 'auto',

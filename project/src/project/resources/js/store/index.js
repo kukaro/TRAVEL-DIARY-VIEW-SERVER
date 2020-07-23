@@ -13,6 +13,7 @@ import fileStore from './file'
 import pictureStore from './picture'
 import galleryStore from './gallery'
 import editStore from './edit'
+import hiworksStore from './hiworks'
 
 Vue.use(Vuex)
 
@@ -35,5 +36,6 @@ sBind(fileStore.prefix, fileStore, data);
 sBind(pictureStore.prefix, pictureStore, data);
 sBind(galleryStore.prefix, galleryStore, data);
 sBind(editStore.prefix, editStore, data);
+sBind(hiworksStore.prefix, hiworksStore, data);
 
 export default new Vuex.Store(data);
