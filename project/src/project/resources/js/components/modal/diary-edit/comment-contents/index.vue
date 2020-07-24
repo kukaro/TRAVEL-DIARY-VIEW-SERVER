@@ -1,11 +1,8 @@
 <template>
     <div class="comment-contents" :style="style">
-<!--        <div class="show-slot">-->
-
-<!--        </div>-->
-<!--        <div class="input-slot">-->
-
-<!--        </div>-->
+        <show-slot/>
+        <separator :color="grey220"/>
+        <input-slot/>
     </div>
 </template>
 
@@ -13,25 +10,29 @@
     import {mB, mT, mU} from "../../../../utils/unit";
     import {mapState} from "vuex";
     import Ctxt from "../../../utils/ctxt";
+    import ShowSlot from "./show-slot";
+    import InputSlot from "./input-slot";
+    import Separator from "../../../common/separator";
 
     export default {
         name: "comment-contents",
-        components: {Ctxt},
+        components: {Separator, InputSlot, ShowSlot, Ctxt},
         watch: {
             display() {
+                let comment = this.diary.comment;
                 if (this.prev_display !== this.display) {
                     this.prev_display = this.display;
                     if (this.display === true) {
-                        this.is_started = true;
-                        this.is_display = true;
+                        comment.is_started = true;
+                        comment.is_display = true;
                         setTimeout(() => {
-                            this.is_opacity = true;
+                            comment.is_opacity = true;
                         }, this.ani_duration * 1000);
                     } else {
-                        this.is_started = false;
-                        this.is_opacity = false;
+                        comment.is_started = false;
+                        comment.is_opacity = false;
                         setTimeout(() => {
-                            this.is_display = false;
+                            comment.is_display = false;
                         }, this.ani_duration * 1000);
                     }
                 }
@@ -41,18 +42,21 @@
             ...mapState({
                 diary: `modal_diary`,
                 global_setting: `global_setting`,
+                grey220: `color_grey220`,
             }),
             style() {
+                let comment = this.diary.comment;
                 return {
-                    display: this.is_display ? 'flex' : 'none',
-                    opacity: this.is_opacity ? 1 : 0,
+                    display: comment.is_display ? 'flex' : 'none',
+                    opacity: comment.is_opacity ? 1 : 0,
                     width: mU(this.real_width),
                     transition: mT('width', this.ani_duration,
                         'opacity', this.ani_duration),
                 }
             },
             real_width() {
-                if (this.is_started) {
+                let comment = this.diary.comment;
+                if (comment.is_started) {
                     return this.diary.comment.width;
                 } else {
                     return 0;
@@ -64,11 +68,8 @@
         },
         data() {
             return {
-                is_started: false,
-                is_display: false,
-                is_opacity: false,
                 prev_display: null,
-                ani_duration: 0.2,
+                ani_duration: 0.5,
             }
         },
         updated() {
@@ -83,5 +84,7 @@
 <style scoped>
     .comment-contents {
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
     }
 </style>

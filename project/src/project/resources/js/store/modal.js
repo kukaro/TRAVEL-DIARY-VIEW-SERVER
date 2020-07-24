@@ -31,6 +31,10 @@ const data = {
             comment:{
                 width: 400,
                 visibility: false,
+                is_started: false,
+                is_display: false,
+                is_opacity: false,
+                input_height: 150,
             },
             origin_data: null,
         }

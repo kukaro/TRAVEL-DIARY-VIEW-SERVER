@@ -140,7 +140,7 @@
         data() {
             return {
                 internal_mode: mode.hide,
-                ani_duration: 0.3,
+                ani_duration: 1,
             }
         }
     }

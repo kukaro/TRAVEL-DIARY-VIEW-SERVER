@@ -11,7 +11,9 @@
             :width="btn_width"
             :height="btn_height"
             :left="diary.width - btn_width"
-            :top="(diary.height + diary.padding * 2) / 2 - btn_height / 2"
+            :top="diary.height / 2 - btn_height / 2"
+            :mode="mode"
+            @modeEvent="onModeEvent"
             @changeEvent="onChangeEvent"/>
         <comment-contents/>
     </div>
@@ -46,9 +48,12 @@
             }),
             style() {
                 return {
-                    width: mU(this.real_with),
+                    minWidth: mU(this.real_with),
+                    maxWidth: mU(this.real_with),
                     height: mU(this.diary.height),
-                    transition: mT('width', this.ani_duration),
+                    transition: mT('width', this.ani_duration,
+                        'min-width', this.ani_duration,
+                        'max-width', this.ani_duration),
                 }
             },
             real_with() {
@@ -62,7 +67,14 @@
                 return {
                     flex: 1,
                     padding: mU(this.diary.padding),
-                    borderRight: mB(1,'solid',this.grey220),
+                    borderRight: mB(1, 'solid', this.grey220),
+                }
+            },
+            mode() {
+                if (this.diary.comment.visibility) {
+                    return 'express';
+                } else {
+                    return 'hide';
                 }
             },
         },
@@ -73,18 +85,20 @@
                 setCommentVisibility: `modal_setCommentVisibility`,
             }),
             onChangeEvent(mode) {
-                if (mode === 'express') {
+            },
+            onModeEvent(mode) {
+                if (mode !== 'express') {
                     this.setCommentVisibility(true);
                 } else {
                     this.setCommentVisibility(false);
                 }
-            },
+            }
         },
         data() {
             return {
                 btn_width: 40,
                 btn_height: 100,
-                ani_duration: 0.2,
+                ani_duration: 0.5,
             }
         },
     }

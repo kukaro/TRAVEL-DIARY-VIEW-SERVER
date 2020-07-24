@@ -3461,7 +3461,7 @@ var mode = {
   data: function data() {
     return {
       internal_mode: mode.hide,
-      ani_duration: 0.3
+      ani_duration: 1
     };
   }
 });
@@ -5079,6 +5079,111 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_unit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../utils/unit */ "./resources/js/utils/unit.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _utils_ctxt__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../utils/ctxt */ "./resources/js/components/utils/ctxt.vue");
+/* harmony import */ var _show_slot__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./show-slot */ "./resources/js/components/modal/diary-edit/comment-contents/show-slot.vue");
+/* harmony import */ var _input_slot__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./input-slot */ "./resources/js/components/modal/diary-edit/comment-contents/input-slot.vue");
+/* harmony import */ var _common_separator__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../common/separator */ "./resources/js/components/common/separator.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "comment-contents",
+  components: {
+    Separator: _common_separator__WEBPACK_IMPORTED_MODULE_5__["default"],
+    InputSlot: _input_slot__WEBPACK_IMPORTED_MODULE_4__["default"],
+    ShowSlot: _show_slot__WEBPACK_IMPORTED_MODULE_3__["default"],
+    Ctxt: _utils_ctxt__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  watch: {
+    display: function display() {
+      var comment = this.diary.comment;
+
+      if (this.prev_display !== this.display) {
+        this.prev_display = this.display;
+
+        if (this.display === true) {
+          comment.is_started = true;
+          comment.is_display = true;
+          setTimeout(function () {
+            comment.is_opacity = true;
+          }, this.ani_duration * 1000);
+        } else {
+          comment.is_started = false;
+          comment.is_opacity = false;
+          setTimeout(function () {
+            comment.is_display = false;
+          }, this.ani_duration * 1000);
+        }
+      }
+    }
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
+    diary: "modal_diary",
+    global_setting: "global_setting",
+    grey220: "color_grey220"
+  })), {}, {
+    style: function style() {
+      var comment = this.diary.comment;
+      return {
+        display: comment.is_display ? 'flex' : 'none',
+        opacity: comment.is_opacity ? 1 : 0,
+        width: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mU"])(this.real_width),
+        transition: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mT"])('width', this.ani_duration, 'opacity', this.ani_duration)
+      };
+    },
+    real_width: function real_width() {
+      var comment = this.diary.comment;
+
+      if (comment.is_started) {
+        return this.diary.comment.width;
+      } else {
+        return 0;
+      }
+    },
+    display: function display() {
+      return this.diary.comment.visibility;
+    }
+  }),
+  data: function data() {
+    return {
+      prev_display: null,
+      ani_duration: 0.5
+    };
+  },
+  updated: function updated() {},
+  created: function created() {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/comment-contents/input-slot.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modal/diary-edit/comment-contents/input-slot.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _utils_unit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../utils/unit */ "./resources/js/utils/unit.js");
+/* harmony import */ var _input_td_button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../input/td-button */ "./resources/js/components/input/td-button.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -5096,71 +5201,88 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "comment-contents",
+  name: "input-slot",
   components: {
-    Ctxt: _utils_ctxt__WEBPACK_IMPORTED_MODULE_2__["default"]
+    TdButton: _input_td_button__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
-  watch: {
-    display: function display() {
-      var _this = this;
-
-      if (this.prev_display !== this.display) {
-        this.prev_display = this.display;
-
-        if (this.display === true) {
-          this.is_started = true;
-          this.is_display = true;
-          setTimeout(function () {
-            _this.is_opacity = true;
-          }, this.ani_duration * 1000);
-        } else {
-          this.is_started = false;
-          this.is_opacity = false;
-          setTimeout(function () {
-            _this.is_display = false;
-          }, this.ani_duration * 1000);
-        }
-      }
-    }
-  },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
     diary: "modal_diary",
-    global_setting: "global_setting"
+    global_setting: "global_setting",
+    grey220: "color_grey220",
+    prime: "color_prime"
   })), {}, {
     style: function style() {
       return {
-        display: this.is_display ? 'flex' : 'none',
-        opacity: this.is_opacity ? 1 : 0,
-        width: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mU"])(this.real_width),
-        transition: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mT"])('width', this.ani_duration, 'opacity', this.ani_duration)
+        height: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(this.diary.comment.input_height),
+        padding: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(this.global_setting.padding.value)
       };
     },
-    real_width: function real_width() {
-      if (this.is_started) {
-        return this.diary.comment.width;
-      } else {
-        return 0;
-      }
+    btn_style: function btn_style() {
+      return {
+        marginTop: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(5),
+        marginLeft: 'auto'
+      };
     },
-    display: function display() {
-      return this.diary.comment.visibility;
+    box_style: function box_style() {
+      return {
+        padding: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(10),
+        maxHeight: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(95),
+        minHeight: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(95),
+        overflow: 'scroll',
+        border: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mB"])(1, 'solid', this.grey220)
+      };
     }
-  }),
-  data: function data() {
-    return {
-      is_started: false,
-      is_display: false,
-      is_opacity: false,
-      prev_display: null,
-      ani_duration: 0.2
-    };
-  },
-  updated: function updated() {},
-  created: function created() {}
+  })
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/comment-contents/show-slot.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modal/diary-edit/comment-contents/show-slot.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _utils_unit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../utils/unit */ "./resources/js/utils/unit.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "show-slot",
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
+    diary: "modal_diary",
+    global_setting: "global_setting",
+    grey220: "color_grey220"
+  })), {}, {
+    style: function style() {
+      return {
+        margin: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(this.global_setting.padding.value),
+        padding: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(10),
+        border: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mB"])(1, 'solid', this.grey220)
+      };
+    }
+  })
 });
 
 /***/ }),
@@ -5552,6 +5674,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -5578,9 +5702,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   })), {}, {
     style: function style() {
       return {
-        width: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mU"])(this.real_with),
+        minWidth: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mU"])(this.real_with),
+        maxWidth: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mU"])(this.real_with),
         height: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mU"])(this.diary.height),
-        transition: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mT"])('width', this.ani_duration)
+        transition: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mT"])('width', this.ani_duration, 'min-width', this.ani_duration, 'max-width', this.ani_duration)
       };
     },
     real_with: function real_with() {
@@ -5596,14 +5721,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         padding: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mU"])(this.diary.padding),
         borderRight: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mB"])(1, 'solid', this.grey220)
       };
+    },
+    mode: function mode() {
+      if (this.diary.comment.visibility) {
+        return 'express';
+      } else {
+        return 'hide';
+      }
     }
   }),
   created: function created() {},
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])({
     setCommentVisibility: "modal_setCommentVisibility"
   })), {}, {
-    onChangeEvent: function onChangeEvent(mode) {
-      if (mode === 'express') {
+    onChangeEvent: function onChangeEvent(mode) {},
+    onModeEvent: function onModeEvent(mode) {
+      if (mode !== 'express') {
         this.setCommentVisibility(true);
       } else {
         this.setCommentVisibility(false);
@@ -5614,7 +5747,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       btn_width: 40,
       btn_height: 100,
-      ani_duration: 0.2
+      ani_duration: 0.5
     };
   }
 });
@@ -13753,7 +13886,45 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../node_module
 
 
 // module
-exports.push([module.i, "\n.comment-contents[data-v-4443e609] {\n    overflow: hidden;\n}\n", ""]);
+exports.push([module.i, "\n.comment-contents[data-v-4443e609] {\n    overflow: hidden;\n    display: flex;\n    flex-direction: column;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/comment-contents/input-slot.vue?vue&type=style&index=0&id=7ecb380c&scoped=true&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modal/diary-edit/comment-contents/input-slot.vue?vue&type=style&index=0&id=7ecb380c&scoped=true&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.input-slot[data-v-7ecb380c] {\n    display: flex;\n    flex-direction: column;\n}\n.input-box[data-v-7ecb380c] {\n    flex: 1;\n    -ms-overflow-style: none; /* IE and Edge */\n    scrollbar-width: none; /* Firefox */\n}\n.input-slot-footer[data-v-7ecb380c] {\n    display: flex;\n}\n.input-box[data-v-7ecb380c]::-webkit-scrollbar {\n    display: none; /* Chrome, Safari, Opera*/\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/comment-contents/show-slot.vue?vue&type=style&index=0&id=3fa4fe85&scoped=true&lang=css&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modal/diary-edit/comment-contents/show-slot.vue?vue&type=style&index=0&id=3fa4fe85&scoped=true&lang=css& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.show-slot[data-v-3fa4fe85] {\n    flex: 1;\n}\n", ""]);
 
 // exports
 
@@ -47538,6 +47709,66 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/comment-contents/input-slot.vue?vue&type=style&index=0&id=7ecb380c&scoped=true&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modal/diary-edit/comment-contents/input-slot.vue?vue&type=style&index=0&id=7ecb380c&scoped=true&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../../../node_modules/css-loader??ref--6-1!../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./input-slot.vue?vue&type=style&index=0&id=7ecb380c&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/comment-contents/input-slot.vue?vue&type=style&index=0&id=7ecb380c&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/comment-contents/show-slot.vue?vue&type=style&index=0&id=3fa4fe85&scoped=true&lang=css&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modal/diary-edit/comment-contents/show-slot.vue?vue&type=style&index=0&id=3fa4fe85&scoped=true&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../../../node_modules/css-loader??ref--6-1!../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./show-slot.vue?vue&type=style&index=0&id=3fa4fe85&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/comment-contents/show-slot.vue?vue&type=style&index=0&id=3fa4fe85&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/diary-edit-footer.vue?vue&type=style&index=0&id=7e0e6666&scoped=true&lang=css&":
 /*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modal/diary-edit/diary-edit-footer.vue?vue&type=style&index=0&id=7e0e6666&scoped=true&lang=css& ***!
@@ -53368,7 +53599,79 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "comment-contents", style: _vm.style })
+  return _c(
+    "div",
+    { staticClass: "comment-contents", style: _vm.style },
+    [
+      _c("show-slot"),
+      _vm._v(" "),
+      _c("separator", { attrs: { color: _vm.grey220 } }),
+      _vm._v(" "),
+      _c("input-slot")
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/comment-contents/input-slot.vue?vue&type=template&id=7ecb380c&scoped=true&":
+/*!***********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modal/diary-edit/comment-contents/input-slot.vue?vue&type=template&id=7ecb380c&scoped=true& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "input-slot", style: _vm.style }, [
+    _c("div", {
+      staticClass: "input-box",
+      style: _vm.box_style,
+      attrs: { contenteditable: "true" }
+    }),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "input-slot-footer" },
+      [_c("td-button", { style: _vm.btn_style, attrs: { color: _vm.prime } })],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/comment-contents/show-slot.vue?vue&type=template&id=3fa4fe85&scoped=true&":
+/*!**********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modal/diary-edit/comment-contents/show-slot.vue?vue&type=template&id=3fa4fe85&scoped=true& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "show-slot", style: _vm.style })
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -53608,10 +53911,10 @@ var render = function() {
           width: _vm.btn_width,
           height: _vm.btn_height,
           left: _vm.diary.width - _vm.btn_width,
-          top:
-            (_vm.diary.height + _vm.diary.padding * 2) / 2 - _vm.btn_height / 2
+          top: _vm.diary.height / 2 - _vm.btn_height / 2,
+          mode: _vm.mode
         },
-        on: { changeEvent: _vm.onChangeEvent }
+        on: { modeEvent: _vm.onModeEvent, changeEvent: _vm.onChangeEvent }
       }),
       _vm._v(" "),
       _c("comment-contents")
@@ -75482,6 +75785,180 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/modal/diary-edit/comment-contents/input-slot.vue":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/modal/diary-edit/comment-contents/input-slot.vue ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _input_slot_vue_vue_type_template_id_7ecb380c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./input-slot.vue?vue&type=template&id=7ecb380c&scoped=true& */ "./resources/js/components/modal/diary-edit/comment-contents/input-slot.vue?vue&type=template&id=7ecb380c&scoped=true&");
+/* harmony import */ var _input_slot_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./input-slot.vue?vue&type=script&lang=js& */ "./resources/js/components/modal/diary-edit/comment-contents/input-slot.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _input_slot_vue_vue_type_style_index_0_id_7ecb380c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./input-slot.vue?vue&type=style&index=0&id=7ecb380c&scoped=true&lang=css& */ "./resources/js/components/modal/diary-edit/comment-contents/input-slot.vue?vue&type=style&index=0&id=7ecb380c&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _input_slot_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _input_slot_vue_vue_type_template_id_7ecb380c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _input_slot_vue_vue_type_template_id_7ecb380c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "7ecb380c",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/modal/diary-edit/comment-contents/input-slot.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/modal/diary-edit/comment-contents/input-slot.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************!*\
+  !*** ./resources/js/components/modal/diary-edit/comment-contents/input-slot.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_input_slot_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./input-slot.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/comment-contents/input-slot.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_input_slot_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/modal/diary-edit/comment-contents/input-slot.vue?vue&type=style&index=0&id=7ecb380c&scoped=true&lang=css&":
+/*!*******************************************************************************************************************************************!*\
+  !*** ./resources/js/components/modal/diary-edit/comment-contents/input-slot.vue?vue&type=style&index=0&id=7ecb380c&scoped=true&lang=css& ***!
+  \*******************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_input_slot_vue_vue_type_style_index_0_id_7ecb380c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/style-loader!../../../../../../node_modules/css-loader??ref--6-1!../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./input-slot.vue?vue&type=style&index=0&id=7ecb380c&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/comment-contents/input-slot.vue?vue&type=style&index=0&id=7ecb380c&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_input_slot_vue_vue_type_style_index_0_id_7ecb380c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_input_slot_vue_vue_type_style_index_0_id_7ecb380c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_input_slot_vue_vue_type_style_index_0_id_7ecb380c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_input_slot_vue_vue_type_style_index_0_id_7ecb380c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_input_slot_vue_vue_type_style_index_0_id_7ecb380c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/modal/diary-edit/comment-contents/input-slot.vue?vue&type=template&id=7ecb380c&scoped=true&":
+/*!*****************************************************************************************************************************!*\
+  !*** ./resources/js/components/modal/diary-edit/comment-contents/input-slot.vue?vue&type=template&id=7ecb380c&scoped=true& ***!
+  \*****************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_input_slot_vue_vue_type_template_id_7ecb380c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./input-slot.vue?vue&type=template&id=7ecb380c&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/comment-contents/input-slot.vue?vue&type=template&id=7ecb380c&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_input_slot_vue_vue_type_template_id_7ecb380c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_input_slot_vue_vue_type_template_id_7ecb380c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/modal/diary-edit/comment-contents/show-slot.vue":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/modal/diary-edit/comment-contents/show-slot.vue ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _show_slot_vue_vue_type_template_id_3fa4fe85_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./show-slot.vue?vue&type=template&id=3fa4fe85&scoped=true& */ "./resources/js/components/modal/diary-edit/comment-contents/show-slot.vue?vue&type=template&id=3fa4fe85&scoped=true&");
+/* harmony import */ var _show_slot_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./show-slot.vue?vue&type=script&lang=js& */ "./resources/js/components/modal/diary-edit/comment-contents/show-slot.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _show_slot_vue_vue_type_style_index_0_id_3fa4fe85_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./show-slot.vue?vue&type=style&index=0&id=3fa4fe85&scoped=true&lang=css& */ "./resources/js/components/modal/diary-edit/comment-contents/show-slot.vue?vue&type=style&index=0&id=3fa4fe85&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _show_slot_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _show_slot_vue_vue_type_template_id_3fa4fe85_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _show_slot_vue_vue_type_template_id_3fa4fe85_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "3fa4fe85",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/modal/diary-edit/comment-contents/show-slot.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/modal/diary-edit/comment-contents/show-slot.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************!*\
+  !*** ./resources/js/components/modal/diary-edit/comment-contents/show-slot.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_show_slot_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./show-slot.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/comment-contents/show-slot.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_show_slot_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/modal/diary-edit/comment-contents/show-slot.vue?vue&type=style&index=0&id=3fa4fe85&scoped=true&lang=css&":
+/*!******************************************************************************************************************************************!*\
+  !*** ./resources/js/components/modal/diary-edit/comment-contents/show-slot.vue?vue&type=style&index=0&id=3fa4fe85&scoped=true&lang=css& ***!
+  \******************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_show_slot_vue_vue_type_style_index_0_id_3fa4fe85_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/style-loader!../../../../../../node_modules/css-loader??ref--6-1!../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./show-slot.vue?vue&type=style&index=0&id=3fa4fe85&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/comment-contents/show-slot.vue?vue&type=style&index=0&id=3fa4fe85&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_show_slot_vue_vue_type_style_index_0_id_3fa4fe85_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_show_slot_vue_vue_type_style_index_0_id_3fa4fe85_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_show_slot_vue_vue_type_style_index_0_id_3fa4fe85_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_show_slot_vue_vue_type_style_index_0_id_3fa4fe85_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_show_slot_vue_vue_type_style_index_0_id_3fa4fe85_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/modal/diary-edit/comment-contents/show-slot.vue?vue&type=template&id=3fa4fe85&scoped=true&":
+/*!****************************************************************************************************************************!*\
+  !*** ./resources/js/components/modal/diary-edit/comment-contents/show-slot.vue?vue&type=template&id=3fa4fe85&scoped=true& ***!
+  \****************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_show_slot_vue_vue_type_template_id_3fa4fe85_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./show-slot.vue?vue&type=template&id=3fa4fe85&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/comment-contents/show-slot.vue?vue&type=template&id=3fa4fe85&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_show_slot_vue_vue_type_template_id_3fa4fe85_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_show_slot_vue_vue_type_template_id_3fa4fe85_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/modal/diary-edit/diary-edit-footer.vue":
 /*!************************************************************************!*\
   !*** ./resources/js/components/modal/diary-edit/diary-edit-footer.vue ***!
@@ -81087,7 +81564,11 @@ var data = {
       },
       comment: {
         width: 400,
-        visibility: false
+        visibility: false,
+        is_started: false,
+        is_display: false,
+        is_opacity: false,
+        input_height: 150
       },
       origin_data: null
     }
