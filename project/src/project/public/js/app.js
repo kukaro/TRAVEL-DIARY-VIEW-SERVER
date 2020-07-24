@@ -2724,12 +2724,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _utils_request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../utils/request */ "./resources/js/utils/request/index.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../config */ "./resources/js/config/index.js");
-/* harmony import */ var _utils_unit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../utils/unit */ "./resources/js/utils/unit.js");
-/* harmony import */ var _utils_hiworks__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../utils/hiworks */ "./resources/js/utils/hiworks/index.js");
-/* harmony import */ var _store_login__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../store/login */ "./resources/js/store/login.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _utils_unit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../utils/unit */ "./resources/js/utils/unit.js");
+/* harmony import */ var _store_login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../store/login */ "./resources/js/store/login.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2747,9 +2744,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
-
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "hiworks-login-btn",
   props: {
@@ -2759,7 +2753,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   watch: {},
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
     font_korean: 'font_korean',
     white: 'color_white',
     prime: 'color_prime',
@@ -2768,25 +2762,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   })), {}, {
     style: function style() {
       return {
-        height: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_3__["mU"])(this.input.height + 4),
+        height: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(this.input.height + 4),
         backgroundColor: this.hiworks_prime,
-        border: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_3__["mU"])(0),
+        border: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(0),
         color: this.white,
-        fontSize: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_3__["mU"])(this.input.font_size),
+        fontSize: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(this.input.font_size),
         fontWeight: 'bold',
         fontFamily: this.font_korean,
-        padding: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_3__["mU"])(0)
+        padding: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(0)
       };
     }
   }),
   created: function created() {},
-  methods: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])({
+  methods: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])({
     openHiworks: "hiworks_openHiworks"
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])({
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])({
     setLoginType: "login_setLoginType"
   })), {}, {
     onClick: function onClick() {
-      this.setLoginType(_store_login__WEBPACK_IMPORTED_MODULE_5__["types"].hiworks);
+      this.setLoginType(_store_login__WEBPACK_IMPORTED_MODULE_2__["types"].hiworks);
       this.openHiworks();
     }
   })
@@ -3437,6 +3431,7 @@ var mode = {
       }
 
       return _objectSpread(_objectSpread({}, ret), {}, {
+        fontFamily: "Noto",
         transition: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mT"])('left', this.ani_duration, 'border-top-right-radius', this.ani_duration, 'border-top-left-radius', this.ani_duration, 'border-bottom-right-radius', this.ani_duration, 'border-bottom-left-radius', this.ani_duration)
       });
     },
@@ -3459,6 +3454,8 @@ var mode = {
           this.internal_mode = mode.express;
         }
       }
+
+      this.$emit('changeEvent', this.real_mode);
     }
   },
   data: function data() {
@@ -5070,6 +5067,104 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/comment-contents/index.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modal/diary-edit/comment-contents/index.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utils_unit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../utils/unit */ "./resources/js/utils/unit.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _utils_ctxt__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../utils/ctxt */ "./resources/js/components/utils/ctxt.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "comment-contents",
+  components: {
+    Ctxt: _utils_ctxt__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  watch: {
+    display: function display() {
+      var _this = this;
+
+      if (this.prev_display !== this.display) {
+        this.prev_display = this.display;
+
+        if (this.display === true) {
+          this.is_started = true;
+          this.is_display = true;
+          setTimeout(function () {
+            _this.is_opacity = true;
+          }, this.ani_duration * 1000);
+        } else {
+          this.is_started = false;
+          this.is_opacity = false;
+          setTimeout(function () {
+            _this.is_display = false;
+          }, this.ani_duration * 1000);
+        }
+      }
+    }
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
+    diary: "modal_diary",
+    global_setting: "global_setting"
+  })), {}, {
+    style: function style() {
+      return {
+        display: this.is_display ? 'flex' : 'none',
+        opacity: this.is_opacity ? 1 : 0,
+        width: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mU"])(this.real_width),
+        transition: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mT"])('width', this.ani_duration, 'opacity', this.ani_duration)
+      };
+    },
+    real_width: function real_width() {
+      if (this.is_started) {
+        return this.diary.comment.width;
+      } else {
+        return 0;
+      }
+    },
+    display: function display() {
+      return this.diary.comment.visibility;
+    }
+  }),
+  data: function data() {
+    return {
+      is_started: false,
+      is_display: false,
+      is_opacity: false,
+      prev_display: null,
+      ani_duration: 0.2
+    };
+  },
+  updated: function updated() {},
+  created: function created() {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/diary-edit-footer.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modal/diary-edit/diary-edit-footer.vue?vue&type=script&lang=js& ***!
@@ -5381,7 +5476,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         fontSize: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(this.diary.editable.title.font_size),
         fontFamily: this.diary.editable.title.font_family,
         paddingLeft: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(10),
-        height: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(this.editable.title.height)
+        height: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(this.editable.title.height),
+        width: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(this.editable.title.width)
       };
     },
     last_button_style: function last_button_style() {
@@ -5430,6 +5526,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _editable_contents__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editable-contents */ "./resources/js/components/modal/diary-edit/editable-contents.vue");
 /* harmony import */ var _editable_toolbox__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../editable-toolbox */ "./resources/js/components/modal/editable-toolbox/index.vue");
 /* harmony import */ var _common_show_btn_index__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../common/show-btn/index */ "./resources/js/components/common/show-btn/index.vue");
+/* harmony import */ var _comment_contents_index__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./comment-contents/index */ "./resources/js/components/modal/diary-edit/comment-contents/index.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -5451,6 +5548,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+
 
 
 
@@ -5462,6 +5564,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "diary-edit",
   components: {
+    CommentContents: _comment_contents_index__WEBPACK_IMPORTED_MODULE_8__["default"],
     ShowBtn: _common_show_btn_index__WEBPACK_IMPORTED_MODULE_7__["default"],
     EditableToolbox: _editable_toolbox__WEBPACK_IMPORTED_MODULE_6__["default"],
     EditableContents: _editable_contents__WEBPACK_IMPORTED_MODULE_5__["default"],
@@ -5470,21 +5573,48 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     EditableTitle: _editable_title__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
-    diary: 'modal_diary'
+    diary: 'modal_diary',
+    grey220: "color_grey220"
   })), {}, {
     style: function style() {
       return {
-        width: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mU"])(this.diary.width),
+        width: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mU"])(this.real_with),
         height: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mU"])(this.diary.height),
-        padding: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mU"])(this.diary.padding)
+        transition: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mT"])('width', this.ani_duration)
+      };
+    },
+    real_with: function real_with() {
+      if (this.diary.comment.visibility) {
+        return this.diary.width + this.diary.comment.width;
+      } else {
+        return this.diary.width;
+      }
+    },
+    edit_style: function edit_style() {
+      return {
+        flex: 1,
+        padding: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mU"])(this.diary.padding),
+        borderRight: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mB"])(1, 'solid', this.grey220)
       };
     }
   }),
   created: function created() {},
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])({
+    setCommentVisibility: "modal_setCommentVisibility"
+  })), {}, {
+    onChangeEvent: function onChangeEvent(mode) {
+      if (mode === 'express') {
+        this.setCommentVisibility(true);
+      } else {
+        this.setCommentVisibility(false);
+      }
+    }
+  }),
   data: function data() {
     return {
       btn_width: 40,
-      btn_height: 100
+      btn_height: 100,
+      ani_duration: 0.2
     };
   }
 });
@@ -13611,6 +13741,25 @@ exports.push([module.i, "\n.diary-create[data-v-20bc7c36] {\n    display: flex;\
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/comment-contents/index.vue?vue&type=style&index=0&id=4443e609&scoped=true&lang=css&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modal/diary-edit/comment-contents/index.vue?vue&type=style&index=0&id=4443e609&scoped=true&lang=css& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.comment-contents[data-v-4443e609] {\n    overflow: hidden;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/diary-edit-footer.vue?vue&type=style&index=0&id=7e0e6666&scoped=true&lang=css&":
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modal/diary-edit/diary-edit-footer.vue?vue&type=style&index=0&id=7e0e6666&scoped=true&lang=css& ***!
@@ -13699,7 +13848,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.diary-edit[data-v-634f0b84] {\n    display: flex;\n    flex-direction: column;\n    margin: auto;\n    background-color: white;\n    position: relative;\n}\n", ""]);
+exports.push([module.i, "\n.diary-edit[data-v-634f0b84] {\n    display: flex;\n    margin: auto;\n    background-color: white;\n    position: relative;\n}\n.edit-content[data-v-634f0b84] {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n}\n", ""]);
 
 // exports
 
@@ -47359,6 +47508,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/comment-contents/index.vue?vue&type=style&index=0&id=4443e609&scoped=true&lang=css&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modal/diary-edit/comment-contents/index.vue?vue&type=style&index=0&id=4443e609&scoped=true&lang=css& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../../../node_modules/css-loader??ref--6-1!../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=style&index=0&id=4443e609&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/comment-contents/index.vue?vue&type=style&index=0&id=4443e609&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/diary-edit-footer.vue?vue&type=style&index=0&id=7e0e6666&scoped=true&lang=css&":
 /*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modal/diary-edit/diary-edit-footer.vue?vue&type=style&index=0&id=7e0e6666&scoped=true&lang=css& ***!
@@ -53174,6 +53353,30 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/comment-contents/index.vue?vue&type=template&id=4443e609&scoped=true&":
+/*!******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modal/diary-edit/comment-contents/index.vue?vue&type=template&id=4443e609&scoped=true& ***!
+  \******************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "comment-contents", style: _vm.style })
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/diary-edit-footer.vue?vue&type=template&id=7e0e6666&scoped=true&":
 /*!*************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modal/diary-edit/diary-edit-footer.vue?vue&type=template&id=7e0e6666&scoped=true& ***!
@@ -53377,31 +53580,41 @@ var render = function() {
     "div",
     { staticClass: "diary-edit", style: _vm.style },
     [
-      _vm.diary.data
-        ? _c("diary-edit-header", { attrs: { data: _vm.diary.data } })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.diary.data
-        ? _c("editable-title", { attrs: { data: _vm.diary.data } })
-        : _vm._e(),
-      _vm._v(" "),
-      _c("editable-toolbox"),
-      _vm._v(" "),
-      _vm.diary.data
-        ? _c("editable-contents", { attrs: { data: _vm.diary.data } })
-        : _vm._e(),
-      _vm._v(" "),
-      _c("diary-edit-footer", { attrs: { data: _vm.diary.data } }),
+      _c(
+        "div",
+        { staticClass: "edit-content", style: _vm.edit_style },
+        [
+          _vm.diary.data
+            ? _c("diary-edit-header", { attrs: { data: _vm.diary.data } })
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.diary.data
+            ? _c("editable-title", { attrs: { data: _vm.diary.data } })
+            : _vm._e(),
+          _vm._v(" "),
+          _c("editable-toolbox"),
+          _vm._v(" "),
+          _vm.diary.data
+            ? _c("editable-contents", { attrs: { data: _vm.diary.data } })
+            : _vm._e(),
+          _vm._v(" "),
+          _c("diary-edit-footer", { attrs: { data: _vm.diary.data } })
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("show-btn", {
         attrs: {
           width: _vm.btn_width,
           height: _vm.btn_height,
-          left: _vm.diary.width + _vm.diary.padding * 2 - _vm.btn_width,
+          left: _vm.diary.width - _vm.btn_width,
           top:
             (_vm.diary.height + _vm.diary.padding * 2) / 2 - _vm.btn_height / 2
-        }
-      })
+        },
+        on: { changeEvent: _vm.onChangeEvent }
+      }),
+      _vm._v(" "),
+      _c("comment-contents")
     ],
     1
   )
@@ -75182,6 +75395,93 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/modal/diary-edit/comment-contents/index.vue":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/modal/diary-edit/comment-contents/index.vue ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index_vue_vue_type_template_id_4443e609_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.vue?vue&type=template&id=4443e609&scoped=true& */ "./resources/js/components/modal/diary-edit/comment-contents/index.vue?vue&type=template&id=4443e609&scoped=true&");
+/* harmony import */ var _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.vue?vue&type=script&lang=js& */ "./resources/js/components/modal/diary-edit/comment-contents/index.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _index_vue_vue_type_style_index_0_id_4443e609_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index.vue?vue&type=style&index=0&id=4443e609&scoped=true&lang=css& */ "./resources/js/components/modal/diary-edit/comment-contents/index.vue?vue&type=style&index=0&id=4443e609&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _index_vue_vue_type_template_id_4443e609_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _index_vue_vue_type_template_id_4443e609_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "4443e609",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/modal/diary-edit/comment-contents/index.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/modal/diary-edit/comment-contents/index.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/components/modal/diary-edit/comment-contents/index.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/comment-contents/index.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/modal/diary-edit/comment-contents/index.vue?vue&type=style&index=0&id=4443e609&scoped=true&lang=css&":
+/*!**************************************************************************************************************************************!*\
+  !*** ./resources/js/components/modal/diary-edit/comment-contents/index.vue?vue&type=style&index=0&id=4443e609&scoped=true&lang=css& ***!
+  \**************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_style_index_0_id_4443e609_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/style-loader!../../../../../../node_modules/css-loader??ref--6-1!../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=style&index=0&id=4443e609&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/comment-contents/index.vue?vue&type=style&index=0&id=4443e609&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_style_index_0_id_4443e609_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_style_index_0_id_4443e609_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_style_index_0_id_4443e609_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_style_index_0_id_4443e609_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_style_index_0_id_4443e609_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/modal/diary-edit/comment-contents/index.vue?vue&type=template&id=4443e609&scoped=true&":
+/*!************************************************************************************************************************!*\
+  !*** ./resources/js/components/modal/diary-edit/comment-contents/index.vue?vue&type=template&id=4443e609&scoped=true& ***!
+  \************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_4443e609_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=template&id=4443e609&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modal/diary-edit/comment-contents/index.vue?vue&type=template&id=4443e609&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_4443e609_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_4443e609_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/modal/diary-edit/diary-edit-footer.vue":
 /*!************************************************************************!*\
   !*** ./resources/js/components/modal/diary-edit/diary-edit-footer.vue ***!
@@ -79820,7 +80120,8 @@ var data = {
     refined_data: {},
     editable: {
       title: {
-        height: 45
+        height: 45,
+        width: 650
       }
     }
   },
@@ -80440,10 +80741,6 @@ var data = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dto_GlobalHeaderDto__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../dto/GlobalHeaderDto */ "./resources/js/dto/GlobalHeaderDto.js");
-/* harmony import */ var _dto_UserDto__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../dto/UserDto */ "./resources/js/dto/UserDto.js");
-/* harmony import */ var _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../storage/sessionstorage */ "./resources/js/storage/sessionstorage.js");
-
-
 
 var prefix = 'global';
 var data = {
@@ -80788,11 +81085,21 @@ var data = {
           font_family: 'Noto'
         }
       },
+      comment: {
+        width: 400,
+        visibility: false
+      },
       origin_data: null
     }
   },
   getters: {},
   mutations: {
+    setCommentVisibility: function setCommentVisibility(state, payload) {
+      this.state["".concat(prefix, "_diary")].comment.visibility = payload;
+    },
+    reverseCommentVisibility: function reverseCommentVisibility() {
+      this.state["".concat(prefix, "_diary")].comment.visibility = !this.state["{$prefix}_diary"].comment.visibility;
+    },
     closeModal: function closeModal() {
       this.state["".concat(prefix, "_is_modal")] = false;
 

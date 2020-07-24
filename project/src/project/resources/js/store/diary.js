@@ -34,7 +34,8 @@ const data = {
         refined_data: {},
         editable: {
             title: {
-                height: 45
+                height: 45,
+                width: 650,
             }
         },
     },

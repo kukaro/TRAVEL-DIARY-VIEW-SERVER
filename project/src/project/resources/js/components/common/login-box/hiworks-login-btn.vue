@@ -7,11 +7,8 @@
 </template>
 
 <script>
-    import {call} from "../../../utils/request";
     import {mapActions, mapMutations, mapState} from "vuex";
-    import config from "../../../config";
     import {mU} from "../../../utils/unit";
-    import {fullHiworksOauthUri} from "../../../utils/hiworks";
     import {types} from "../../../store/login";
 
     export default {

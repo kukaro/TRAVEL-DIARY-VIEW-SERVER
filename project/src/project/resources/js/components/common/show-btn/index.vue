@@ -106,6 +106,7 @@
                 }
                 return {
                     ...ret,
+                    fontFamily: "Noto",
                     transition: mT('left', this.ani_duration,
                         'border-top-right-radius', this.ani_duration,
                         'border-top-left-radius', this.ani_duration,
@@ -133,6 +134,7 @@
                         this.internal_mode = mode.express;
                     }
                 }
+                this.$emit('changeEvent', this.real_mode);
             },
         },
         data() {

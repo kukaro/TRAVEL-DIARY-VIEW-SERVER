@@ -17,7 +17,7 @@
         name: "editable-contents",
         computed: {
             ...mapState({
-                diary: `modal_diary`
+                diary: `modal_diary`,
             }),
             style() {
                 return {

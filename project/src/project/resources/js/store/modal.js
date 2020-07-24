@@ -28,11 +28,21 @@ const data = {
                     font_family: 'Noto',
                 }
             },
+            comment:{
+                width: 400,
+                visibility: false,
+            },
             origin_data: null,
         }
     },
     getters: {},
     mutations: {
+        setCommentVisibility(state, payload){
+            this.state[`${prefix}_diary`].comment.visibility = payload;
+        },
+        reverseCommentVisibility(){
+            this.state[`${prefix}_diary`].comment.visibility = !this.state[`{$prefix}_diary`].comment.visibility;
+        },
         closeModal() {
             this.state[`${prefix}_is_modal`] = false;
             switch (this.state[`${prefix}_mode`]) {

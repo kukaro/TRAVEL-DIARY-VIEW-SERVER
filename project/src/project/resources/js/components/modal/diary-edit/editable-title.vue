@@ -57,6 +57,7 @@
                     fontFamily: this.diary.editable.title.font_family,
                     paddingLeft: mU(10),
                     height: mU(this.editable.title.height),
+                    width: mU(this.editable.title.width),
                 }
             },
             last_button_style() {
