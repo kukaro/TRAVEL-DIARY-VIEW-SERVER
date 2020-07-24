@@ -25,7 +25,10 @@
         "password_confirmation": "비밀번호 확인",
         "show": "보기",
         "not_data": "데이터가 없습니다.",
-        "return_normal_login" : "\uD83E\uDC14 일반 로그인"
+        "return_normal_login" : "\uD83E\uDC14 일반 로그인",
+        "hide": "숨기기",
+        "express": "나타내기",
+        "none": "값 없음"
     },
     "user": {
         "title": "사용자 정보",
@@ -61,5 +64,8 @@
         "location_criteria": "지역별",
         "time_inc": "최근 날짜순으로 변경 ▼",
         "time_dec": "오래된 날짜순으로 변경 ▲"
+    },
+    "comment": {
+        "comment": "댓글"
     }
 }

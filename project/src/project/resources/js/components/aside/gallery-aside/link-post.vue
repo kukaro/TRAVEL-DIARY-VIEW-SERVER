@@ -80,6 +80,7 @@
 
     .last_td {
         text-align: right;
+        white-space: nowrap;
     }
 
     table {
