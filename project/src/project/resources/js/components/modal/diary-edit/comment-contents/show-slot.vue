@@ -1,15 +1,21 @@
 <template>
     <div class="show-slot" :style="style">
-
+        <div class="inner">
+            <my-talk v-for="(value, key) in new Array(20).fill(0)"
+                     :key="key"
+                     :idx="key"/>
+        </div>
     </div>
 </template>
 
 <script>
     import {mapState} from "vuex";
     import {mB, mU} from "../../../../utils/unit";
+    import MyTalk from "./my-talk";
 
     export default {
         name: "show-slot",
+        components: {MyTalk},
         computed: {
             ...mapState({
                 diary: `modal_diary`,
@@ -30,5 +36,18 @@
 <style scoped>
     .show-slot {
         flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: scroll;
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+
+    .inner {
+        margin-top: auto;
+    }
+
+    .show-slot::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera*/
     }
 </style>

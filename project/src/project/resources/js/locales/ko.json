@@ -66,6 +66,7 @@
         "time_dec": "오래된 날짜순으로 변경 ▲"
     },
     "comment": {
-        "comment": "댓글"
+        "comment": "댓글",
+        "remain": "댓글 남기기"
     }
 }

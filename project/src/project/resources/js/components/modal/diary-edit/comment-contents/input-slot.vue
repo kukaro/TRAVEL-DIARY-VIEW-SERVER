@@ -6,7 +6,10 @@
 
         </div>
         <div class="input-slot-footer">
-            <td-button :style="btn_style" :color="prime"/>
+            <td-button :style="btn_style"
+                       :color="prime"
+                       :value="$t(`comment.remain`)"
+                       :font_color="'white'"/>
         </div>
     </div>
 </template>
