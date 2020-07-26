@@ -8,6 +8,8 @@
         <div class="input-slot-footer">
             <td-button :style="btn_style"
                        :color="prime"
+                       :hover_color="chosen_prime"
+                       :box_shadow="`0 1px 20px 1px ${prime}`"
                        :value="$t(`comment.remain`)"
                        :font_color="'white'"/>
         </div>
@@ -28,6 +30,7 @@
                 global_setting: `global_setting`,
                 grey220: `color_grey220`,
                 prime: `color_prime`,
+                chosen_prime: 'color_chosen_prime',
             }),
             style() {
                 return {

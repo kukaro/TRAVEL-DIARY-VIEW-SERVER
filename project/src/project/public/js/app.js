@@ -5206,6 +5206,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -5218,7 +5220,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     diary: "modal_diary",
     global_setting: "global_setting",
     grey220: "color_grey220",
-    prime: "color_prime"
+    prime: "color_prime",
+    chosen_prime: 'color_chosen_prime'
   })), {}, {
     style: function style() {
       return {
@@ -5256,6 +5259,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../utils/helper */ "./resources/js/utils/helper.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _utils_unit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../utils/unit */ "./resources/js/utils/unit.js");
+/* harmony import */ var _utils_ctxt__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../utils/ctxt */ "./resources/js/components/utils/ctxt.vue");
+/* harmony import */ var _common_separator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../common/separator */ "./resources/js/components/common/separator.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5263,20 +5284,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "my-talk",
+  components: {
+    Separator: _common_separator__WEBPACK_IMPORTED_MODULE_4__["default"],
+    Ctxt: _utils_ctxt__WEBPACK_IMPORTED_MODULE_3__["default"]
+  },
   props: {
     idx: {
       "default": -1
+    },
+    data: {
+      required: true
     }
   },
-  computed: {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
+    diary: "modal_diary",
+    grey220: "color_grey220"
+  })), {}, {
     style: function style() {
       return {
-        backgroundColor: Object(_utils_helper__WEBPACK_IMPORTED_MODULE_0__["randomColor"])()
+        padding: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(2),
+        backgroundColor: 'transparent',
+        minHeight: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(this.diary.comment.talk_height)
       };
+    },
+    box_style: function box_style() {
+      return {
+        display: 'flex',
+        flexDirection: 'column',
+        backgroundColor: 'white',
+        border: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mB"])(1, 'solid', this.grey220),
+        marginLeft: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(this.diary.comment.talk_margin),
+        borderRadius: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(this.diary.comment.talk_border_radius)
+      };
+    },
+    header_style: function header_style() {
+      return {
+        minHeight: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_2__["mU"])(this.diary.comment.talk_header_height),
+        backgroundColor: 'transparent'
+      };
+    },
+    contents_style: function contents_style() {
+      return {};
     }
-  }
+  })
 });
 
 /***/ }),
@@ -5299,6 +5355,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -5549,7 +5606,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   })), {}, {
     style: function style() {
       return {
-        padding: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(this.diary.padding / 2) // border: `1px solid red`
+        padding: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(this.diary.padding / 2),
+        width: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(this.diary.editable.body.width) // border: `1px solid red`
 
       };
     }
@@ -5777,9 +5835,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   }),
-  created: function created() {},
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])({
+  created: function created() {
+    this.getAllPostcommentByPostId({
+      data: this.diary.data
+    });
+  },
+  methods: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])({
     setCommentVisibility: "modal_setCommentVisibility"
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])({
+    getAllPostcommentByPostId: "postcomment_getAllPostcommentByPostId"
   })), {}, {
     onChangeEvent: function onChangeEvent(mode) {},
     onModeEvent: function onModeEvent(mode) {
@@ -13971,7 +14035,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../node_module
 
 
 // module
-exports.push([module.i, "\n.my-talk[data-v-0d05bfb8] {\n    width: 100%;\n    height: 50px;\n}\n", ""]);
+exports.push([module.i, "\n.my-talk[data-v-0d05bfb8] {\n    display: flex;\n    width: 100%;\n    height: 50px;\n}\n", ""]);
 
 // exports
 
@@ -53745,6 +53809,8 @@ var render = function() {
           style: _vm.btn_style,
           attrs: {
             color: _vm.prime,
+            hover_color: _vm.chosen_prime,
+            box_shadow: "0 1px 20px 1px " + _vm.prime,
             value: _vm.$t("comment.remain"),
             font_color: "white"
           }
@@ -53777,7 +53843,27 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "my-talk", style: _vm.style }, [
-    _vm._v("\n    " + _vm._s(_vm.idx) + "\n")
+    _c(
+      "div",
+      { staticClass: "talk-box", style: _vm.box_style },
+      [
+        _c(
+          "div",
+          { staticClass: "talk-box-header", style: _vm.header_style },
+          [_c("ctxt", { attrs: { value: _vm.data.owner_email } })],
+          1
+        ),
+        _vm._v(" "),
+        _c("separator", { attrs: { color: _vm.grey220 } }),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "talk-box-contents", style: _vm.contents_style },
+          [_vm._v("\n            " + _vm._s(_vm.data) + "\n        ")]
+        )
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = []
@@ -53806,8 +53892,8 @@ var render = function() {
     _c(
       "div",
       { staticClass: "inner" },
-      _vm._l(new Array(20).fill(0), function(value, key) {
-        return _c("my-talk", { key: key, attrs: { idx: key } })
+      _vm._l(_vm.diary.comment.data, function(value, key) {
+        return _c("my-talk", { key: key, attrs: { idx: key, data: value } })
       }),
       1
     )
@@ -81651,6 +81737,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _gallery__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./gallery */ "./resources/js/store/gallery.js");
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./edit */ "./resources/js/store/edit.js");
 /* harmony import */ var _hiworks__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./hiworks */ "./resources/js/store/hiworks.js");
+/* harmony import */ var _postcomment__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./postcomment */ "./resources/js/store/postcomment.js");
+
 
 
 
@@ -81687,6 +81775,7 @@ Object(_utils_helper__WEBPACK_IMPORTED_MODULE_2__["sBind"])(_picture__WEBPACK_IM
 Object(_utils_helper__WEBPACK_IMPORTED_MODULE_2__["sBind"])(_gallery__WEBPACK_IMPORTED_MODULE_13__["default"].prefix, _gallery__WEBPACK_IMPORTED_MODULE_13__["default"], data);
 Object(_utils_helper__WEBPACK_IMPORTED_MODULE_2__["sBind"])(_edit__WEBPACK_IMPORTED_MODULE_14__["default"].prefix, _edit__WEBPACK_IMPORTED_MODULE_14__["default"], data);
 Object(_utils_helper__WEBPACK_IMPORTED_MODULE_2__["sBind"])(_hiworks__WEBPACK_IMPORTED_MODULE_15__["default"].prefix, _hiworks__WEBPACK_IMPORTED_MODULE_15__["default"], data);
+Object(_utils_helper__WEBPACK_IMPORTED_MODULE_2__["sBind"])(_postcomment__WEBPACK_IMPORTED_MODULE_16__["default"].prefix, _postcomment__WEBPACK_IMPORTED_MODULE_16__["default"], data);
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store(data));
 
 /***/ }),
@@ -81787,15 +81876,23 @@ var data = {
         title: {
           font_size: 30,
           font_family: 'Noto'
+        },
+        body: {
+          width: 830
         }
       },
       comment: {
+        data: null,
         width: 400,
         visibility: false,
         is_started: false,
         is_display: false,
         is_opacity: false,
-        input_height: 150
+        input_height: 150,
+        talk_height: 100,
+        talk_margin: 30,
+        talk_border_radius: 15,
+        talk_header_height: 20
       },
       origin_data: null
     }
@@ -81929,6 +82026,65 @@ var data = {
         Authorization: "".concat(jwt.token_type, " ").concat(jwt.access_token)
       }, headers);
       Object(_utils_request__WEBPACK_IMPORTED_MODULE_1__["call"])(commit, 'post', '/picture', "".concat(prefix, "_successCreatePictureByOwner"), "".concat(prefix, "_failCreatePictureByOwner"), data, headers, param);
+    }
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (data);
+
+/***/ }),
+
+/***/ "./resources/js/store/postcomment.js":
+/*!*******************************************!*\
+  !*** ./resources/js/store/postcomment.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../storage/sessionstorage */ "./resources/js/storage/sessionstorage.js");
+/* harmony import */ var _utils_request__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/request */ "./resources/js/utils/request/index.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var prefix = 'postcomment';
+var data = {
+  prefix: prefix,
+  state: {},
+  getters: {},
+  mutations: {
+    successGetAllPostcommentByPostId: function successGetAllPostcommentByPostId(state, res) {
+      console.log('successGetAllPostcommentByPostId');
+      var data = res.data;
+      var diary = this.state["modal_diary"];
+      diary.comment.data = data;
+    },
+    failGetAllPostcommentByPostId: function failGetAllPostcommentByPostId(state, res) {
+      console.log('failGetAllPostcommentByPostId');
+      console.log(res);
+    }
+  },
+  actions: {
+    getAllPostcommentByPostId: function getAllPostcommentByPostId(_ref, _ref2) {
+      var commit = _ref.commit;
+      var _ref2$data = _ref2.data,
+          data = _ref2$data === void 0 ? {} : _ref2$data,
+          _ref2$headers = _ref2.headers,
+          headers = _ref2$headers === void 0 ? {} : _ref2$headers;
+      var jwt = _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_0__["default"].getJwt();
+      headers = _objectSpread({
+        Authorization: "".concat(jwt.token_type, " ").concat(jwt.access_token)
+      }, headers);
+      var owner = this.state["sess_owner"];
+
+      if (owner.email) {
+        Object(_utils_request__WEBPACK_IMPORTED_MODULE_1__["call"])(commit, 'get', "/post-comment/post/".concat(data.id), "".concat(prefix, "_successGetAllPostcommentByPostId"), "".concat(prefix, "_failGetAllPostcommentByPostId"), data, headers);
+      }
     }
   }
 };

@@ -21,7 +21,7 @@
 
 <script>
     import {mB, mT, mU} from "../../../utils/unit";
-    import {mapMutations, mapState} from "vuex";
+    import {mapActions, mapMutations, mapState} from "vuex";
     import EditableTitle from "./editable-title";
     import DiaryEditHeader from "./diary-edit-header";
     import DiaryEditFooter from "./diary-edit-footer";
@@ -79,10 +79,14 @@
             },
         },
         created() {
+            this.getAllPostcommentByPostId({data:this.diary.data});
         },
         methods: {
             ...mapMutations({
                 setCommentVisibility: `modal_setCommentVisibility`,
+            }),
+            ...mapActions({
+                getAllPostcommentByPostId: `postcomment_getAllPostcommentByPostId`,
             }),
             onChangeEvent(mode) {
             },
