@@ -1,9 +1,10 @@
 <template>
     <div class="show-slot" :style="style">
         <div class="inner">
-            <my-talk v-for="(value, key) in new Array(20).fill(0)"
+            <my-talk v-for="(value, key) in diary.comment.data"
                      :key="key"
-                     :idx="key"/>
+                     :idx="key"
+                     :data="value"/>
         </div>
     </div>
 </template>

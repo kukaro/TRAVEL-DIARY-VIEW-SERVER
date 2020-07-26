@@ -14,6 +14,7 @@ import pictureStore from './picture'
 import galleryStore from './gallery'
 import editStore from './edit'
 import hiworksStore from './hiworks'
+import postcommentStore from './postcomment'
 
 Vue.use(Vuex)
 
@@ -37,5 +38,6 @@ sBind(pictureStore.prefix, pictureStore, data);
 sBind(galleryStore.prefix, galleryStore, data);
 sBind(editStore.prefix, editStore, data);
 sBind(hiworksStore.prefix, hiworksStore, data);
+sBind(postcommentStore.prefix, postcommentStore, data);
 
 export default new Vuex.Store(data);

@@ -26,15 +26,23 @@ const data = {
                 title: {
                     font_size: 30,
                     font_family: 'Noto',
+                },
+                body:{
+                    width: 830
                 }
             },
             comment:{
+                data: null,
                 width: 400,
                 visibility: false,
                 is_started: false,
                 is_display: false,
                 is_opacity: false,
                 input_height: 150,
+                talk_height: 100,
+                talk_margin: 30,
+                talk_border_radius: 15,
+                talk_header_height: 20,
             },
             origin_data: null,
         }

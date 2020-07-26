@@ -25,6 +25,7 @@
             style() {
                 return {
                     padding: mU(this.diary.padding / 2),
+                    width: mU(this.diary.editable.body.width)
                     // border: `1px solid red`
                 }
             }
