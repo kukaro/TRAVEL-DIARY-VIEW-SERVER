@@ -15,6 +15,6 @@ let data = {
     created() {
         this.setListChosenIdx(this.idx);
     },
-}
+};
 
 export default data;

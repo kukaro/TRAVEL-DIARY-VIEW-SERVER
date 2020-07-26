@@ -42,7 +42,7 @@ const data = {
                 talk_height: 100,
                 talk_margin: 30,
                 talk_border_radius: 15,
-                talk_header_height: 20,
+                talk_header_height: 30,
             },
             origin_data: null,
         }

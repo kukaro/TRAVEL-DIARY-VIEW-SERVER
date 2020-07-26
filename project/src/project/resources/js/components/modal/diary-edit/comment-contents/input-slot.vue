@@ -41,7 +41,7 @@
             btn_style() {
                 return {
                     marginTop: mU(5),
-                    marginLeft: 'auto'
+                    marginLeft: 'auto',
                 }
             },
             box_style() {
@@ -51,6 +51,7 @@
                     minHeight: mU(95),
                     overflow: 'scroll',
                     border: mB(1, 'solid', this.grey220),
+                    backgroundColor: 'white',
                 }
             },
         }
