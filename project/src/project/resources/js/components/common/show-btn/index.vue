@@ -113,6 +113,7 @@
                         'border-bottom-right-radius', this.ani_duration,
                         'border-bottom-left-radius', this.ani_duration,
                     ),
+                    zIndex: 2
                 }
             },
             real_mode() {

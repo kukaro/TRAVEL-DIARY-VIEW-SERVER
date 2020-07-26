@@ -52,6 +52,7 @@
                     width: mU(this.real_width),
                     transition: mT('width', this.ani_duration,
                         'opacity', this.ani_duration),
+                    background: 'whitesmoke',
                 }
             },
             real_width() {

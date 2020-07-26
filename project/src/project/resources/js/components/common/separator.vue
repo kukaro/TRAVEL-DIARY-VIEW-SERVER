@@ -25,7 +25,8 @@
                 return {
                     backgroundColor: this.color,
                     width: calcAOB('100%', '-', this.margin * 2),
-                    height: mU(this.height),
+                    minHeight: mU(this.height),
+                    maxHeight: mU(this.height),
                     marginLeft: mU(this.margin),
                     marginRight: mU(this.margin),
                 }
