@@ -1,5 +1,7 @@
 <template>
-    <div class="other-talk-box" :style="box_style">
+    <div class="other-talk-box"
+         :style="box_style"
+         @click="onClick">
         <div class="talk-box-header" :style="header_style">
             <ctxt :value="data.updated_date"
                   :size="10"
@@ -11,6 +13,14 @@
                   :style="center"/>
         </div>
         <separator :color="grey220" :margin="0"/>
+        <div v-if="data.parents_comment_id"
+             class="parents-slot"
+             :style="parents_slot_style">
+            <ctxt :value="comment_data[data.parents_comment_id].owner_email"
+                  :style="{...center,...parents_email_style,}"/>
+            <ctxt :value="comment_data[data.parents_comment_id].contents"
+                  :style="{...center,...parents_contents_style,}"/>
+        </div>
         <div class="talk-box-contents" :style="contents_style"
              v-html="data.contents">
         </div>
@@ -61,6 +71,10 @@
 </script>
 
 <style scoped>
+    .other-talk-box{
+        cursor: pointer;
+    }
+
     .date {
     }
 

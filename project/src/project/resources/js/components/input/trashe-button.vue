@@ -1,20 +1,24 @@
 <template>
-    <div class="trash-button"
+    <div class="trash-button no-drag"
          :width="width"
          :height="height"
+         draggable="false"
          @mouseover="onMouseOver"
          @mouseleave="onMouseLeave"
          @click.stop="onClick">
         <img v-if="!result_hover && color === mode.white" class="trash-button-if"
              src="../../../assets/img/trash_white.png"
+             draggable="false"
              :width="width"
              :height="height"/>
         <img v-else-if="!result_hover && color === mode.black" class="trash-button-if"
              src="../../../assets/img/trash_black.png"
+             draggable="false"
              :width="width"
              :height="height"/>
         <img v-else class="trash-button-else"
              src="../../../assets/img/trash_red.png"
+             draggable="false"
              :width="width"
              :height="height"/>
     </div>
@@ -56,10 +60,10 @@
                     this.click_event(...this.click_event_param);
                 }
             },
-            onMouseOver(){
+            onMouseOver() {
                 this.internal_hover = true;
             },
-            onMouseLeave(){
+            onMouseLeave() {
                 this.internal_hover = false;
             },
         },
@@ -87,5 +91,13 @@
 <style scoped>
     .trash-button {
         cursor: pointer;
+    }
+
+    .no-drag {
+        -ms-user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        user-select: none;
     }
 </style>

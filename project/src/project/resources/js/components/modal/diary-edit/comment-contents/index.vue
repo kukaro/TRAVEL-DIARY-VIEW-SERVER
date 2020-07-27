@@ -73,6 +73,8 @@
                 ani_duration: 0.5,
             }
         },
+        methods:{
+        },
         updated() {
 
         },

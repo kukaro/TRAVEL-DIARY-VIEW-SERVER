@@ -1,5 +1,5 @@
 <template>
-    <div class="show-slot" :style="style">
+    <div ref="scroll" class="show-slot" :style="style">
         <div class="inner">
             <talk v-for="(value, key) in diary.comment.data"
                   :key="key"
@@ -17,6 +17,19 @@
     export default {
         name: "show-slot",
         components: {Talk},
+        watch: {
+            is_opacity(){
+                let scroll = this.$refs['scroll'];
+                this.$nextTick(() => {
+                    scroll.scrollTo(
+                        {
+                            top: scroll.scrollHeight,
+                            behavior: 'smooth'
+                        }
+                    );
+                })
+            },
+        },
         computed: {
             ...mapState({
                 diary: `modal_diary`,
@@ -31,8 +44,27 @@
                     border: mB(1, 'solid', this.grey220),
                     backgroundColor: 'white',
                 }
-            }
-        }
+            },
+            comments() {
+                return this.diary.comment.data;
+            },
+            is_opacity(){
+                return this.diary.comment.is_opacity;
+            },
+        },
+        updated() {
+            let scroll = this.$refs['scroll'];
+            this.$nextTick(() => {
+                scroll.scrollTo(
+                    {
+                        top: scroll.scrollHeight,
+                        behavior: 'smooth'
+                    }
+                );
+            })
+        },
+        mounted() {
+        },
     }
 </script>
 

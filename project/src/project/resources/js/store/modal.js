@@ -33,6 +33,7 @@ const data = {
             },
             comment:{
                 data: null,
+                parents_data: null,
                 width: 400,
                 visibility: false,
                 is_started: false,
@@ -43,12 +44,17 @@ const data = {
                 talk_margin: 30,
                 talk_border_radius: 15,
                 talk_header_height: 30,
+                parents_height: 30,
+                comment_height: 95,
             },
             origin_data: null,
         }
     },
     getters: {},
     mutations: {
+        insertComment(state, payload){
+            this.state[`${prefix}_diary`].comment.data.push(payload);
+        },
         setCommentVisibility(state, payload){
             this.state[`${prefix}_diary`].comment.visibility = payload;
         },
