@@ -27,10 +27,30 @@
                 this.setLogin(this.user);
             }
         },
-        mounted(){
-            let mine = document.createElement('script');
-            mine.innerHTML = `${this.$refs['hiworks'].querySelectorAll('script')[2].innerHTML}`;
-            document.body.appendChild(mine);
+        mounted() {
+            for (let src of this.$refs['hiworks'].querySelectorAll('script')) {
+                let dest = document.createElement('script');
+                if (src.type) {
+                    dest.type = src.type;
+                }
+                if (src.src) {
+                    dest.src = src.src;
+                }
+                dest.innerHTML = `${src.innerHTML}`;
+                this.scripts.push(dest);
+                document.body.appendChild(dest);
+            }
+        },
+        destroyed() {
+            for (let src of this.scripts) {
+                document.body.removeChild(src);
+            }
+            this.scripts = [];
+        },
+        data() {
+            return {
+                scripts: []
+            }
         },
     }
 </script>
