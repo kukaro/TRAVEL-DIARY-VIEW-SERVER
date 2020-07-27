@@ -5231,6 +5231,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -5334,7 +5339,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])({
     createPostcommentByOwner: "postcomment_createPostcommentByOwner"
   })), {}, {
-    onClick: function onClick() {
+    onClick: function onClick($e) {
       var data = new _dto_PostcommentDto__WEBPACK_IMPORTED_MODULE_4__["default"]({
         owner_email: this.owner.email,
         post_id: this.diary.data.id,
@@ -5348,7 +5353,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       });
     },
-    onClose: function onClose() {
+    onEnter: function onEnter($e) {
+      if (!$e.shiftKey) {
+        this.onClick($e);
+      }
+    },
+    onClose: function onClose($e) {
       this.diary.comment.parents_data = null;
     }
   })
@@ -54236,7 +54246,18 @@ var render = function() {
       ref: "input",
       staticClass: "input-box",
       style: _vm.box_style,
-      attrs: { contenteditable: "true" }
+      attrs: { contenteditable: "true" },
+      on: {
+        keydown: function($event) {
+          if (
+            !$event.type.indexOf("key") &&
+            _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+          ) {
+            return null
+          }
+          return _vm.onEnter($event)
+        }
+      }
     }),
     _vm._v(" "),
     _c(

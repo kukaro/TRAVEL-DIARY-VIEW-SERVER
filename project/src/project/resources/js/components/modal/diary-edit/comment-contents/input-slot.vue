@@ -9,12 +9,17 @@
             <div class="contents-slot" :style="{...center, ...contents_style,}">
                 <ctxt :value="parents_comment.contents"/>
             </div>
-            <close-button :width="15" :height="15" :style="close_style" :click_event="onClose"/>
+            <close-button
+                :width="15"
+                :height="15"
+                :style="close_style"
+                :click_event="onClose"/>
         </div>
         <div class="input-box"
              ref="input"
              contenteditable="true"
-             :style="box_style">
+             :style="box_style"
+             @keydown.enter="onEnter">
         </div>
         <div class="input-slot-footer">
             <td-button :style="btn_style"
@@ -119,7 +124,7 @@
             comments() {
                 return this.diary.comment.data;
             },
-            close_style(){
+            close_style() {
                 return {
                     marginTop: 'auto',
                     marginLeft: 'auto',
@@ -131,7 +136,7 @@
             ...mapActions({
                 createPostcommentByOwner: `postcomment_createPostcommentByOwner`
             }),
-            onClick() {
+            onClick($e) {
                 let data = new PostcommentDto(
                     {
                         owner_email: this.owner.email,
@@ -150,7 +155,12 @@
                     }
                 );
             },
-            onClose(){
+            onEnter($e) {
+                if (!$e.shiftKey) {
+                    this.onClick($e);
+                }
+            },
+            onClose($e) {
                 this.diary.comment.parents_data = null;
             },
         }
