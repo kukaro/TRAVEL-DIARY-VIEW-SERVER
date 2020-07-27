@@ -26,11 +26,11 @@ const data = {
             console.log(res);
         },
         successGetAllPostcommentByPostId(state, res) {
-            console.log('successGetAllPostcommentByPostId');
             let data = res.data;
             let diary = this.state[`modal_diary`];
-            diary.comment.data = data.map((value, key) => {
-                return new PostcommentDto(value);
+            diary.comment.data={}
+            data.forEach((value, key) => {
+                diary.comment.data[value.id]=new PostcommentDto(value);
             });
         },
         failGetAllPostcommentByPostId(state, res) {

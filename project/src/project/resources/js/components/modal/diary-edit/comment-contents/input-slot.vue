@@ -9,6 +9,7 @@
             <div class="contents-slot" :style="{...center, ...contents_style,}">
                 <ctxt :value="parents_comment.contents"/>
             </div>
+            <close-button :width="15" :height="15" :style="close_style" :click_event="onClose"/>
         </div>
         <div class="input-box"
              ref="input"
@@ -33,10 +34,11 @@
     import TdButton from "../../../input/td-button";
     import Ctxt from "../../../utils/ctxt";
     import PostcommentDto from "../../../../dto/PostcommentDto";
+    import CloseButton from "../../../input/close-button";
 
     export default {
         name: "input-slot",
-        components: {Ctxt, TdButton},
+        components: {CloseButton, Ctxt, TdButton},
         watch: {
             comments() {
                 this.$refs['input'].innerHTML = "";
@@ -117,6 +119,13 @@
             comments() {
                 return this.diary.comment.data;
             },
+            close_style(){
+                return {
+                    marginTop: 'auto',
+                    marginLeft: 'auto',
+                    marginBottom: 'auto',
+                }
+            },
         },
         methods: {
             ...mapActions({
@@ -140,6 +149,9 @@
                         }
                     }
                 );
+            },
+            onClose(){
+                this.diary.comment.parents_data = null;
             },
         }
     }

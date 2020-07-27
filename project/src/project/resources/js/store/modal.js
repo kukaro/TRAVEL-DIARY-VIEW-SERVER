@@ -27,11 +27,11 @@ const data = {
                     font_size: 30,
                     font_family: 'Noto',
                 },
-                body:{
+                body: {
                     width: 830
                 }
             },
-            comment:{
+            comment: {
                 data: null,
                 parents_data: null,
                 width: 400,
@@ -52,13 +52,14 @@ const data = {
     },
     getters: {},
     mutations: {
-        insertComment(state, payload){
-            this.state[`${prefix}_diary`].comment.data.push(payload);
+        insertComment(state, payload) {
+            this.state[`${prefix}_diary`].comment.data[payload.id] = payload;
+            this.state[`${prefix}_diary`].comment.data = Object.assign({}, this.state[`${prefix}_diary`].comment.data);
         },
-        setCommentVisibility(state, payload){
+        setCommentVisibility(state, payload) {
             this.state[`${prefix}_diary`].comment.visibility = payload;
         },
-        reverseCommentVisibility(){
+        reverseCommentVisibility() {
             this.state[`${prefix}_diary`].comment.visibility = !this.state[`{$prefix}_diary`].comment.visibility;
         },
         closeModal() {
@@ -66,6 +67,8 @@ const data = {
             switch (this.state[`${prefix}_mode`]) {
                 case mode.diary:
                     this.state[`${prefix}_diary`].data = JSON.parse(JSON.stringify(this.state[`${prefix}_diary`].origin_data));
+                    this.state[`${prefix}_diary`].comment.data = null;
+                    this.state[`${prefix}_diary`].comment.parents_data = null;
                     break;
                 case mode.diary_create:
                     this.commit(`diary_cleanFileData`);

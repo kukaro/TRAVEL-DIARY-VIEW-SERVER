@@ -5194,6 +5194,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _input_td_button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../input/td-button */ "./resources/js/components/input/td-button.vue");
 /* harmony import */ var _utils_ctxt__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../utils/ctxt */ "./resources/js/components/utils/ctxt.vue");
 /* harmony import */ var _dto_PostcommentDto__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../dto/PostcommentDto */ "./resources/js/dto/PostcommentDto.js");
+/* harmony import */ var _input_close_button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../input/close-button */ "./resources/js/components/input/close-button.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -5229,6 +5230,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+
 
 
 
@@ -5237,6 +5240,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "input-slot",
   components: {
+    CloseButton: _input_close_button__WEBPACK_IMPORTED_MODULE_5__["default"],
     Ctxt: _utils_ctxt__WEBPACK_IMPORTED_MODULE_3__["default"],
     TdButton: _input_td_button__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
@@ -5318,6 +5322,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     comments: function comments() {
       return this.diary.comment.data;
+    },
+    close_style: function close_style() {
+      return {
+        marginTop: 'auto',
+        marginLeft: 'auto',
+        marginBottom: 'auto'
+      };
     }
   }),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])({
@@ -5336,6 +5347,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           data: data
         }
       });
+    },
+    onClose: function onClose() {
+      this.diary.comment.parents_data = null;
     }
   })
 });
@@ -54207,8 +54221,14 @@ var render = function() {
               },
               [_c("ctxt", { attrs: { value: _vm.parents_comment.contents } })],
               1
-            )
-          ]
+            ),
+            _vm._v(" "),
+            _c("close-button", {
+              style: _vm.close_style,
+              attrs: { width: 15, height: 15, click_event: _vm.onClose }
+            })
+          ],
+          1
         )
       : _vm._e(),
     _vm._v(" "),
@@ -82799,7 +82819,8 @@ var data = {
   getters: {},
   mutations: {
     insertComment: function insertComment(state, payload) {
-      this.state["".concat(prefix, "_diary")].comment.data.push(payload);
+      this.state["".concat(prefix, "_diary")].comment.data[payload.id] = payload;
+      this.state["".concat(prefix, "_diary")].comment.data = Object.assign({}, this.state["".concat(prefix, "_diary")].comment.data);
     },
     setCommentVisibility: function setCommentVisibility(state, payload) {
       this.state["".concat(prefix, "_diary")].comment.visibility = payload;
@@ -82813,6 +82834,8 @@ var data = {
       switch (this.state["".concat(prefix, "_mode")]) {
         case mode.diary:
           this.state["".concat(prefix, "_diary")].data = JSON.parse(JSON.stringify(this.state["".concat(prefix, "_diary")].origin_data));
+          this.state["".concat(prefix, "_diary")].comment.data = null;
+          this.state["".concat(prefix, "_diary")].comment.parents_data = null;
           break;
 
         case mode.diary_create:
@@ -82980,11 +83003,11 @@ var data = {
       console.log(res);
     },
     successGetAllPostcommentByPostId: function successGetAllPostcommentByPostId(state, res) {
-      console.log('successGetAllPostcommentByPostId');
       var data = res.data;
       var diary = this.state["modal_diary"];
-      diary.comment.data = data.map(function (value, key) {
-        return new _dto_PostcommentDto__WEBPACK_IMPORTED_MODULE_2__["default"](value);
+      diary.comment.data = {};
+      data.forEach(function (value, key) {
+        diary.comment.data[value.id] = new _dto_PostcommentDto__WEBPACK_IMPORTED_MODULE_2__["default"](value);
       });
     },
     failGetAllPostcommentByPostId: function failGetAllPostcommentByPostId(state, res) {
