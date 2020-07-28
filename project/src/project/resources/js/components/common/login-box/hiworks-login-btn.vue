@@ -46,13 +46,13 @@
         },
         methods: {
             ...mapActions({
-                openHiworks:`hiworks_openHiworks`,
             }),
             ...mapMutations({
+                openHiworks:`hiworks_openHiworks`,
                 setLoginType: `login_setLoginType`,
             }),
             onClick(){
-                this.setLoginType(types.hiworks);
+                // this.setLoginType(types.hiworks);
                 this.openHiworks();
             }
         }

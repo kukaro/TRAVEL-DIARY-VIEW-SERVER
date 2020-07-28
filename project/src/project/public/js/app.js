@@ -1915,7 +1915,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _nav_global_nav__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./nav/global-nav */ "./resources/js/components/nav/global-nav.vue");
 /* harmony import */ var _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../storage/sessionstorage */ "./resources/js/storage/sessionstorage.js");
 /* harmony import */ var _modal_modal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modal/modal */ "./resources/js/components/modal/modal.vue");
-/* harmony import */ var _storage_cookie__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../storage/cookie */ "./resources/js/storage/cookie.js");
+/* harmony import */ var _store_hiworks__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../store/hiworks */ "./resources/js/store/hiworks.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2824,13 +2824,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   created: function created() {},
-  methods: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])({
-    openHiworks: "hiworks_openHiworks"
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])({
+  methods: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])({})), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])({
+    openHiworks: "hiworks_openHiworks",
     setLoginType: "login_setLoginType"
   })), {}, {
     onClick: function onClick() {
-      this.setLoginType(_store_login__WEBPACK_IMPORTED_MODULE_2__["types"].hiworks);
+      // this.setLoginType(types.hiworks);
       this.openHiworks();
     }
   })
@@ -8542,6 +8541,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     }
   })
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/section/hiworks-section.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/section/hiworks-section.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "hiworks-section"
 });
 
 /***/ }),
@@ -15056,6 +15076,25 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 // module
 exports.push([module.i, "\n.title-slot[data-v-e4920fe6] {\n    display: flex;\n    width: 100%;\n}\n.inner[data-v-e4920fe6] {\n    display: flex;\n    width: 100%;\n}\n.edit-btn-input[data-v-e4920fe6] {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    border: 0;\n    padding: 0;\n    display: none;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/section/hiworks-section.vue?vue&type=style&index=0&id=0d4d7114&scoped=true&lang=css&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/section/hiworks-section.vue?vue&type=style&index=0&id=0d4d7114&scoped=true&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.hiworks-section[data-v-0d4d7114]{\n}\n", ""]);
 
 // exports
 
@@ -49342,6 +49381,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/section/hiworks-section.vue?vue&type=style&index=0&id=0d4d7114&scoped=true&lang=css&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/section/hiworks-section.vue?vue&type=style&index=0&id=0d4d7114&scoped=true&lang=css& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./hiworks-section.vue?vue&type=style&index=0&id=0d4d7114&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/section/hiworks-section.vue?vue&type=style&index=0&id=0d4d7114&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/section/user-info-section/data-slot.vue?vue&type=style&index=0&id=b485af56&scoped=true&lang=css&":
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/section/user-info-section/data-slot.vue?vue&type=style&index=0&id=b485af56&scoped=true&lang=css& ***!
@@ -56129,6 +56198,32 @@ var render = function() {
       ],
       1
     )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/section/hiworks-section.vue?vue&type=template&id=0d4d7114&scoped=true&":
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/section/hiworks-section.vue?vue&type=template&id=0d4d7114&scoped=true& ***!
+  \**************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "hiworks-section" }, [
+    _vm._v("\n    여기는 하이웍스 페이지야\n")
   ])
 }
 var staticRenderFns = []
@@ -80290,6 +80385,93 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/section/hiworks-section.vue":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/section/hiworks-section.vue ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _hiworks_section_vue_vue_type_template_id_0d4d7114_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./hiworks-section.vue?vue&type=template&id=0d4d7114&scoped=true& */ "./resources/js/components/section/hiworks-section.vue?vue&type=template&id=0d4d7114&scoped=true&");
+/* harmony import */ var _hiworks_section_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./hiworks-section.vue?vue&type=script&lang=js& */ "./resources/js/components/section/hiworks-section.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _hiworks_section_vue_vue_type_style_index_0_id_0d4d7114_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./hiworks-section.vue?vue&type=style&index=0&id=0d4d7114&scoped=true&lang=css& */ "./resources/js/components/section/hiworks-section.vue?vue&type=style&index=0&id=0d4d7114&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _hiworks_section_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _hiworks_section_vue_vue_type_template_id_0d4d7114_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _hiworks_section_vue_vue_type_template_id_0d4d7114_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "0d4d7114",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/section/hiworks-section.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/section/hiworks-section.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/section/hiworks-section.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_hiworks_section_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./hiworks-section.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/section/hiworks-section.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_hiworks_section_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/section/hiworks-section.vue?vue&type=style&index=0&id=0d4d7114&scoped=true&lang=css&":
+/*!**********************************************************************************************************************!*\
+  !*** ./resources/js/components/section/hiworks-section.vue?vue&type=style&index=0&id=0d4d7114&scoped=true&lang=css& ***!
+  \**********************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_hiworks_section_vue_vue_type_style_index_0_id_0d4d7114_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./hiworks-section.vue?vue&type=style&index=0&id=0d4d7114&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/section/hiworks-section.vue?vue&type=style&index=0&id=0d4d7114&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_hiworks_section_vue_vue_type_style_index_0_id_0d4d7114_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_hiworks_section_vue_vue_type_style_index_0_id_0d4d7114_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_hiworks_section_vue_vue_type_style_index_0_id_0d4d7114_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_hiworks_section_vue_vue_type_style_index_0_id_0d4d7114_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_hiworks_section_vue_vue_type_style_index_0_id_0d4d7114_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/section/hiworks-section.vue?vue&type=template&id=0d4d7114&scoped=true&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/components/section/hiworks-section.vue?vue&type=template&id=0d4d7114&scoped=true& ***!
+  \********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_hiworks_section_vue_vue_type_template_id_0d4d7114_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./hiworks-section.vue?vue&type=template&id=0d4d7114&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/section/hiworks-section.vue?vue&type=template&id=0d4d7114&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_hiworks_section_vue_vue_type_template_id_0d4d7114_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_hiworks_section_vue_vue_type_template_id_0d4d7114_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/section/home-section.vue":
 /*!**********************************************************!*\
   !*** ./resources/js/components/section/home-section.vue ***!
@@ -81188,8 +81370,15 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   api_server_host: '/api',
-  hiworks_oath_uri: 'https://api.hiworks.com/open/auth/authform',
-  client_id: 'vtovgjlvdskcasrbiownu1wgjy2xures5e3276b98dd6a9.36873902.open.apps'
+  hiworks_auth_uri: 'https://api.hiworks.com',
+  hiworks_auth_path: {
+    auth: '/open/auth/authform',
+    user: '/user/v2/me'
+  },
+  client_id: 'vtovgjlvdskcasrbiownu1wgjy2xures5e3276b98dd6a9.36873902.open.apps',
+  message_type: {
+    hiworks_auth: 'hiworks_auth'
+  }
 });
 
 /***/ }),
@@ -81309,6 +81498,36 @@ var GlobalHeaderDto = function GlobalHeaderDto(path, real_name, view_name) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (GlobalHeaderDto);
+
+/***/ }),
+
+/***/ "./resources/js/dto/HiworksDto.js":
+/*!****************************************!*\
+  !*** ./resources/js/dto/HiworksDto.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var HiworksDto = function HiworksDto(_ref) {
+  var _ref$no = _ref.no,
+      no = _ref$no === void 0 ? null : _ref$no,
+      _ref$user_id = _ref.user_id,
+      user_id = _ref$user_id === void 0 ? null : _ref$user_id,
+      _ref$name = _ref.name,
+      name = _ref$name === void 0 ? null : _ref$name;
+
+  _classCallCheck(this, HiworksDto);
+
+  this.no = no;
+  this.user_id = user_id;
+  this.name = name;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (HiworksDto);
 
 /***/ }),
 
@@ -81557,8 +81776,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_section_home_section__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/section/home-section */ "./resources/js/components/section/home-section.vue");
 /* harmony import */ var _components_section_diary_section__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/section/diary-section */ "./resources/js/components/section/diary-section/index.vue");
 /* harmony import */ var _components_section_gallery_section__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/section/gallery-section */ "./resources/js/components/section/gallery-section/index.vue");
+/* harmony import */ var _components_section_hiworks_section__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/section/hiworks-section */ "./resources/js/components/section/hiworks-section.vue");
 
  // import Home from '../views/Home.vue'
+
 
 
 
@@ -81569,6 +81790,12 @@ var routes = [{
   path: '/',
   name: 'Home',
   component: _components_section_home_section__WEBPACK_IMPORTED_MODULE_3__["default"]
+}, {
+  path: '/hiworks',
+  name: 'Hiworks',
+  component: {
+    hiworks: _components_section_hiworks_section__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }
 }, {
   path: '/user',
   name: 'User',
@@ -81640,90 +81867,6 @@ function loadLocaleMessages() {
 
 /***/ }),
 
-/***/ "./resources/js/storage/cookie.js":
-/*!****************************************!*\
-  !*** ./resources/js/storage/cookie.js ***!
-  \****************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var list = ['Authorization'];
-
-var Cookie = /*#__PURE__*/function () {
-  function Cookie() {
-    _classCallCheck(this, Cookie);
-  }
-
-  _createClass(Cookie, null, [{
-    key: "validKey",
-    value: function validKey(name) {
-      return list.some(function (value)
-      /*key*/
-      {
-        if (value === name) {
-          return true;
-        }
-      });
-    }
-  }, {
-    key: "set",
-    value: function set(key, value) {
-      if (Cookie.validKey(key)) {
-        document.cookie = "".concat(key, "=").concat(value);
-      }
-    }
-  }, {
-    key: "get",
-    value: function get(key) {
-      if (Cookie.validKey(key)) {
-        var _list = document.cookie.split(';');
-
-        var obj = {};
-
-        _list.forEach(function (value, key) {
-          key = value.split('=')[0];
-          value = value.split('=')[1];
-          return obj[key] = value;
-        });
-
-        return obj[key];
-      } else {
-        return undefined;
-      }
-    }
-  }, {
-    key: "remove",
-    value: function remove(key) {
-      if (Cookie.validKey(key)) {
-        document.cookie = "".concat(key, "=").concat(value, ";Expires=").concat(new Date().toUTCString());
-      }
-    }
-  }, {
-    key: "getJwt",
-    value: function getJwt() {
-      if (Cookie.get('jwt')) {
-        return JSON.parse(Cookie.get('jwt'));
-      } else {
-        return undefined;
-      }
-    }
-  }]);
-
-  return Cookie;
-}();
-
-/* harmony default export */ __webpack_exports__["default"] = (Cookie);
-
-/***/ }),
-
 /***/ "./resources/js/storage/sessionstorage.js":
 /*!************************************************!*\
   !*** ./resources/js/storage/sessionstorage.js ***!
@@ -81739,7 +81882,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var list = ['jwt'];
+var list = ['jwt', 'hiworks'];
 var ss = sessionStorage;
 
 var SessionStorage = /*#__PURE__*/function () {
@@ -81786,6 +81929,15 @@ var SessionStorage = /*#__PURE__*/function () {
     value: function getJwt() {
       if (SessionStorage.get('jwt')) {
         return JSON.parse(SessionStorage.get('jwt'));
+      } else {
+        return undefined;
+      }
+    }
+  }, {
+    key: "getHiworks",
+    value: function getHiworks() {
+      if (SessionStorage.get('hiworks')) {
+        return JSON.parse(SessionStorage.get('hiworks'));
       } else {
         return undefined;
       }
@@ -82518,6 +82670,12 @@ var data = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dto_GlobalHeaderDto__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../dto/GlobalHeaderDto */ "./resources/js/dto/GlobalHeaderDto.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config */ "./resources/js/config/index.js");
+/* harmony import */ var _dto_HiworksDto__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../dto/HiworksDto */ "./resources/js/dto/HiworksDto.js");
+/* harmony import */ var _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../storage/sessionstorage */ "./resources/js/storage/sessionstorage.js");
+
+
+
 
 var prefix = 'global';
 var data = {
@@ -82636,6 +82794,28 @@ var data = {
           _this.state["gallery_aside"].visibility = false;
         }
       };
+
+      window.onmessage = function (event) {
+        if (event.origin === window.origin) {
+          var _data;
+
+          var type;
+
+          try {
+            var tmp = JSON.parse(event.data);
+            _data = tmp.data;
+            type = tmp.type;
+          } catch (e) {
+            _data = null;
+            type = null;
+          }
+
+          if (_data && _config__WEBPACK_IMPORTED_MODULE_1__["default"].message_type[type]) {
+            _this.state["sess_hiworks"] = new _dto_HiworksDto__WEBPACK_IMPORTED_MODULE_2__["default"](_data);
+            _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_3__["default"].set('hiworks', JSON.stringify(_data));
+          }
+        }
+      };
     }
   },
   actions: {}
@@ -82648,23 +82828,34 @@ var data = {
 /*!***************************************!*\
   !*** ./resources/js/store/hiworks.js ***!
   \***************************************/
-/*! exports provided: default */
+/*! exports provided: path, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "path", function() { return path; });
 /* harmony import */ var _utils_request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/request */ "./resources/js/utils/request/index.js");
 /* harmony import */ var _utils_hiworks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/hiworks */ "./resources/js/utils/hiworks/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../config */ "./resources/js/config/index.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 
 
 
 var prefix = 'hiworks';
+var path = '/hiworks';
 var data = {
   prefix: prefix,
   state: {
-    hiworks_html: null
+    hiworks_html: null,
+    child_window: null
   },
   getters: {},
   mutations: {
@@ -82675,11 +82866,15 @@ var data = {
     failOpenHiworks: function failOpenHiworks(state, res) {
       console.log("failOpenHiworks");
       console.log(res);
+    },
+    openHiworks: function openHiworks(_ref) {
+      var commit = _ref.commit;
+      this.state["".concat(prefix, "_child_window")] = window.open('/api/hiworks', "PopupWin", 'top=10, left=10, width=600, height=800, status=no, menubar=no, toolbar=no, resizable=no');
     }
   },
   actions: {
-    openHiworks: function openHiworks(_ref) {
-      var commit = _ref.commit;
+    appendHiworks: function appendHiworks(_ref2) {
+      var commit = _ref2.commit;
       axios__WEBPACK_IMPORTED_MODULE_2___default.a.request({
         method: 'get',
         url: '/api/hiworks',
@@ -82691,6 +82886,17 @@ var data = {
       })["catch"](function (res) {
         commit("".concat(prefix, "_failOpenHiworks"), res);
       });
+    },
+    getHiworksUserInfo: function getHiworksUserInfo(_ref3, _ref4) {
+      var commit = _ref3.commit;
+      var _ref4$data = _ref4.data,
+          data = _ref4$data === void 0 ? {} : _ref4$data,
+          _ref4$headers = _ref4.headers,
+          headers = _ref4$headers === void 0 ? {} : _ref4$headers;
+      headers = _objectSpread({
+        Authorization: "".concat(jwt.token_type, " ").concat(jwt.access_token)
+      }, headers);
+      Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["call"])(commit, 'post', "".concat(_config__WEBPACK_IMPORTED_MODULE_3__["default"].hiworks_auth_uri).concat(_config__WEBPACK_IMPORTED_MODULE_3__["default"].hiworks_auth_path.user), "".concat(prefix, "_successGetHiworksUserInfo"), "".concat(prefix, "_failGetHiworksUserInfo"));
     }
   }
 };
@@ -83165,6 +83371,7 @@ var data = {
       expires_in: null,
       token_type: null
     },
+    hiworks: null,
     owner: debug ? new _dto_UserDto__WEBPACK_IMPORTED_MODULE_1__["default"]({}) : null,
     is_login: debug ? true : false
   },

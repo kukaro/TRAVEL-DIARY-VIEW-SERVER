@@ -14,6 +14,7 @@ const data = {
             expires_in: null,
             token_type: null
         },
+        hiworks: null,
         owner: debug ? new UserDto({}) : null,
         is_login: debug ? true : false,
     },

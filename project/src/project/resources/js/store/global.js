@@ -1,4 +1,7 @@
 import GlobalHeaderDto from '../dto/GlobalHeaderDto';
+import config from '../config'
+import HiworksDto from "../dto/HiworksDto";
+import SessionStorage from "../storage/sessionstorage";
 
 const prefix = 'global';
 
@@ -122,7 +125,25 @@ const data = {
                     this.state[`gallery_aside`].visibility = false;
                 }
             };
-        }
+            window.onmessage = (event) => {
+                if (event.origin === window.origin) {
+                    let data;
+                    let type;
+                    try {
+                        let tmp = JSON.parse(event.data);
+                        data = tmp.data;
+                        type = tmp.type;
+                    } catch (e) {
+                        data = null;
+                        type = null;
+                    }
+                    if (data && config.message_type[type]) {
+                        this.state[`sess_hiworks`] = new HiworksDto(data);
+                        SessionStorage.set('hiworks', JSON.stringify(data));
+                    }
+                }
+            }
+        },
     },
     actions: {}
 }

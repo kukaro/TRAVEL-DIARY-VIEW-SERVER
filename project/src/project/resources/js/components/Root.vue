@@ -16,7 +16,7 @@
     import GlobalNav from "./nav/global-nav";
     import SessionStorage from "../storage/sessionstorage";
     import Modal from "./modal/modal";
-    import Cookie from "../storage/cookie";
+    import * as hiworks from "../store/hiworks";
 
     export default {
         name: "root",
@@ -70,6 +70,7 @@
 <style lang="scss">
     @import "../../sass/default.css";
     @import "../../sass/hiworks.scss";
+
     html,
     body,
     #app {

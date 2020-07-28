@@ -1,13 +1,16 @@
 import {call} from "../utils/request";
 import {fullHiworksOauthUri} from "../utils/hiworks";
 import axios from 'axios';
+import config from '../config'
 
 const prefix = 'hiworks';
+export const path = '/hiworks';
 
 const data = {
     prefix,
     state: {
-        hiworks_html: null
+        hiworks_html: null,
+        child_window: null,
     },
     getters: {},
     mutations: {
@@ -19,9 +22,14 @@ const data = {
             console.log(`failOpenHiworks`);
             console.log(res);
         },
+        openHiworks({commit}) {
+            this.state[`${prefix}_child_window`] = window.open('/api/hiworks',
+                "PopupWin",
+                'top=10, left=10, width=600, height=800, status=no, menubar=no, toolbar=no, resizable=no');
+        },
     },
     actions: {
-        openHiworks({commit}) {
+        appendHiworks({commit}) {
             axios.request({
                 method: 'get',
                 url: '/api/hiworks',
@@ -29,11 +37,23 @@ const data = {
                     'Content-type': 'text/html'
                 }
             }).then(res => {
-                commit(`${prefix}_successOpenHiworks`,res)
+                commit(`${prefix}_successOpenHiworks`, res)
             }).catch((res) => {
                 commit(`${prefix}_failOpenHiworks`, res)
             })
-        }
+        },
+        getHiworksUserInfo({commit}, {data = {}, headers = {}}) {
+            headers = {
+                Authorization: `${jwt.token_type} ${jwt.access_token}`,
+                ...headers
+            };
+            call(commit,
+                'post',
+                `${config.hiworks_auth_uri}${config.hiworks_auth_path.user}`,
+                `${prefix}_successGetHiworksUserInfo`,
+                `${prefix}_failGetHiworksUserInfo`,
+            )
+        },
     }
 }
 

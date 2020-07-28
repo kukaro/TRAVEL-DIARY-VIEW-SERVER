@@ -1,4 +1,4 @@
-const list = ['jwt'];
+const list = ['jwt','hiworks'];
 const ss = sessionStorage;
 
 class SessionStorage {
@@ -33,6 +33,14 @@ class SessionStorage {
     static getJwt() {
         if (SessionStorage.get('jwt')) {
             return JSON.parse(SessionStorage.get('jwt'));
+        }else{
+            return undefined;
+        }
+    }
+
+    static getHiworks(){
+        if (SessionStorage.get('hiworks')) {
+            return JSON.parse(SessionStorage.get('hiworks'));
         }else{
             return undefined;
         }

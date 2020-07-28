@@ -5,6 +5,7 @@ import UserInfoSection from '../components/section/user-info-section/index'
 import HomeSection from '../components/section/home-section'
 import DiarySection from '../components/section/diary-section'
 import GallerySection from '../components/section/gallery-section'
+import HiworksSection from '../components/section/hiworks-section'
 
 Vue.use(VueRouter)
 
@@ -13,6 +14,13 @@ const routes = [
         path: '/',
         name: 'Home',
         component: HomeSection
+    },
+    {
+        path: '/hiworks',
+        name: 'Hiworks',
+        component: {
+            hiworks: HiworksSection
+        }
     },
     {
         path: '/user',
