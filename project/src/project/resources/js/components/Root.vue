@@ -27,17 +27,34 @@
             globalArticle,
             loginPage,
         },
+        watch: {
+            jwt() {
+                if (this.jwt !== null) {
+                    this.setOwner({
+                        path: '/user',
+                        data: {},
+                        headers: {
+                            Authorization: `${this.jwt.token_type} ${this.jwt.access_token}`
+                        }
+                    });
+                }
+            },
+        },
         computed: {
             ...mapState({
                 owner: 'sess_owner',
                 is_login: 'sess_is_login',
                 setting: 'global_setting',
+                sess_jwt: `sess_jwt`,
             }),
             style() {
                 return {
                     backgroundColor: this.setting.bgc,
                 }
-            }
+            },
+            jwt() {
+                return this.sess_jwt;
+            },
         },
         methods: {
             ...mapActions({
@@ -46,19 +63,13 @@
             }),
             ...mapMutations({
                 setGlobalEvent: 'global_setGlobalEvent',
+                setJwt: `sess_setJwt`,
             }),
         },
         created() {
             this.setGlobalEvent();
             if (SessionStorage.get('jwt')) {
-                const jwt = SessionStorage.getJwt();
-                this.setOwner({
-                    path: '/user',
-                    data: {},
-                    headers: {
-                        Authorization: `${jwt.token_type} ${jwt.access_token}`
-                    }
-                });
+                this.setJwt();
             }
         },
         data() {

@@ -1949,35 +1949,46 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     globalArticle: _article_global_article__WEBPACK_IMPORTED_MODULE_1__["default"],
     loginPage: _page_login_page__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
+  watch: {
+    jwt: function jwt() {
+      if (this.jwt !== null) {
+        this.setOwner({
+          path: '/user',
+          data: {},
+          headers: {
+            Authorization: "".concat(this.jwt.token_type, " ").concat(this.jwt.access_token)
+          }
+        });
+      }
+    }
+  },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])({
     owner: 'sess_owner',
     is_login: 'sess_is_login',
-    setting: 'global_setting'
+    setting: 'global_setting',
+    sess_jwt: "sess_jwt"
   })), {}, {
     style: function style() {
       return {
         backgroundColor: this.setting.bgc
       };
+    },
+    jwt: function jwt() {
+      return this.sess_jwt;
     }
   }),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])({
     setLogin: 'sess_setLogin',
     setOwner: 'sess_setOwner'
   })), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapMutations"])({
-    setGlobalEvent: 'global_setGlobalEvent'
+    setGlobalEvent: 'global_setGlobalEvent',
+    setJwt: "sess_setJwt"
   })),
   created: function created() {
     this.setGlobalEvent();
 
     if (_storage_sessionstorage__WEBPACK_IMPORTED_MODULE_5__["default"].get('jwt')) {
-      var jwt = _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_5__["default"].getJwt();
-      this.setOwner({
-        path: '/user',
-        data: {},
-        headers: {
-          Authorization: "".concat(jwt.token_type, " ").concat(jwt.access_token)
-        }
-      });
+      this.setJwt();
     }
   },
   data: function data() {
@@ -81513,21 +81524,54 @@ __webpack_require__.r(__webpack_exports__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var HiworksDto = function HiworksDto(_ref) {
-  var _ref$no = _ref.no,
-      no = _ref$no === void 0 ? null : _ref$no,
-      _ref$user_id = _ref.user_id,
-      user_id = _ref$user_id === void 0 ? null : _ref$user_id,
-      _ref$name = _ref.name,
-      name = _ref$name === void 0 ? null : _ref$name;
+  var _ref$access_token = _ref.access_token,
+      access_token = _ref$access_token === void 0 ? null : _ref$access_token,
+      _ref$refresh_token = _ref.refresh_token,
+      refresh_token = _ref$refresh_token === void 0 ? null : _ref$refresh_token,
+      _ref$office_no = _ref.office_no,
+      office_no = _ref$office_no === void 0 ? null : _ref$office_no,
+      _ref$user_no = _ref.user_no,
+      user_no = _ref$user_no === void 0 ? null : _ref$user_no;
 
   _classCallCheck(this, HiworksDto);
 
-  this.no = no;
-  this.user_id = user_id;
-  this.name = name;
+  this.access_token = access_token;
+  this.refresh_token = refresh_token;
+  this.office_no = office_no;
+  this.user_no = user_no;
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (HiworksDto);
+
+/***/ }),
+
+/***/ "./resources/js/dto/JwtDto.js":
+/*!************************************!*\
+  !*** ./resources/js/dto/JwtDto.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var JwtDto = function JwtDto(_ref) {
+  var _ref$access_token = _ref.access_token,
+      access_token = _ref$access_token === void 0 ? null : _ref$access_token,
+      _ref$expires_in = _ref.expires_in,
+      expires_in = _ref$expires_in === void 0 ? null : _ref$expires_in,
+      _ref$token_type = _ref.token_type,
+      token_type = _ref$token_type === void 0 ? null : _ref$token_type;
+
+  _classCallCheck(this, JwtDto);
+
+  this.access_token = access_token;
+  this.expires_in = expires_in;
+  this.token_type = token_type;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (JwtDto);
 
 /***/ }),
 
@@ -82835,16 +82879,14 @@ var data = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "path", function() { return path; });
 /* harmony import */ var _utils_request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/request */ "./resources/js/utils/request/index.js");
-/* harmony import */ var _utils_hiworks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/hiworks */ "./resources/js/utils/hiworks/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../config */ "./resources/js/config/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../config */ "./resources/js/config/index.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -82875,7 +82917,7 @@ var data = {
   actions: {
     appendHiworks: function appendHiworks(_ref2) {
       var commit = _ref2.commit;
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.request({
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.request({
         method: 'get',
         url: '/api/hiworks',
         headers: {
@@ -82893,10 +82935,11 @@ var data = {
           data = _ref4$data === void 0 ? {} : _ref4$data,
           _ref4$headers = _ref4.headers,
           headers = _ref4$headers === void 0 ? {} : _ref4$headers;
+      var hiworks = this.state["sess_hiworks"];
       headers = _objectSpread({
-        Authorization: "".concat(jwt.token_type, " ").concat(jwt.access_token)
+        Authorization: "Bearer ".concat(hiworks.access_token)
       }, headers);
-      Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["call"])(commit, 'post', "".concat(_config__WEBPACK_IMPORTED_MODULE_3__["default"].hiworks_auth_uri).concat(_config__WEBPACK_IMPORTED_MODULE_3__["default"].hiworks_auth_path.user), "".concat(prefix, "_successGetHiworksUserInfo"), "".concat(prefix, "_failGetHiworksUserInfo"));
+      Object(_utils_request__WEBPACK_IMPORTED_MODULE_0__["extern_call"])(commit, 'get', "".concat(_config__WEBPACK_IMPORTED_MODULE_2__["default"].hiworks_auth_uri).concat(_config__WEBPACK_IMPORTED_MODULE_2__["default"].hiworks_auth_path.user), "".concat(prefix, "_successGetHiworksUserInfo"), "".concat(prefix, "_failGetHiworksUserInfo"));
     }
   }
 };
@@ -83357,6 +83400,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dto_UserDto__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../dto/UserDto */ "./resources/js/dto/UserDto.js");
 /* harmony import */ var _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../storage/sessionstorage */ "./resources/js/storage/sessionstorage.js");
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../app */ "./resources/js/app.js");
+/* harmony import */ var _dto_JwtDto__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../dto/JwtDto */ "./resources/js/dto/JwtDto.js");
+
 
 
 
@@ -83366,14 +83411,10 @@ var debug = false;
 var data = {
   prefix: prefix,
   state: {
-    jwt: {
-      access_token: null,
-      expires_in: null,
-      token_type: null
-    },
-    hiworks: null,
+    jwt: null,
     owner: debug ? new _dto_UserDto__WEBPACK_IMPORTED_MODULE_1__["default"]({}) : null,
-    is_login: debug ? true : false
+    is_login: debug ? true : false,
+    is_hiworks: false
   },
   getters: {},
   mutations: {
@@ -83392,12 +83433,14 @@ var data = {
     successSetLogin: function successSetLogin(state, res) {
       var _this = this;
 
-      Object.keys(this.state["".concat(prefix, "_jwt")]).map(function (value)
+      this.state["".concat(prefix, "_jwt")] = new _dto_JwtDto__WEBPACK_IMPORTED_MODULE_4__["default"]({});
+      var jwt = this.state["".concat(prefix, "_jwt")];
+      Object.keys(jwt).map(function (value)
       /*key*/
       {
         _this.state["".concat(prefix, "_jwt")][value] = res.res.data[value];
       });
-      _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_2__["default"].set('jwt', JSON.stringify(this.state["".concat(prefix, "_jwt")]));
+      _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_2__["default"].set('jwt', JSON.stringify(jwt));
       this.dispatch("".concat(prefix, "_setOwner"), {
         path: "/user/".concat(res.data.email)
       });
@@ -83424,10 +83467,14 @@ var data = {
     /*res*/
     {
       _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_2__["default"].remove('jwt');
+      _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_2__["default"].remove('hiworks');
       this.commit("".concat(prefix, "_removeOwner"));
       this.commit("global_setListChosenIdx", -1);
       this.commit("diary_cleanAllData");
       _app__WEBPACK_IMPORTED_MODULE_3__["default"].$router.push('/')["catch"](function () {});
+    },
+    setJwt: function setJwt(state) {
+      this.state["".concat(prefix, "_jwt")] = new _dto_JwtDto__WEBPACK_IMPORTED_MODULE_4__["default"](_storage_sessionstorage__WEBPACK_IMPORTED_MODULE_2__["default"].getJwt());
     }
   },
   actions: {
@@ -83530,29 +83577,11 @@ function randomColor() {
 
 /***/ }),
 
-/***/ "./resources/js/utils/hiworks/index.js":
-/*!*********************************************!*\
-  !*** ./resources/js/utils/hiworks/index.js ***!
-  \*********************************************/
-/*! exports provided: fullHiworksOauthUri */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fullHiworksOauthUri", function() { return fullHiworksOauthUri; });
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../config */ "./resources/js/config/index.js");
-
-function fullHiworksOauthUri() {
-  return "".concat(_config__WEBPACK_IMPORTED_MODULE_0__["default"].hiworks_oath_uri, "?client_id=").concat(_config__WEBPACK_IMPORTED_MODULE_0__["default"].client_id, "&access_type=offline");
-}
-
-/***/ }),
-
 /***/ "./resources/js/utils/request/index.js":
 /*!*********************************************!*\
   !*** ./resources/js/utils/request/index.js ***!
   \*********************************************/
-/*! exports provided: signupCall, loginCall, call */
+/*! exports provided: signupCall, loginCall, call, extern_call */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -83560,6 +83589,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signupCall", function() { return signupCall; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginCall", function() { return loginCall; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "call", function() { return call; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "extern_call", function() { return extern_call; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../config */ "./resources/js/config/index.js");
@@ -83607,17 +83637,40 @@ function call(commit, method, path, success_mutation_name, fail_mutation_name) {
   var param = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : null;
   method = method.toLowerCase();
   var valid = valid_method.some(function (value, key) {
-    if (value === method) {
-      return true;
-    }
-
-    return false;
+    return value === method;
   });
 
   if (valid) {
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.request({
       method: method,
       url: "".concat(_config__WEBPACK_IMPORTED_MODULE_1__["default"].api_server_host).concat(path),
+      data: data,
+      headers: headers
+    }).then(function (res) {
+      var data = res.data;
+      data.param = param;
+      commit(success_mutation_name, data);
+    })["catch"](function (res) {
+      commit(fail_mutation_name, res);
+    });
+  } else {
+    //TODO Throw error
+    return null;
+  }
+}
+function extern_call(commit, method, path, success_mutation_name, fail_mutation_name) {
+  var data = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : {};
+  var headers = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : {};
+  var param = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : null;
+  method = method.toLowerCase();
+  var valid = valid_method.some(function (value, key) {
+    return value === method;
+  });
+
+  if (valid) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.request({
+      method: method,
+      url: "".concat(path),
       data: data,
       headers: headers
     }).then(function (res) {

@@ -1,5 +1,4 @@
-import {call} from "../utils/request";
-import {fullHiworksOauthUri} from "../utils/hiworks";
+import {call, extern_call} from "../utils/request";
 import axios from 'axios';
 import config from '../config'
 
@@ -43,12 +42,13 @@ const data = {
             })
         },
         getHiworksUserInfo({commit}, {data = {}, headers = {}}) {
+            let hiworks = this.state[`sess_hiworks`];
             headers = {
-                Authorization: `${jwt.token_type} ${jwt.access_token}`,
+                Authorization: `Bearer ${hiworks.access_token}`,
                 ...headers
             };
-            call(commit,
-                'post',
+            extern_call(commit,
+                'get',
                 `${config.hiworks_auth_uri}${config.hiworks_auth_path.user}`,
                 `${prefix}_successGetHiworksUserInfo`,
                 `${prefix}_failGetHiworksUserInfo`,

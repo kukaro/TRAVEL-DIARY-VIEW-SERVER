@@ -2,6 +2,7 @@ import {call, loginCall, signupCall} from "../utils/request"
 import UserDto from '../dto/UserDto'
 import SessionStorage from "../storage/sessionstorage";
 import vm from '../app'
+import JwtDto from "../dto/JwtDto";
 
 const prefix = 'sess';
 const debug = false;
@@ -9,14 +10,10 @@ const debug = false;
 const data = {
     prefix,
     state: {
-        jwt: {
-            access_token: null,
-            expires_in: null,
-            token_type: null
-        },
-        hiworks: null,
+        jwt: null,
         owner: debug ? new UserDto({}) : null,
         is_login: debug ? true : false,
+        is_hiworks: false,
     },
     getters: {},
     mutations: {
@@ -34,10 +31,12 @@ const data = {
             this.commit(`${prefix}_removeOwner`);
         },
         successSetLogin(state, res) {
-            Object.keys(this.state[`${prefix}_jwt`]).map((value, /*key*/) => {
+            this.state[`${prefix}_jwt`] = new JwtDto({});
+            let jwt = this.state[`${prefix}_jwt`];
+            Object.keys(jwt).map((value, /*key*/) => {
                 this.state[`${prefix}_jwt`][value] = res.res.data[value];
             });
-            SessionStorage.set('jwt', JSON.stringify(this.state[`${prefix}_jwt`]));
+            SessionStorage.set('jwt', JSON.stringify(jwt));
             this.dispatch(`${prefix}_setOwner`, {
                 path: `/user/${res.data.email}`
             });
@@ -61,11 +60,15 @@ const data = {
          */
         logout(state, /*res*/) {
             SessionStorage.remove('jwt');
+            SessionStorage.remove('hiworks');
             this.commit(`${prefix}_removeOwner`);
             this.commit(`global_setListChosenIdx`, -1);
             this.commit(`diary_cleanAllData`);
             vm.$router.push('/').catch(() => {
             });
+        },
+        setJwt(state) {
+            this.state[`${prefix}_jwt`] = new JwtDto(SessionStorage.getJwt());
         },
     },
     actions: {

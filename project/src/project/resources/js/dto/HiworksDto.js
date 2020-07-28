@@ -1,14 +1,16 @@
 class HiworksDto {
     constructor(
         {
-            no = null,
-            user_id = null,
-            name = null,
+            access_token = null,
+            refresh_token = null,
+            office_no = null,
+            user_no = null,
         }
     ) {
-        this.no = no;
-        this.user_id = user_id;
-        this.name = name;
+        this.access_token = access_token;
+        this.refresh_token = refresh_token;
+        this.office_no = office_no;
+        this.user_no = user_no;
     }
 
 }

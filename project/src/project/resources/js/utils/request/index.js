@@ -44,15 +44,44 @@ export function call(commit,
                      param = null) {
     method = method.toLowerCase();
     const valid = valid_method.some((value, key) => {
-        if (value === method) {
-            return true;
-        }
-        return false;
+        return value === method;
+
     });
     if (valid) {
         axios.request({
             method: method,
             url: `${config.api_server_host}${path}`,
+            data,
+            headers
+        }).then((res) => {
+            let data = res.data;
+            data.param = param;
+            commit(success_mutation_name, data);
+        }).catch((res) => {
+            commit(fail_mutation_name, res)
+        })
+    } else {
+        //TODO Throw error
+        return null;
+    }
+}
+
+export function extern_call(commit,
+                     method,
+                     path,
+                     success_mutation_name,
+                     fail_mutation_name,
+                     data = {},
+                     headers = {},
+                     param = null) {
+    method = method.toLowerCase();
+    const valid = valid_method.some((value, key) => {
+        return value === method;
+    });
+    if (valid) {
+        axios.request({
+            method: method,
+            url: `${path}`,
             data,
             headers
         }).then((res) => {
