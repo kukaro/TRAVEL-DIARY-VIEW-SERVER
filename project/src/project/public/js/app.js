@@ -8998,6 +8998,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -9009,7 +9011,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   props: {},
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])({
     title: 'user_title',
-    white: 'color_white'
+    white: 'color_white',
+    is_hiworks: "sess_is_hiworks",
+    prime: "color_prime"
   })), {}, {
     style: function style() {
       return {
@@ -9027,8 +9031,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         marginBottom: 'auto',
         marginLeft: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(15)
       };
+    },
+    gabia_style: function gabia_style() {
+      return {
+        width: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(130),
+        height: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(this.height),
+        border: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mB"])(1, 'solid', this.prime),
+        backgroundColor: 'white',
+        display: 'flex',
+        borderRadius: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(10),
+        marginLeft: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(20)
+      };
+    },
+    img_style: function img_style() {
+      return {
+        margin: 'auto',
+        height: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(this.height)
+      };
     }
-  })
+  }),
+  data: function data() {
+    return {
+      height: 50
+    };
+  }
 });
 
 /***/ }),
@@ -15238,7 +15264,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.title-slot[data-v-22b1c8ef] {\n    display: flex;\n    width: 100%;\n}\n.inner[data-v-22b1c8ef]{\n    display: flex;\n    width: 100%;\n}\n", ""]);
+exports.push([module.i, "\n.title-slot[data-v-22b1c8ef] {\n    display: flex;\n    width: 100%;\n}\n.inner[data-v-22b1c8ef] {\n    display: flex;\n    width: 100%;\n}\n", ""]);
 
 // exports
 
@@ -56530,7 +56556,16 @@ var render = function() {
         _c("ctxt", {
           style: _vm.text_style,
           attrs: { value: _vm.$t("user.title"), is_bold: true, size: 25 }
-        })
+        }),
+        _vm._v(" "),
+        _vm.is_hiworks
+          ? _c("div", { staticClass: "gabia-logo", style: _vm.gabia_style }, [
+              _c("img", {
+                style: _vm.img_style,
+                attrs: { src: __webpack_require__(/*! ../../../../assets/img/gabia.jpg */ "./resources/assets/img/gabia.jpg") }
+              })
+            ])
+          : _vm._e()
       ],
       1
     )
@@ -72920,6 +72955,17 @@ module.exports = "/images/cross.png?a0e0e9fde8cd41effe34a6bab77d111c";
 
 /***/ }),
 
+/***/ "./resources/assets/img/gabia.jpg":
+/*!****************************************!*\
+  !*** ./resources/assets/img/gabia.jpg ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/gabia.jpg?9fcb2ed3d7fc627f4a58363aab57f0c2";
+
+/***/ }),
+
 /***/ "./resources/assets/img/image_btn_white.png":
 /*!**************************************************!*\
   !*** ./resources/assets/img/image_btn_white.png ***!
@@ -81730,6 +81776,7 @@ var UserDto = function UserDto(_ref) {
       age = _ref.age,
       birth_date = _ref.birth_date,
       password = _ref.password,
+      is_hiworks = _ref.is_hiworks,
       created_date = _ref.created_date,
       updated_date = _ref.updated_date;
 
@@ -81740,6 +81787,7 @@ var UserDto = function UserDto(_ref) {
   this.age = age;
   this.birth_date = birth_date;
   this.password = password;
+  this.is_hiworks = is_hiworks;
   this.created_date = created_date;
   this.updated_date = updated_date;
 };
@@ -83426,6 +83474,7 @@ var data = {
     },
     successSetOwner: function successSetOwner(state, res) {
       state["".concat(prefix, "_owner")] = new _dto_UserDto__WEBPACK_IMPORTED_MODULE_1__["default"](res.data);
+      state["".concat(prefix, "_is_hiworks")] = state["".concat(prefix, "_owner")].is_hiworks;
       state["".concat(prefix, "_is_login")] = true; // this.dispatch(`gallery_getAllPicturesByOwner`,{});
     },
     failSetOwner: function failSetOwner(state, res) {
