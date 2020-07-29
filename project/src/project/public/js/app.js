@@ -13908,7 +13908,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "@font-face {\r\n    font-family: 'Noto';\r\n    src:url(" + escape(__webpack_require__(/*! ../assets/font/NotoSans-Medium.otf */ "./resources/assets/font/NotoSans-Medium.otf")) + ");\r\n    font-weight: normal;\r\n}\r\n@font-face {\r\n    font-family: 'Noto';\r\n    src:url(" + escape(__webpack_require__(/*! ../assets/font/NotoSans-Bold.otf */ "./resources/assets/font/NotoSans-Bold.otf")) + ");\r\n    font-weight: bold;\r\n}\r\n", ""]);
+exports.push([module.i, "@font-face {\n    font-family: 'Noto';\n    src:url(" + escape(__webpack_require__(/*! ../assets/font/NotoSans-Medium.otf */ "./resources/assets/font/NotoSans-Medium.otf")) + ");\n    font-weight: normal;\n}\n@font-face {\n    font-family: 'Noto';\n    src:url(" + escape(__webpack_require__(/*! ../assets/font/NotoSans-Bold.otf */ "./resources/assets/font/NotoSans-Bold.otf")) + ");\n    font-weight: bold;\n}\n", ""]);
 
 // exports
 
@@ -14231,7 +14231,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.close-button[data-v-9ff45352]{\r\n    cursor: pointer;\n}\r\n", ""]);
+exports.push([module.i, "\n.close-button[data-v-9ff45352]{\n    cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -15143,7 +15143,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.info-slot-footer[data-v-df6ef172]{\r\n    height: 100%;\n}\r\n", ""]);
+exports.push([module.i, "\n.info-slot-footer[data-v-df6ef172]{\n    height: 100%;\n}\n", ""]);
 
 // exports
 
@@ -15219,7 +15219,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.record-slot[data-v-25e02ee4]{\r\n    display: flex;\r\n    height: 100%;\n}\r\n", ""]);
+exports.push([module.i, "\n.record-slot[data-v-25e02ee4]{\n    display: flex;\n    height: 100%;\n}\n", ""]);
 
 // exports
 
@@ -15257,7 +15257,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.ctxt[data-v-0a966654] {\n}\r\n", ""]);
+exports.push([module.i, "\n.ctxt[data-v-0a966654] {\n}\n", ""]);
 
 // exports
 
@@ -82717,6 +82717,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config */ "./resources/js/config/index.js");
 /* harmony import */ var _dto_HiworksDto__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../dto/HiworksDto */ "./resources/js/dto/HiworksDto.js");
 /* harmony import */ var _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../storage/sessionstorage */ "./resources/js/storage/sessionstorage.js");
+/* harmony import */ var _dto_JwtDto__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../dto/JwtDto */ "./resources/js/dto/JwtDto.js");
+
 
 
 
@@ -82855,8 +82857,8 @@ var data = {
           }
 
           if (_data && _config__WEBPACK_IMPORTED_MODULE_1__["default"].message_type[type]) {
-            _this.state["sess_hiworks"] = new _dto_HiworksDto__WEBPACK_IMPORTED_MODULE_2__["default"](_data);
-            _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_3__["default"].set('hiworks', JSON.stringify(_data));
+            _this.state["sess_jwt"] = new _dto_JwtDto__WEBPACK_IMPORTED_MODULE_4__["default"](_data);
+            _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_3__["default"].set('jwt', JSON.stringify(_data));
           }
         }
       };
