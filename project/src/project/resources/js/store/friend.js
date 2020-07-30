@@ -33,12 +33,14 @@ const data = {
             width: 400,
             bgc: 'white',
         },
+        search_friend_cnt: 5,
+        search_data: [],
     },
     getters: {},
     mutations: {
         successGetAllFriend(state, res) {
             state[`${prefix}_friends`] = res.data;
-            state[`${prefix}_friends`]= state[`${prefix}_friends`].map((value, key) => {
+            state[`${prefix}_friends`] = state[`${prefix}_friends`].map((value, key) => {
                 return new UserDto(value);
             });
         },

@@ -5,6 +5,10 @@
                   :is_bold="true"
                   :style="text_style"
                   :size="25"/>
+            <search-input
+                :style="input_style"
+                :placeholder="$t('global.placeholder.id_or_name')"
+                @input="onInput"/>
             <td-button
                 :value="`+ ${$t('friend.add')}`"
                 :style="btn_style"
@@ -19,13 +23,14 @@
 
 <script>
     import Ctxt from "../../utils/ctxt";
-    import {mU, calcAOB} from "../../../utils/unit";
+    import {mU, calcAOB, mB} from "../../../utils/unit";
     import {mapActions, mapMutations, mapState} from "vuex";
     import TdButton from '../../input/td-button';
+    import SearchInput from "../../input/search-input";
 
     export default {
         name: "title-slot",
-        components: { Ctxt, TdButton},
+        components: {SearchInput, Ctxt, TdButton},
         props: {},
         computed: {
             ...mapState({
@@ -34,6 +39,7 @@
                 chosen_prime: 'color_chosen_prime',
                 prime: 'color_prime',
                 owner: 'sess_owner',
+                global_setting: 'global_setting',
             }),
             style() {
                 return {
@@ -52,24 +58,51 @@
                     marginLeft: mU(15)
                 }
             },
-            criteria_style() {
+            input_style() {
                 return {
                     marginLeft: 'auto',
                 }
             },
             btn_style() {
                 return {
-                    marginLeft: 'auto',
+                    marginLeft: mU(10),
                 }
             },
         },
         methods: {
             ...mapActions({
+                getSeveralUser: `user_getSeveralUser`
             }),
-            ...mapMutations({
-            }),
+            ...mapMutations({}),
             onClick() {
             },
+            onInput(data) {
+                this.data = data;
+            }
+        },
+        data() {
+            return {
+                duration: 1,
+                interval: null,
+                data: '',
+                prev_data: '',
+            }
+        },
+        created() {
+            this.interval = setInterval(() => {
+                if (this.prev_data !== this.data) {
+                    this.getSeveralUser({
+                        data: {
+                            name: this.data,
+                            email: this.data
+                        }
+                    });
+                }
+                this.prev_data = this.data;
+            }, this.duration * 1000);
+        },
+        destroyed() {
+            clearInterval(this.interval);
         }
     }
 </script>

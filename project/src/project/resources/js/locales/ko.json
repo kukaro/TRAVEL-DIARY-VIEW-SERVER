@@ -15,7 +15,8 @@
         "placeholder": {
             "default": "입력하세요.",
             "title": "제목을 입력하세요",
-            "content": "내용을 입력하세요"
+            "content": "내용을 입력하세요",
+            "id_or_name": "ID나 이름을 입력하세요"
         },
         "signup": "회원가입",
         "password_reset": "비밀번호 찾기",
