@@ -6,6 +6,7 @@ import HomeSection from '../components/section/home-section'
 import DiarySection from '../components/section/diary-section'
 import GallerySection from '../components/section/gallery-section'
 import HiworksSection from '../components/section/hiworks-section'
+import FriendSection from '../components/section/friend-section'
 
 Vue.use(VueRouter)
 
@@ -29,14 +30,24 @@ const routes = [
         props: {
             idx: 0,
         },
-    }, {
+    },
+    {
+        path: '/friend',
+        name: 'Friend',
+        component: FriendSection,
+        props: {
+            idx: 1,
+        },
+    },
+    {
         path: '/diary',
         name: 'Diary',
         component: DiarySection,
         props: {
             idx: 2,
         },
-    }, {
+    },
+    {
         path: '/gallery',
         name: 'Gallery',
         component: GallerySection,

@@ -40,7 +40,7 @@ const data = {
             visibility: false,
             width: 400,
             bgc: 'white',
-        }
+        },
     },
     getters: {},
     mutations: {

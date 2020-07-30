@@ -1,7 +1,10 @@
 <template>
-    <div class="img-card" :style="style" @click="onClick">
+    <div class="friend-card" :style="style" @click="onClick">
         <div class="inner">
-            <img :src="`/api/file/${data.location}`" :style="img_style">
+            <div class="card" :style="card_style">
+                <Ctxt :value="data.email" :style="center"/>
+                <Ctxt :value="data.name" :style="center"/>
+            </div>
         </div>
     </div>
 </template>
@@ -9,9 +12,11 @@
 <script>
     import {mB, mT, mU} from "../../../utils/unit";
     import {mapMutations, mapState} from "vuex";
+    import Ctxt from "../../utils/ctxt";
 
     export default {
-        name: "img-card",
+        name: "friend-card",
+        components: {Ctxt},
         props: {
             data: {
                 required: true,
@@ -35,10 +40,11 @@
         computed: {
             ...mapState({
                 prime: `color_pime`,
-                img_card: `gallery_img_card`,
-                aside: `gallery_aside`,
-                picture_idx: `gallery_picture_idx`,
-                remove_idx: `gallery_remove_idx`,
+                aside: `friend_aside`,
+                img_card: `friend_img_card`,
+                friend_idx: `friend_friend_idx`,
+                remove_idx: `friend_remove_idx`,
+                grey220: `color_grey220`,
             }),
             style() {
                 return {
@@ -60,21 +66,21 @@
                 }
             },
             highlight_result() {
-                if (this.highlight_mode && this.picture_idx !== null && this.idx === this.picture_idx) {
+                if (this.highlight_mode && this.friend_idx !== null && this.idx === this.friend_idx) {
                     return mB(this.highlight_border, 'solid', !this.is_init ? 'transparent' : this.highlight_color);
                 } else {
                     return mB(this.border, 'solid', !this.is_init ? 'transparent' : this.prime);
                 }
             },
             width_result() {
-                if (this.highlight_mode && this.picture_idx !== null && this.idx === this.picture_idx) {
+                if (this.highlight_mode && this.friend_idx !== null && this.idx === this.friend_idx) {
                     return mU(!this.is_init ? 0 : this.img_card.size.width - this.highlight_border * 2);
                 } else {
                     return mU(!this.is_init ? 0 : this.img_card.size.width - this.border * 2);
                 }
             },
             height_result() {
-                if (this.highlight_mode && this.picture_idx !== null && this.idx === this.picture_idx) {
+                if (this.highlight_mode && this.friend_idx !== null && this.idx === this.friend_idx) {
                     return mU(!this.is_init ? 0 : this.img_card.size.height - this.highlight_border * 2);
                 } else {
                     return mU(!this.is_init ? 0 : this.img_card.size.height - this.border * 2);
@@ -87,21 +93,39 @@
                     return 0;
                 }
             },
+            card_style(){
+                return {
+                    display: 'flex',
+                    flexDirection: 'column',
+                    marginTop: 'auto',
+                    marginLeft: 'auto',
+                    marginBottom: mU(10),
+                    marginRight: mU(10),
+                    borderRadius: mU(20),
+                    backgroundColor: this.grey220,
+                    padding: mU(10),
+                }
+            },
+            center(){
+                return {
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                }
+            },
         },
         methods: {
             ...mapMutations({
-                setVisibility: `gallery_setVisibility`,
-                setPictureIdx: `gallery_setPictureIdx`,
+                setVisibility: `friend_setVisibility`,
+                setFriendIdx: `friend_setFriendIdx`,
             }),
             onClick() {
                 if (!this.aside.visibility) {
                     this.setVisibility();
-                    this.setPictureIdx(this.idx);
-                } else if (this.aside.visibility && this.idx === this.picture_idx) {
+                    this.setFriendIdx(this.idx);
+                } else if (this.aside.visibility && this.idx === this.friend_idx) {
                     this.setVisibility();
-                    this.setPictureIdx(null);
                 } else {
-                    this.setPictureIdx(this.idx);
+                    this.setFriendIdx(this.idx);
                 }
             },
         },
@@ -119,7 +143,7 @@
 </script>
 
 <style scoped>
-    .img-card {
+    .friend-card {
         cursor: pointer;
         margin: 5px;
         display: inline-block;
@@ -128,6 +152,7 @@
 
     .inner {
         display: flex;
+        flex-direction: column;
         width: 100%;
         height: 100%;
     }

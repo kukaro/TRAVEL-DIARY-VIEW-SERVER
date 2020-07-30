@@ -68,5 +68,9 @@
     "comment": {
         "comment": "댓글",
         "remain": "댓글 남기기"
+    },
+    "friend": {
+        "title": "친구 관리",
+        "add": "친구 추가"
     }
 }
