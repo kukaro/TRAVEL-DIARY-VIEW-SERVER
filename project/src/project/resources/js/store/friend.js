@@ -38,6 +38,22 @@ const data = {
     },
     getters: {},
     mutations: {
+        successAddFriend(state, res) {
+            let data = res.param;
+            data.id = res.data.id;
+            this.dispatch(`user_getOneUser`, {
+                data: {
+                    email: data.friend_email
+                }
+            })
+        },
+        failAddFriend(state, res) {
+            console.log('failAddFriend');
+            console.log(res);
+        },
+        removeSearchData(state) {
+            state[`${prefix}_search_data`] = [];
+        },
         successGetAllFriend(state, res) {
             state[`${prefix}_friends`] = res.data;
             state[`${prefix}_friends`] = state[`${prefix}_friends`].map((value, key) => {
@@ -61,6 +77,22 @@ const data = {
         },
     },
     actions: {
+        addFriend({commit}, {data = {}, headers = {}, param = null}) {
+            const jwt = SessionStorage.getJwt();
+            headers = {
+                Authorization: `${jwt.token_type} ${jwt.access_token}`,
+                ...headers
+            };
+            call(commit,
+                'post',
+                `/friend`,
+                `${prefix}_successAddFriend`,
+                `${prefix}_failAddFriend`,
+                data,
+                headers,
+                param,
+            )
+        },
         getAllFriend({commit}, {data = {}, headers = {}}) {
             const jwt = SessionStorage.getJwt();
             headers = {

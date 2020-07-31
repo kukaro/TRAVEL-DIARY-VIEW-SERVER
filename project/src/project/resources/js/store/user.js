@@ -24,8 +24,15 @@ const data = {
     },
     getters: {},
     mutations: {
+        successGetOneUser(state,res){
+            this.state[`friend_friends`].push(res.data);
+        },
+        failGetOneUser(state,res){
+            console.log('failGetOneUser');
+            console.log(res);
+        },
         successGetSeveralUser(state, res) {
-            state[`${prefix}_search_data`] = res.data.map((value, key) => {
+            state[`friend_search_data`] = res.data.map((value, key) => {
                 return new UserDto(value)
             });
         },
@@ -51,6 +58,21 @@ const data = {
                     headers,
                 )
             }
+        },
+        getOneUser({commit}, {data = {}, headers = {}}){
+            const jwt = SessionStorage.getJwt();
+            headers = {
+                Authorization: `${jwt.token_type} ${jwt.access_token}`,
+                ...headers
+            };
+            call(commit,
+                'get',
+                `/user/${data.email}`,
+                `${prefix}_successGetOneUser`,
+                `${prefix}_failGetOneUser`,
+                data,
+                headers,
+            )
         }
     }
 }

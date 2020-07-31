@@ -4186,6 +4186,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -4206,6 +4209,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     global_setting: "global_setting",
     search_data: "friend_search_data"
   })), {}, {
+    style: function style() {
+      return {};
+    },
     input_style: function input_style() {
       return {
         borderRadius: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mU"])(this.global_setting.border_radius.value),
@@ -4216,19 +4222,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     list_style: function list_style() {
       return {
-        backgroundColor: 'white'
+        borderRadius: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mU"])(this.global_setting.border_radius.value),
+        border: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mB"])(1, 'solid', this.prime),
+        width: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mU"])(this.width),
+        backgroundColor: 'white',
+        marginTop: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_0__["mU"])(10)
       };
     }
   }),
-  methods: {
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])({
+    removeSearchData: "friend_removeSearchData"
+  })), {}, {
     onChange: function onChange($event) {
       this.$emit('input', $event.target.value);
+    },
+    onFocusOut: function onFocusOut() {
+      var _this = this;
+
+      setTimeout(function () {
+        _this.removeSearchData();
+      }, this.ani_duration * 1000);
+    },
+    onListChangeEvent: function onListChangeEvent(data) {
+      this.user_input = data;
+      this.$emit('input', data);
     }
-  },
+  }),
   data: function data() {
     return {
       user_input: '',
-      width: 200
+      width: 300,
+      ani_duration: 1
     };
   }
 });
@@ -4245,12 +4269,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_ctxt__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utils/ctxt */ "./resources/js/components/utils/ctxt.vue");
+/* harmony import */ var _utils_unit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../utils/unit */ "./resources/js/utils/unit.js");
 //
 //
 //
 //
 //
 //
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "search-list-item",
@@ -4260,6 +4287,28 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     data: {
       required: true
+    }
+  },
+  computed: {
+    style: function style() {
+      return {
+        margin: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(0),
+        paddingLeft: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(20),
+        paddingRight: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(20),
+        paddingTop: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(10),
+        paddingBottom: Object(_utils_unit__WEBPACK_IMPORTED_MODULE_1__["mU"])(10)
+      };
+    },
+    email_style: function email_style() {
+      return {
+        overflow: 'hidden',
+        textOverflow: 'ellipsis'
+      };
+    }
+  },
+  methods: {
+    onClick: function onClick() {
+      this.$emit('listChangeEvent', this.data.email);
     }
   }
 });
@@ -8331,6 +8380,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _input_td_button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../input/td-button */ "./resources/js/components/input/td-button.vue");
 /* harmony import */ var _input_search_input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../input/search-input */ "./resources/js/components/input/search-input/index.vue");
+/* harmony import */ var _dto_FriendDto__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../dto/FriendDto */ "./resources/js/dto/FriendDto.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -8360,6 +8410,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+
 
 
 
@@ -8410,9 +8461,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   methods: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])({
-    getSeveralUser: "user_getSeveralUser"
+    getSeveralUser: "user_getSeveralUser",
+    addFriend: "friend_addFriend"
   })), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapMutations"])({})), {}, {
-    onClick: function onClick() {},
+    onClick: function onClick() {
+      var data = new _dto_FriendDto__WEBPACK_IMPORTED_MODULE_5__["default"]({
+        owner_email: this.owner.email,
+        friend_email: this.data
+      });
+      this.addFriend({
+        data: data,
+        param: data
+      });
+    },
     onInput: function onInput(data) {
       this.data = data;
     }
@@ -14842,7 +14903,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.search-input[data-v-8362de50] {\n    text-align: center;\n    font-family: Noto;\n}\n", ""]);
+exports.push([module.i, "\n.search-input[data-v-8362de50] {\n    text-align: center;\n    font-family: Noto;\n}\n.list[data-v-8362de50] {\n    position: absolute;\n}\nul[data-v-8362de50] {\n    margin: 0;\n    padding: 0;\n}\n", ""]);
 
 // exports
 
@@ -14861,7 +14922,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.search-list-item[data-v-04efc1e7] {\n}\n", ""]);
+exports.push([module.i, "\n.search-list-item[data-v-04efc1e7] {\n    list-style: none;\n    display: flex;\n    flex-direction: column;\n    cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -54587,23 +54648,49 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "search-div" }, [
+  return _c("div", { staticClass: "search-div", style: _vm.style }, [
     _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.user_input,
+          expression: "user_input"
+        }
+      ],
       staticClass: "search-input",
       style: _vm.input_style,
       attrs: { type: "text", placeholder: _vm.placeholder },
-      on: { input: _vm.onChange }
+      domProps: { value: _vm.user_input },
+      on: {
+        input: [
+          function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.user_input = $event.target.value
+          },
+          _vm.onChange
+        ],
+        focusout: _vm.onFocusOut
+      }
     }),
     _vm._v(" "),
-    _c("div", { staticClass: "list", style: _vm.list_style }, [
-      _c(
-        "ul",
-        _vm._l(_vm.search_data, function(value, key) {
-          return _c("search-list-item", { key: key, attrs: { data: value } })
-        }),
-        1
-      )
-    ])
+    _vm.search_data && _vm.search_data.length !== 0
+      ? _c("div", { staticClass: "list", style: _vm.list_style }, [
+          _c(
+            "ul",
+            _vm._l(_vm.search_data, function(value, key) {
+              return _c("search-list-item", {
+                key: key,
+                attrs: { data: value },
+                on: { listChangeEvent: _vm.onListChangeEvent }
+              })
+            }),
+            1
+          )
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
@@ -54630,8 +54717,19 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "li",
-    { staticClass: "search-list-item" },
-    [_c("Ctxt", { attrs: { value: _vm.data } })],
+    {
+      staticClass: "search-list-item",
+      style: _vm.style,
+      on: { click: _vm.onClick }
+    },
+    [
+      _c("Ctxt", {
+        style: _vm.email_style,
+        attrs: { value: _vm.data.email, size: 20 }
+      }),
+      _vm._v(" "),
+      _c("ctxt", { attrs: { value: _vm.data.name } })
+    ],
     1
   )
 }
@@ -84245,6 +84343,22 @@ var data = {
   },
   getters: {},
   mutations: {
+    successAddFriend: function successAddFriend(state, res) {
+      var data = res.param;
+      data.id = res.data.id;
+      this.dispatch("user_getOneUser", {
+        data: {
+          email: data.friend_email
+        }
+      });
+    },
+    failAddFriend: function failAddFriend(state, res) {
+      console.log('failAddFriend');
+      console.log(res);
+    },
+    removeSearchData: function removeSearchData(state) {
+      state["".concat(prefix, "_search_data")] = [];
+    },
     successGetAllFriend: function successGetAllFriend(state, res) {
       state["".concat(prefix, "_friends")] = res.data;
       state["".concat(prefix, "_friends")] = state["".concat(prefix, "_friends")].map(function (value, key) {
@@ -84267,12 +84381,26 @@ var data = {
     }
   },
   actions: {
-    getAllFriend: function getAllFriend(_ref, _ref2) {
+    addFriend: function addFriend(_ref, _ref2) {
       var commit = _ref.commit;
       var _ref2$data = _ref2.data,
           data = _ref2$data === void 0 ? {} : _ref2$data,
           _ref2$headers = _ref2.headers,
-          headers = _ref2$headers === void 0 ? {} : _ref2$headers;
+          headers = _ref2$headers === void 0 ? {} : _ref2$headers,
+          _ref2$param = _ref2.param,
+          param = _ref2$param === void 0 ? null : _ref2$param;
+      var jwt = _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_0__["default"].getJwt();
+      headers = _objectSpread({
+        Authorization: "".concat(jwt.token_type, " ").concat(jwt.access_token)
+      }, headers);
+      Object(_utils_request__WEBPACK_IMPORTED_MODULE_1__["call"])(commit, 'post', "/friend", "".concat(prefix, "_successAddFriend"), "".concat(prefix, "_failAddFriend"), data, headers, param);
+    },
+    getAllFriend: function getAllFriend(_ref3, _ref4) {
+      var commit = _ref3.commit;
+      var _ref4$data = _ref4.data,
+          data = _ref4$data === void 0 ? {} : _ref4$data,
+          _ref4$headers = _ref4.headers,
+          headers = _ref4$headers === void 0 ? {} : _ref4$headers;
       var jwt = _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_0__["default"].getJwt();
       headers = _objectSpread({
         Authorization: "".concat(jwt.token_type, " ").concat(jwt.access_token)
@@ -85331,8 +85459,15 @@ var data = {
   },
   getters: {},
   mutations: {
+    successGetOneUser: function successGetOneUser(state, res) {
+      this.state["friend_friends"].push(res.data);
+    },
+    failGetOneUser: function failGetOneUser(state, res) {
+      console.log('failGetOneUser');
+      console.log(res);
+    },
     successGetSeveralUser: function successGetSeveralUser(state, res) {
-      state["".concat(prefix, "_search_data")] = res.data.map(function (value, key) {
+      state["friend_search_data"] = res.data.map(function (value, key) {
         return new _dto_UserDto__WEBPACK_IMPORTED_MODULE_2__["default"](value);
       });
     },
@@ -85356,6 +85491,18 @@ var data = {
       if (data.email && data.name && data.email !== '' && data.name !== '') {
         Object(_utils_request__WEBPACK_IMPORTED_MODULE_1__["call"])(commit, 'get', "/user/".concat(data.email, "/").concat(data.name, "?count=").concat(this.state["friend_search_friend_cnt"]), "".concat(prefix, "_successGetSeveralUser"), "".concat(prefix, "_failGetSeveralUser"), data, headers);
       }
+    },
+    getOneUser: function getOneUser(_ref3, _ref4) {
+      var commit = _ref3.commit;
+      var _ref4$data = _ref4.data,
+          data = _ref4$data === void 0 ? {} : _ref4$data,
+          _ref4$headers = _ref4.headers,
+          headers = _ref4$headers === void 0 ? {} : _ref4$headers;
+      var jwt = _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_0__["default"].getJwt();
+      headers = _objectSpread({
+        Authorization: "".concat(jwt.token_type, " ").concat(jwt.access_token)
+      }, headers);
+      Object(_utils_request__WEBPACK_IMPORTED_MODULE_1__["call"])(commit, 'get', "/user/".concat(data.email), "".concat(prefix, "_successGetOneUser"), "".concat(prefix, "_failGetOneUser"), data, headers);
     }
   }
 };

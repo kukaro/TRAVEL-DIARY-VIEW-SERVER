@@ -27,6 +27,7 @@
     import {mapActions, mapMutations, mapState} from "vuex";
     import TdButton from '../../input/td-button';
     import SearchInput from "../../input/search-input";
+    import FriendDto from "../../../dto/FriendDto";
 
     export default {
         name: "title-slot",
@@ -71,10 +72,20 @@
         },
         methods: {
             ...mapActions({
-                getSeveralUser: `user_getSeveralUser`
+                getSeveralUser: `user_getSeveralUser`,
+                addFriend: `friend_addFriend`,
             }),
             ...mapMutations({}),
             onClick() {
+                let data = new FriendDto({
+                    owner_email: this.owner.email,
+                    friend_email: this.data,
+                });
+                this.addFriend(
+                    {
+                        data,
+                        param: data
+                    });
             },
             onInput(data) {
                 this.data = data;
