@@ -1,5 +1,6 @@
 class UserDto {
-    constructor({email, name, age, birth_date, password, is_hiworks, created_date, updated_date}) {
+    constructor({id, email, name, age, birth_date, password, is_hiworks, created_date, updated_date}) {
+        this.id = id;
         this.email = email;
         this.name = name;
         this.age = age;

@@ -83227,15 +83227,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var FriendDto = function FriendDto(_ref) {
   var _ref$id = _ref.id,
       id = _ref$id === void 0 ? null : _ref$id,
-      _ref$owner_email = _ref.owner_email,
-      owner_email = _ref$owner_email === void 0 ? null : _ref$owner_email,
+      _ref$owner_id = _ref.owner_id,
+      owner_id = _ref$owner_id === void 0 ? null : _ref$owner_id,
       _ref$friend_email = _ref.friend_email,
       friend_email = _ref$friend_email === void 0 ? null : _ref$friend_email;
 
   _classCallCheck(this, FriendDto);
 
   this.id = id;
-  this.owner_email = owner_email;
+  this.owner_id = owner_id;
   this.friend_email = friend_email;
 };
 
@@ -83349,7 +83349,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var PictureDto = function PictureDto(_ref) {
   var _ref$id = _ref.id,
       id = _ref$id === void 0 ? null : _ref$id,
-      owner_email = _ref.owner_email,
+      owner_id = _ref.owner_id,
       location = _ref.location,
       path = _ref.path,
       created_date = _ref.created_date,
@@ -83358,7 +83358,7 @@ var PictureDto = function PictureDto(_ref) {
   _classCallCheck(this, PictureDto);
 
   this.id = id;
-  this.owner_email = owner_email;
+  this.owner_id = owner_id;
   this.location = location;
   this.path = path;
   this.created_date = created_date;
@@ -83383,7 +83383,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var PostDto = function PostDto(_ref) {
   var _ref$id = _ref.id,
       id = _ref$id === void 0 ? null : _ref$id,
-      owner_email = _ref.owner_email,
+      owner_id = _ref.owner_id,
       _ref$title = _ref.title,
       title = _ref$title === void 0 ? '' : _ref$title,
       _ref$contents = _ref.contents,
@@ -83396,7 +83396,7 @@ var PostDto = function PostDto(_ref) {
   _classCallCheck(this, PostDto);
 
   this.id = id;
-  this.owner_email = owner_email;
+  this.owner_id = owner_id;
   this.title = title;
   this.contents = contents;
   this.parents_post_id = parents_post_id;
@@ -83450,7 +83450,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var PostcommentDto = function PostcommentDto(_ref) {
   var _ref$id = _ref.id,
       id = _ref$id === void 0 ? null : _ref$id,
-      owner_email = _ref.owner_email,
+      owner_id = _ref.owner_id,
       post_id = _ref.post_id,
       contents = _ref.contents,
       _ref$parents_comment_ = _ref.parents_comment_id,
@@ -83461,7 +83461,7 @@ var PostcommentDto = function PostcommentDto(_ref) {
   _classCallCheck(this, PostcommentDto);
 
   this.id = id;
-  this.owner_email = owner_email;
+  this.owner_id = owner_id;
   this.post_id = post_id;
   this.contents = contents;
   this.parents_comment_id = parents_comment_id;
@@ -83485,7 +83485,8 @@ __webpack_require__.r(__webpack_exports__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var UserDto = function UserDto(_ref) {
-  var email = _ref.email,
+  var id = _ref.id,
+      email = _ref.email,
       name = _ref.name,
       age = _ref.age,
       birth_date = _ref.birth_date,
@@ -83496,6 +83497,7 @@ var UserDto = function UserDto(_ref) {
 
   _classCallCheck(this, UserDto);
 
+  this.id = id;
   this.email = email;
   this.name = name;
   this.age = age;

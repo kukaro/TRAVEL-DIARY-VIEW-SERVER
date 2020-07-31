@@ -1,7 +1,7 @@
 class PictureDto {
-    constructor({id = null, owner_email, location, path, created_date, updated_date}) {
+    constructor({id = null, owner_id, location, path, created_date, updated_date}) {
         this.id = id;
-        this.owner_email = owner_email;
+        this.owner_id = owner_id;
         this.location = location;
         this.path = path;
         this.created_date = created_date;

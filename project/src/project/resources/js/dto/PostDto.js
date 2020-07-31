@@ -1,7 +1,7 @@
 class PostDto {
-    constructor({id = null, owner_email, title = '', contents = '', parents_post_id = null, created_date, updated_date}) {
+    constructor({id = null, owner_id, title = '', contents = '', parents_post_id = null, created_date, updated_date}) {
         this.id = id;
-        this.owner_email = owner_email;
+        this.owner_id = owner_id;
         this.title = title;
         this.contents = contents;
         this.parents_post_id = parents_post_id;
