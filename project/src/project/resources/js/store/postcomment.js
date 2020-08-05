@@ -9,7 +9,16 @@ const data = {
     state: {},
     getters: {},
     mutations: {
+        successGetAllOwnersByPostcomment(state, res) {
+            console.log('successGetAllOwnersByPostcomment');
+            this.commit(`modal_addOwnerInComment`, res);
+        },
+        failGetAllOwnersByPostcomment(state, res) {
+            console.log('failGetAllOwnersByPostcomment');
+            console.log(res);
+        },
         successGetPostcomment(state, res) {
+            res.data.owner_email = state[`sess_owner`].email;
             this.commit(`modal_insertComment`, new PostcommentDto(res.data));
         },
         failGetPostcomment(state, res) {
@@ -28,10 +37,11 @@ const data = {
         successGetAllPostcommentByPostId(state, res) {
             let data = res.data;
             let diary = this.state[`modal_diary`];
-            diary.comment.data={}
+            diary.comment.data = {}
             data.forEach((value, key) => {
-                diary.comment.data[value.id]=new PostcommentDto(value);
+                diary.comment.data[value.id] = new PostcommentDto(value);
             });
+            this.dispatch(`${prefix}_getAllOwnersByPostcomment`, {data: diary.data});
         },
         failGetAllPostcommentByPostId(state, res) {
             console.log('failGetAllPostcommentByPostId');
@@ -86,6 +96,22 @@ const data = {
                 '/post-comment',
                 `${prefix}_successCreatePostcommentByOwner`,
                 `${prefix}_failCreatePostcommentByOwner`,
+                data,
+                headers,
+                param
+            );
+        },
+        getAllOwnersByPostcomment({commit}, {data = {}, headers = {}, param}) {
+            const jwt = SessionStorage.getJwt();
+            headers = {
+                Authorization: `${jwt.token_type} ${jwt.access_token}`,
+                ...headers
+            };
+            call(commit,
+                'get',
+                `/user/post-comment/post/${data.id}`,
+                `${prefix}_successGetAllOwnersByPostcomment`,
+                `${prefix}_failGetAllOwnersByPostcomment`,
                 data,
                 headers,
                 param

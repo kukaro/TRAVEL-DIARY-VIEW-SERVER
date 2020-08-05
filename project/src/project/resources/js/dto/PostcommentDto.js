@@ -1,6 +1,7 @@
 class PostcommentDto {
-    constructor({id = null, owner_id, post_id, contents, parents_comment_id = null, created_date, updated_date}) {
+    constructor({id = null, owner_email=null,owner_id, post_id, contents, parents_comment_id = null, created_date, updated_date}) {
         this.id = id;
+        this.owner_email = owner_email;
         this.owner_id = owner_id;
         this.post_id = post_id;
         this.contents = contents;

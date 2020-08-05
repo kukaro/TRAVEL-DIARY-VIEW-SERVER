@@ -139,6 +139,7 @@
             onClick($e) {
                 let data = new PostcommentDto(
                     {
+                        owner_id: this.owner.id,
                         owner_email: this.owner.email,
                         post_id: this.diary.data.id,
                         contents: this.$refs['input'].innerHTML,

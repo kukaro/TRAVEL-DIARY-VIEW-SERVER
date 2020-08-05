@@ -196,6 +196,8 @@ const data = {
             }
         },
         createDiaryData({commit}, {data = {}, headers = {}, param}) {
+            console.log('createDiaryData');
+            console.log(data);
             const jwt = SessionStorage.getJwt();
             headers = {
                 Authorization: `${jwt.token_type} ${jwt.access_token}`,

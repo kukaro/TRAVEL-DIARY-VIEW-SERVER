@@ -5567,6 +5567,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   })), {}, {
     onClick: function onClick($e) {
       var data = new _dto_PostcommentDto__WEBPACK_IMPORTED_MODULE_4__["default"]({
+        owner_id: this.owner.id,
         owner_email: this.owner.email,
         post_id: this.diary.data.id,
         contents: this.$refs['input'].innerHTML,
@@ -5900,6 +5901,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       required: true
     }
   },
+  watch: {},
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
     diary: "modal_diary",
     grey220: "color_grey220",
@@ -83229,14 +83231,14 @@ var FriendDto = function FriendDto(_ref) {
       id = _ref$id === void 0 ? null : _ref$id,
       _ref$owner_id = _ref.owner_id,
       owner_id = _ref$owner_id === void 0 ? null : _ref$owner_id,
-      _ref$friend_email = _ref.friend_email,
-      friend_email = _ref$friend_email === void 0 ? null : _ref$friend_email;
+      _ref$friend_id = _ref.friend_id,
+      friend_id = _ref$friend_id === void 0 ? null : _ref$friend_id;
 
   _classCallCheck(this, FriendDto);
 
   this.id = id;
   this.owner_id = owner_id;
-  this.friend_email = friend_email;
+  this.friend_id = friend_id;
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (FriendDto);
@@ -83450,6 +83452,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var PostcommentDto = function PostcommentDto(_ref) {
   var _ref$id = _ref.id,
       id = _ref$id === void 0 ? null : _ref$id,
+      _ref$owner_email = _ref.owner_email,
+      owner_email = _ref$owner_email === void 0 ? null : _ref$owner_email,
       owner_id = _ref.owner_id,
       post_id = _ref.post_id,
       contents = _ref.contents,
@@ -83461,6 +83465,7 @@ var PostcommentDto = function PostcommentDto(_ref) {
   _classCallCheck(this, PostcommentDto);
 
   this.id = id;
+  this.owner_email = owner_email;
   this.owner_id = owner_id;
   this.post_id = post_id;
   this.contents = contents;
@@ -83564,7 +83569,7 @@ module.exports = JSON.parse("{\"message\":\"hello i18n !!\",\"dashboard\":\"Dash
 /*! exports provided: global, user, diary, gallery, order, comment, friend, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"global\":{\"no_picture\":\"사진 없음\",\"year\":\"년\",\"month\":\"월\",\"day\":\"일\",\"week\":\"요일\",\"current_date\":\"현재 시간\",\"created_date\":\"최초 생성 일자\",\"updated_date\":\"최종 수정 일자\",\"create\":\"생성\",\"update\":\"수정\",\"cancel\":\"취소\",\"delete\":\"삭제\",\"placeholder\":{\"default\":\"입력하세요.\",\"title\":\"제목을 입력하세요\",\"content\":\"내용을 입력하세요\",\"id_or_name\":\"ID나 이름을 입력하세요\"},\"signup\":\"회원가입\",\"password_reset\":\"비밀번호 찾기\",\"login\":\"로그인\",\"hiworks\":\"하이웍스\",\"password\":\"비밀번호\",\"password_confirmation\":\"비밀번호 확인\",\"show\":\"보기\",\"not_data\":\"데이터가 없습니다.\",\"return_normal_login\":\"🠔 일반 로그인\",\"hide\":\"숨기기\",\"express\":\"나타내기\",\"none\":\"값 없음\"},\"user\":{\"title\":\"사용자 정보\",\"email\":\"email\",\"name\":\"이름\",\"age\":\"나이\",\"birth_date\":\"생일\",\"password\":\"비밀번호\",\"password_confirmation\":\"비밀번호 확인\",\"created_date\":\"최초 생성 일자\",\"updated_date\":\"최종 수정 일자\"},\"diary\":{\"title\":\"다이어리\",\"id\":\"ID\",\"write\":\"다이어리 쓰기\"},\"gallery\":{\"title\":\"갤러리\",\"write\":\"사진 올리기\",\"info\":\"사진 정보\",\"picture\":{\"id\":\"고유 번호\",\"owner_email\":\"소유주 이메일\",\"created_date\":\"최초 생성 일자\",\"updated_date\":\"최종 수정 일자\"},\"picture_post\":\"사용중인 다이어리\"},\"order\":{\"date_criteria\":\"날짜별\",\"group_criteria\":\"그룹별\",\"location_criteria\":\"지역별\",\"time_inc\":\"최근 날짜순으로 변경 ▼\",\"time_dec\":\"오래된 날짜순으로 변경 ▲\"},\"comment\":{\"comment\":\"댓글\",\"remain\":\"댓글 남기기\"},\"friend\":{\"title\":\"친구 관리\",\"add\":\"친구 추가\"}}");
+module.exports = JSON.parse("{\"global\":{\"no_picture\":\"사진 없음\",\"year\":\"년\",\"month\":\"월\",\"day\":\"일\",\"week\":\"요일\",\"current_date\":\"현재 시간\",\"created_date\":\"최초 생성 일자\",\"updated_date\":\"최종 수정 일자\",\"create\":\"생성\",\"update\":\"수정\",\"cancel\":\"취소\",\"delete\":\"삭제\",\"placeholder\":{\"default\":\"입력하세요.\",\"title\":\"제목을 입력하세요\",\"content\":\"내용을 입력하세요\",\"id_or_name\":\"ID나 이름을 입력하세요\"},\"signup\":\"회원가입\",\"password_reset\":\"비밀번호 찾기\",\"login\":\"로그인\",\"hiworks\":\"하이웍스\",\"password\":\"비밀번호\",\"password_confirmation\":\"비밀번호 확인\",\"show\":\"보기\",\"not_data\":\"데이터가 없습니다.\",\"return_normal_login\":\"🠔 일반 로그인\",\"hide\":\"숨기기\",\"express\":\"나타내기\",\"none\":\"값 없음\"},\"user\":{\"title\":\"사용자 정보\",\"email\":\"email\",\"name\":\"이름\",\"age\":\"나이\",\"birth_date\":\"생일\",\"password\":\"비밀번호\",\"password_confirmation\":\"비밀번호 확인\",\"created_date\":\"최초 생성 일자\",\"updated_date\":\"최종 수정 일자\"},\"diary\":{\"title\":\"다이어리\",\"id\":\"ID\",\"write\":\"다이어리 쓰기\"},\"gallery\":{\"title\":\"갤러리\",\"write\":\"사진 올리기\",\"info\":\"사진 정보\",\"picture\":{\"id\":\"고유 번호\",\"owner_email\":\"소유주 이메일\",\"owner_id\":\"소유주 ID\",\"created_date\":\"최초 생성 일자\",\"updated_date\":\"최종 수정 일자\"},\"picture_post\":\"사용중인 다이어리\"},\"order\":{\"date_criteria\":\"날짜별\",\"group_criteria\":\"그룹별\",\"location_criteria\":\"지역별\",\"time_inc\":\"최근 날짜순으로 변경 ▼\",\"time_dec\":\"오래된 날짜순으로 변경 ▲\"},\"comment\":{\"comment\":\"댓글\",\"remain\":\"댓글 남기기\"},\"friend\":{\"title\":\"친구 관리\",\"add\":\"친구 추가\"}}");
 
 /***/ }),
 
@@ -84059,6 +84064,8 @@ var data = {
           _ref8$headers = _ref8.headers,
           headers = _ref8$headers === void 0 ? {} : _ref8$headers,
           param = _ref8.param;
+      console.log('createDiaryData');
+      console.log(data);
       var jwt = _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_1__["default"].getJwt();
       headers = _objectSpread({
         Authorization: "".concat(jwt.token_type, " ").concat(jwt.access_token)
@@ -84221,9 +84228,9 @@ var data = {
             hash: Object(js_sha256__WEBPACK_IMPORTED_MODULE_1__["sha256"])('' + now.getTime())
           });
           var pictureDto = new _dto_PictureDto__WEBPACK_IMPORTED_MODULE_2__["default"]({
-            owner_email: owner.email,
-            location: "".concat(owner.email, "/").concat(now.getFullYear(), "/").concat(now.getMonth() + 1, "/").concat(now.getDate(), "/").concat(fileDto.hash, ".").concat(fileDto.ext),
-            path: "".concat(owner.email, "/").concat(now.getFullYear(), "/").concat(now.getMonth() + 1, "/").concat(now.getDate(), "/").concat(fileDto.hash, ".").concat(fileDto.ext),
+            owner_id: owner.id,
+            location: "".concat(owner.id, "/").concat(now.getFullYear(), "/").concat(now.getMonth() + 1, "/").concat(now.getDate(), "/").concat(fileDto.hash, ".").concat(fileDto.ext),
+            path: "".concat(owner.id, "/").concat(now.getFullYear(), "/").concat(now.getMonth() + 1, "/").concat(now.getDate(), "/").concat(fileDto.hash, ".").concat(fileDto.ext),
             created_date: now,
             updated_date: now
           });
@@ -84583,7 +84590,7 @@ var data = {
       var owner = this.state["sess_owner"];
 
       if (owner.email) {
-        Object(_utils_request__WEBPACK_IMPORTED_MODULE_1__["call"])(commit, 'get', "/picture/user/".concat(owner.email), "".concat(prefix, "_successGetAllPicturesByOwner"), "".concat(prefix, "_failGetAllPicturesByOwner"), data, headers);
+        Object(_utils_request__WEBPACK_IMPORTED_MODULE_1__["call"])(commit, 'get', "/picture/user/".concat(owner.id), "".concat(prefix, "_successGetAllPicturesByOwner"), "".concat(prefix, "_failGetAllPicturesByOwner"), data, headers);
       }
     },
     getAllPostsByPicture: function getAllPostsByPicture(_ref5, _ref6) {
@@ -84998,6 +85005,9 @@ var data = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mode", function() { return mode; });
 /* harmony import */ var _dto_PostDto__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../dto/PostDto */ "./resources/js/dto/PostDto.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
+
 
 var prefix = 'modal';
 var mode = {
@@ -85050,6 +85060,21 @@ var data = {
   },
   getters: {},
   mutations: {
+    addOwnerInComment: function addOwnerInComment(state, res) {
+      var data = {};
+      var diary = state["modal_diary"];
+      res.data.forEach(function (value, key) {
+        data[value.id] = value;
+      });
+      Object.keys(diary.comment.data).forEach(function (key) {
+        vue__WEBPACK_IMPORTED_MODULE_1___default.a.set(state["modal_diary"].comment.data[key], 'owner_email', data[state["modal_diary"].comment.data[key].owner_id].email);
+      });
+      var tmp = state["modal_diary"].comment.data;
+      state["modal_diary"].comment.data = {};
+      setTimeout(function () {
+        state["modal_diary"].comment.data = tmp;
+      }, 0);
+    },
     insertComment: function insertComment(state, payload) {
       this.state["".concat(prefix, "_diary")].comment.data[payload.id] = payload;
       this.state["".concat(prefix, "_diary")].comment.data = Object.assign({}, this.state["".concat(prefix, "_diary")].comment.data);
@@ -85086,7 +85111,7 @@ var data = {
     },
     initDiaryData: function initDiaryData(state, payload) {
       this.state["".concat(prefix, "_diary")].data = new _dto_PostDto__WEBPACK_IMPORTED_MODULE_0__["default"]({
-        owner_email: this.state["sess_owner"].email
+        owner_id: this.state["sess_owner"].id
       });
       delete this.state["".concat(prefix, "_diary")].data.id;
       delete this.state["".concat(prefix, "_diary")].data.created_date;
@@ -85178,6 +85203,7 @@ var data = {
           headers = _ref2$headers === void 0 ? {} : _ref2$headers,
           param = _ref2.param;
       console.log(param.fileDto.file);
+      console.log(data);
       var jwt = _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_0__["default"].getJwt();
       headers = _objectSpread({
         Authorization: "".concat(jwt.token_type, " ").concat(jwt.access_token)
@@ -85217,7 +85243,16 @@ var data = {
   state: {},
   getters: {},
   mutations: {
+    successGetAllOwnersByPostcomment: function successGetAllOwnersByPostcomment(state, res) {
+      console.log('successGetAllOwnersByPostcomment');
+      this.commit("modal_addOwnerInComment", res);
+    },
+    failGetAllOwnersByPostcomment: function failGetAllOwnersByPostcomment(state, res) {
+      console.log('failGetAllOwnersByPostcomment');
+      console.log(res);
+    },
     successGetPostcomment: function successGetPostcomment(state, res) {
+      res.data.owner_email = state["sess_owner"].email;
       this.commit("modal_insertComment", new _dto_PostcommentDto__WEBPACK_IMPORTED_MODULE_2__["default"](res.data));
     },
     failGetPostcomment: function failGetPostcomment(state, res) {
@@ -85240,6 +85275,9 @@ var data = {
       diary.comment.data = {};
       data.forEach(function (value, key) {
         diary.comment.data[value.id] = new _dto_PostcommentDto__WEBPACK_IMPORTED_MODULE_2__["default"](value);
+      });
+      this.dispatch("".concat(prefix, "_getAllOwnersByPostcomment"), {
+        data: diary.data
       });
     },
     failGetAllPostcommentByPostId: function failGetAllPostcommentByPostId(state, res) {
@@ -85288,10 +85326,25 @@ var data = {
           headers = _ref6$headers === void 0 ? {} : _ref6$headers,
           param = _ref6.param;
       var jwt = _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_0__["default"].getJwt();
+      console.log('만들기');
+      console.log(data);
       headers = _objectSpread({
         Authorization: "".concat(jwt.token_type, " ").concat(jwt.access_token)
       }, headers);
       Object(_utils_request__WEBPACK_IMPORTED_MODULE_1__["call"])(commit, 'post', '/post-comment', "".concat(prefix, "_successCreatePostcommentByOwner"), "".concat(prefix, "_failCreatePostcommentByOwner"), data, headers, param);
+    },
+    getAllOwnersByPostcomment: function getAllOwnersByPostcomment(_ref7, _ref8) {
+      var commit = _ref7.commit;
+      var _ref8$data = _ref8.data,
+          data = _ref8$data === void 0 ? {} : _ref8$data,
+          _ref8$headers = _ref8.headers,
+          headers = _ref8$headers === void 0 ? {} : _ref8$headers,
+          param = _ref8.param;
+      var jwt = _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_0__["default"].getJwt();
+      headers = _objectSpread({
+        Authorization: "".concat(jwt.token_type, " ").concat(jwt.access_token)
+      }, headers);
+      Object(_utils_request__WEBPACK_IMPORTED_MODULE_1__["call"])(commit, 'get', "/user/post-comment/post/".concat(data.id), "".concat(prefix, "_successGetAllOwnersByPostcomment"), "".concat(prefix, "_failGetAllOwnersByPostcomment"), data, headers, param);
     }
   }
 };

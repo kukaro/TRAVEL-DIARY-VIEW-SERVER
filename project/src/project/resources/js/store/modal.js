@@ -1,4 +1,5 @@
 import PostDto from "../dto/PostDto";
+import Vue from 'vue';
 
 const prefix = 'modal';
 
@@ -52,6 +53,21 @@ const data = {
     },
     getters: {},
     mutations: {
+        addOwnerInComment(state, res) {
+            let data = {};
+            let diary = state[`modal_diary`];
+            res.data.forEach((value, key) => {
+                data[value.id] = value;
+            });
+            Object.keys(diary.comment.data).forEach((key) => {
+                Vue.set(state[`modal_diary`].comment.data[key], 'owner_email', data[state[`modal_diary`].comment.data[key].owner_id].email);
+            });
+            let tmp = state[`modal_diary`].comment.data;
+            state[`modal_diary`].comment.data = {};
+            setTimeout(() => {
+                state[`modal_diary`].comment.data = tmp;
+            }, 0);
+        },
         insertComment(state, payload) {
             this.state[`${prefix}_diary`].comment.data[payload.id] = payload;
             this.state[`${prefix}_diary`].comment.data = Object.assign({}, this.state[`${prefix}_diary`].comment.data);
@@ -85,7 +101,7 @@ const data = {
         },
         initDiaryData(state, payload) {
             this.state[`${prefix}_diary`].data = new PostDto({
-                owner_email: this.state[`sess_owner`].email
+                owner_id: this.state[`sess_owner`].id
             });
             delete this.state[`${prefix}_diary`].data.id;
             delete this.state[`${prefix}_diary`].data.created_date;

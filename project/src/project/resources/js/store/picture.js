@@ -40,6 +40,7 @@ const data = {
          */
         createPictureByOwner({commit}, {data = {}, headers = {}, param}) {
             console.log(param.fileDto.file);
+            console.log(data);
             const jwt = SessionStorage.getJwt();
             headers = {
                 Authorization: `${jwt.token_type} ${jwt.access_token}`,

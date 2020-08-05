@@ -140,7 +140,7 @@ const data = {
             if (owner.email) {
                 call(commit,
                     'get',
-                    `/picture/user/${owner.email}`,
+                    `/picture/user/${owner.id}`,
                     `${prefix}_successGetAllPicturesByOwner`,
                     `${prefix}_failGetAllPicturesByOwner`,
                     data,

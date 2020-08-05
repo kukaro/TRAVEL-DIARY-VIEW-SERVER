@@ -54,6 +54,7 @@
         "picture": {
             "id": "고유 번호",
             "owner_email": "소유주 이메일",
+            "owner_id": "소유주 ID",
             "created_date": "최초 생성 일자",
             "updated_date": "최종 수정 일자"
         },

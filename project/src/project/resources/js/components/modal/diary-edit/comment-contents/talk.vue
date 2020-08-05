@@ -24,13 +24,14 @@
                 required: true
             }
         },
-        computed:{
+        watch: {},
+        computed: {
             ...mapState({
                 diary: `modal_diary`,
                 grey220: `color_grey220`,
                 blue: `color_chat_blue`,
                 yellow: `color_chat_yellow`,
-                owner:`sess_owner`,
+                owner: `sess_owner`,
             }),
             style() {
                 return {
@@ -38,11 +39,11 @@
                     minHeight: mU(this.diary.comment.talk_height),
                 }
             },
-            is_owner(){
-                return this.owner.email===this.data.owner_email;
-            }
+            is_owner() {
+                return this.owner.email === this.data.owner_email;
+            },
         },
-        created(){
+        created() {
         },
     }
 </script>

@@ -2,11 +2,11 @@ class FriendDto {
     constructor({
                     id = null,
                     owner_id = null,
-                    friend_email = null
+                    friend_id = null
                 }) {
         this.id = id;
         this.owner_id = owner_id;
-        this.friend_email = friend_email;
+        this.friend_id = friend_id;
     }
 }
 

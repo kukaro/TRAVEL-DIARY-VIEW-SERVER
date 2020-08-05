@@ -32,9 +32,9 @@ const data = {
                     hash: sha256('' + now.getTime()),
                 });
                 let pictureDto = new PictureDto({
-                    owner_email: owner.email,
-                    location: `${owner.email}/${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()}/${fileDto.hash}.${fileDto.ext}`,
-                    path: `${owner.email}/${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()}/${fileDto.hash}.${fileDto.ext}`,
+                    owner_id: owner.id,
+                    location: `${owner.id}/${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()}/${fileDto.hash}.${fileDto.ext}`,
+                    path: `${owner.id}/${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()}/${fileDto.hash}.${fileDto.ext}`,
                     created_date: now,
                     updated_date: now,
                 });
