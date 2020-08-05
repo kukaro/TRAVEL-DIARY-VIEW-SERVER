@@ -41,6 +41,7 @@
                 prime: 'color_prime',
                 owner: 'sess_owner',
                 global_setting: 'global_setting',
+                search_data: `friend_search_data`,
             }),
             style() {
                 return {
@@ -77,14 +78,20 @@
             }),
             ...mapMutations({}),
             onClick() {
+                let friend = null;
+                for (let userDto of this.search_data) {
+                    if (userDto.email === this.data) {
+                        friend = userDto;
+                    }
+                }
                 let data = new FriendDto({
-                    owner_email: this.owner.email,
-                    friend_email: this.data,
+                    owner_id: this.owner.id,
+                    friend_id: friend.id,
                 });
                 this.addFriend(
                     {
                         data,
-                        param: data
+                        param: {...data, friend_email: friend.email}
                     });
             },
             onInput(data) {

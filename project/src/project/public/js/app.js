@@ -8383,6 +8383,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _input_td_button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../input/td-button */ "./resources/js/components/input/td-button.vue");
 /* harmony import */ var _input_search_input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../input/search-input */ "./resources/js/components/input/search-input/index.vue");
 /* harmony import */ var _dto_FriendDto__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../dto/FriendDto */ "./resources/js/dto/FriendDto.js");
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -8432,7 +8438,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     chosen_prime: 'color_chosen_prime',
     prime: 'color_prime',
     owner: 'sess_owner',
-    global_setting: 'global_setting'
+    global_setting: 'global_setting',
+    search_data: "friend_search_data"
   })), {}, {
     style: function style() {
       return {
@@ -8467,13 +8474,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     addFriend: "friend_addFriend"
   })), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapMutations"])({})), {}, {
     onClick: function onClick() {
+      var friend = null;
+
+      var _iterator = _createForOfIteratorHelper(this.search_data),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var userDto = _step.value;
+
+          if (userDto.email === this.data) {
+            friend = userDto;
+          }
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
       var data = new _dto_FriendDto__WEBPACK_IMPORTED_MODULE_5__["default"]({
-        owner_email: this.owner.email,
-        friend_email: this.data
+        owner_id: this.owner.id,
+        friend_id: friend.id
       });
       this.addFriend({
         data: data,
-        param: data
+        param: _objectSpread(_objectSpread({}, data), {}, {
+          friend_email: friend.email
+        })
       });
     },
     onInput: function onInput(data) {
@@ -85326,8 +85354,6 @@ var data = {
           headers = _ref6$headers === void 0 ? {} : _ref6$headers,
           param = _ref6.param;
       var jwt = _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_0__["default"].getJwt();
-      console.log('만들기');
-      console.log(data);
       headers = _objectSpread({
         Authorization: "".concat(jwt.token_type, " ").concat(jwt.access_token)
       }, headers);
