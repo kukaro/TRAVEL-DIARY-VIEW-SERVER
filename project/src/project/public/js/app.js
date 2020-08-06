@@ -84249,7 +84249,6 @@ var data = {
       try {
         for (_iterator.s(); !(_step = _iterator.n()).done;) {
           var file = _step.value;
-          console.log(file);
           var now = new Date();
           var fileDto = new _dto_FileDto__WEBPACK_IMPORTED_MODULE_0__["default"]({
             file: file,
@@ -85191,23 +85190,19 @@ var data = {
   mutations: {
     successCreatePictureByOwner: function successCreatePictureByOwner(state, res) {
       console.log('successCreatePictureByOwner');
-      var fileDto = res.param.fileDto;
-      var pictureDto = res.param.pictureDto;
-      pictureDto.id = fileDto.pictureId = res.data.id;
 
-      if (fileDto instanceof _dto_FileDto__WEBPACK_IMPORTED_MODULE_2__["default"]) {
-        var formData = new FormData();
-        formData.append('file', fileDto.file);
-        formData.append('picture_id', res.data.id);
-        formData.append('file_path', pictureDto.location);
-        this.dispatch("diary_createFileDataByOwner", {
-          data: formData,
-          param: {
-            fileDto: fileDto,
-            pictureDto: pictureDto,
-            is_gallery: res.param.is_gallery
-          }
-        });
+      if (res.param.is_gallery !== true) {
+        var files = this.state["diary_files"];
+        files.push(res.param.fileDto);
+        this.commit("file_addImageToText", _objectSpread({}, res.param));
+      } else {
+        var pictures = this.state["gallery_pictures"];
+
+        if (pictures === null) {
+          this.commit("gallery_initEmptyPictures");
+        }
+
+        pictures.push(res.param.pictureDto);
       }
     },
     failCreatePictureByOwner: function failCreatePictureByOwner(state, res) {
@@ -85230,13 +85225,19 @@ var data = {
           _ref2$headers = _ref2.headers,
           headers = _ref2$headers === void 0 ? {} : _ref2$headers,
           param = _ref2.param;
-      console.log(param.fileDto.file);
-      console.log(data);
       var jwt = _storage_sessionstorage__WEBPACK_IMPORTED_MODULE_0__["default"].getJwt();
       headers = _objectSpread({
-        Authorization: "".concat(jwt.token_type, " ").concat(jwt.access_token)
+        Authorization: "".concat(jwt.token_type, " ").concat(jwt.access_token),
+        'Content-Type': 'multipart/form-data'
       }, headers);
-      Object(_utils_request__WEBPACK_IMPORTED_MODULE_1__["call"])(commit, 'post', '/picture', "".concat(prefix, "_successCreatePictureByOwner"), "".concat(prefix, "_failCreatePictureByOwner"), data, headers, param);
+      var formData = new FormData();
+      formData.append('file', param.fileDto.file);
+
+      for (var key in data) {
+        formData.append(key, data[key]);
+      }
+
+      Object(_utils_request__WEBPACK_IMPORTED_MODULE_1__["call"])(commit, 'post', '/picture', "".concat(prefix, "_successCreatePictureByOwner"), "".concat(prefix, "_failCreatePictureByOwner"), formData, headers, param);
     }
   }
 };
