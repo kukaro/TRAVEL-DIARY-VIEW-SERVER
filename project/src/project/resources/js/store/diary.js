@@ -84,7 +84,8 @@ const data = {
             console.log('failCreateFileDataByOwner');
         },
         successCreateDiaryData(state, res) {
-            this.state[`modal_diary`].data.id = res.data.id;
+            console.log('successCreateDiaryData');
+            this.state[`modal_diary`].data.id = res.data;
             this.commit(`${prefix}_beforeCloseModal`);
         },
         successUpdateDiaryDataByPostId(state, res) {

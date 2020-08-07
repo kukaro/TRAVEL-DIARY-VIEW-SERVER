@@ -11,6 +11,8 @@ const data = {
     mutations: {
         successCreatePictureByOwner(state, res) {
             console.log('successCreatePictureByOwner');
+            res.param.fileDto.pictureId = res.data;
+            res.param.pictureDto.id = res.data;
             if (res.param.is_gallery !== true) {
                 let files = this.state[`diary_files`];
                 files.push(res.param.fileDto);
@@ -45,6 +47,8 @@ const data = {
             };
             const formData = new FormData();
             formData.append('file', param.fileDto.file);
+            data = JSON.parse(JSON.stringify(data));
+            delete data['id'];
             for (let key in data) {
                 formData.append(key, data[key]);
             }

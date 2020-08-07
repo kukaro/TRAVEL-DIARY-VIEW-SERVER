@@ -83968,7 +83968,8 @@ var data = {
       console.log('failCreateFileDataByOwner');
     },
     successCreateDiaryData: function successCreateDiaryData(state, res) {
-      this.state["modal_diary"].data.id = res.data.id;
+      console.log('successCreateDiaryData');
+      this.state["modal_diary"].data.id = res.data;
       this.commit("".concat(prefix, "_beforeCloseModal"));
     },
     successUpdateDiaryDataByPostId: function successUpdateDiaryDataByPostId(state, res) {
@@ -85190,6 +85191,8 @@ var data = {
   mutations: {
     successCreatePictureByOwner: function successCreatePictureByOwner(state, res) {
       console.log('successCreatePictureByOwner');
+      res.param.fileDto.pictureId = res.data;
+      res.param.pictureDto.id = res.data;
 
       if (res.param.is_gallery !== true) {
         var files = this.state["diary_files"];
@@ -85232,6 +85235,8 @@ var data = {
       }, headers);
       var formData = new FormData();
       formData.append('file', param.fileDto.file);
+      data = JSON.parse(JSON.stringify(data));
+      delete data['id'];
 
       for (var key in data) {
         formData.append(key, data[key]);
